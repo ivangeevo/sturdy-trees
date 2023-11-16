@@ -1,0 +1,33 @@
+{
+  "schemaVersion":1,
+  "id":"sturdy_trees",
+  "version":"${version}",
+  "name":"sturdy_trees",
+  "description":"",
+  "authors":[],
+  "contact":{
+    "repo":"https://github.com/Ivan/sturdy_treesw-remastered-private"
+  },
+  "license":"All-Rights-Reserved",
+  "icon":"assets/sturdy_trees/icon.png",
+  "environment":"*",
+  "entrypoints":{
+    "client":[
+      "ivangeevo.sturdy_trees.client.SturdyTreesClient"
+    ],
+    "main":[
+      "ivangeevo.sturdy_trees.SturdyTrees"
+    ]
+  },
+  "mixins":[
+    "sturdy_trees.mixins.json"
+  ],
+  "depends":{
+    "fabricloader":">=${loader_version}",
+    "fabric":"*",
+    "minecraft":"${minecraft_version}"
+  },
+
+  "accessWidener" : "sturdy_trees.accesswidener"
+
+}
