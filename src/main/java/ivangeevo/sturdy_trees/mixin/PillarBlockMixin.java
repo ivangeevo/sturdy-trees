@@ -38,7 +38,7 @@ public class PillarBlockMixin extends Block implements LogBlockStacks {
         player.addExhaustion(0.2F);
 
 
-        if (state.isIn(BlockTags.LOGS) || state.isIn(SturdyTreesBlockTags.STRIPPED_MODDED_LOGS)) {
+        if (state.isIn(BlockTags.LOGS)) {
 
 
             boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesItemTags.MODDED_AXES));
