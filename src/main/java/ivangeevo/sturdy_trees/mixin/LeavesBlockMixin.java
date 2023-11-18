@@ -1,32 +1,36 @@
 package ivangeevo.sturdy_trees.mixin;
 
 
-import ivangeevo.sturdy_trees.block.blocks.LogBlock;
 import net.minecraft.block.*;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.state.property.IntProperty;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LeavesBlock.class)
 public abstract class LeavesBlockMixin extends Block
         implements Waterloggable {
-    @Shadow protected abstract boolean shouldDecay(BlockState state);
+
+    @Shadow
+    @Final
+    public static IntProperty DISTANCE;
 
     public LeavesBlockMixin(Settings settings) {
         super(settings);
     }
 
-   // @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void injectedRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (this.shouldDecay(state) && (!(state.getBlock() instanceof LogBlock))) {
-            LeavesBlock.dropStacks(state, world, pos);
-            world.removeBlock(pos, false);
+    //@Inject(method = "getDistanceFromLog", at = @At("HEAD"), cancellable = true)
+    private static void injectedGetDistanceFromLog(BlockState state, CallbackInfoReturnable<Integer> cir) {
+        if (state.isOf(Blocks.OAK_LOG)) {
+            cir.setReturnValue(0);
         }
-        ci.cancel();
+        if (state.getBlock() instanceof LeavesBlock) {
+            cir.setReturnValue(state.get(DISTANCE));
+        }
+        cir.setReturnValue(7);
+
     }
 }

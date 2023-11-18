@@ -1,5 +1,6 @@
+package ivangeevo.sturdy_trees.mixin;
+
 import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.Codec;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +13,9 @@ import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -37,22 +41,17 @@ public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
         return Blocks.AIR;
     }
 
-    @Override
-    public List<FoliagePlacer.TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
+    @Inject(method = "generate", at = @At("HEAD"), cancellable = true)
+    private void injectedGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
         StraightTrunkPlacer.setToDirt(world, replacer, random, startPos.down(), config);
-
-        Block logBlock = /* Your logic to get the log block */;
+        for (int i = 0; i < height; ++i) {
+            this.getAndSetState(world, replacer, random, startPos.up(i), config);
+        }
+        Block logBlock = config.trunkProvider.getBlockState(random, startPos).getBlock();
         Block stumpBlock = getStumpBlockForLog(logBlock);
 
-        // Generate the trunk
-        for (int i = 0; i < height; ++i) {
-            BlockPos currentPos = startPos.up(i);
-            this.getAndSetState(world, replacer, random, currentPos, config);
-        }
 
-        // Set the block state at startPos to another block after generating the trunk
-        replacer.accept(startPos, stumpBlock);
-
-        return ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false));
+        replacer.accept(startPos, stumpBlock.getDefaultState());
+        cir.setReturnValue(ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false)));
     }
 }

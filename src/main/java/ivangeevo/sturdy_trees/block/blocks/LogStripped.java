@@ -1,10 +1,10 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.ConvertingBlock;
-import ivangeevo.sturdy_trees.SturdyTrees;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.block.util.LogType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
@@ -14,25 +14,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LogStripped extends ConvertingBlock implements LogBlockStacks {
-
+    public static final EnumProperty<LogType> LOG_TYPE = EnumProperty.of("log_type", LogType.class);
 
 
     public LogStripped(AbstractBlock.Settings settings) {
         super(settings);
+        this.setDefaultState(this.getStateManager().getDefaultState().with(LOG_TYPE, LogType.OAK));
+
     }
 
     @Override
@@ -64,146 +68,196 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());
 
-        Block oakLog = Blocks.OAK_LOG;
-        Block birchLog = Blocks.BIRCH_LOG;
-        Block acaciaLog = Blocks.ACACIA_LOG;
-        Block spruceLog = Blocks.SPRUCE_LOG;
-        Block jungleLog = Blocks.JUNGLE_LOG;
+
+        // Logic to determine the block to replace with
+        Block replacementBlock = determineReplacementBlock(state, blockBelowState, blockAboveState);
+        world.setBlockState(pos, replacementBlock.getDefaultState());
+
+        dropLootTable(world, pos, state, player);
+    }
+
+    private Block determineReplacementBlock(BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
+        Block strippedVar0 = null;
+        Block strippedVar1 = null;
+        Block strippedVar2 = null;
+        Block strippedVar3 = null;
+
+        Block midVar1 = null;
+        Block midVar2 = null;
+        Block midVar3 = null;
+
+        Block botVar1 = null;
+        Block botVar2 = null;
+        Block botVar3 = null;
+
+        Block topVar1 = null;
+        Block topVar2 = null;
+        Block topVar3 = null;
 
 
-        Block oakStump = SturdyTreesBlocks.STUMP_OAK;
-        Block birchStump = SturdyTreesBlocks.STUMP_BIRCH;
-        Block spruceStump = SturdyTreesBlocks.STUMP_SPRUCE;
-        Block jungleStump = SturdyTreesBlocks.STUMP_JUNGLE;
-        Block acaciaStump = SturdyTreesBlocks.STUMP_ACACIA;
+        // Assign the appropriate stripped variations based on the log type
+        if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3;
 
-        Block oakMidVar1 = SturdyTreesBlocks.LOG_OAK_MID_VAR1;
-        Block oakMidVar2 = SturdyTreesBlocks.LOG_OAK_MID_VAR2;
-        Block oakMidVar3 = SturdyTreesBlocks.LOG_OAK_MID_VAR3;
+            midVar1 = SturdyTreesBlocks.LOG_OAK_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_OAK_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_OAK_MID_VAR3;
 
-        Block birchMidVar1 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR1;
-        Block birchMidVar2 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR2;
-        Block birchMidVar3 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR3;
+            botVar1 = SturdyTreesBlocks.LOG_OAK_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_OAK_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_OAK_BOT_VAR3;
 
-        Block acaciaMidVar1 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR1;
-        Block acaciaMidVar2 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR2;
-        Block acaciaMidVar3 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR3;
+            topVar1 = SturdyTreesBlocks.LOG_OAK_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_OAK_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_OAK_TOP_VAR3;
 
-        Block spruceMidVar1 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR1;
-        Block spruceMidVar2 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR2;
-        Block spruceMidVar3 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR3;
 
-        Block jungleMidVar1 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR1;
-        Block jungleMidVar2 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR2;
-        Block jungleMidVar3 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR3;
+            midVar1 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR3;
 
+            botVar1 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR3;
 
-        Block oakTopVar1 = SturdyTreesBlocks.LOG_OAK_TOP_VAR1;
-        Block oakTopVar2 = SturdyTreesBlocks.LOG_OAK_TOP_VAR2;
-        Block oakTopVar3 = SturdyTreesBlocks.LOG_OAK_TOP_VAR3;
-
-        Block birchTopVar1 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR1;
-        Block birchTopVar2 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR2;
-        Block birchTopVar3 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR3;
-
-        Block spruceTopVar1 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR1;
-        Block spruceTopVar2 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR2;
-        Block spruceTopVar3 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR3;
-
-        Block jungleTopVar1 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR1;
-        Block jungleTopVar2 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR2;
-        Block jungleTopVar3 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR3;
-
-        Block acaciaTopVar1 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR1;
-        Block acaciaTopVar2 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR2;
-        Block acaciaTopVar3 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR3;
-
-        Block oakBotVar1 = SturdyTreesBlocks.LOG_OAK_BOT_VAR1;
-        Block oakBotVar2 = SturdyTreesBlocks.LOG_OAK_BOT_VAR2;
-        Block oakBotVar3 = SturdyTreesBlocks.LOG_OAK_BOT_VAR3;
-
-        Block spruceBotVar1 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR1;
-        Block spruceBotVar2 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR2;
-        Block spruceBotVar3 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR3;
-
-        Block acaciaBotVar1 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR1;
-        Block acaciaBotVar3 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR2;
-        Block acaciaBotVar2 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR3;
-
-        Block birchBotVar1 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR1;
-        Block birchBotVar2 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR2;
-        Block birchBotVar3 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR3;
-
-        Block jungleBotVar1 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR1;
-        Block jungleBotVar2 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR2;
-        Block jungleBotVar3 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR3;
-
-        Block oakStrippedVar0 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR0;
-        Block oakStrippedVar1 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR1;
-        Block oakStrippedVar2 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2;
-        Block oakStrippedVar3 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR3;
+            topVar1 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR3;
 
 
-        Block birchStrippedVar0 = SturdyTreesBlocks.LOG_STRIPPED_BIRCH_VAR0;
-        Block strippedVar1 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR1;
-        Block strippedVar2 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2;
-        Block strippedVar3 = SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR3;
 
-        Block[] woodBlocks = {
-                oakLog, birchLog, acaciaLog, spruceLog, jungleLog,
-                oakStump, birchStump, spruceStump,
-                jungleStump, acaciaStump,
+            midVar1 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR3;
 
-                oakStrippedVar0, strippedVar1, strippedVar2, strippedVar3,
+            botVar1 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR3;
 
-                oakMidVar1, oakMidVar2, oakMidVar3,
-                birchMidVar1, birchMidVar2, birchMidVar3,
-                acaciaMidVar1, acaciaMidVar2, acaciaMidVar3,
-                spruceMidVar1, spruceMidVar2, spruceMidVar3,
-                jungleMidVar1, jungleMidVar2, jungleMidVar3,
+            topVar1 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR3;
 
-                oakTopVar1, oakTopVar2, oakTopVar3,
-                birchTopVar1, birchTopVar2, birchTopVar3,
-                acaciaTopVar1, acaciaTopVar2, acaciaTopVar3,
-                spruceTopVar1, spruceTopVar2, spruceTopVar3,
-                jungleTopVar1, jungleTopVar2, jungleTopVar3,
+            midVar1 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR3;
 
-                oakBotVar1, oakBotVar2, oakBotVar3,
-                birchBotVar1, birchBotVar2, birchBotVar3,
-                acaciaLog, acaciaBotVar2, acaciaBotVar3,
-                spruceLog, spruceBotVar2, spruceBotVar3,
-                jungleLog, jungleBotVar2, jungleBotVar3,
-        };
+            botVar1 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR3;
 
+            topVar1 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR3;
 
-        boolean isWoodBlockAbove = Arrays.asList(woodBlocks).contains(blockAboveState.getBlock());
-        boolean isWoodBlockBelow = Arrays.asList(woodBlocks).contains(blockBelowState.getBlock());
+            midVar1 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR3;
 
+            botVar1 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR3;
 
-        if (isWoodBlockAbove && isWoodBlockBelow) {
-            world.setBlockState(pos, oakMidVar1.getDefaultState());
-        } else if (isWoodBlockAbove) {
-            world.setBlockState(pos, oakTopVar1.getDefaultState());
-        } else if (isWoodBlockBelow) {
-            world.setBlockState(pos, oakBotVar1.getDefaultState());
-        } else {
-            world.setBlockState(pos, oakStrippedVar1.getDefaultState());
+            topVar1 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR3;
+
+            midVar1 = SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR3;
+
+            botVar1 = SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR3;
+
+            topVar1 = SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR3;
+
+            midVar1 = SturdyTreesBlocks.LOG_MANGROVE_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_MANGROVE_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_MANGROVE_MID_VAR3;
+
+            botVar1 = SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR3;
+
+            topVar1 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR3;
         }
-        dropLootTable(world, pos, player);
+
+        // Check for blocks above and below
+        boolean hasBlockAbove = !blockAboveState.isAir();
+        boolean hasBlockBelow = !blockBelowState.isAir();
+
+        if (hasBlockAbove && hasBlockBelow) {
+            // Both block above and below, choose midVar1
+            return midVar1;
+        } else if (hasBlockAbove) {
+            // Only block above, choose topVar2
+            return topVar1;
+        } else if (hasBlockBelow) {
+            // Only block below, choose botVar2
+            return botVar1;
+        } else {
+            // Default, choose strippedVar0
+            return strippedVar1;
+        }
     }
 
 
-    private void dropLootTable(World world, BlockPos pos, PlayerEntity player) {
-        // Check the tool used to break the block
+
+
+    private void dropLootTable(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+       // Check the tool used to break the block
         ItemStack toolStack = player.getMainHandStack();
 
         List<ItemStack> droppedStacks;
 
+        boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
+
+        if (isBTWRLoaded) {
             droppedStacks = getLesserDroppedShaftStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
                     .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                     .parameter(LootContextParameters.TOOL, toolStack)
                     .random(world.random));
-
+        } else {
+            droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
+        }
 
         // Rest of the code to drop the items
         Direction playerFacing = player.getHorizontalFacing();
@@ -223,11 +277,35 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
     }
 
 
-    private List<ItemStack> getLesserDroppedStacks(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> droppedStacks = new ArrayList<>();
-        droppedStacks.add(new ItemStack(SturdyTreesItems.SHAFT, 1));
-        return droppedStacks;
+    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack toolStack, Random random) {
+        LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
+                .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                .parameter(LootContextParameters.TOOL, toolStack)
+                .random(world.random);
+
+        if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
+            return getDroppedOakPlankStacks(state, builder);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
+            return getDroppedBirchPlankStacks(state, builder);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
+            return getDroppedSprucePlankStacks(state, builder);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
+            return getDroppedJunglePlankStacks(state, builder);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
+            return getDroppedAcaciaPlankStacks(state, builder);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
+            return getDroppedDarkOakPlankStacks(state, builder);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
+            return getDroppedMangrovePlankStacks(state, builder);
+        } else {
+            return Collections.emptyList(); // Handle other log types if needed
+        }
     }
 
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(LOG_TYPE);
+    }
 
 }

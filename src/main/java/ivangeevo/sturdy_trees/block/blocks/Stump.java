@@ -2,7 +2,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.util.StumpType;
-import ivangeevo.sturdy_trees.tag.SturdyTreesItemTags;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -54,7 +54,7 @@ public class Stump extends Block {
 
             // Temporarily setting the Block to be the vanilla Crafting table instead, until I figure out how to make screen handlers not disappear onUse;
 
-        if (tool.isIn(SturdyTreesItemTags.MODERN_CHISELS)) {
+        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS)) {
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());

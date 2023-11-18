@@ -1,10 +1,9 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import ivangeevo.sturdy_trees.block.util.LogType;
-import ivangeevo.sturdy_trees.tag.SturdyTreesItemTags;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,7 +27,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -72,19 +70,19 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
         player.addExhaustion(0.2F);
 
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesItemTags.MODDED_AXES));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
 
         if (isAxe)  {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR0.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0.getDefaultState());
 
-             if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR0)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR3.getDefaultState());
+             if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3.getDefaultState());
             }
         }
 
@@ -112,7 +110,7 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
                 .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                 .parameter(LootContextParameters.TOOL, tool);
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesItemTags.MODDED_AXES))));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))));
 
         boolean isLogOak = (state.isOf(Blocks.OAK_LOG));
         boolean isLogBirch = (state.isOf(Blocks.BIRCH_LOG));

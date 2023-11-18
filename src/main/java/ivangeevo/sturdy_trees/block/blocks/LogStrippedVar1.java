@@ -52,10 +52,23 @@ public class LogStrippedVar1 extends ConvertingBlock implements LogBlockStacks {
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
         player.addExhaustion(0.2F);
 
-
+    if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2.getDefaultState());
+    } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR2.getDefaultState());
+    } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR2.getDefaultState());
+    } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR2.getDefaultState());
+    } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR2.getDefaultState());
+    } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR2.getDefaultState());
+    } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR1)) {
+        world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2.getDefaultState());
+    }
 
         // Set the new block state
-        world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2.getDefaultState());
 
         Direction miningDirection = getMiningDirection(player, world, pos);
 

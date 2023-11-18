@@ -4,6 +4,7 @@ import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 
 import java.util.ArrayList;
@@ -22,6 +23,55 @@ public interface LogBlockStacks {
         droppedStacks.add(new ItemStack(SturdyTreesItems.SHAFT, 1));
         return droppedStacks;
     }
+
+    default List<ItemStack> getLesserDroppedStickStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.STICK, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedOakPlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.OAK_PLANKS, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedBirchPlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.BIRCH_PLANKS, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedSprucePlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.SPRUCE_PLANKS, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedJunglePlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.JUNGLE_PLANKS, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedAcaciaPlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.ACACIA_PLANKS, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedDarkOakPlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.DARK_OAK_PLANKS, 1));
+        return droppedStacks;
+    }
+
+    default List<ItemStack> getDroppedMangrovePlankStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> droppedStacks = new ArrayList<>();
+        droppedStacks.add(new ItemStack(Items.MANGROVE_PLANKS, 1));
+        return droppedStacks;
+    }
+
 
     default List<ItemStack> getLesserDroppedStacksOak(BlockState state, LootContext.Builder builder) {
         List<ItemStack> droppedStacks = new ArrayList<>();

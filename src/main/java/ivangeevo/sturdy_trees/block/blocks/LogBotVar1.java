@@ -61,8 +61,21 @@ public class LogBotVar1 extends ConvertingBlock implements LogBlockStacks {
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
         player.addExhaustion(0.2F);
         if (!world.isClient) {
-            world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_BOT_VAR2.getDefaultState());
-
+            if (state.isOf(SturdyTreesBlocks.LOG_OAK_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_BOT_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_BIRCH_BOT_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_ACACIA_BOT_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR2.getDefaultState());
+            }
             Direction miningDirection = getMiningDirection(player, world, pos);
 
 

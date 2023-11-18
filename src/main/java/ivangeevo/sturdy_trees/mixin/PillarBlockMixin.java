@@ -2,8 +2,8 @@ package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
-import ivangeevo.sturdy_trees.tag.SturdyTreesItemTags;
-import net.ivangeevo.btwr.core.tag.SturdyTreesBlockTags;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,34 +37,49 @@ public class PillarBlockMixin extends Block implements LogBlockStacks {
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         player.addExhaustion(0.2F);
 
+        if (state.isOf(Blocks.OAK_LOG)) {
+            handleLogBreak(world, pos, state, player, tool, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.BIRCH_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,  SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.SPRUCE_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.JUNGLE_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.ACACIA_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.DARK_OAK_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.MANGROVE_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0);
+        }
+        // Add similar blocks for other log types as needed
+    }
 
-        if (state.isIn(BlockTags.LOGS) || state.isIn(SturdyTreesBlockTags.STRIPPED_MODDED_LOGS)) {
+    private void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, Block... logVariants) {
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
 
 
-            boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesItemTags.MODDED_AXES));
+        if (isAxe) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        } else {
+            Block strippedLog = logVariants[0];
+            world.setBlockState(pos, strippedLog.getDefaultState());
 
-            if (isAxe) {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            } else {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR0.getDefaultState());
-
-                if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR0)) {
-                    world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR1.getDefaultState());
-                } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR1)) {
-                    world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2.getDefaultState());
-                } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR2)) {
-                    world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR3.getDefaultState());
+            for (int i = 0; i < logVariants.length - 1; i++) {
+                if (state.isOf(logVariants[i])) {
+                    world.setBlockState(pos, logVariants[i + 1].getDefaultState());
+                    break;
                 }
             }
+        }
 
-            // Logic for dropping items (stacks)
-            List<ItemStack> droppedStacks = getDroppedStacks(state, world, pos, tool, player);
-
-            for (ItemStack stack : droppedStacks) {
-                dropItemStack(world, pos, stack, player);
-            }
+        // Logic for dropping items (stacks)
+        List<ItemStack> droppedStacks = getDroppedStacks(state, world, pos, tool, player);
+        for (ItemStack stack : droppedStacks) {
+            dropItemStack(world, pos, stack, player);
         }
     }
+
 
 
     private void dropItemStack(World world, BlockPos pos, ItemStack stack, PlayerEntity player) {
@@ -83,7 +98,7 @@ public class PillarBlockMixin extends Block implements LogBlockStacks {
                 .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                 .parameter(LootContextParameters.TOOL, tool);
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesItemTags.MODDED_AXES))));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))));
 
         boolean isLogOak = (state.isOf(Blocks.OAK_LOG));
         boolean isLogBirch = (state.isOf(Blocks.BIRCH_LOG));
@@ -92,6 +107,8 @@ public class PillarBlockMixin extends Block implements LogBlockStacks {
         boolean isLogAcacia = (state.isOf(Blocks.ACACIA_LOG));
         boolean isLogDarkOak = (state.isOf(Blocks.DARK_OAK_LOG));
         boolean isLogMangrove = (state.isOf(Blocks.MANGROVE_LOG));
+
+
 
 
         if (isAxe) {

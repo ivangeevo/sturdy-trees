@@ -37,7 +37,17 @@ public abstract class BlocksMixin {
 
     @Inject(method = "createLeavesBlock", at = @At("HEAD"), cancellable = true)
     private static void injectedCreateLeavesBlock(BlockSoundGroup soundGroup, CallbackInfoReturnable<LeavesBlock> cir) {
-        cir.setReturnValue(new LeavesBlock(AbstractBlock.Settings.of(Material.LEAVES).strength(2.0f).ticksRandomly().sounds(soundGroup).nonOpaque().allowsSpawning(BlocksMixin::canSpawnOnLeaves).suffocates(BlocksMixin::never).blockVision(BlocksMixin::never)));
+        AbstractBlock.Settings settings = AbstractBlock.Settings.of(Material.LEAVES).strength(2.0F).ticksRandomly().sounds(soundGroup).nonOpaque().allowsSpawning(BlocksMixin::canSpawnOnLeaves).suffocates(BlocksMixin::never).blockVision(BlocksMixin::always);
+        LeavesBlock block = new LeavesBlock(settings);
+        cir.setReturnValue(block);
+    }
+
+    @Inject(method = "createLogBlock", at = @At("HEAD"), cancellable = true)
+    private static void injectedCreateLogBlock(MapColor topMapColor, MapColor sideMapColor, CallbackInfoReturnable<PillarBlock> cir) {
+        AbstractBlock.Settings settings = AbstractBlock.Settings.of(Material.WOOD, state ->
+                state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor).strength(2.0f).sounds(BlockSoundGroup.WOOD);
+        PillarBlock block = new PillarBlock(settings);
+        cir.setReturnValue(block);
     }
 
 

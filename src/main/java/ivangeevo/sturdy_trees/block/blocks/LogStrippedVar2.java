@@ -3,6 +3,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 import ivangeevo.sturdy_trees.ConvertingBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
@@ -56,23 +57,48 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks {
 
 
 
-        // Set the new block state
-        world.setBlockState(pos, SturdyTreesBlocks.LOG_STRIPPED_OAK_VAR3.getDefaultState());
-
+        if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR3.getDefaultState());
+        }
         Direction miningDirection = getMiningDirection(player, world, pos);
 
 
         if (miningDirection != null) {
 
+            boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
 
-            List<ItemStack> droppedStacks = getLesserDroppedShaftStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                    .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                    .parameter(LootContextParameters.TOOL, stack)
-                    .random(world.random));
+            if (isBTWRLoaded) {
+                List<ItemStack> droppedStacks = getLesserDroppedShaftStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
+                        .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                        .parameter(LootContextParameters.TOOL, stack)
+                        .random(world.random));
 
 
-            for (ItemStack itemStack : droppedStacks) {
-                dropStack(world, pos, miningDirection, itemStack);
+                for (ItemStack itemStack : droppedStacks) {
+                    dropStack(world, pos, miningDirection, itemStack);
+                }
+            } else {
+                List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
+                        .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                        .parameter(LootContextParameters.TOOL, stack)
+                        .random(world.random));
+
+
+                for (ItemStack itemStack : droppedStacks) {
+                    dropStack(world, pos, miningDirection, itemStack);
+                }
             }
         }
     }
