@@ -8,6 +8,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,7 +46,7 @@ public abstract class BlocksMixin {
     @Inject(method = "createLogBlock", at = @At("HEAD"), cancellable = true)
     private static void injectedCreateLogBlock(MapColor topMapColor, MapColor sideMapColor, CallbackInfoReturnable<PillarBlock> cir) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.of(Material.WOOD, state ->
-                state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor).strength(2.0f).sounds(BlockSoundGroup.WOOD);
+                state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor).strength(24.0f).sounds(BlockSoundGroup.WOOD);
         PillarBlock block = new PillarBlock(settings);
         cir.setReturnValue(block);
     }
@@ -57,6 +58,8 @@ public abstract class BlocksMixin {
     private static Boolean canSpawnOnLeaves(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
         return type == EntityType.OCELOT || type == EntityType.PARROT;
     }
+
+
     private static boolean always(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return true;
     }
