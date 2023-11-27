@@ -11,6 +11,7 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -70,7 +71,7 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
         player.addExhaustion(0.2F);
 
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
 
         if (isAxe)  {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
@@ -106,11 +107,12 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
     }
 
     public List<ItemStack> getDroppedStacks(BlockState state, World world, BlockPos pos, ItemStack tool, PlayerEntity player) {
+
         LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
                 .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                 .parameter(LootContextParameters.TOOL, tool);
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isOf(Items.NETHERITE_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES)))));
 
         boolean isLogOak = (state.isOf(Blocks.OAK_LOG));
         boolean isLogBirch = (state.isOf(Blocks.BIRCH_LOG));

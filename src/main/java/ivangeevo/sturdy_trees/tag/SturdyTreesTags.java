@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 public final class SturdyTreesTags {
 
     public static class Items {
+
         public static final TagKey<Item> MODDED_AXES = createTag("modded_axes");
 
         public static final TagKey<Item> MODERN_CHISELS = createTag("modern_chisels");

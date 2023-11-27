@@ -76,6 +76,10 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
         dropLootTable(world, pos, state, player);
     }
 
+
+
+
+
     private Block determineReplacementBlock(BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
         Block strippedVar0 = null;
         Block strippedVar1 = null;
@@ -237,6 +241,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
             // Default, choose strippedVar0
             return strippedVar1;
         }
+
     }
 
 
