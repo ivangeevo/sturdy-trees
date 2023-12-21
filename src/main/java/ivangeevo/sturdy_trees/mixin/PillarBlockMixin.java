@@ -59,8 +59,7 @@ public class PillarBlockMixin extends Block implements LogBlockStacks {
     }
 
     private void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, Block... logVariants) {
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
-
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
 
         if (isAxe) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
@@ -132,19 +131,19 @@ public class PillarBlockMixin extends Block implements LogBlockStacks {
             }
         } else  {
             if (isLogOak) {
-                return getLesserDroppedStacksOak(state, builder);
+                return getLesserDroppedBarkStacksOak(state, builder);
             } else if (isLogBirch) {
-                return getLesserDroppedStacksBirch(state, builder);
+                return getLesserDroppedBarkStacksBirch(state, builder);
             } else if (isLogSpruce) {
-                return getLesserDroppedStacksSpruce(state, builder);
+                return getLesserDroppedBarkStacksSpruce(state, builder);
             } else if (isLogJungle) {
-                return getLesserDroppedStacksJungle(state, builder);
+                return getLesserDroppedBarkStacksJungle(state, builder);
             } else if (isLogAcacia) {
-                return getLesserDroppedStacksAcacia(state, builder);
+                return getLesserDroppedBarkStacksAcacia(state, builder);
             } else if (isLogDarkOak) {
-                return getLesserDroppedStacksDarkOak(state, builder);
+                return getLesserDroppedBarkStacksDarkOak(state, builder);
             } else if (isLogMangrove) {
-                return getLesserDroppedStacksMangrove(state, builder);
+                return getLesserDroppedBarkStacksMangrove(state, builder);
             }
         }
 

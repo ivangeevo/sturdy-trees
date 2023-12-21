@@ -52,7 +52,6 @@ public class Stump extends Block {
         boolean isCraftingTable = state.isOf(Blocks.CRAFTING_TABLE);
 
 
-            // Temporarily setting the Block to be the vanilla Crafting table instead, until I figure out how to make screen handlers not disappear onUse;
 
         if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS)) {
 
@@ -66,6 +65,8 @@ public class Stump extends Block {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_JUNGLE_VAR1.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_VAR1.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK)) {
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_VAR1.getDefaultState());
             }
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK_VAR1)) {
@@ -77,6 +78,8 @@ public class Stump extends Block {
             } else if (state.isOf(SturdyTreesBlocks.STUMP_JUNGLE_VAR1)) {
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE_VAR1)) {
+                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
             }
         }

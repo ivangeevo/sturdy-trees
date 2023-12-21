@@ -2,6 +2,7 @@ package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.block.blocks.LogBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.sound.BlockSoundGroup;
@@ -35,7 +36,6 @@ public abstract class BlocksMixin {
 
 
 
-
     @Inject(method = "createLeavesBlock", at = @At("HEAD"), cancellable = true)
     private static void injectedCreateLeavesBlock(BlockSoundGroup soundGroup, CallbackInfoReturnable<LeavesBlock> cir) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.of(Material.LEAVES).strength(2.0F).ticksRandomly().sounds(soundGroup).nonOpaque().allowsSpawning(BlocksMixin::canSpawnOnLeaves).suffocates(BlocksMixin::never).blockVision(BlocksMixin::always);
@@ -43,12 +43,25 @@ public abstract class BlocksMixin {
         cir.setReturnValue(block);
     }
 
+
+
     @Inject(method = "createLogBlock", at = @At("HEAD"), cancellable = true)
     private static void injectedCreateLogBlock(MapColor topMapColor, MapColor sideMapColor, CallbackInfoReturnable<PillarBlock> cir) {
+
+        boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
+        float str;
+
+        if (isBTWRLoaded) {
+            str = 24f;
+        } else {
+            str = 2f;
+        }
+
         AbstractBlock.Settings settings = AbstractBlock.Settings.of(Material.WOOD, state ->
-                state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor).strength(24.0f).sounds(BlockSoundGroup.WOOD);
+                state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor).strength(str).sounds(BlockSoundGroup.WOOD);
         PillarBlock block = new PillarBlock(settings);
         cir.setReturnValue(block);
+
     }
 
 
@@ -66,5 +79,6 @@ public abstract class BlocksMixin {
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return false;
     }
+
 
 }

@@ -11,7 +11,6 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -53,8 +52,6 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
         return LogBlock.changeRotation(state, rotation);
     }
 
-
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AXIS);
@@ -71,7 +68,7 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
         player.addExhaustion(0.2F);
 
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.GOLDEN_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES)));
 
         if (isAxe)  {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
@@ -88,31 +85,21 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
         }
 
         // Logic for dropping items (stacks)
-        List<ItemStack> droppedStacks = getDroppedStacks(state, world, pos, tool, player);
+        List<ItemStack> droppedStacks = getDroppedStacks(state, world, pos, tool);
 
         for (ItemStack stack : droppedStacks) {
-            dropItemStack(world, pos, stack, player);
+            dropStack(world, pos, stack);
         }
     }
 
-    private void dropItemStack(World world, BlockPos pos, ItemStack stack, PlayerEntity player) {
-        Direction playerFacing = player.getHorizontalFacing();
-        double offsetX = -playerFacing.getOffsetX() * 0.5;
-        double offsetY = 0.2;
-        double offsetZ = -playerFacing.getOffsetZ() * 0.5;
-        Vec3d dropPos = new Vec3d(pos.getX() + 0.5 + offsetX, pos.getY() + offsetY, pos.getZ() + 0.5 + offsetZ);
-        ItemEntity itemEntity = new ItemEntity(world, dropPos.x, dropPos.y, dropPos.z, stack);
-        itemEntity.setToDefaultPickupDelay();
-        world.spawnEntity(itemEntity);
-    }
 
-    public List<ItemStack> getDroppedStacks(BlockState state, World world, BlockPos pos, ItemStack tool, PlayerEntity player) {
+    public List<ItemStack> getDroppedStacks(BlockState state, World world, BlockPos pos, ItemStack tool) {
 
         LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
                 .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                 .parameter(LootContextParameters.TOOL, tool);
 
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isOf(Items.NETHERITE_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES)))));
+        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.GOLDEN_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isOf(Items.NETHERITE_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))))));
 
         boolean isLogOak = (state.isOf(Blocks.OAK_LOG));
         boolean isLogBirch = (state.isOf(Blocks.BIRCH_LOG));
@@ -141,19 +128,19 @@ public class LogBlock extends PillarBlock implements LogBlockStacks {
             }
         } else  {
             if (isLogOak) {
-                return getLesserDroppedStacksOak(state, builder);
+                return getLesserDroppedBarkStacksOak(state, builder);
             } else if (isLogBirch) {
-                return getLesserDroppedStacksBirch(state, builder);
+                return getLesserDroppedBarkStacksBirch(state, builder);
             } else if (isLogSpruce) {
-                return getLesserDroppedStacksSpruce(state, builder);
+                return getLesserDroppedBarkStacksSpruce(state, builder);
             } else if (isLogJungle) {
-                return getLesserDroppedStacksJungle(state, builder);
+                return getLesserDroppedBarkStacksJungle(state, builder);
             } else if (isLogAcacia) {
-                return getLesserDroppedStacksAcacia(state, builder);
+                return getLesserDroppedBarkStacksAcacia(state, builder);
             } else if (isLogDarkOak) {
-                return getLesserDroppedStacksDarkOak(state, builder);
+                return getLesserDroppedBarkStacksDarkOak(state, builder);
             } else if (isLogMangrove) {
-                return getLesserDroppedStacksMangrove(state, builder);
+                return getLesserDroppedBarkStacksMangrove(state, builder);
             }
         }
 
