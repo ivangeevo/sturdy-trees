@@ -16,7 +16,7 @@
       "ivangeevo.sturdy_trees.client.SturdyTreesClient"
     ],
     "main":[
-      "ivangeevo.sturdy_trees.SturdyTrees"
+      "ivangeevo.sturdy_trees.SturdyTreesMod"
     ],
     "fabric-datagen": [
       "ivangeevo.sturdy_trees.SturdyTreesDataGenerator"

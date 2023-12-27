@@ -71,10 +71,8 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
 
 
 
-
-
         // Logic to determine the block to replace with
-        Block replacementBlock = determineReplacementBlock(world,pos,state, blockBelowState, blockAboveState);
+        Block replacementBlock = determineReplacementBlock(state, blockBelowState, blockAboveState);
         world.setBlockState(pos, replacementBlock.getDefaultState());
 
         dropLootTable(world, pos, state, player);
@@ -84,7 +82,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
 
 
 
-    private Block determineReplacementBlock(World world, BlockPos pos, BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
+    private Block determineReplacementBlock(BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
         Block strippedVar0 = null;
         Block strippedVar1 = null;
         Block strippedVar2 = null;
@@ -101,6 +99,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
         Block topVar1 = null;
         Block topVar2 = null;
         Block topVar3 = null;
+
 
 
         // Assign the appropriate stripped variations based on the log type
@@ -232,9 +231,6 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
         boolean hasBlockAbove = !blockAboveState.isAir();
         boolean hasBlockBelow = !blockBelowState.isAir();
 
-        // Additional conditions
-        boolean isAirAbove = blockAboveState.isAir();
-        boolean isAirBelow = blockBelowState.isAir();
 
 
 
@@ -248,28 +244,10 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks {
         } else if (hasBlockBelow) {
             // Only block below, choose botVar2
             return botVar1;
-        } else if (blockBelowState.isOf(topVar1)) {
-            world.setBlockState(pos.down(), Objects.requireNonNull(strippedVar1).getDefaultState());
-            return strippedVar1;
-        } else if (isAirAbove && blockBelowState.isOf(botVar1)) {
-            return botVar1;
-        } else if (isAirAbove && blockBelowState.isOf(botVar2)) {
-            return botVar2;
-        } else if (isAirAbove && blockBelowState.isOf(botVar3)) {
-            return topVar1;
-        } else if (isAirAbove && blockBelowState.isOf(midVar1)) {
-            return botVar1;
-        } else if (isAirAbove && blockBelowState.isOf(midVar2)) {
-            return botVar2;
-        } else if (isAirAbove && blockBelowState.isOf(midVar3)) {
-            return topVar1;
         } else {
             // Default, choose strippedVar0
             return strippedVar1;
         }
-
-
-
 
     }
 

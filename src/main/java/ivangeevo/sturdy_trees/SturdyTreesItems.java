@@ -25,11 +25,11 @@ public class SturdyTreesItems {
 
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new Identifier(SturdyTrees.MOD_ID, name), item);
+        return Registry.register(Registry.ITEM, new Identifier(SturdyTreesMod.MOD_ID, name), item);
     }
 
     public static void registerModItems() {
-        SturdyTrees.LOGGER.info("Registering Mod Items for " + SturdyTrees.MOD_ID);
+        SturdyTreesMod.LOGGER.info("Registering Mod Items for " + SturdyTreesMod.MOD_ID);
     }
 
 

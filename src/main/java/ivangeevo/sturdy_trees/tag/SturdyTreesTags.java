@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.tag;
 
-import ivangeevo.sturdy_trees.SturdyTrees;
+import ivangeevo.sturdy_trees.SturdyTreesMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tag.TagKey;
@@ -19,7 +19,7 @@ public final class SturdyTreesTags {
 
 
         private static TagKey<Item> createTag(String id) {
-            return TagKey.of(Registry.ITEM_KEY, new Identifier(SturdyTrees.MOD_ID, id));
+            return TagKey.of(Registry.ITEM_KEY, new Identifier(SturdyTreesMod.MOD_ID, id));
         }
         private Items() {
         }
@@ -33,7 +33,7 @@ public final class SturdyTreesTags {
 
 
         private static TagKey<Block> createTag(String id) {
-            return TagKey.of(Registry.BLOCK_KEY, new Identifier(SturdyTrees.MOD_ID, id));
+            return TagKey.of(Registry.BLOCK_KEY, new Identifier(SturdyTreesMod.MOD_ID, id));
         }
 
 

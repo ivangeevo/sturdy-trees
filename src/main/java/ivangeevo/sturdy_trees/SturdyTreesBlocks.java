@@ -1,11 +1,13 @@
 package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.block.blocks.*;
+import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.block.util.StumpType;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -205,24 +207,67 @@ public class SturdyTreesBlocks {
     public static final Block LOG_MANGROVE_STRIPPED_VAR3 = registerBlockWithoutItem("log_mangrove_stripped_var3", new LogStrippedVar3(FabricBlockSettings.of(Material.WOOD).strength(logStrength).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
+    // Helper methods to get stripped log variants
+    public static Block getStrippedDefaultVariant(LogType logType) {
+        switch (logType) {
+            case OAK:
+                return LOG_OAK_STRIPPED_VAR1;
+            // Add cases for other log types
 
+            default:
+                return Blocks.AIR; // or throw an exception
+        }
+    }
+
+    public static Block getStrippedMidVariant(LogType logType) {
+        switch (logType) {
+            case OAK:
+                return LOG_OAK_STRIPPED_VAR2; // Adjust as needed
+            // Add cases for other log types
+
+            default:
+                return Blocks.AIR; // or throw an exception
+        }
+    }
+
+    public static Block getStrippedBotVariant(LogType logType) {
+        switch (logType) {
+            case OAK:
+                return LOG_OAK_STRIPPED_VAR3; // Adjust as needed
+            // Add cases for other log types
+
+            default:
+                return Blocks.AIR; // or throw an exception
+        }
+    }
+
+    public static Block getStrippedTopVariant(LogType logType) {
+        switch (logType) {
+            case OAK:
+                return LOG_OAK_STRIPPED_VAR0; // Adjust as needed
+            // Add cases for other log types
+
+            default:
+                return Blocks.AIR; // or throw an exception
+        }
+    }
 
     private static Block registerBlockWithoutItem(String name, Block block) {
-        return Registry.register(Registry.BLOCK, new Identifier(SturdyTrees.MOD_ID, name), block);
+        return Registry.register(Registry.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, name), block);
     }
 
     private static Block registerBlock(String name, Block block, ItemGroup tab) {
         registerBlockItem(name, block, tab);
-        return Registry.register(Registry.BLOCK, new Identifier(SturdyTrees.MOD_ID, name), block);
+        return Registry.register(Registry.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, name), block);
     }
 
     private static Item registerBlockItem(String name, Block block, ItemGroup tab) {
-        return Registry.register(Registry.ITEM, new Identifier(SturdyTrees.MOD_ID, name),
+        return Registry.register(Registry.ITEM, new Identifier(SturdyTreesMod.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings().group(tab)));
     }
 
     public static void registerModBlocks() {
-        SturdyTrees.LOGGER.debug("Registering ModBlocks for " + SturdyTrees.MOD_ID);
+        SturdyTreesMod.LOGGER.debug("Registering ModBlocks for " + SturdyTreesMod.MOD_ID);
     }
 
 
