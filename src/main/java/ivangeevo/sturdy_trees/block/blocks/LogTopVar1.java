@@ -35,19 +35,11 @@ public class LogTopVar1 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions from the model JSON
-        double sideFromX = 1.0 / 16.0;
-        double sideFromY = 13.0 / 16.0;
-        double sideFromZ = 1.0 / 16.0;
-        double sideToX = 15.0 / 16.0;
-        double sideToY = 16.0 / 16.0;
-        double sideToZ = 15.0 / 16.0;
+        double sideFromX = 1.0 / 16.0; double sideFromY = 13.0 / 16.0; double sideFromZ = 1.0 / 16.0;
+        double sideToX = 15.0 / 16.0; double sideToY = 16.0 / 16.0; double sideToZ = 15.0 / 16.0;
 
-        double lowerFromX = 2.0 / 16.0;
-        double lowerFromY = 0.0;
-        double lowerFromZ = 2.0 / 16.0;
-        double lowerToX = 14.0 / 16.0;
-        double lowerToY = 13.0 / 16.0;
-        double lowerToZ = 14.0 / 16.0;
+        double lowerFromX = 2.0 / 16.0; double lowerFromY = 0.0;double lowerFromZ = 2.0 / 16.0;
+        double lowerToX = 14.0 / 16.0; double lowerToY = 13.0 / 16.0; double lowerToZ = 14.0 / 16.0;
 
         // Create VoxelShapes for the side and lower parts of the block
         VoxelShape sideShape = VoxelShapes.cuboid(sideFromX, sideFromY, sideFromZ, sideToX, sideToY, sideToZ);

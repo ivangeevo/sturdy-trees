@@ -3,6 +3,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 import ivangeevo.sturdy_trees.ConvertingBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogTopVar2 extends ConvertingBlock implements LogBlockStacks {
+public class LogTopVar2 extends ConvertingBlock implements LogBlockStacks, SideModUtils {
 
 
 
@@ -36,26 +37,14 @@ public class LogTopVar2 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions from the model JSON
-        double sideFromX = 1.0 / 16.0;
-        double sideFromY = 13.0 / 16.0;
-        double sideFromZ = 1.0 / 16.0;
-        double sideToX = 15.0 / 16.0;
-        double sideToY = 16.0 / 16.0;
-        double sideToZ = 15.0 / 16.0;
+        double sideFromX = 1.0 / 16.0; double sideFromY = 13.0 / 16.0; double sideFromZ = 1.0 / 16.0;
+        double sideToX = 15.0 / 16.0; double sideToY = 16.0 / 16.0; double sideToZ = 15.0 / 16.0;
 
-        double lower1FromX = 2.0 / 16.0;
-        double lower1FromY = 11.0 / 16.0;
-        double lower1FromZ = 2.0 / 16.0;
-        double lower1ToX = 14.0 / 16.0;
-        double lower1ToY = 13.0 / 16.0;
-        double lower1ToZ = 14.0 / 16.0;
+        double lower1FromX = 2.0 / 16.0; double lower1FromY = 11.0 / 16.0; double lower1FromZ = 2.0 / 16.0;
+        double lower1ToX = 14.0 / 16.0; double lower1ToY = 13.0 / 16.0; double lower1ToZ = 14.0 / 16.0;
 
-        double lower2FromX = 3.0 / 16.0;
-        double lower2FromY = 0.0;
-        double lower2FromZ = 3.0 / 16.0;
-        double lower2ToX = 13.0 / 16.0;
-        double lower2ToY = 11.0 / 16.0;
-        double lower2ToZ = 13.0 / 16.0;
+        double lower2FromX = 3.0 / 16.0; double lower2FromY = 0.0; double lower2FromZ = 3.0 / 16.0;
+        double lower2ToX = 13.0 / 16.0; double lower2ToY = 11.0 / 16.0; double lower2ToZ = 13.0 / 16.0;
 
         // Create VoxelShapes for the side and lower parts of the block
         VoxelShape sideShape = VoxelShapes.cuboid(sideFromX, sideFromY, sideFromZ, sideToX, sideToY, sideToZ);
@@ -93,7 +82,6 @@ public class LogTopVar2 extends ConvertingBlock implements LogBlockStacks {
 
 
             if (miningDirection != null) {
-                boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
 
                 if (isBTWRLoaded) {
 

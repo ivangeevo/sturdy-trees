@@ -3,6 +3,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 import ivangeevo.sturdy_trees.ConvertingBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogMidVar2 extends ConvertingBlock implements LogBlockStacks {
+public class LogMidVar2 extends ConvertingBlock implements LogBlockStacks, SideModUtils {
 
     public LogMidVar2(Settings settings) {
         super(settings);
@@ -33,40 +34,20 @@ public class LogMidVar2 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions for each element
-        double topSideFromX = 1.0 / 16.0;
-        double topSideFromY = 13.0 / 16.0;
-        double topSideFromZ = 1.0 / 16.0;
-        double topSideToX = 15.0 / 16.0;
-        double topSideToY = 16.0 / 16.0;
-        double topSideToZ = 15.0 / 16.0;
+        double topSideFromX = 1.0 / 16.0;double topSideFromY = 13.0 / 16.0;double topSideFromZ = 1.0 / 16.0;
+        double topSideToX = 15.0 / 16.0;double topSideToY = 16.0 / 16.0;double topSideToZ = 15.0 / 16.0;
 
-        double middleTopFromX = 2.0 / 16.0;
-        double middleTopFromY = 11.0 / 16.0;
-        double middleTopFromZ = 2.0 / 16.0;
-        double middleTopToX = 14.0 / 16.0;
-        double middleTopToY = 13.0 / 16.0;
-        double middleTopToZ = 14.0 / 16.0;
+        double middleTopFromX = 2.0 / 16.0;double middleTopFromY = 11.0 / 16.0;double middleTopFromZ = 2.0 / 16.0;
+        double middleTopToX = 14.0 / 16.0;double middleTopToY = 13.0 / 16.0;double middleTopToZ = 14.0 / 16.0;
 
-        double middleFromX = 3.0 / 16.0;
-        double middleFromY = 5.0 / 16.0;
-        double middleFromZ = 3.0 / 16.0;
-        double middleToX = 13.0 / 16.0;
-        double middleToY = 11.0 / 16.0;
-        double middleToZ = 13.0 / 16.0;
+        double middleFromX = 3.0 / 16.0;double middleFromY = 5.0 / 16.0;double middleFromZ = 3.0 / 16.0;
+        double middleToX = 13.0 / 16.0;double middleToY = 11.0 / 16.0;double middleToZ = 13.0 / 16.0;
 
-        double middleBotFromX = 2.0 / 16.0;
-        double middleBotFromY = 3.0 / 16.0;
-        double middleBotFromZ = 2.0 / 16.0;
-        double middleBotToX = 14.0 / 16.0;
-        double middleBotToY = 5.0 / 16.0;
-        double middleBotToZ = 14.0 / 16.0;
+        double middleBotFromX = 2.0 / 16.0;double middleBotFromY = 3.0 / 16.0;double middleBotFromZ = 2.0 / 16.0;
+        double middleBotToX = 14.0 / 16.0;double middleBotToY = 5.0 / 16.0;double middleBotToZ = 14.0 / 16.0;
 
-        double bottomSideFromX = 1.0 / 16.0;
-        double bottomSideFromY = 0.0;
-        double bottomSideFromZ = 1.0 / 16.0;
-        double bottomSideToX = 15.0 / 16.0;
-        double bottomSideToY = 3.0 / 16.0;
-        double bottomSideToZ = 15.0 / 16.0;
+        double bottomSideFromX = 1.0 / 16.0;double bottomSideFromY = 0.0;double bottomSideFromZ = 1.0 / 16.0;
+        double bottomSideToX = 15.0 / 16.0;double bottomSideToY = 3.0 / 16.0;double bottomSideToZ = 15.0 / 16.0;
 
         // Create the VoxelShapes for each element
         VoxelShape topSideShape = VoxelShapes.cuboid(topSideFromX, topSideFromY, topSideFromZ, topSideToX, topSideToY, topSideToZ);
@@ -103,7 +84,6 @@ public class LogMidVar2 extends ConvertingBlock implements LogBlockStacks {
 
 
             if (miningDirection != null) {
-                boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
 
                 if (isBTWRLoaded) {
 

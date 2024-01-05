@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:red_mushroom"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "tag": "btwr:creeper_oysters_tag"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "sturdy_trees:stump_remover"
+  },
+  "show_notification": false
+}

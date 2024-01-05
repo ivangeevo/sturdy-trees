@@ -31,54 +31,26 @@ public class LogMidVar3 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions for each element
-        double topSideFromX = 1.0 / 16.0;
-        double topSideFromY = 13.0 / 16.0;
-        double topSideFromZ = 1.0 / 16.0;
-        double topSideToX = 15.0 / 16.0;
-        double topSideToY = 16.0 / 16.0;
-        double topSideToZ = 15.0 / 16.0;
+        double topSideFromX = 1.0 / 16.0;double topSideFromY = 13.0 / 16.0;double topSideFromZ = 1.0 / 16.0;
+        double topSideToX = 15.0 / 16.0;double topSideToY = 16.0 / 16.0;double topSideToZ = 15.0 / 16.0;
 
-        double middleTopFromX = 2.0 / 16.0;
-        double middleTopFromY = 11.0 / 16.0;
-        double middleTopFromZ = 2.0 / 16.0;
-        double middleTopToX = 14.0 / 16.0;
-        double middleTopToY = 13.0 / 16.0;
-        double middleTopToZ = 14.0 / 16.0;
+        double middleTopFromX = 2.0 / 16.0;double middleTopFromY = 11.0 / 16.0;double middleTopFromZ = 2.0 / 16.0;
+        double middleTopToX = 14.0 / 16.0;double middleTopToY = 13.0 / 16.0;double middleTopToZ = 14.0 / 16.0;
 
-        double middleTopMidFromX = 3.0 / 16.0;
-        double middleTopMidFromY = 9.0 / 16.0;
-        double middleTopMidFromZ = 3.0 / 16.0;
-        double middleTopMidToX = 13.0 / 16.0;
-        double middleTopMidToY = 11.0 / 16.0;
-        double middleTopMidToZ = 13.0 / 16.0;
+        double middleTopMidFromX = 3.0 / 16.0;double middleTopMidFromY = 9.0 / 16.0;double middleTopMidFromZ = 3.0 / 16.0;
+        double middleTopMidToX = 13.0 / 16.0;double middleTopMidToY = 11.0 / 16.0;double middleTopMidToZ = 13.0 / 16.0;
 
-        double middleFromX = 4.0 / 16.0;
-        double middleFromY = 7.0 / 16.0;
-        double middleFromZ = 4.0 / 16.0;
-        double middleToX = 12.0 / 16.0;
-        double middleToY = 9.0 / 16.0;
-        double middleToZ = 12.0 / 16.0;
+        double middleFromX = 4.0 / 16.0;double middleFromY = 7.0 / 16.0;double middleFromZ = 4.0 / 16.0;
+        double middleToX = 12.0 / 16.0;double middleToY = 9.0 / 16.0;double middleToZ = 12.0 / 16.0;
 
-        double middleBotMidFromX = 3.0 / 16.0;
-        double middleBotMidFromY = 5.0 / 16.0;
-        double middleBotMidFromZ = 3.0 / 16.0;
-        double middleBotMidToX = 13.0 / 16.0;
-        double middleBotMidToY = 7.0 / 16.0;
-        double middleBotMidToZ = 13.0 / 16.0;
+        double middleBotMidFromX = 3.0 / 16.0;double middleBotMidFromY = 5.0 / 16.0;double middleBotMidFromZ = 3.0 / 16.0;
+        double middleBotMidToX = 13.0 / 16.0;double middleBotMidToY = 7.0 / 16.0;double middleBotMidToZ = 13.0 / 16.0;
 
-        double middleBotFromX = 2.0 / 16.0;
-        double middleBotFromY = 3.0 / 16.0;
-        double middleBotFromZ = 2.0 / 16.0;
-        double middleBotToX = 14.0 / 16.0;
-        double middleBotToY = 5.0 / 16.0;
-        double middleBotToZ = 14.0 / 16.0;
+        double middleBotFromX = 2.0 / 16.0;double middleBotFromY = 3.0 / 16.0;double middleBotFromZ = 2.0 / 16.0;
+        double middleBotToX = 14.0 / 16.0;double middleBotToY = 5.0 / 16.0;double middleBotToZ = 14.0 / 16.0;
 
-        double bottomSideFromX = 1.0 / 16.0;
-        double bottomSideFromY = 0.0 / 16.0;
-        double bottomSideFromZ = 1.0 / 16.0;
-        double bottomSideToX = 15.0 / 16.0;
-        double bottomSideToY = 3.0 / 16.0;
-        double bottomSideToZ = 15.0 / 16.0;
+        double bottomSideFromX = 1.0 / 16.0;double bottomSideFromY = 0.0 / 16.0;double bottomSideFromZ = 1.0 / 16.0;
+        double bottomSideToX = 15.0 / 16.0;double bottomSideToY = 3.0 / 16.0;double bottomSideToZ = 15.0 / 16.0;
 
         // Create VoxelShapes for each element
         VoxelShape topSideShape = VoxelShapes.cuboid(topSideFromX, topSideFromY, topSideFromZ, topSideToX, topSideToY, topSideToZ);

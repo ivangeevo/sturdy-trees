@@ -32,20 +32,12 @@ public class LogBotVar1 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions for the first element
-        double fromX1 = 2.0 / 16.0;
-        double fromY1 = 0.0;
-        double fromZ1 = 2.0 / 16.0;
-        double toX1 = 14.0 / 16.0;
-        double toY1 = 16.0 / 16.0;
-        double toZ1 = 14.0 / 16.0;
+        double fromX1 = 2.0 / 16.0; double fromY1 = 0.0; double fromZ1 = 2.0 / 16.0;
+        double toX1 = 14.0 / 16.0; double toY1 = 16.0 / 16.0; double toZ1 = 14.0 / 16.0;
 
         // Define the dimensions for the second element
-        double fromX2 = 1.0 / 16.0;
-        double fromY2 = 0.0;
-        double fromZ2 = 1.0 / 16.0;
-        double toX2 = 15.0 / 16.0;
-        double toY2 = 3.0 / 16.0;
-        double toZ2 = 15.0 / 16.0;
+        double fromX2 = 1.0 / 16.0; double fromY2 = 0.0; double fromZ2 = 1.0 / 16.0;
+        double toX2 = 15.0 / 16.0; double toY2 = 3.0 / 16.0; double toZ2 = 15.0 / 16.0;
 
         // Create VoxelShapes for each element
         VoxelShape shape1 = VoxelShapes.cuboid(fromX1, fromY1, fromZ1, toX1, toY1, toZ1);

@@ -6,8 +6,7 @@
 
 
 
-### + Fix neighbouring state replacement logic.
-
-
-### + Add logic where logs turn into charred variants when set on fire.
+ + Fix neighboring state replacement logic.
+ + Make saplings to grow in stages.
+ + Add logic where logs turn into charred variants when set on fire.
 

@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,12 +11,11 @@ import net.minecraft.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(AxeItem.class)
-public class AxeItemMixin  extends MiningToolItem {
+public abstract class AxeItemMixin  extends MiningToolItem implements SideModUtils {
     protected AxeItemMixin(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
         super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
     }
 
-    private static final boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
 
 
     @Override

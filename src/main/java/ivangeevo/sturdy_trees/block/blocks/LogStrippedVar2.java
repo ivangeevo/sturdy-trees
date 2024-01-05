@@ -3,6 +3,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 import ivangeevo.sturdy_trees.ConvertingBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks {
+public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, SideModUtils {
 
 
 
@@ -36,12 +37,8 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions from the model JSON
-        double fromX = 3.0 / 16.0;
-        double fromY = 0.0;
-        double fromZ = 3.0 / 16.0;
-        double toX = 13.0 / 16.0;
-        double toY = 16.0 / 16.0;
-        double toZ = 13.0 / 16.0;
+        double fromX = 3.0 / 16.0; double fromY = 0.0; double fromZ = 3.0 / 16.0;
+        double toX = 13.0 / 16.0; double toY = 16.0 / 16.0; double toZ = 13.0 / 16.0;
 
         // Create a VoxelShape based on the dimensions
         VoxelShape shape = VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ);
@@ -77,7 +74,6 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks {
 
         if (miningDirection != null) {
 
-            boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
 
             if (isBTWRLoaded) {
                 List<ItemStack> droppedStacks = getLesserDroppedShaftStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)

@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Mixin(PillarBlock.class)
-public class PillarBlockMixin extends Block implements LogBlockStacks {
+public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
     public PillarBlockMixin(Settings settings) {
         super(settings);
     }

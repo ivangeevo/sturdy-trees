@@ -35,54 +35,26 @@ public class LogTopVar3 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions from the model JSON
-        double sideFromX = 1.0 / 16.0;
-        double sideFromY = 13.0 / 16.0;
-        double sideFromZ = 1.0 / 16.0;
-        double sideToX = 15.0 / 16.0;
-        double sideToY = 16.0 / 16.0;
-        double sideToZ = 15.0 / 16.0;
+        double sideFromX = 1.0 / 16.0; double sideFromY = 13.0 / 16.0; double sideFromZ = 1.0 / 16.0;
+        double sideToX = 15.0 / 16.0; double sideToY = 16.0 / 16.0; double sideToZ = 15.0 / 16.0;
 
-        double lower1FromX = 2.0 / 16.0;
-        double lower1FromY = 11.0 / 16.0;
-        double lower1FromZ = 2.0 / 16.0;
-        double lower1ToX = 14.0 / 16.0;
-        double lower1ToY = 13.0 / 16.0;
-        double lower1ToZ = 14.0 / 16.0;
+        double lower1FromX = 2.0 / 16.0; double lower1FromY = 11.0 / 16.0; double lower1FromZ = 2.0 / 16.0;
+        double lower1ToX = 14.0 / 16.0; double lower1ToY = 13.0 / 16.0; double lower1ToZ = 14.0 / 16.0;
 
-        double lower2FromX = 3.0 / 16.0;
-        double lower2FromY = 9.0 / 16.0;
-        double lower2FromZ = 3.0 / 16.0;
-        double lower2ToX = 13.0 / 16.0;
-        double lower2ToY = 11.0 / 16.0;
-        double lower2ToZ = 13.0 / 16.0;
+        double lower2FromX = 3.0 / 16.0; double lower2FromY = 9.0 / 16.0; double lower2FromZ = 3.0 / 16.0;
+        double lower2ToX = 13.0 / 16.0; double lower2ToY = 11.0 / 16.0; double lower2ToZ = 13.0 / 16.0;
 
-        double lower3FromX = 4.0 / 16.0;
-        double lower3FromY = 7.0 / 16.0;
-        double lower3FromZ = 4.0 / 16.0;
-        double lower3ToX = 12.0 / 16.0;
-        double lower3ToY = 9.0 / 16.0;
-        double lower3ToZ = 12.0 / 16.0;
+        double lower3FromX = 4.0 / 16.0; double lower3FromY = 7.0 / 16.0; double lower3FromZ = 4.0 / 16.0;
+        double lower3ToX = 12.0 / 16.0; double lower3ToY = 9.0 / 16.0; double lower3ToZ = 12.0 / 16.0;
 
-        double lower4FromX = 5.0 / 16.0;
-        double lower4FromY = 5.0 / 16.0;
-        double lower4FromZ = 5.0 / 16.0;
-        double lower4ToX = 11.0 / 16.0;
-        double lower4ToY = 7.0 / 16.0;
-        double lower4ToZ = 11.0 / 16.0;
+        double lower4FromX = 5.0 / 16.0; double lower4FromY = 5.0 / 16.0; double lower4FromZ = 5.0 / 16.0;
+        double lower4ToX = 11.0 / 16.0; double lower4ToY = 7.0 / 16.0; double lower4ToZ = 11.0 / 16.0;
 
-        double lower5FromX = 6.0 / 16.0;
-        double lower5FromY = 3.0 / 16.0;
-        double lower5FromZ = 6.0 / 16.0;
-        double lower5ToX = 10.0 / 16.0;
-        double lower5ToY = 5.0 / 16.0;
-        double lower5ToZ = 10.0 / 16.0;
+        double lower5FromX = 6.0 / 16.0; double lower5FromY = 3.0 / 16.0; double lower5FromZ = 6.0 / 16.0;
+        double lower5ToX = 10.0 / 16.0; double lower5ToY = 5.0 / 16.0; double lower5ToZ = 10.0 / 16.0;
 
-        double lower6FromX = 7.0 / 16.0;
-        double lower6FromY = 1.0 / 16.0;
-        double lower6FromZ = 7.0 / 16.0;
-        double lower6ToX = 9.0 / 16.0;
-        double lower6ToY = 3.0 / 16.0;
-        double lower6ToZ = 9.0 / 16.0;
+        double lower6FromX = 7.0 / 16.0; double lower6FromY = 1.0 / 16.0; double lower6FromZ = 7.0 / 16.0;
+        double lower6ToX = 9.0 / 16.0; double lower6ToY = 3.0 / 16.0; double lower6ToZ = 9.0 / 16.0;
 
         // Create VoxelShapes for the side and lower parts of the block
         VoxelShape sideShape = VoxelShapes.cuboid(sideFromX, sideFromY, sideFromZ, sideToX, sideToY, sideToZ);

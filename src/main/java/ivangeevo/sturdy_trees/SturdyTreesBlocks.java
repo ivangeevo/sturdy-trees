@@ -3,9 +3,9 @@ package ivangeevo.sturdy_trees;
 import ivangeevo.sturdy_trees.block.blocks.*;
 import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.block.util.StumpType;
+import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
@@ -16,27 +16,26 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class SturdyTreesBlocks {
+public class SturdyTreesBlocks implements SideModUtils {
 
     /** STUMP BLOCKS **/
-    public static final Block STUMP_OAK = registerBlockWithoutItem("stump_oak", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.OAK));
-    public static final Block STUMP_OAK_VAR1 = registerBlockWithoutItem("stump_oak_var1", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.OAK));
-    public static final Block STUMP_SPRUCE = registerBlockWithoutItem("stump_spruce", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
-    public static final Block STUMP_SPRUCE_VAR1 = registerBlockWithoutItem("stump_spruce_var1", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
-    public static final Block STUMP_BIRCH = registerBlockWithoutItem("stump_birch", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.BIRCH));
-    public static final Block STUMP_BIRCH_VAR1 = registerBlockWithoutItem("stump_birch_var1", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.BIRCH));
-    public static final Block STUMP_JUNGLE = registerBlockWithoutItem("stump_jungle", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.JUNGLE));
-    public static final Block STUMP_JUNGLE_VAR1 = registerBlockWithoutItem("stump_jungle_var1", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.JUNGLE));
-    public static final Block STUMP_ACACIA = registerBlockWithoutItem("stump_acacia", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.ACACIA));
-    public static final Block STUMP_ACACIA_VAR1 = registerBlockWithoutItem("stump_acacia_var1", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.ACACIA));
-    public static final Block STUMP_DARK_OAK = registerBlockWithoutItem("stump_dark_oak", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.DARK_OAK));
-    public static final Block STUMP_DARK_OAK_VAR1 = registerBlockWithoutItem("stump_dark_oak_var1", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
-    public static final Block STUMP_MANGROVE = registerBlockWithoutItem("stump_mangrove", new Stump(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.MANGROVE));
+    public static final Block STUMP_OAK = registerBlockWithoutItem("stump_oak", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.OAK));
+    public static final Block STUMP_OAK_VAR1 = registerBlockWithoutItem("stump_oak_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.OAK));
+    public static final Block STUMP_SPRUCE = registerBlockWithoutItem("stump_spruce", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
+    public static final Block STUMP_SPRUCE_VAR1 = registerBlockWithoutItem("stump_spruce_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
+    public static final Block STUMP_BIRCH = registerBlockWithoutItem("stump_birch", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.BIRCH));
+    public static final Block STUMP_BIRCH_VAR1 = registerBlockWithoutItem("stump_birch_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.BIRCH));
+    public static final Block STUMP_JUNGLE = registerBlockWithoutItem("stump_jungle", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.JUNGLE));
+    public static final Block STUMP_JUNGLE_VAR1 = registerBlockWithoutItem("stump_jungle_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.JUNGLE));
+    public static final Block STUMP_ACACIA = registerBlockWithoutItem("stump_acacia", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.ACACIA));
+    public static final Block STUMP_ACACIA_VAR1 = registerBlockWithoutItem("stump_acacia_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.ACACIA));
+    public static final Block STUMP_DARK_OAK = registerBlockWithoutItem("stump_dark_oak", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.DARK_OAK));
+    public static final Block STUMP_DARK_OAK_VAR1 = registerBlockWithoutItem("stump_dark_oak_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
+    public static final Block STUMP_MANGROVE = registerBlockWithoutItem("stump_mangrove", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.MANGROVE));
 
 
 
     // Added variables to change the log strength based on whether BTWR Core is loaded or not.
-    private static final boolean isBTWRLoaded = FabricLoader.getInstance().isModLoaded("btwr");
     private static final float vanillaLogStrength = 2F;
     private static final float btwrLogStrength = 24F;
 
@@ -46,10 +45,7 @@ public class SturdyTreesBlocks {
     // ----------------------------------------------------------------------------- //
 
     
-    /** Logic to modify the log strength **/
-    public boolean isBTWRLoaded() {
-        return isBTWRLoaded;
-    }
+
 
 
 

@@ -16,6 +16,8 @@ public final class SturdyTreesTags {
 
         public static final TagKey<Item> MODERN_CHISELS = createTag("modern_chisels");
 
+        public static final TagKey<Item> CREEPER_OYSTERS_TAG = createTag("creeper_oysters_tag");
+
 
 
         private static TagKey<Item> createTag(String id) {

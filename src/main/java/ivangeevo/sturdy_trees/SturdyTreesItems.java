@@ -1,5 +1,6 @@
 package ivangeevo.sturdy_trees;
 
+import ivangeevo.sturdy_trees.item.items.StumpRemoverItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -23,6 +24,7 @@ public class SturdyTreesItems {
 
     public static final Item BARK_MANGROVE = registerItem( "bark_mangrove", new Item (new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    public static final Item STUMP_REMOVER = registerItem( "stump_remover", new StumpRemoverItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(SturdyTreesMod.MOD_ID, name), item);

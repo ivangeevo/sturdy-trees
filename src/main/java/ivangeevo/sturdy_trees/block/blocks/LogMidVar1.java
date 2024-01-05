@@ -33,26 +33,14 @@ public class LogMidVar1 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions for each element
-        double topSideFromX = 1.0 / 16.0;
-        double topSideFromY = 13.0 / 16.0;
-        double topSideFromZ = 1.0 / 16.0;
-        double topSideToX = 15.0 / 16.0;
-        double topSideToY = 16.0 / 16.0;
-        double topSideToZ = 15.0 / 16.0;
+        double topSideFromX = 1.0 / 16.0; double topSideFromY = 13.0 / 16.0; double topSideFromZ = 1.0 / 16.0;
+        double topSideToX = 15.0 / 16.0;double topSideToY = 16.0 / 16.0;double topSideToZ = 15.0 / 16.0;
 
-        double middleFromX = 2.0 / 16.0;
-        double middleFromY = 3.0 / 16.0;
-        double middleFromZ = 2.0 / 16.0;
-        double middleToX = 14.0 / 16.0;
-        double middleToY = 13.0 / 16.0;
-        double middleToZ = 14.0 / 16.0;
+        double middleFromX = 2.0 / 16.0;double middleFromY = 3.0 / 16.0;double middleFromZ = 2.0 / 16.0;
+        double middleToX = 14.0 / 16.0;double middleToY = 13.0 / 16.0;double middleToZ = 14.0 / 16.0;
 
-        double bottomSideFromX = 1.0 / 16.0;
-        double bottomSideFromY = 0.0;
-        double bottomSideFromZ = 1.0 / 16.0;
-        double bottomSideToX = 15.0 / 16.0;
-        double bottomSideToY = 3.0 / 16.0;
-        double bottomSideToZ = 15.0 / 16.0;
+        double bottomSideFromX = 1.0 / 16.0;double bottomSideFromY = 0.0;double bottomSideFromZ = 1.0 / 16.0;
+        double bottomSideToX = 15.0 / 16.0;double bottomSideToY = 3.0 / 16.0;double bottomSideToZ = 15.0 / 16.0;
 
         // Create the VoxelShapes for each element
         VoxelShape topSideShape = VoxelShapes.cuboid(topSideFromX, topSideFromY, topSideFromZ, topSideToX, topSideToY, topSideToZ);

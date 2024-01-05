@@ -13,17 +13,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class Stump extends Block {
+public class StumpBlock extends Block {
 
-
-
-    public Stump(Settings settings, StumpType stumpType) {
+    public StumpBlock(Settings settings, StumpType stumpType) {
         super(settings);
-
     }
-
-
-
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {

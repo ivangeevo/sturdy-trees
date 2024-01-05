@@ -8,5 +8,8 @@
   "item.sturdy_trees.bark_birch":"Birch Bark",
   "item.sturdy_trees.bark_acacia":"Acacia Bark",
   "item.sturdy_trees.bark_dark_oak":"Dark Oak Bark",
-  "item.sturdy_trees.bark_mangrove":"Mangrove Bark"
+  "item.sturdy_trees.bark_mangrove":"Mangrove Bark",
+
+  "item.sturdy_trees.stump_remover":"Stump Remover"
+
 }

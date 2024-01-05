@@ -35,12 +35,8 @@ public class LogStrippedVar1 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions from the model JSON
-        double fromX = 2.0 / 16.0;
-        double fromY = 0.0;
-        double fromZ = 2.0 / 16.0;
-        double toX = 14.0 / 16.0;
-        double toY = 16.0 / 16.0;
-        double toZ = 14.0 / 16.0;
+        double fromX = 2.0 / 16.0; double fromY = 0.0; double fromZ = 2.0 / 16.0;
+        double toX = 14.0 / 16.0; double toY = 16.0 / 16.0; double toZ = 14.0 / 16.0;
 
         // Create a VoxelShape based on the dimensions
         VoxelShape shape = VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ);
