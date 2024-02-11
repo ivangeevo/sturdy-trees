@@ -17,7 +17,7 @@
                       "condition": "minecraft:match_tool",
                       "predicate": {
                         "items": [
-                          "btwr:shears"
+                          "minecraft:shears"
                         ]
                       }
                     },

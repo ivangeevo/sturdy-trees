@@ -2,7 +2,27 @@
 
 ---
 
-### v1.1
+### v1.2
+
++ Requires the BTWR-Core mod to run from now on.
++ BTWR-Core provides a way for shearing the creepers and acquiring the creeper oysters needed to craft Stump Remover item(wasn't available before).
+
++ Added secondary drops from logs. (Bark & Saw Dust)
+
++ Changed how breaking logs into lesser items work. Logs must be crafted together with the axe item to get planks/shafts(sticks) depending on the type of axe used.
++ Changed Spruce stump texture to match the log's lighter texture.
++ Changed effects on stump removing.
+
++ Fixed apples not dropping from Oak Leaves.
++ Fixed a bug where Flowering Azalea leaves were not harvestable with Shears.
+
++ Removed Shaft item.
++ Removed log stripping via right-clicking with axe.
+
++ Updated the mod to Fabric API 0.77 & Fabric Loader 0.15.6
+
+
++ ## v1.1
 
 + Added Stump Remover item.
 + Fixed Mangrove Roots to break faster.
@@ -17,4 +37,4 @@
 ### pre-release 0.5
 
 + Initial start of keeping changelogs.
-+ Moved all the tree logic from BTWR to this separate mod.
++ Moved all the tree logic from BTWR to this mod.

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sticks",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_log"
+    },
+    {
+      "tag": "btwr:primitive_axes"
+    }
+  ],
+
+  "result": {
+    "count": 2,
+    "item": "minecraft:stick"
+  },
+  "secondaryResult": [
+    {
+      "item": "sturdy_trees:bark_mangrove",
+      "count": 1
+    },
+    {
+      "item": "sturdy_trees:dust_saw",
+      "count": 1
+    }
+  ]
+}

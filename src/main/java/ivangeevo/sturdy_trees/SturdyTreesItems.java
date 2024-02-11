@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry;
 
 public class SturdyTreesItems {
 
-    public static final Item SHAFT = registerItem( "shaft", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    //public static final Item SHAFT = registerItem( "shaft", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     public static final Item DUST_SAW = registerItem( "dust_saw", new Item (new FabricItemSettings().group(ItemGroup.MATERIALS)));
 

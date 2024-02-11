@@ -3,7 +3,7 @@
   "textures": {
     "0": "sturdy_trees:block/stump_spruce",
     "1": "sturdy_trees:block/stump_spruce_top",
-    "particle": "btwr:block/stump_spruce"
+    "particle": "sturdy_trees:block/stump_spruce"
   },
   "elements": [
     {
