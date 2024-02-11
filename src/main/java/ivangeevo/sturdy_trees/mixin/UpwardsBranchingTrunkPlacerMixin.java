@@ -27,19 +27,13 @@ import java.util.function.BiConsumer;
 @Mixin(UpwardsBranchingTrunkPlacer.class)
 public abstract class UpwardsBranchingTrunkPlacerMixin extends TrunkPlacer {
     @Shadow @Final private IntProvider extraBranchLength;
-
     @Shadow @Final private IntProvider extraBranchSteps;
-
     @Shadow protected abstract void generateExtraBranch(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, TreeFeatureConfig config, List<FoliagePlacer.TreeNode> nodes, BlockPos.Mutable pos, int yOffset, Direction direction, int length, int steps);
-
     @Shadow @Final private float placeBranchPerLogProbability;
 
     public UpwardsBranchingTrunkPlacerMixin(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
         super(baseHeight, firstRandomHeight, secondRandomHeight);
     }
-
-
-
 
     @Inject(method = "generate", at = @At("HEAD"), cancellable = true)
     private void injectedGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {

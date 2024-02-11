@@ -11,6 +11,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
@@ -255,17 +256,9 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
        // Check the tool used to break the block
         ItemStack toolStack = player.getMainHandStack();
 
-        List<ItemStack> droppedStacks;
 
 
-        if (isBTWRLoaded) {
-            droppedStacks = getLesserDroppedShaftStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                    .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                    .parameter(LootContextParameters.TOOL, toolStack)
-                    .random(world.random));
-        } else {
-            droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
-        }
+        List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
 
         // Rest of the code to drop the items
         Direction playerFacing = player.getHorizontalFacing();

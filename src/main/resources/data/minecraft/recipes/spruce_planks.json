@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_log"
+    },
+    {
+      "tag": "btwr:axes_make_planks"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:spruce_planks"
+  },
+  "secondaryResult": [
+    {
+      "item": "sturdy_trees:bark_spruce",
+      "count": 1
+    },
+    {
+      "item": "sturdy_trees:dust_saw",
+      "count": 1
+    }
+  ]
+}

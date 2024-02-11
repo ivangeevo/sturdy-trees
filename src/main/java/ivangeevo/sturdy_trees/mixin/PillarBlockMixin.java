@@ -37,9 +37,6 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         player.addExhaustion(0.2F);
 
-
-
-
         if (state.isOf(Blocks.OAK_LOG)) {
             handleLogBreak(world, pos, state, player, tool, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0);
         } else if (state.isOf(Blocks.BIRCH_LOG)) {

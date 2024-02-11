@@ -27,7 +27,7 @@ public interface LogBlockStacks {
         return new ItemStack(blockItem, count);
     }
 
-    // ItemStack methods
+    // List methods
 
 
     private List<ItemStack> getLesserDroppedStacks(Item item, int count) {
@@ -60,9 +60,11 @@ public interface LogBlockStacks {
         return getLesserDroppedStacks(SturdyTreesItems.DUST_SAW, 1);
     }
 
+    /**
     default List<ItemStack> getLesserDroppedShaftStacks(BlockState state, LootContext.Builder builder) {
         return getLesserDroppedStacks(SturdyTreesItems.SHAFT, 1);
     }
+     **/
 
     default List<ItemStack> getLesserDroppedStickStacks(BlockState state, LootContext.Builder builder) {
         return getLesserDroppedStacks(Items.STICK, 1);

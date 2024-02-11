@@ -22,8 +22,6 @@ public class StumpBlock extends Block {
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 
-
-
         boolean isStumpOak = state.isOf(SturdyTreesBlocks.STUMP_OAK);
         boolean isStumpOakVar1 = state.isOf(SturdyTreesBlocks.STUMP_OAK_VAR1);
 

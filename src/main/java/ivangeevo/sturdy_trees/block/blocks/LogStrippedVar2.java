@@ -74,28 +74,14 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
 
         if (miningDirection != null) {
 
-
-            if (isBTWRLoaded) {
-                List<ItemStack> droppedStacks = getLesserDroppedShaftStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                        .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                        .parameter(LootContextParameters.TOOL, stack)
-                        .random(world.random));
-
-
-                for (ItemStack itemStack : droppedStacks) {
-                    dropStack(world, pos, miningDirection, itemStack);
-                }
-            } else {
                 List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
                         .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                         .parameter(LootContextParameters.TOOL, stack)
                         .random(world.random));
 
-
                 for (ItemStack itemStack : droppedStacks) {
                     dropStack(world, pos, miningDirection, itemStack);
                 }
-            }
         }
     }
 
