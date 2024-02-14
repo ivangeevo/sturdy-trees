@@ -31,7 +31,7 @@ public abstract class DarkOakTrunkPlacerMixin extends TrunkPlacer {
     )
     private void modifyTrunkBlocks(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
         Block stumpBlock;
-        BlockState trunkState = config.trunkProvider.getBlockState(random, startPos);
+        BlockState trunkState = config.trunkProvider.get(random, startPos);
         if (trunkState.isOf(Blocks.DARK_OAK_LOG)) {
             stumpBlock = SturdyTreesBlocks.STUMP_DARK_OAK;
         } else {

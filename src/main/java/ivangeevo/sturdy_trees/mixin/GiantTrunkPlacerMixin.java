@@ -28,7 +28,7 @@ public abstract class GiantTrunkPlacerMixin extends TrunkPlacer {
     @Inject(method = "generate", at = @At(value = "TAIL"))
     private void onGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> ci) {
         Block stumpBlock;
-        BlockState trunkState = config.trunkProvider.getBlockState(random, startPos);
+        BlockState trunkState = config.trunkProvider.get(random, startPos);
         if (trunkState.isOf(Blocks.SPRUCE_LOG)) {
             stumpBlock = SturdyTreesBlocks.STUMP_SPRUCE;
         } else if (trunkState.isOf(Blocks.JUNGLE_LOG)){

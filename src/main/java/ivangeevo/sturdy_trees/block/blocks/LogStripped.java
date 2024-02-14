@@ -14,7 +14,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -278,26 +280,24 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
     }
 
 
-    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack toolStack, Random random) {
-        LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
-                .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                .parameter(LootContextParameters.TOOL, toolStack)
-                .random(world.random);
+    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack, Random random) {
+
+        LootContext lootContext = buildBlockLootContext((ServerWorld) world, pos,state,stack);
 
         if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
-            return getDroppedOakPlankStacks(state, builder);
+            return getDroppedOakPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
-            return getDroppedBirchPlankStacks(state, builder);
+            return getDroppedBirchPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
-            return getDroppedSprucePlankStacks(state, builder);
+            return getDroppedSprucePlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
-            return getDroppedJunglePlankStacks(state, builder);
+            return getDroppedJunglePlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
-            return getDroppedAcaciaPlankStacks(state, builder);
+            return getDroppedAcaciaPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
-            return getDroppedDarkOakPlankStacks(state, builder);
+            return getDroppedDarkOakPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
-            return getDroppedMangrovePlankStacks(state, builder);
+            return getDroppedMangrovePlankStacks(state, lootContext);
         } else {
             return Collections.emptyList(); // Handle other log types if needed
         }

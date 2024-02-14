@@ -84,10 +84,7 @@ public class LogBotVar2 extends ConvertingBlock implements LogBlockStacks, SideM
             if (miningDirection != null) {
 
 
-                    List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                            .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                            .parameter(LootContextParameters.TOOL, stack)
-                            .random(world.random));
+                    List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), buildBlockLootContext((ServerWorld) world,pos,state, stack));
 
 
                     for (ItemStack itemStack : droppedStacks) {

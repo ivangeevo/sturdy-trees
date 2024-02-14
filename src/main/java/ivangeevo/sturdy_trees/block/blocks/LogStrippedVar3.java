@@ -2,6 +2,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.ConvertingBlock;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -10,11 +11,12 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -24,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogStrippedVar3 extends ConvertingBlock {
+public class LogStrippedVar3 extends ConvertingBlock implements LogBlockStacks {
 
     public LogStrippedVar3(AbstractBlock.Settings settings) {
         super(settings);
@@ -53,21 +55,20 @@ public class LogStrippedVar3 extends ConvertingBlock {
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
         player.addExhaustion(0.2F);
 
-
-
         // Set the new block state
         world.setBlockState(pos, Blocks.AIR.getDefaultState());
 
         Direction miningDirection = getMiningDirection(player, world, pos);
 
+        LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder((ServerWorld)world)
+                .add(LootContextParameters.ORIGIN, pos.toCenterPos())
+                .add(LootContextParameters.BLOCK_STATE, state)
+                .add(LootContextParameters.TOOL, stack).build(LootContextTypes.BLOCK);
+
 
         if (miningDirection != null) {
 
-
-            List<ItemStack> droppedStacks = getLesserDroppedStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                    .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                    .parameter(LootContextParameters.TOOL, stack)
-                    .random(world.random));
+            List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), new LootContext.Builder(lootContextParameterSet).build(null));
 
 
             for (ItemStack itemStack : droppedStacks) {
@@ -77,10 +78,6 @@ public class LogStrippedVar3 extends ConvertingBlock {
     }
 
 
-    private List<ItemStack> getLesserDroppedStacks(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> droppedStacks = new ArrayList<>();
-        droppedStacks.add(new ItemStack(SturdyTreesItems.DUST_SAW, 1));
-        return droppedStacks;
-    }
+
 
 }

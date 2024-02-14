@@ -9,9 +9,12 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 public class SturdyTreesDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-        fabricDataGenerator.addProvider(SturdyTreesBlockTagProvider::new);
-        fabricDataGenerator.addProvider(SturdyTreesItemTagProvider::new);
-        fabricDataGenerator.addProvider(SturdyTreesRecipeProvider::new);
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+
+
+        pack.addProvider(SturdyTreesBlockTagProvider::new);
+        pack.addProvider(SturdyTreesItemTagProvider::new);
+        pack.addProvider(SturdyTreesRecipeProvider::new);
     }
 
 }
