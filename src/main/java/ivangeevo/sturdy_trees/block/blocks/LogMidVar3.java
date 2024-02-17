@@ -69,7 +69,9 @@ public class LogMidVar3 extends ConvertingBlock implements LogBlockStacks {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.addExhaustion(0.2F);
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
         if (!world.isClient) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
 

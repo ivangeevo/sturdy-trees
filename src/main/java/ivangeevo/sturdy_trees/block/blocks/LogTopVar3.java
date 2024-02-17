@@ -13,6 +13,7 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -74,7 +75,9 @@ public class LogTopVar3 extends ConvertingBlock implements LogBlockStacks {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.addExhaustion(0.2F);
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
         if (!world.isClient) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
 
@@ -96,5 +99,6 @@ public class LogTopVar3 extends ConvertingBlock implements LogBlockStacks {
                 }
             }
         }
+
     }
 }
