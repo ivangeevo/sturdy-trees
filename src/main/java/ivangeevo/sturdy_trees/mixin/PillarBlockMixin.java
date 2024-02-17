@@ -15,8 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextType;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -51,6 +51,8 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
             handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0);
         } else if (state.isOf(Blocks.MANGROVE_LOG)) {
             handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.CHERRY_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0);
         }
         // Add similar blocks for other log types as needed
     }
@@ -73,7 +75,7 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         }
 
         // Logic for dropping items (stacks)
-        List<ItemStack> droppedStacks = getDroppedStacks(state, world, pos, tool, player);
+        List<ItemStack> droppedStacks = getDroppedStacks(state, (ServerWorld) world, pos, tool, player);
         for (ItemStack stack : droppedStacks) {
             dropItemStack(world, pos, stack, player);
         }
@@ -92,10 +94,10 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         world.spawnEntity(itemEntity);
     }
 
-    public List<ItemStack> getDroppedStacks(BlockState state, World world, BlockPos pos, ItemStack tool, PlayerEntity player) {
-        LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
-                .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                .parameter(LootContextParameters.TOOL, tool);
+    public List<ItemStack> getDroppedStacks(BlockState state, ServerWorld serverWorld, BlockPos pos, ItemStack tool, PlayerEntity player) {
+
+        // Use the LootContextParameterSet appropriate for your context
+        LootContext lootContext = buildBlockLootContext(serverWorld, pos, state, tool);
 
         boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))));
 
@@ -106,41 +108,46 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         boolean isLogAcacia = (state.isOf(Blocks.ACACIA_LOG));
         boolean isLogDarkOak = (state.isOf(Blocks.DARK_OAK_LOG));
         boolean isLogMangrove = (state.isOf(Blocks.MANGROVE_LOG));
+        boolean isLogCherry = (state.isOf(Blocks.CHERRY_LOG));
 
 
 
 
         if (isAxe) {
             if (isLogOak) {
-                return getFullDroppedStacksOak(state, builder);
+                return getFullDroppedStacksOak(state, lootContext);
             } else if (isLogBirch) {
-                return getFullDroppedStacksBirch(state, builder);
+                return getFullDroppedStacksBirch(state, lootContext);
             } else if (isLogSpruce) {
-                return getFullDroppedStacksSpruce(state, builder);
+                return getFullDroppedStacksSpruce(state, lootContext);
             } else if (isLogJungle) {
-                return getFullDroppedStacksJungle(state, builder);
+                return getFullDroppedStacksJungle(state, lootContext);
             } else if (isLogAcacia) {
-                return getFullDroppedStacksAcacia(state, builder);
+                return getFullDroppedStacksAcacia(state, lootContext);
             } else if (isLogDarkOak) {
-                return getFullDroppedStacksDarkOak(state, builder);
+                return getFullDroppedStacksDarkOak(state, lootContext);
             } else if (isLogMangrove) {
-                return getFullDroppedStacksMangrove(state, builder);
+                return getFullDroppedStacksMangrove(state, lootContext);
+            } else if (isLogCherry) {
+                return getFullDroppedStacksCherry(state, lootContext);
             }
         } else  {
             if (isLogOak) {
-                return getLesserDroppedBarkStacksOak(state, builder);
+                return getLesserDroppedBarkStacksOak(state, lootContext);
             } else if (isLogBirch) {
-                return getLesserDroppedBarkStacksBirch(state, builder);
+                return getLesserDroppedBarkStacksBirch(state, lootContext);
             } else if (isLogSpruce) {
-                return getLesserDroppedBarkStacksSpruce(state, builder);
+                return getLesserDroppedBarkStacksSpruce(state, lootContext);
             } else if (isLogJungle) {
-                return getLesserDroppedBarkStacksJungle(state, builder);
+                return getLesserDroppedBarkStacksJungle(state, lootContext);
             } else if (isLogAcacia) {
-                return getLesserDroppedBarkStacksAcacia(state, builder);
+                return getLesserDroppedBarkStacksAcacia(state, lootContext);
             } else if (isLogDarkOak) {
-                return getLesserDroppedBarkStacksDarkOak(state, builder);
+                return getLesserDroppedBarkStacksDarkOak(state, lootContext);
             } else if (isLogMangrove) {
-                return getLesserDroppedBarkStacksMangrove(state, builder);
+                return getLesserDroppedBarkStacksMangrove(state, lootContext);
+            } else if (isLogCherry) {
+                return getLesserDroppedBarkStacksCherry(state, lootContext);
             }
         }
 

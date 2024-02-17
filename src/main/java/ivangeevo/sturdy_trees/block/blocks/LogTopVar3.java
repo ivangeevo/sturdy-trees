@@ -9,8 +9,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -66,33 +69,36 @@ public class LogTopVar3 extends ConvertingBlock implements LogBlockStacks {
         VoxelShape lower6Shape = VoxelShapes.cuboid(lower6FromX, lower6FromY, lower6FromZ, lower6ToX, lower6ToY, lower6ToZ);
 
         // Combine the shapes using VoxelShapes.union
-        VoxelShape shape = VoxelShapes.union(sideShape, lower1Shape, lower2Shape, lower3Shape, lower4Shape, lower5Shape, lower6Shape);
-
-        return shape;
+        return VoxelShapes.union(sideShape, lower1Shape, lower2Shape, lower3Shape, lower4Shape, lower5Shape, lower6Shape);
     }
-
 
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.addExhaustion(0.2F);
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
         if (!world.isClient) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
 
             Direction miningDirection = getMiningDirection(player, world, pos);
 
+            LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder((ServerWorld)world)
+                    .add(LootContextParameters.ORIGIN, pos.toCenterPos())
+                    .add(LootContextParameters.BLOCK_STATE, state)
+                    .add(LootContextParameters.TOOL, stack).build(LootContextTypes.BLOCK);
+
+
 
             if (miningDirection != null) {
 
-                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                        .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                        .parameter(LootContextParameters.TOOL, stack)
-                        .random(world.random));
+                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), new LootContext.Builder(lootContextParameterSet).build(null));
 
                 for (ItemStack itemStack : droppedStacks) {
                     dropStack(world, pos, miningDirection, itemStack);
                 }
             }
         }
+
     }
 }

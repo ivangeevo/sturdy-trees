@@ -50,9 +50,8 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.addExhaustion(0.2F);
 
-
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
 
         if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2)) {
             world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3.getDefaultState());
@@ -68,16 +67,15 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
             world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR3.getDefaultState());
         } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2)) {
             world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR3.getDefaultState());
         }
         Direction miningDirection = getMiningDirection(player, world, pos);
 
 
         if (miningDirection != null) {
 
-                List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                        .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                        .parameter(LootContextParameters.TOOL, stack)
-                        .random(world.random));
+                List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), buildBlockLootContext((ServerWorld) world,pos,state, stack));
 
                 for (ItemStack itemStack : droppedStacks) {
                     dropStack(world, pos, miningDirection, itemStack);

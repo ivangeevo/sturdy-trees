@@ -70,7 +70,7 @@ public class LogBotVar3 extends ConvertingBlock implements LogBlockStacks {
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 
-        player.addExhaustion(0.2F);
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
 
         if (!world.isClient) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
@@ -80,10 +80,7 @@ public class LogBotVar3 extends ConvertingBlock implements LogBlockStacks {
 
             if (miningDirection != null) {
 
-                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), new LootContext.Builder((ServerWorld) world)
-                        .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                        .parameter(LootContextParameters.TOOL, stack)
-                        .random(world.random));
+                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), buildBlockLootContext((ServerWorld) world,pos,state, stack));
 
                 for (ItemStack itemStack : droppedStacks) {
                     dropStack(world, pos, miningDirection, itemStack);

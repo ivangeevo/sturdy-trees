@@ -47,7 +47,7 @@ public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
         for (int i = 0; i < height; ++i) {
             this.getAndSetState(world, replacer, random, startPos.up(i), config);
         }
-        Block logBlock = config.trunkProvider.getBlockState(random, startPos).getBlock();
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
         Block stumpBlock = getStumpBlockForLog(logBlock);
 
 

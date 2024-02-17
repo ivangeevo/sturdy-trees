@@ -14,7 +14,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -61,12 +63,13 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
 
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        player.addExhaustion(0.2F);
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
 
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());
-
 
 
         // Logic to determine the block to replace with
@@ -223,6 +226,23 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
             topVar1 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR1;
             topVar2 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR2;
             topVar3 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR3;
+
+            midVar1 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR3;
+
+            botVar1 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR3;
+
+            topVar1 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR3;
         }
 
         // Check for blocks above and below
@@ -255,9 +275,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
     private void dropLootTable(World world, BlockPos pos, BlockState state, PlayerEntity player) {
        // Check the tool used to break the block
         ItemStack toolStack = player.getMainHandStack();
-
-
-
+        
         List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
 
         // Rest of the code to drop the items
@@ -278,26 +296,26 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
     }
 
 
-    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack toolStack, Random random) {
-        LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
-                .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                .parameter(LootContextParameters.TOOL, toolStack)
-                .random(world.random);
+    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack, Random random) {
+
+        LootContext lootContext = buildBlockLootContext((ServerWorld) world, pos,state,stack);
 
         if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
-            return getDroppedOakPlankStacks(state, builder);
+            return getDroppedOakPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
-            return getDroppedBirchPlankStacks(state, builder);
+            return getDroppedBirchPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
-            return getDroppedSprucePlankStacks(state, builder);
+            return getDroppedSprucePlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
-            return getDroppedJunglePlankStacks(state, builder);
+            return getDroppedJunglePlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
-            return getDroppedAcaciaPlankStacks(state, builder);
+            return getDroppedAcaciaPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
-            return getDroppedDarkOakPlankStacks(state, builder);
+            return getDroppedDarkOakPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
-            return getDroppedMangrovePlankStacks(state, builder);
+            return getDroppedMangrovePlankStacks(state, lootContext);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
+            return getDroppedCherryPlankStacks(state, lootContext);
         } else {
             return Collections.emptyList(); // Handle other log types if needed
         }
