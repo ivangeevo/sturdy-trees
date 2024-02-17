@@ -225,6 +225,23 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
             topVar1 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR1;
             topVar2 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR2;
             topVar3 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR3;
+        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
+            strippedVar0 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0;
+            strippedVar1 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR1;
+            strippedVar2 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR2;
+            strippedVar3 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR3;
+
+            midVar1 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR1;
+            midVar2 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR2;
+            midVar3 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR3;
+
+            botVar1 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR1;
+            botVar2 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2;
+            botVar3 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR3;
+
+            topVar1 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR1;
+            topVar2 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR2;
+            topVar3 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR3;
         }
 
         // Check for blocks above and below
@@ -257,9 +274,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
     private void dropLootTable(World world, BlockPos pos, BlockState state, PlayerEntity player) {
        // Check the tool used to break the block
         ItemStack toolStack = player.getMainHandStack();
-
-
-
+        
         List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
 
         // Rest of the code to drop the items
@@ -298,6 +313,8 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
             return getDroppedDarkOakPlankStacks(state, lootContext);
         } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
             return getDroppedMangrovePlankStacks(state, lootContext);
+        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
+            return getDroppedCherryPlankStacks(state, lootContext);
         } else {
             return Collections.emptyList(); // Handle other log types if needed
         }

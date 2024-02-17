@@ -105,6 +105,9 @@ public interface LogBlockStacks {
     default List<ItemStack> getLesserDroppedBarkStacksMangrove(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_MANGROVE, 1);
     }
+    default List<ItemStack> getLesserDroppedBarkStacksCherry(BlockState state, LootContext builder) {
+        return getLesserDroppedStacks(SturdyTreesItems.BARK_CHERRY, 1);
+    }
 
     // Dropped plank stacks
 
@@ -133,7 +136,10 @@ public interface LogBlockStacks {
     }
 
     default List<ItemStack> getDroppedMangrovePlankStacks(BlockState state, LootContext builder) {
-        return getLesserDroppedStacks(SturdyTreesItems.BARK_MANGROVE, 1); // Replace with your plank item
+        return getLesserDroppedStacks(Items.MANGROVE_PLANKS, 1); // Replace with your plank item
+    }
+    default List<ItemStack> getDroppedCherryPlankStacks(BlockState state, LootContext builder) {
+        return getLesserDroppedStacks(Items.CHERRY_PLANKS, 1); // Replace with your plank item
     }
 
 
@@ -166,10 +172,8 @@ public interface LogBlockStacks {
     default List<ItemStack> getFullDroppedStacksMangrove(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.MANGROVE_LOG, 1);
     }
-
-    /**                  **/
-
-
-
+    default List<ItemStack> getFullDroppedStacksCherry(BlockState state, LootContext builder) {
+        return getFullDroppedStacks(Blocks.CHERRY_LOG, 1);
+    }
 
 }

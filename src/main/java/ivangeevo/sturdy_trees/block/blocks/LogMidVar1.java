@@ -74,6 +74,8 @@ public class LogMidVar1 extends ConvertingBlock implements LogBlockStacks {
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR2.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_MID_VAR1)) {
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_MID_VAR2.getDefaultState());
+            }  else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_MID_VAR2.getDefaultState());
             }
             Direction miningDirection = getMiningDirection(player, world, pos);
 

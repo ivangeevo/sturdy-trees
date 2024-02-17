@@ -68,6 +68,8 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
             world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR3.getDefaultState());
         } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2)) {
             world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR3.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2)) {
+            world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR3.getDefaultState());
         }
         Direction miningDirection = getMiningDirection(player, world, pos);
 

@@ -68,9 +68,7 @@ public class LogTopVar3 extends ConvertingBlock implements LogBlockStacks {
         VoxelShape lower6Shape = VoxelShapes.cuboid(lower6FromX, lower6FromY, lower6FromZ, lower6ToX, lower6ToY, lower6ToZ);
 
         // Combine the shapes using VoxelShapes.union
-        VoxelShape shape = VoxelShapes.union(sideShape, lower1Shape, lower2Shape, lower3Shape, lower4Shape, lower5Shape, lower6Shape);
-
-        return shape;
+        return VoxelShapes.union(sideShape, lower1Shape, lower2Shape, lower3Shape, lower4Shape, lower5Shape, lower6Shape);
     }
 
 

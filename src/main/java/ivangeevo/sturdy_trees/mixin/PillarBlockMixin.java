@@ -51,6 +51,8 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
             handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0);
         } else if (state.isOf(Blocks.MANGROVE_LOG)) {
             handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0);
+        } else if (state.isOf(Blocks.CHERRY_LOG)) {
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0);
         }
         // Add similar blocks for other log types as needed
     }
@@ -106,6 +108,7 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         boolean isLogAcacia = (state.isOf(Blocks.ACACIA_LOG));
         boolean isLogDarkOak = (state.isOf(Blocks.DARK_OAK_LOG));
         boolean isLogMangrove = (state.isOf(Blocks.MANGROVE_LOG));
+        boolean isLogCherry = (state.isOf(Blocks.CHERRY_LOG));
 
 
 
@@ -125,6 +128,8 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
                 return getFullDroppedStacksDarkOak(state, lootContext);
             } else if (isLogMangrove) {
                 return getFullDroppedStacksMangrove(state, lootContext);
+            } else if (isLogCherry) {
+                return getFullDroppedStacksCherry(state, lootContext);
             }
         } else  {
             if (isLogOak) {
@@ -141,6 +146,8 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
                 return getLesserDroppedBarkStacksDarkOak(state, lootContext);
             } else if (isLogMangrove) {
                 return getLesserDroppedBarkStacksMangrove(state, lootContext);
+            } else if (isLogCherry) {
+                return getLesserDroppedBarkStacksCherry(state, lootContext);
             }
         }
 

@@ -77,6 +77,8 @@ public class LogTopVar2 extends ConvertingBlock implements LogBlockStacks, SideM
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR3.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR2)) {
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR3.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_TOP_VAR2)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_TOP_VAR3.getDefaultState());
             }
             Direction miningDirection = getMiningDirection(player, world, pos);
 

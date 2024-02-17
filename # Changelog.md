@@ -15,6 +15,7 @@
 
 + Fixed apples not dropping from Oak Leaves.
 + Fixed a bug where Flowering Azalea leaves were not harvestable with Shears.
++ Fixed a bug where Cherry Logs weren't breaking correctly
 
 + Removed Shaft item.
 + Removed log stripping via right-clicking with axe.
