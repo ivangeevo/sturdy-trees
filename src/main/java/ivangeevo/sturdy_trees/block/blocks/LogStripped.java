@@ -61,8 +61,9 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
 
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        player.addExhaustion(0.2F);
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
 
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());

@@ -13,6 +13,9 @@ public enum LogType implements StringIdentifiable {
     DARK_OAK("dark_oak", SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0),
     MANGROVE("mangrove", SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0),
 
+    CHERRY("cherry", SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0),
+
+
     // FIX BLOCK -> NO WARPED VARIANT //
     WARPED("warped", SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0);
 

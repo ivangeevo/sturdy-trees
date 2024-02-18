@@ -33,6 +33,7 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block STUMP_DARK_OAK_VAR1 = registerBlockWithoutItem("stump_dark_oak_var1", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.SPRUCE));
     public static final Block STUMP_MANGROVE = registerBlockWithoutItem("stump_mangrove", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.MANGROVE));
 
+    public static final Block STUMP_CHERRY = registerBlockWithoutItem("stump_cherry", new StumpBlock(FabricBlockSettings.of(Material.WOOD).strength(50.0f).sounds(BlockSoundGroup.WOOD).requiresTool(), StumpType.CHERRY));
 
 
     // Added variables to change the log strength based on whether BTWR Core is loaded or not.
@@ -43,13 +44,6 @@ public class SturdyTreesBlocks implements SideModUtils {
     private static final float logStrength = isBTWRLoaded ? btwrLogStrength : vanillaLogStrength;
 
     // ----------------------------------------------------------------------------- //
-
-    
-
-
-
-
-
 
     /** VARIANTS FOR LOG BLOCKS **/
 
@@ -85,6 +79,9 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_WARPED_BOT_VAR2 = registerBlockWithoutItem("log_warped_bot_var2", new LogBotVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_BOT_VAR3 = registerBlockWithoutItem("log_warped_bot_var3", new LogBotVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
+    public static final Block LOG_CHERRY_BOT_VAR1 = registerBlockWithoutItem("log_cherry_bot_var1", new LogBotVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_BOT_VAR2 = registerBlockWithoutItem("log_cherry_bot_var2", new LogBotVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_BOT_VAR3 = registerBlockWithoutItem("log_cherry_bot_var3", new LogBotVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_OAK_TOP_VAR1 = registerBlockWithoutItem("log_oak_top_var1", new LogTopVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_OAK_TOP_VAR2 = registerBlockWithoutItem("log_oak_top_var2", new LogTopVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_OAK_TOP_VAR3 = registerBlockWithoutItem("log_oak_top_var3", new LogTopVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
@@ -118,7 +115,9 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_MANGROVE_TOP_VAR2 = registerBlockWithoutItem("log_mangrove_top_var2", new LogTopVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_MANGROVE_TOP_VAR3 = registerBlockWithoutItem("log_mangrove_top_var3", new LogTopVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-
+    public static final Block LOG_CHERRY_TOP_VAR1 = registerBlockWithoutItem("log_cherry_top_var1", new LogTopVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_TOP_VAR2 = registerBlockWithoutItem("log_cherry_top_var2", new LogTopVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_TOP_VAR3 = registerBlockWithoutItem("log_cherry_top_var3", new LogTopVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_TOP_VAR1 = registerBlockWithoutItem("log_warped_top_var1", new LogTopVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_TOP_VAR2 = registerBlockWithoutItem("log_warped_top_var2", new LogTopVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_TOP_VAR3 = registerBlockWithoutItem("log_warped_top_var3", new LogTopVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
@@ -156,7 +155,9 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_MANGROVE_MID_VAR2 = registerBlockWithoutItem("log_mangrove_mid_var2", new LogMidVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_MANGROVE_MID_VAR3 = registerBlockWithoutItem("log_mangrove_mid_var3", new LogMidVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-
+    public static final Block LOG_CHERRY_MID_VAR1 = registerBlockWithoutItem("log_cherry_mid_var1", new LogMidVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_MID_VAR2 = registerBlockWithoutItem("log_cherry_mid_var2", new LogMidVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_MID_VAR3 = registerBlockWithoutItem("log_cherry_mid_var3", new LogMidVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_MID_VAR1 = registerBlockWithoutItem("log_warped_mid_var1", new LogMidVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_MID_VAR2 = registerBlockWithoutItem("log_warped_mid_var2", new LogMidVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_WARPED_MID_VAR3 = registerBlockWithoutItem("log_warped_mid_var3", new LogMidVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
@@ -202,7 +203,11 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_MANGROVE_STRIPPED_VAR2 = registerBlockWithoutItem("log_mangrove_stripped_var2", new LogStrippedVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_MANGROVE_STRIPPED_VAR3 = registerBlockWithoutItem("log_mangrove_stripped_var3", new LogStrippedVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-
+    // For Cherry
+    public static final Block LOG_CHERRY_STRIPPED_VAR0 = registerBlockWithoutItem("log_cherry_stripped_var0", new LogStripped(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_STRIPPED_VAR1 = registerBlockWithoutItem("log_cherry_stripped_var1", new LogStrippedVar1(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_STRIPPED_VAR2 = registerBlockWithoutItem("log_cherry_stripped_var2", new LogStrippedVar2(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_STRIPPED_VAR3 = registerBlockWithoutItem("log_cherry_stripped_var3", new LogStrippedVar3(FabricBlockSettings.of(Material.WOOD).strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     // Helper methods to get stripped log variants
     public static Block getStrippedDefaultVariant(LogType logType) {
         switch (logType) {

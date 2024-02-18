@@ -46,7 +46,8 @@ public class LogStrippedVar1 extends ConvertingBlock implements LogBlockStacks {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.addExhaustion(0.2F);
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
 
     if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1)) {
         world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2.getDefaultState());

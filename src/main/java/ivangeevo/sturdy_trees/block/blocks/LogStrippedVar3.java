@@ -51,9 +51,8 @@ public class LogStrippedVar3 extends ConvertingBlock {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.addExhaustion(0.2F);
 
-
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
 
         // Set the new block state
         world.setBlockState(pos, Blocks.AIR.getDefaultState());
