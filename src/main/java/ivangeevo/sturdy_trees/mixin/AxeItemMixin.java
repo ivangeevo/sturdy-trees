@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AxeItem.class)
-public class AxeItemMixin extends MiningToolItem {
+public abstract class AxeItemMixin extends MiningToolItem {
 
 
     public AxeItemMixin(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
@@ -22,7 +22,7 @@ public class AxeItemMixin extends MiningToolItem {
     }
 
     // Removes the stripping logic
-    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         cir.setReturnValue(ActionResult.FAIL);
     }

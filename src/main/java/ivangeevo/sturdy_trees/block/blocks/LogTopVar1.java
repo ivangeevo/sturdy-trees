@@ -1,19 +1,18 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.block.util.LogType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogTopVar1 extends ConvertingBlock implements LogBlockStacks {
+public class LogTopVar1 extends ConvertingLogBlock implements LogBlockStacks {
 
 
 
@@ -58,6 +57,7 @@ public class LogTopVar1 extends ConvertingBlock implements LogBlockStacks {
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
+        /**
         if (!world.isClient) {
             if (state.isOf(SturdyTreesBlocks.LOG_OAK_TOP_VAR1)) {
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_TOP_VAR2.getDefaultState());
@@ -76,17 +76,17 @@ public class LogTopVar1 extends ConvertingBlock implements LogBlockStacks {
             } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_TOP_VAR1)) {
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_TOP_VAR2.getDefaultState());
             }
+         **/
             Direction miningDirection = getMiningDirection(player, world, pos);
 
 
             if (miningDirection != null) {
 
-                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), buildBlockLootContext((ServerWorld) world,pos,state, stack));
+                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), buildBlockLootContext((ServerWorld) world, pos, state, stack));
 
                 for (ItemStack itemStack : droppedStacks) {
                     dropStack(world, pos, miningDirection, itemStack);
                 }
             }
-        }
     }
 }

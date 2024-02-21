@@ -1,21 +1,19 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.util.SideModUtils;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -24,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, SideModUtils {
+public class LogStrippedVar2 extends ConvertingLogBlock implements LogBlockStacks, SideModUtils {
 
 
 
@@ -52,7 +50,7 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);
-
+/**
         if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2)) {
             world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3.getDefaultState());
         } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR2)) {
@@ -70,6 +68,7 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
         } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2)) {
             world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR3.getDefaultState());
         }
+ **/
         Direction miningDirection = getMiningDirection(player, world, pos);
 
 

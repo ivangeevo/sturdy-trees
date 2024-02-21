@@ -1,22 +1,17 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.util.SideModUtils;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -32,33 +27,20 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
-public class LogStripped extends ConvertingBlock implements LogBlockStacks, SideModUtils {
-    public static final EnumProperty<LogType> LOG_TYPE = EnumProperty.of("log_type", LogType.class);
+public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
 
-
-    public LogStripped(AbstractBlock.Settings settings) {
+    public LogStripped(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(LOG_TYPE, LogType.OAK));
-
-    }
-
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(world, pos, state, placer, itemStack);
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        // Define the dimensions from the model JSON
+
         double fromX = 1.0 / 16.0; double fromY = 0.0; double fromZ = 1.0 / 16.0;
         double toX = 15.0 / 16.0; double toY = 16.0 / 16.0; double toZ = 15.0 / 16.0;
 
-        // Create a VoxelShape based on the dimensions
-        VoxelShape shape = VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ);
-
-        return shape;
+        return VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ);
     }
 
 
@@ -67,13 +49,14 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
-
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());
 
+        // Dynamically get LogType based on the block state
+        LogType logType = getLogType(state);
 
         // Logic to determine the block to replace with
-        Block replacementBlock = determineReplacementBlock(state, blockBelowState, blockAboveState);
+        Block replacementBlock = determineReplacementBlock(blockBelowState, blockAboveState, logType);
         world.setBlockState(pos, replacementBlock.getDefaultState());
 
         dropLootTable(world, pos, state, player);
@@ -82,191 +65,31 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
 
 
 
-
-    private Block determineReplacementBlock(BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
-        Block strippedVar0 = null;
-        Block strippedVar1 = null;
-        Block strippedVar2 = null;
-        Block strippedVar3 = null;
-
-        Block midVar1 = null;
-        Block midVar2 = null;
-        Block midVar3 = null;
-
-        Block botVar1 = null;
-        Block botVar2 = null;
-        Block botVar3 = null;
-
-        Block topVar1 = null;
-        Block topVar2 = null;
-        Block topVar3 = null;
-
-
-
-        // Assign the appropriate stripped variations based on the log type
-        if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_OAK_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_OAK_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_OAK_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_OAK_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_OAK_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_OAK_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_OAK_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_OAK_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_OAK_TOP_VAR3;
-
-        } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_BIRCH_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_BIRCH_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_BIRCH_TOP_VAR3;
-
-
-        } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_SPRUCE_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR3;
-        } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_JUNGLE_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR3;
-        } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_ACACIA_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_ACACIA_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_ACACIA_TOP_VAR3;
-        } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR3;
-        } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_MANGROVE_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_MANGROVE_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_MANGROVE_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR3;
-        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
-            strippedVar0 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0;
-            strippedVar1 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR1;
-            strippedVar2 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR2;
-            strippedVar3 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR3;
-
-            midVar1 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR1;
-            midVar2 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR2;
-            midVar3 = SturdyTreesBlocks.LOG_CHERRY_MID_VAR3;
-
-            botVar1 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR1;
-            botVar2 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2;
-            botVar3 = SturdyTreesBlocks.LOG_CHERRY_BOT_VAR3;
-
-            topVar1 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR1;
-            topVar2 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR2;
-            topVar3 = SturdyTreesBlocks.LOG_CHERRY_TOP_VAR3;
-        }
+    private Block determineReplacementBlock(BlockState blockBelowState, BlockState blockAboveState, LogType logType) {
+        // Get the appropriate stripped variation based on the log type
+        Block strippedVar1 = SturdyTreesBlocks.LOG_STRIPPED_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
+        Block midVar1 = SturdyTreesBlocks.LOG_MID_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
+        Block botVar1 = SturdyTreesBlocks.LOG_BOT_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
+        Block topVar1 = SturdyTreesBlocks.LOG_TOP_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
 
         // Check for blocks above and below
         boolean hasBlockAbove = !blockAboveState.isAir();
         boolean hasBlockBelow = !blockBelowState.isAir();
-
-
-
 
         // Default and neighboring replacement logic
         if (hasBlockAbove && hasBlockBelow) {
             // Both block above and below, choose midVar1
             return midVar1;
         } else if (hasBlockAbove) {
-            // Only block above, choose topVar2
+            // Only block above, choose topVar1
             return topVar1;
         } else if (hasBlockBelow) {
-            // Only block below, choose botVar2
+            // Only block below, choose botVar1
             return botVar1;
         } else {
-            // Default, choose strippedVar0
+            // Default, choose strippedVar1
             return strippedVar1;
         }
-
     }
 
 
@@ -276,7 +99,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
        // Check the tool used to break the block
         ItemStack toolStack = player.getMainHandStack();
         
-        List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
+        List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack);
 
         // Rest of the code to drop the items
         Direction playerFacing = player.getHorizontalFacing();
@@ -296,35 +119,31 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
     }
 
 
-    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack, Random random) {
+    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack) {
 
         LootContext lootContext = buildBlockLootContext((ServerWorld) world, pos,state,stack);
 
-        if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
+        if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.OAK).getBlock())) {
             return getDroppedOakPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.BIRCH).getBlock())) {
             return getDroppedBirchPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.SPRUCE).getBlock())) {
             return getDroppedSprucePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.JUNGLE).getBlock())) {
             return getDroppedJunglePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.ACACIA).getBlock())) {
             return getDroppedAcaciaPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.DARK_OAK).getBlock())) {
             return getDroppedDarkOakPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.MANGROVE).getBlock())) {
             return getDroppedMangrovePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.CHERRY).getBlock())) {
             return getDroppedCherryPlankStacks(state, lootContext);
         } else {
             return Collections.emptyList(); // Handle other log types if needed
         }
     }
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(LOG_TYPE);
-    }
+
 
 }

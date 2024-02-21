@@ -1,19 +1,18 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.block.util.LogType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogMidVar1 extends ConvertingBlock implements LogBlockStacks {
+public class LogMidVar1 extends ConvertingLogBlock implements LogBlockStacks {
 
 
     public LogMidVar1(Settings settings) {
@@ -62,23 +61,25 @@ public class LogMidVar1 extends ConvertingBlock implements LogBlockStacks {
             BlockState aboveState = world.getBlockState(pos.down());
 
 
-            if (state.isOf(SturdyTreesBlocks.LOG_OAK_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_BIRCH_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_SPRUCE_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_JUNGLE_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_ACACIA_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_MID_VAR2.getDefaultState());
-            }  else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_MID_VAR2.getDefaultState());
+
+            if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
+            }  else if (state.isOf(SturdyTreesBlocks.LOG_MID_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.LOG_MID_VAR2.getDefaultState());
             }
+
             Direction miningDirection = getMiningDirection(player, world, pos);
 
 

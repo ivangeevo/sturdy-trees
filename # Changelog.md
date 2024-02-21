@@ -4,6 +4,7 @@
 
 ### v1.3
 
++ Brought back log-stripping logic, as it was not worth removing.
 
 
 ### v1.2

@@ -25,11 +25,12 @@
   "mixins":[
     "sturdy_trees.mixins.json"
   ],
-  "depends":{
-    "fabricloader":">=${loader_version}",
-    "fabric":"*",
-    "minecraft":"${minecraft_version}",
-    "btwr": "$btwr_version_required"},
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+
+},
 
   "accessWidener" : "sturdy_trees.accesswidener"
 

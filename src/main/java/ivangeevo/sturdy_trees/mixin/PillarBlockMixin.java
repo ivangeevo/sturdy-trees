@@ -1,7 +1,9 @@
 package ivangeevo.sturdy_trees.mixin;
 
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
+import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
@@ -23,9 +25,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Collections;
 import java.util.List;
+
+import static ivangeevo.sturdy_trees.ConvertingLogBlock.LOG_TYPE;
 
 @Mixin(PillarBlock.class)
 public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
@@ -33,37 +38,50 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         super(settings);
     }
 
+    // Add this method to retrieve the log type from the block state
+    private LogType getLogType(BlockState state) {
+        if (state.getBlock() instanceof ConvertingLogBlock) {
+            return state.get(LOG_TYPE);
+        } else if (state.isOf(Blocks.OAK_LOG)) {
+            return LogType.OAK;
+        } else if (state.isOf(Blocks.BIRCH_LOG)) {
+            return LogType.BIRCH;
+        } else if (state.isOf(Blocks.SPRUCE_LOG)) {
+            return LogType.SPRUCE;
+        } else if (state.isOf(Blocks.JUNGLE_LOG)) {
+            return LogType.JUNGLE;
+        } else if (state.isOf(Blocks.ACACIA_LOG)) {
+            return LogType.ACACIA;
+        } else if (state.isOf(Blocks.DARK_OAK_LOG)) {
+            return LogType.DARK_OAK;
+        } else if (state.isOf(Blocks.MANGROVE_LOG)) {
+            return LogType.MANGROVE;
+        } else if (state.isOf(Blocks.CHERRY_LOG)) {
+            return LogType.CHERRY;
+        } else {
+            return LogType.BIRCH; // Default to oak log type if not found
+        }
+    }
+
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         player.addExhaustion(0.2F);
 
-        if (state.isOf(Blocks.OAK_LOG)) {
-            handleLogBreak(world, pos, state, player, tool, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.BIRCH_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,  SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.SPRUCE_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.JUNGLE_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.ACACIA_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.DARK_OAK_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.MANGROVE_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0);
-        } else if (state.isOf(Blocks.CHERRY_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0);
-        }
-        // Add similar blocks for other log types as needed
+        // Use the getLogType method to get the log type
+        LogType logType = getLogType(state);
+
+        // Handle logs based on log type
+        handleLogBreak(world, pos, state, player, tool, logType, SturdyTreesBlocks.LOG_STRIPPED_VAR0);
     }
 
-    private void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, Block... logVariants) {
+
+    private void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, LogType logType, Block... logVariants) {
         boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
 
         if (isAxe) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {
-            Block strippedLog = logVariants[0];
+            Block strippedLog = determineStrippedLog(logVariants, logType);
             world.setBlockState(pos, strippedLog.getDefaultState());
 
             for (int i = 0; i < logVariants.length - 1; i++) {
@@ -79,6 +97,16 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         for (ItemStack stack : droppedStacks) {
             dropItemStack(world, pos, stack, player);
         }
+    }
+
+    private Block determineStrippedLog(Block[] logVariants, LogType logType) {
+        // Find the corresponding stripped log variant based on the log type
+        for (Block logVariant : logVariants) {
+            if (logVariant.getDefaultState().get(LOG_TYPE) == logType) {
+                return logVariant;
+            }
+        }
+        return SturdyTreesBlocks.LOG_STRIPPED_VAR0; // Default to oak stripped log if not found
     }
 
 
