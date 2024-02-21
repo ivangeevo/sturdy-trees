@@ -79,7 +79,8 @@ public class LogBotVar1 extends ConvertingBlock implements LogBlockStacks {
             LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder((ServerWorld)world)
                     .add(LootContextParameters.ORIGIN, pos.toCenterPos())
                     .add(LootContextParameters.BLOCK_STATE, state)
-                    .add(LootContextParameters.TOOL, stack).build(LootContextTypes.BLOCK);
+                    .add(LootContextParameters.TOOL, stack)
+                    .build(LootContextTypes.BLOCK);
 
 
             if (miningDirection != null) {
