@@ -1,0 +1,13 @@
+{
+  "variants":{
+    "log_type=oak":[{"model":"sturdy_trees:block/log_oak_stripped_var3"}],
+    "log_type=spruce":[{"model":"sturdy_trees:block/log_spruce_stripped_var3"}],
+    "log_type=birch":[{"model":"sturdy_trees:block/log_birch_stripped_var3"}],
+    "log_type=jungle":[{"model":"sturdy_trees:block/log_jungle_stripped_var3"}],
+    "log_type=acacia":[{"model":"sturdy_trees:block/log_acacia_stripped_var3"}],
+    "log_type=dark_oak":[{"model":"sturdy_trees:block/log_dark_oak_stripped_var3"}],
+    "log_type=mangrove":[{"model":"sturdy_trees:block/log_mangrove_stripped_var3"}],
+    "log_type=cherry":[{"model":"sturdy_trees:block/log_cherry_stripped_var3"}]
+
+  }
+}
