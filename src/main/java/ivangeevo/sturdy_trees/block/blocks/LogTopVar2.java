@@ -24,12 +24,8 @@ import java.util.List;
 
 public class LogTopVar2 extends ConvertingLogBlock implements LogBlockStacks {
 
-
-
-
     public LogTopVar2(Settings settings) {
         super(settings);
-
     }
 
     @Override

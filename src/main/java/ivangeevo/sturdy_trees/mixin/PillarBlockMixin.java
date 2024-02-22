@@ -1,11 +1,9 @@
 package ivangeevo.sturdy_trees.mixin;
 
-import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,8 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -38,148 +34,36 @@ public abstract class PillarBlockMixin extends Block implements LogBlockStacks {
         super(settings);
     }
 
-    // Add this method to retrieve the log type from the block state
-    private LogType getLogType(BlockState state) {
-        if (state.getBlock() instanceof ConvertingLogBlock) {
-            return state.get(LOG_TYPE);
-        } else if (state.isOf(Blocks.OAK_LOG)) {
-            return LogType.OAK;
-        } else if (state.isOf(Blocks.BIRCH_LOG)) {
-            return LogType.BIRCH;
-        } else if (state.isOf(Blocks.SPRUCE_LOG)) {
-            return LogType.SPRUCE;
-        } else if (state.isOf(Blocks.JUNGLE_LOG)) {
-            return LogType.JUNGLE;
-        } else if (state.isOf(Blocks.ACACIA_LOG)) {
-            return LogType.ACACIA;
-        } else if (state.isOf(Blocks.DARK_OAK_LOG)) {
-            return LogType.DARK_OAK;
-        } else if (state.isOf(Blocks.MANGROVE_LOG)) {
-            return LogType.MANGROVE;
-        } else if (state.isOf(Blocks.CHERRY_LOG)) {
-            return LogType.CHERRY;
-        } else {
-            return LogType.BIRCH; // Default to oak log type if not found
-        }
-    }
+
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         player.addExhaustion(0.2F);
 
-        // Use the getLogType method to get the log type
-        LogType logType = getLogType(state);
+        // Check if the broken block is a vanilla oak log
+        if (state.isOf(Blocks.OAK_LOG)) {
+            // Get the direction of the broken log (used as a placeholder)
+            BlockState strippedVariant = setStrippedBlockState(state).getDefaultState();
 
-        // Handle logs based on log type
-        handleLogBreak(world, pos, state, player, tool, logType, SturdyTreesBlocks.LOG_STRIPPED_VAR0);
-    }
+            // Set the block to the stripped variant with the corresponding LogType
+            world.setBlockState(pos, strippedVariant, 3);
 
-
-    private void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, LogType logType, Block... logVariants) {
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) || tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
-
-        if (isAxe) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
-        } else {
-            Block strippedLog = determineStrippedLog(logVariants, logType);
-            world.setBlockState(pos, strippedLog.getDefaultState());
-
-            for (int i = 0; i < logVariants.length - 1; i++) {
-                if (state.isOf(logVariants[i])) {
-                    world.setBlockState(pos, logVariants[i + 1].getDefaultState());
-                    break;
-                }
+            // Optionally, drop the corresponding stripped log item
+            if (!world.isClient && world instanceof ServerWorld) {
+                ItemStack strippedLog = new ItemStack(SturdyTreesBlocks.LOG_STRIPPED_VAR0.asItem());
+                Block.dropStack(world, pos, strippedLog);
             }
-        }
-
-        // Logic for dropping items (stacks)
-        List<ItemStack> droppedStacks = getDroppedStacks(state, (ServerWorld) world, pos, tool, player);
-        for (ItemStack stack : droppedStacks) {
-            dropItemStack(world, pos, stack, player);
         }
     }
 
-    private Block determineStrippedLog(Block[] logVariants, LogType logType) {
-        // Find the corresponding stripped log variant based on the log type
-        for (Block logVariant : logVariants) {
-            if (logVariant.getDefaultState().get(LOG_TYPE) == logType) {
-                return logVariant;
-            }
+    @Unique
+    private Block setStrippedBlockState(BlockState state) {
+        if (state.isOf(Blocks.OAK_LOG)) {
+            return SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.OAK).getBlock();
+        } else if (state.isOf(Blocks.BIRCH_LOG)) {
+            return SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.BIRCH).getBlock();
         }
-        return SturdyTreesBlocks.LOG_STRIPPED_VAR0; // Default to oak stripped log if not found
-    }
-
-
-
-    private void dropItemStack(World world, BlockPos pos, ItemStack stack, PlayerEntity player) {
-        Direction playerFacing = player.getHorizontalFacing();
-        double offsetX = -playerFacing.getOffsetX() * 0.5;
-        double offsetY = 0.2;
-        double offsetZ = -playerFacing.getOffsetZ() * 0.5;
-        Vec3d dropPos = new Vec3d(pos.getX() + 0.5 + offsetX, pos.getY() + offsetY, pos.getZ() + 0.5 + offsetZ);
-        ItemEntity itemEntity = new ItemEntity(world, dropPos.x, dropPos.y, dropPos.z, stack);
-        itemEntity.setToDefaultPickupDelay();
-        world.spawnEntity(itemEntity);
-    }
-
-    public List<ItemStack> getDroppedStacks(BlockState state, ServerWorld serverWorld, BlockPos pos, ItemStack tool, PlayerEntity player) {
-
-        // Use the LootContextParameterSet appropriate for your context
-        LootContext lootContext = buildBlockLootContext(serverWorld, pos, state, tool);
-
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))));
-
-        boolean isLogOak = (state.isOf(Blocks.OAK_LOG));
-        boolean isLogBirch = (state.isOf(Blocks.BIRCH_LOG));
-        boolean isLogSpruce = (state.isOf(Blocks.SPRUCE_LOG));
-        boolean isLogJungle = (state.isOf(Blocks.JUNGLE_LOG));
-        boolean isLogAcacia = (state.isOf(Blocks.ACACIA_LOG));
-        boolean isLogDarkOak = (state.isOf(Blocks.DARK_OAK_LOG));
-        boolean isLogMangrove = (state.isOf(Blocks.MANGROVE_LOG));
-        boolean isLogCherry = (state.isOf(Blocks.CHERRY_LOG));
-
-
-
-
-        if (isAxe) {
-            if (isLogOak) {
-                return getFullDroppedStacksOak(state, lootContext);
-            } else if (isLogBirch) {
-                return getFullDroppedStacksBirch(state, lootContext);
-            } else if (isLogSpruce) {
-                return getFullDroppedStacksSpruce(state, lootContext);
-            } else if (isLogJungle) {
-                return getFullDroppedStacksJungle(state, lootContext);
-            } else if (isLogAcacia) {
-                return getFullDroppedStacksAcacia(state, lootContext);
-            } else if (isLogDarkOak) {
-                return getFullDroppedStacksDarkOak(state, lootContext);
-            } else if (isLogMangrove) {
-                return getFullDroppedStacksMangrove(state, lootContext);
-            } else if (isLogCherry) {
-                return getFullDroppedStacksCherry(state, lootContext);
-            }
-        } else  {
-            if (isLogOak) {
-                return getLesserDroppedBarkStacksOak(state, lootContext);
-            } else if (isLogBirch) {
-                return getLesserDroppedBarkStacksBirch(state, lootContext);
-            } else if (isLogSpruce) {
-                return getLesserDroppedBarkStacksSpruce(state, lootContext);
-            } else if (isLogJungle) {
-                return getLesserDroppedBarkStacksJungle(state, lootContext);
-            } else if (isLogAcacia) {
-                return getLesserDroppedBarkStacksAcacia(state, lootContext);
-            } else if (isLogDarkOak) {
-                return getLesserDroppedBarkStacksDarkOak(state, lootContext);
-            } else if (isLogMangrove) {
-                return getLesserDroppedBarkStacksMangrove(state, lootContext);
-            } else if (isLogCherry) {
-                return getLesserDroppedBarkStacksCherry(state, lootContext);
-            }
-        }
-
-        return Collections.emptyList(); // Return an empty list if none of the conditions match
+        return SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.OAK).getBlock();
     }
 
 }

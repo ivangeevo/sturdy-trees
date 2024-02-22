@@ -33,6 +33,8 @@ public class ConvertingLogBlock extends PillarBlock {
         return state.get(LOG_TYPE);
     }
 
+
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LOG_TYPE, AXIS);

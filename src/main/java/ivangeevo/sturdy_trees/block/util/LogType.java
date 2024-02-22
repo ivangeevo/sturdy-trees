@@ -1,7 +1,6 @@
 package ivangeevo.sturdy_trees.block.util;
 
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.StringIdentifiable;
 
 public enum LogType implements StringIdentifiable {
@@ -15,6 +14,7 @@ public enum LogType implements StringIdentifiable {
     CHERRY("cherry"),
     WARPED("warped"),
     DEFAULT("default"); // Add a DEFAULT value
+
 
     private final String name;
 

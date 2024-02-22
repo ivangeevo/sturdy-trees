@@ -44,6 +44,7 @@ public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
     }
 
 
+
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 
