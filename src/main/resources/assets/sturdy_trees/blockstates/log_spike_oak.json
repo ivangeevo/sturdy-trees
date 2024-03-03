@@ -1,0 +1,16 @@
+{
+  "variants":
+  {
+    "break_level=1, axis=y": [{"model": "sturdy_trees:block/log_spike_oak_var1"}],
+    "break_level=2, axis=y": [{"model": "sturdy_trees:block/log_spike_oak_var2"}],
+    "break_level=3, axis=y": [{"model": "sturdy_trees:block/log_spike_oak_var3"}],
+
+    "break_level=1, axis=x": [{"model": "sturdy_trees:block/log_spike_oak_var1", "x": 90, "y": 90}],
+    "break_level=2, axis=x": [{"model": "sturdy_trees:block/log_spike_oak_var2", "x": 90, "y": 90}],
+    "break_level=3, axis=x": [{"model": "sturdy_trees:block/log_spike_oak_var3", "x": 90, "y": 90}],
+
+    "break_level=1, axis=z": [{"model": "sturdy_trees:block/log_spike_oak_var1", "x": 90}],
+    "break_level=2, axis=z": [{"model": "sturdy_trees:block/log_spike_oak_var2", "x": 90}],
+    "break_level=3, axis=z": [{"model": "sturdy_trees:block/log_spike_oak_var3", "x": 90}]
+  }
+}

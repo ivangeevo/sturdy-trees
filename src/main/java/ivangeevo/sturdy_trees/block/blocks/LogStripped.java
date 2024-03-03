@@ -4,44 +4,79 @@ import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import ivangeevo.sturdy_trees.block.util.LogType;
-import ivangeevo.sturdy_trees.util.SideModUtils;
+import ivangeevo.sturdy_trees.state.property.ModProperties;
+import ivangeevo.sturdy_trees.util.ModVoxelShapes;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.State;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
+    public static final IntProperty BREAK_LEVEL = ModProperties.BREAK_LEVEL;
+
 
     public LogStripped(Settings settings) {
         super(settings);
+        this.setDefaultState(this.stateManager.getDefaultState().with(BREAK_LEVEL, 0));
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(BREAK_LEVEL);
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        int breakLevel = state.get(BREAK_LEVEL);
 
-        double fromX = 1.0 / 16.0; double fromY = 0.0; double fromZ = 1.0 / 16.0;
-        double toX = 15.0 / 16.0; double toY = 16.0 / 16.0; double toZ = 15.0 / 16.0;
+        if (state.get(AXIS) == Direction.Axis.Y)
+        {
+            switch (breakLevel) {
+                case 0 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_0;}
+                case 1 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_1;}
+                case 2 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_2;}
+                case 3 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_3;}
 
-        return VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ);
+            }
+        }
+        else if (state.get(AXIS) == Direction.Axis.X )
+        {
+            switch (breakLevel) {
+                case 0 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_0_HORIZONTAL_Z;}
+                case 1 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_1_HORIZONTAL_Z;}
+                case 2 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_2_HORIZONTAL_Z;}
+                case 3 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_3_HORIZONTAL_Z;}
+
+            }
+        }
+        else if (state.get(AXIS) == Direction.Axis.Z){
+            switch (breakLevel) {
+                case 0 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_0_HORIZONTAL_Z;}
+                case 1 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_1_HORIZONTAL_Z;}
+                case 2 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_2_HORIZONTAL_Z;}
+                case 3 -> {return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_3_HORIZONTAL_Z;}
+
+            }
+        }
+        return ModVoxelShapes.STRIPPED_SHAPE_LEVEL_0;
     }
+
 
 
 
@@ -53,25 +88,43 @@ public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());
 
-        // Dynamically get LogType based on the block state
-        LogType logType = getLogType(state);
+        // Logic to determine BlockState to replace with
+        BlockState replacementState = determineReplacementState(state, blockBelowState, blockAboveState);
+        world.setBlockState(pos, replacementState);
 
-        // Logic to determine the block to replace with
-        Block replacementBlock = determineReplacementBlock(blockBelowState, blockAboveState, logType);
-        world.setBlockState(pos, replacementBlock.getDefaultState());
-
-        dropLootTable(world, pos, state, player);
+       // dropLootTable(world, pos, state, player);
     }
 
 
 
 
-    private Block determineReplacementBlock(BlockState blockBelowState, BlockState blockAboveState, LogType logType) {
+    private BlockState determineReplacementState(BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
         // Get the appropriate stripped variation based on the log type
-        Block strippedVar1 = SturdyTreesBlocks.LOG_STRIPPED_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
-        Block midVar1 = SturdyTreesBlocks.LOG_MID_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
-        Block botVar1 = SturdyTreesBlocks.LOG_BOT_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
-        Block topVar1 = SturdyTreesBlocks.LOG_TOP_VAR1.getDefaultState().with(LOG_TYPE, logType).getBlock();
+        BlockState strippedVar1 = null;
+        BlockState chewedVar1 = null;
+        BlockState spikeVar1 = null;
+
+        // Assign the appropriate stripped variations based on the log type
+        if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_OAK)) {
+
+            strippedVar1 = SturdyTreesBlocks.LOG_STRIPPED_OAK.getDefaultState().with(BREAK_LEVEL_STRIPPED,1);
+            chewedVar1 = SturdyTreesBlocks.LOG_CHEWED_OAK.getDefaultState().with(ModProperties.BREAK_LEVEL_SPIKEANDCHEW,0);
+            spikeVar1 = SturdyTreesBlocks.LOG_SPIKE_OAK.getDefaultState().with(ModProperties.BREAK_LEVEL_SPIKEANDCHEW,0);
+
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_BIRCH)) {
+
+            strippedVar1 = SturdyTreesBlocks.LOG_STRIPPED_BIRCH.getDefaultState().with(BREAK_LEVEL_STRIPPED,1);
+            chewedVar1 = SturdyTreesBlocks.LOG_CHEWED_BIRCH.getDefaultState().with(ModProperties.BREAK_LEVEL_SPIKEANDCHEW,0);
+            spikeVar1 = SturdyTreesBlocks.LOG_SPIKE_BIRCH.getDefaultState().with(ModProperties.BREAK_LEVEL_SPIKEANDCHEW,0);
+
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_SPRUCE)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_JUNGLE)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_ACACIA)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_DARK_OAK)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_MANGROVE)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_CHERRY)) {
+        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_WARPED)) {
+        }
 
         // Check for blocks above and below
         boolean hasBlockAbove = !blockAboveState.isAir();
@@ -80,17 +133,18 @@ public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
         // Default and neighboring replacement logic
         if (hasBlockAbove && hasBlockBelow) {
             // Both block above and below, choose midVar1
-            return midVar1;
+            return chewedVar1;
         } else if (hasBlockAbove) {
             // Only block above, choose topVar1
-            return topVar1;
+            return spikeVar1;
         } else if (hasBlockBelow) {
             // Only block below, choose botVar1
-            return botVar1;
+            return spikeVar1;
         } else {
             // Default, choose strippedVar1
             return strippedVar1;
         }
+
     }
 
 
@@ -99,7 +153,7 @@ public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
     private void dropLootTable(World world, BlockPos pos, BlockState state, PlayerEntity player) {
        // Check the tool used to break the block
         ItemStack toolStack = player.getMainHandStack();
-        
+
         List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack);
 
         // Rest of the code to drop the items
@@ -122,27 +176,9 @@ public class LogStripped extends ConvertingLogBlock implements LogBlockStacks {
 
     private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack) {
 
-        LootContext lootContext = buildBlockLootContext((ServerWorld) world, pos,state,stack);
+        LootContext lootContext = buildBlockLootContext((ServerWorld) world, pos, state, stack);
 
-        if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.OAK).getBlock())) {
-            return getDroppedOakPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.BIRCH).getBlock())) {
-            return getDroppedBirchPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.SPRUCE).getBlock())) {
-            return getDroppedSprucePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.JUNGLE).getBlock())) {
-            return getDroppedJunglePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.ACACIA).getBlock())) {
-            return getDroppedAcaciaPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.DARK_OAK).getBlock())) {
-            return getDroppedDarkOakPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.MANGROVE).getBlock())) {
-            return getDroppedMangrovePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_STRIPPED_VAR0.getDefaultState().with(LOG_TYPE, LogType.CHERRY).getBlock())) {
-            return getDroppedCherryPlankStacks(state, lootContext);
-        } else {
-            return Collections.emptyList(); // Handle other log types if needed
-        }
+        return null;
     }
 
 

@@ -1,0 +1,9 @@
+{
+  "variants":
+  {
+    "break_level=0": [{"model": "sturdy_trees:block/log_stripped_warped_var0"}],
+    "break_level=1": [{"model": "sturdy_trees:block/log_stripped_warped_var1"}],
+    "break_level=2": [{"model": "sturdy_trees:block/log_stripped_warped_var2"}],
+    "break_level=3": [{"model": "sturdy_trees:block/log_stripped_warped_var3"}]
+  }
+}

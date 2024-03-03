@@ -30,9 +30,9 @@ public final class SturdyTreesTags {
     public static class Blocks {
 
         public static final TagKey<Block> STUMP_BLOCKS = createTag("stump_blocks");
-        public static final TagKey<Block> LOG_BLOCKS = createTag("log_blocks");
         public static final TagKey<Block> STRIPPED_LOG_BLOCKS = createTag("stripped_log_blocks");
-
+        public static final TagKey<Block> SPIKE_LOG_BLOCKS = createTag("spike_log_blocks");
+        public static final TagKey<Block> CHEWED_LOG_BLOCKS = createTag("chewed_log_blocks");
 
         private static TagKey<Block> createTag(String id) {
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, id));

@@ -18,6 +18,11 @@ public record StumpType(String name, BlockSoundGroup soundType, BlockSoundGroup 
     public static final StumpType WARPED;
     public static final StumpType MANGROVE;
 
+    public static final StumpType CHERRY;
+    public String name() {
+        return this.name;
+    }
+
     public StumpType(String name) {
         this(name, BlockSoundGroup.WOOD, BlockSoundGroup.HANGING_ROOTS);
     }
@@ -26,12 +31,6 @@ public record StumpType(String name, BlockSoundGroup soundType, BlockSoundGroup 
         VALUES.add(type);
         return type;
     }
-
-
-    public String name() {
-        return this.name;
-    }
-
 
     static {
         OAK = register(new StumpType("oak"));
@@ -43,5 +42,6 @@ public record StumpType(String name, BlockSoundGroup soundType, BlockSoundGroup 
         CRIMSON = register(new StumpType("crimson"));
         WARPED = register(new StumpType("warped"));
         MANGROVE = register(new StumpType("mangrove"));
+        CHERRY = register(new StumpType("cherry"));
     }
 }
