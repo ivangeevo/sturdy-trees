@@ -28,8 +28,8 @@ public class StumpRemoverItem extends Item {
             if (stump.isIn(SturdyTreesTags.Blocks.STUMP_BLOCKS)) {
 
                 this.spawnParticles((ServerWorld) world, pos);
-                world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.MASTER, 1.0F, (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F);
-
+                world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.MASTER, 1.0F,
+                        (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F);
 
                 world.removeBlock(pos, false);
                 itemStack.decrement(1); // Consume one item from the ItemStack.
