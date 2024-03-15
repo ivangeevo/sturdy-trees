@@ -29,7 +29,8 @@
     "fabricloader":">=${loader_version}",
     "fabric":"*",
     "minecraft":"${minecraft_version}",
-    "btwr": "$btwr_version_required"},
+    "btwr": "$btwr_version_required"
+  },
 
   "accessWidener" : "sturdy_trees.accesswidener"
 
