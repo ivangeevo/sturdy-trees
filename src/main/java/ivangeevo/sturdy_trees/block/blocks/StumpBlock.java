@@ -3,6 +3,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.util.StumpType;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class StumpBlock extends Block {
 
-    public StumpBlock(Settings settings, StumpType stumpType) {
+    public StumpBlock(Settings settings) {
         super(settings);
     }
 
@@ -23,7 +24,7 @@ public class StumpBlock extends Block {
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 
 
-        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS)) {
+        //if (tool.isSuitableFor(state)) {
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
@@ -52,10 +53,11 @@ public class StumpBlock extends Block {
             } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
             }
-        }
+       // }
 
         super.afterBreak(world, player, pos, state, blockEntity, tool);
     }
+
 
 
 }
