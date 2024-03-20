@@ -2,6 +2,10 @@
 
 ---
 
+### v1.3
+
+
+
 ### v1.2
 
 + Requires the BTWR-Core mod to run from now on.
@@ -21,7 +25,7 @@
 + Removed Shaft item.
 + Removed log stripping via right-clicking with axe.
 
-+ Updated the mod to Fabric API 0.77 & Fabric Loader 0.15.6
++ Updated the mod to Fabric API 0.92.0 & Fabric Loader 0.15.6
 
 
 + ## v1.1
