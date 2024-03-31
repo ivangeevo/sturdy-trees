@@ -27,22 +27,13 @@
               "name": "minecraft:stick",
               "functions": [
                 {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "min": 0,
-                    "max": 2
-                  },
-                  "add": false,
-                  "conditions": [
-                    {
-                      "condition": "minecraft:random_chance",
-                      "chance": 0.2
-                    }
-                  ]
-                },
-                {
                   "function": "minecraft:explosion_decay"
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.2
                 }
               ]
             }
