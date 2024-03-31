@@ -15,6 +15,9 @@ public final class SturdyTreesTags {
         public static final TagKey<Item> BARK_ITEMS = createTag("bark_items");
         public static final TagKey<Item> MODERN_CHISELS = createTag("modern_chisels");
 
+        public static final TagKey<Item> MODERN_AXES = createTag("modern_axes");
+
+
         public static final TagKey<Item> CREEPER_OYSTERS_TAG = createTag("creeper_oysters_tag");
 
 

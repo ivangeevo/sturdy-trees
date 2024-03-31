@@ -4,6 +4,7 @@ import ivangeevo.sturdy_trees.SturdyTreesItems;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,6 +25,11 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(SturdyTreesItems.BARK_ACACIA)
                 .add(SturdyTreesItems.BARK_DARK_OAK)
                 .add(SturdyTreesItems.BARK_MANGROVE);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Items.MODERN_AXES)
+                .add(Items.IRON_AXE)
+                .add(Items.DIAMOND_AXE)
+                .add(Items.NETHERITE_AXE);
 
     }
 }
