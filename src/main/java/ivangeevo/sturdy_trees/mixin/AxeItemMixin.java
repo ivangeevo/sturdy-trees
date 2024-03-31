@@ -14,6 +14,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
@@ -49,13 +50,12 @@ public abstract class AxeItemMixin extends MiningToolItem {
         Optional<BlockState> optional3 = Optional.ofNullable(HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get().get(blockState.getBlock())).map(block -> block.getStateWithProperties(blockState));
         ItemStack itemStack = context.getStack();
         Optional<Object> optional4 = Optional.empty();
+        Random random = context.getWorld().getRandom();
 
         /** BTWR **/
         // Only modern (iron & above) axes can right click function.
 
-
-
-        if (itemStack.isIn(SturdyTreesTags.Items.MODERN_AXES))
+        if (itemStack.isIn(SturdyTreesTags.Items.MODERN_AXES) && random.nextFloat() >= 0.2f)
         {
 
         if (optional.isPresent() )
