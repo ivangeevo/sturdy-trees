@@ -4,7 +4,7 @@
 
 ### v1.3
 
-
++ Reduced drop rate of sticks for Dead bush.
 
 ### v1.2
 
