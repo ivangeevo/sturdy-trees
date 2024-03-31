@@ -20,10 +20,12 @@ public class StumpBlock extends Block {
     }
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool)
+    {
 
 
-        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS)) {
+        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS))
+        {
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
