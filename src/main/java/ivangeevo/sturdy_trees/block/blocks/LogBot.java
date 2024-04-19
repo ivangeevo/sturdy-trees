@@ -13,9 +13,10 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -24,31 +25,36 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogBotVar1 extends ConvertingBlock implements LogBlockStacks {
+public class LogBot extends ConvertingBlock implements LogBlockStacks
+{
 
-
-    public LogBotVar1(Settings settings) {
+    public static final IntProperty VARIATION = IntProperty.of("variation", 0, 2);
+    public LogBot(Settings settings)
+    {
         super(settings);
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        // Define the dimensions for the first element
-        double fromX1 = 2.0 / 16.0; double fromY1 = 0.0; double fromZ1 = 2.0 / 16.0;
-        double toX1 = 14.0 / 16.0; double toY1 = 16.0 / 16.0; double toZ1 = 14.0 / 16.0;
+        VoxelShape shape = VoxelShapes.empty();
 
-        // Define the dimensions for the second element
-        double fromX2 = 1.0 / 16.0; double fromY2 = 0.0; double fromZ2 = 1.0 / 16.0;
-        double toX2 = 15.0 / 16.0; double toY2 = 3.0 / 16.0; double toZ2 = 15.0 / 16.0;
+        // Define dimensions for each element
+        for (int i = 1; i <= 2; i++)
+        {
+            double fromX = (3 - i) / 16.0; // Calculate 'from' coordinates dynamically
+            double fromY = 0.0;
+            double fromZ = (3 - i) / 16.0;
+            double toX = (13 + i) / 16.0;   // Calculate 'to' coordinates dynamically
+            double toY = (16 - i) / 16.0;
+            double toZ = (13 + i) / 16.0;
 
-        // Create VoxelShapes for each element
-        VoxelShape shape1 = VoxelShapes.cuboid(fromX1, fromY1, fromZ1, toX1, toY1, toZ1);
-        VoxelShape shape2 = VoxelShapes.cuboid(fromX2, fromY2, fromZ2, toX2, toY2, toZ2);
+            // Create VoxelShape for each element and add to the main shape
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ));
+        }
 
-        // Combine the shapes using VoxelShapes.union()
-
-        return VoxelShapes.union(shape1, shape2);
+        return shape;
     }
+
 
 
     @Override

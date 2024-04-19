@@ -76,15 +76,16 @@ public class LogTopVar1 extends ConvertingBlock implements LogBlockStacks {
             } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_TOP_VAR1)) {
                 world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_TOP_VAR2.getDefaultState());
             }
-            Direction miningDirection = getMiningDirection(player, world, pos);
 
 
-            if (miningDirection != null) {
 
+            if (getMiningDirection(player, world, pos) != null)
+            {
                 List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), LogBlockStacks.buildBlockLootContext((ServerWorld) world,pos,state, stack));
 
-                for (ItemStack itemStack : droppedStacks) {
-                    dropStack(world, pos, miningDirection, itemStack);
+                for (ItemStack itemStack : droppedStacks)
+                {
+                    dropStack(world, pos, getMiningDirection(player, world, pos), itemStack);
                 }
             }
         }

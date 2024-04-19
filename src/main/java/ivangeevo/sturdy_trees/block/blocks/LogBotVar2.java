@@ -32,26 +32,22 @@ public class LogBotVar2 extends ConvertingBlock implements LogBlockStacks, SideM
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        // Define the dimensions for the first element
-        double fromX1 = 3.0 / 16.0; double fromY1 = 0.0; double fromZ1 = 3.0 / 16.0;
-        double toX1 = 13.0 / 16.0; double toY1 = 16.0 / 16.0; double toZ1 = 13.0 / 16.0;
+        VoxelShape shape = VoxelShapes.empty();
 
-        // Define the dimensions for the second element
-        double fromX2 = 2.0 / 16.0; double fromY2 = 0.0; double fromZ2 = 2.0 / 16.0;
-        double toX2 = 14.0 / 16.0; double toY2 = 5.0 / 16.0; double toZ2 = 14.0 / 16.0;
+        // Define dimensions for each element
+        for (int i = 1; i <= 3; i++) {
+            double fromX = (4 - i) / 16.0; // Calculate 'from' coordinates dynamically
+            double fromY = 0.0;
+            double fromZ = (4 - i) / 16.0;
+            double toX = (12 + i) / 16.0;   // Calculate 'to' coordinates dynamically
+            double toY = (16 - i) / 16.0;
+            double toZ = (12 + i) / 16.0;
 
-        // Define the dimensions for the third element
-        double fromX3 = 1.0 / 16.0; double fromY3 = 0.0; double fromZ3 = 1.0 / 16.0;
-        double toX3 = 15.0 / 16.0; double toY3 = 3.0 / 16.0; double toZ3 = 15.0 / 16.0;
+            // Create VoxelShape for each element and add to the main shape
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ));
+        }
 
-        // Create VoxelShapes for each element
-        VoxelShape shape1 = VoxelShapes.cuboid(fromX1, fromY1, fromZ1, toX1, toY1, toZ1);
-        VoxelShape shape2 = VoxelShapes.cuboid(fromX2, fromY2, fromZ2, toX2, toY2, toZ2);
-        VoxelShape shape3 = VoxelShapes.cuboid(fromX3, fromY3, fromZ3, toX3, toY3, toZ3);
-
-        // Combine the shapes using VoxelShapes.union()
-
-        return VoxelShapes.union(shape1, shape2, shape3);
+        return shape;
     }
 
 
