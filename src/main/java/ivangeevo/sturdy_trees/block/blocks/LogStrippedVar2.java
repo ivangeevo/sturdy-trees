@@ -75,7 +75,7 @@ public class LogStrippedVar2 extends ConvertingBlock implements LogBlockStacks, 
 
         if (miningDirection != null) {
 
-                List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), buildBlockLootContext((ServerWorld) world,pos,state, stack));
+                List<ItemStack> droppedStacks = getLesserDroppedStickStacks(world.getBlockState(pos), LogBlockStacks.buildBlockLootContext((ServerWorld) world,pos,state, stack));
 
                 for (ItemStack itemStack : droppedStacks) {
                     dropStack(world, pos, miningDirection, itemStack);

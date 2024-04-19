@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AxeItemMixin",
+    "BlockMixin",
     "DarkOakTrunkPlacerMixin",
     "ForkingTrunkPlacerMixin",
     "GiantTrunkPlacerMixin",
     "LargeOakTrunkPlacerMixin",
-    "PillarBlockMixin",
     "SaplingBlockMixin",
     "StraightTrunkPlacerMixin",
     "UpwardsBranchingTrunkPlacerMixin"

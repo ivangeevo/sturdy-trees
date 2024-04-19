@@ -32,7 +32,7 @@ public interface LogBlockStacks {
         return new ItemStack(blockItem, count);
     }
 
-    default LootContext buildBlockLootContext(ServerWorld serverWorld, BlockPos pos, BlockState state, ItemStack stack) {
+    static LootContext buildBlockLootContext(ServerWorld serverWorld, BlockPos pos, BlockState state, ItemStack stack) {
 
         LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder(serverWorld)
                 .add(LootContextParameters.ORIGIN, pos.toCenterPos())
@@ -43,7 +43,7 @@ public interface LogBlockStacks {
 
     }
 
-    private List<ItemStack> getLesserDroppedStacks(Item item, int count) {
+    private static List<ItemStack> getLesserDroppedStacks(Item item, int count) {
         List<ItemStack> droppedStacks = new ArrayList<>();
         droppedStacks.add(getItemStack(item, count));
         return droppedStacks;
@@ -55,7 +55,7 @@ public interface LogBlockStacks {
         return droppedStacks;
     }
 
-    private List<ItemStack> getFullDroppedStacks(Block block, int count) {
+    private static List<ItemStack> getFullDroppedStacks(Block block, int count) {
         List<ItemStack> droppedStacks = new ArrayList<>();
         droppedStacks.add(getBlockStack(block, count));
         return droppedStacks;
@@ -83,29 +83,29 @@ public interface LogBlockStacks {
         return getLesserDroppedStacks(Items.STICK, 1);
     }
 
-    default List<ItemStack> getLesserDroppedBarkStacksOak(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksOak(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_OAK, 1);
     }
 
-    default List<ItemStack> getLesserDroppedBarkStacksBirch(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksBirch(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_BIRCH, 1);
     }
-    default List<ItemStack> getLesserDroppedBarkStacksSpruce(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksSpruce(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_SPRUCE, 1);
     }
-    default List<ItemStack> getLesserDroppedBarkStacksJungle(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksJungle(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_JUNGLE, 1);
     }
-    default List<ItemStack> getLesserDroppedBarkStacksAcacia(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksAcacia(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_ACACIA, 1);
     }
-    default List<ItemStack> getLesserDroppedBarkStacksDarkOak(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksDarkOak(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_DARK_OAK, 1);
     }
-    default List<ItemStack> getLesserDroppedBarkStacksMangrove(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksMangrove(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_MANGROVE, 1);
     }
-    default List<ItemStack> getLesserDroppedBarkStacksCherry(BlockState state, LootContext builder) {
+    static List<ItemStack> getLesserDroppedBarkStacksCherry(BlockState state, LootContext builder) {
         return getLesserDroppedStacks(SturdyTreesItems.BARK_CHERRY, 1);
     }
 
@@ -145,34 +145,34 @@ public interface LogBlockStacks {
 
     // Full dropped stacks
 
-    default List<ItemStack> getFullDroppedStacksOak(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksOak(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.OAK_LOG, 1);
     }
 
-    default List<ItemStack> getFullDroppedStacksBirch(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksBirch(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.BIRCH_LOG, 1);
     }
 
-    default List<ItemStack> getFullDroppedStacksSpruce(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksSpruce(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.SPRUCE_LOG, 1);
     }
 
-    default List<ItemStack> getFullDroppedStacksJungle(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksJungle(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.JUNGLE_LOG, 1);
     }
 
-    default List<ItemStack> getFullDroppedStacksAcacia(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksAcacia(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.ACACIA_LOG, 1);
     }
 
-    default List<ItemStack> getFullDroppedStacksDarkOak(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksDarkOak(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.DARK_OAK_LOG, 1);
     }
 
-    default List<ItemStack> getFullDroppedStacksMangrove(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksMangrove(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.MANGROVE_LOG, 1);
     }
-    default List<ItemStack> getFullDroppedStacksCherry(BlockState state, LootContext builder) {
+    static List<ItemStack> getFullDroppedStacksCherry(BlockState state, LootContext builder) {
         return getFullDroppedStacks(Blocks.CHERRY_LOG, 1);
     }
 
