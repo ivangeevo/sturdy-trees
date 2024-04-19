@@ -33,24 +33,11 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block STUMP_DARK_OAK = registerBlockWithoutItem("stump_dark_oak", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD)));
     public static final Block STUMP_DARK_OAK_VAR1 = registerBlockWithoutItem("stump_dark_oak_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD)));
     public static final Block STUMP_MANGROVE = registerBlockWithoutItem("stump_mangrove", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD)));
-
+    public static final Block STUMP_MANGROVE_VAR1 = registerBlockWithoutItem("stump_mangrove_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD)));
     public static final Block STUMP_CHERRY = registerBlockWithoutItem("stump_cherry", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD)));
-
-
-    // Added variables to change the log strength based on whether BTWR Core is loaded or not.
-    private static final float vanillaLogStrength = 2F;
-    private static final float btwrLogStrength = 24F;
-
-    // Initialize logStrength based on whether BTWR Core is loaded or not.
-    private static final float logStrength = isBTWRLoaded ? btwrLogStrength : vanillaLogStrength;
+    public static final Block STUMP_CHERRY_VAR1 = registerBlockWithoutItem("stump_cherry_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD)));
 
     // ----------------------------------------------------------------------------- //
-
-    
-
-
-
-
 
 
     /** VARIANTS FOR LOG BLOCKS **/
@@ -220,50 +207,6 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_CHERRY_STRIPPED_VAR2 = registerBlockWithoutItem("log_cherry_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_CHERRY_STRIPPED_VAR3 = registerBlockWithoutItem("log_cherry_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    // Helper methods to get stripped log variants
-    public static Block getStrippedDefaultVariant(LogType logType) {
-        switch (logType) {
-            case OAK:
-                return LOG_OAK_STRIPPED_VAR1;
-            // Add cases for other log types
-
-            default:
-                return Blocks.AIR; // or throw an exception
-        }
-    }
-
-    public static Block getStrippedMidVariant(LogType logType) {
-        switch (logType) {
-            case OAK:
-                return LOG_OAK_STRIPPED_VAR2; // Adjust as needed
-            // Add cases for other log types
-
-            default:
-                return Blocks.AIR; // or throw an exception
-        }
-    }
-
-    public static Block getStrippedBotVariant(LogType logType) {
-        switch (logType) {
-            case OAK:
-                return LOG_OAK_STRIPPED_VAR3; // Adjust as needed
-            // Add cases for other log types
-
-            default:
-                return Blocks.AIR; // or throw an exception
-        }
-    }
-
-    public static Block getStrippedTopVariant(LogType logType) {
-        switch (logType) {
-            case OAK:
-                return LOG_OAK_STRIPPED_VAR0; // Adjust as needed
-            // Add cases for other log types
-
-            default:
-                return Blocks.AIR; // or throw an exception
-        }
-    }
 
     private static Block registerBlockWithoutItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, name), block);
