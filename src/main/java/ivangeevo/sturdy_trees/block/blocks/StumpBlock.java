@@ -10,9 +10,14 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class StumpBlock extends Block
 {
@@ -25,8 +30,8 @@ public class StumpBlock extends Block
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 
 
-        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS)) {
-
+        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS))
+        {
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_BIRCH)) {
@@ -59,4 +64,5 @@ public class StumpBlock extends Block
         }
 
     }
+
 }
