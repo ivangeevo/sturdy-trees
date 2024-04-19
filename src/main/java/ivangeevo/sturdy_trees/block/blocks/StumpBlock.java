@@ -14,19 +14,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class StumpBlock extends Block {
+public class StumpBlock extends Block
+{
 
     public StumpBlock(Settings settings) {
         super(settings);
     }
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool)
-    {
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 
 
-        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS))
-        {
+        if (tool.isIn(SturdyTreesTags.Items.MODERN_CHISELS)) {
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
@@ -56,7 +55,8 @@ public class StumpBlock extends Block {
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
             }
 
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
-    }
+            super.afterBreak(world, player, pos, state, blockEntity, tool);
+        }
 
+    }
 }
