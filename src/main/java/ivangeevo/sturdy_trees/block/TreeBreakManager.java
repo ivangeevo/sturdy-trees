@@ -68,13 +68,7 @@ public class TreeBreakManager implements LogBlockStacks
                 }
             }
         }
-        /**
-        // Logic for dropping items (stacks)
-        List<ItemStack> droppedStacks = getLesserDroppedStacks(state, (ServerWorld) world, pos, tool, player);
-        for (ItemStack stack : droppedStacks) {
-            dropItemStack(world, pos, stack, player);
-        }
-         **/
+
     }
 
 

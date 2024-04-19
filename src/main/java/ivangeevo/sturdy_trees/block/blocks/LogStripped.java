@@ -1,22 +1,17 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.util.SideModUtils;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -32,16 +27,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
-public class LogStripped extends ConvertingBlock implements LogBlockStacks, SideModUtils {
+public class LogStripped extends ConvertingLogBlock
+{
     public static final EnumProperty<LogType> LOG_TYPE = EnumProperty.of("log_type", LogType.class);
 
 
     public LogStripped(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(LOG_TYPE, LogType.OAK));
-
     }
 
     @Override
@@ -249,9 +242,6 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
         boolean hasBlockAbove = !blockAboveState.isAir();
         boolean hasBlockBelow = !blockBelowState.isAir();
 
-
-
-
         // Default and neighboring replacement logic
         if (hasBlockAbove && hasBlockBelow) {
             // Both block above and below, choose midVar1
@@ -272,59 +262,11 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
 
 
 
-    private void dropLootTable(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-       // Check the tool used to break the block
-        ItemStack toolStack = player.getMainHandStack();
-        
-        List<ItemStack> droppedStacks = getDroppedPlankStacks(state, world, pos, toolStack, world.random);
-
-        // Rest of the code to drop the items
-        Direction playerFacing = player.getHorizontalFacing();
-
-        for (ItemStack stack : droppedStacks) {
-            // Calculate the drop position in the opposite direction of the player's facing
-            double offsetX = -playerFacing.getOffsetX() * 0.5;
-            double offsetY = 0.2;
-            double offsetZ = -playerFacing.getOffsetZ() * 0.5;
-            Vec3d dropPos = new Vec3d(pos.getX() + 0.5 + offsetX, pos.getY() + offsetY, pos.getZ() + 0.5 + offsetZ);
-
-            // Drop the stack at the calculated position
-            ItemEntity itemEntity = new ItemEntity(world, dropPos.x, dropPos.y, dropPos.z, stack);
-            itemEntity.setToDefaultPickupDelay();
-            world.spawnEntity(itemEntity);
-        }
-    }
 
 
-    private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack, Random random) {
 
-        LootContext lootContext = LogBlockStacks.buildBlockLootContext((ServerWorld) world, pos,state,stack);
 
-        if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
-            return getDroppedOakPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)) {
-            return getDroppedBirchPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)) {
-            return getDroppedSprucePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)) {
-            return getDroppedJunglePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)) {
-            return getDroppedAcaciaPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)) {
-            return getDroppedDarkOakPlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)) {
-            return getDroppedMangrovePlankStacks(state, lootContext);
-        } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0)) {
-            return getDroppedCherryPlankStacks(state, lootContext);
-        } else {
-            return Collections.emptyList(); // Handle other log types if needed
-        }
-    }
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(LOG_TYPE);
-    }
+
 
 }

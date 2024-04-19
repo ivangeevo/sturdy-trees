@@ -1,8 +1,7 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
@@ -13,8 +12,7 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -25,26 +23,28 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogBot extends ConvertingBlock implements LogBlockStacks
+public class LogSpike extends ConvertingLogBlock
 {
+    public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
+    public LogSpike(Settings settings) { super(settings); }
 
-    public static final IntProperty VARIATION = IntProperty.of("variation", 0, 2);
-    public LogBot(Settings settings)
-    {
-        super(settings);
-    }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
+    {
         VoxelShape shape = VoxelShapes.empty();
+        int varInt = getShapeForState(state);
 
         // Define dimensions for each element
-        for (int i = 1; i <= 2; i++)
+        for (int i = varInt; i <= 2; i++)
         {
-            double fromX = (3 - i) / 16.0; // Calculate 'from' coordinates dynamically
+            // Calculate 'from' coordinates dynamically
+            double fromX = (3 - i) / 16.0;
             double fromY = 0.0;
             double fromZ = (3 - i) / 16.0;
-            double toX = (13 + i) / 16.0;   // Calculate 'to' coordinates dynamically
+
+            // Calculate 'to' coordinates dynamically
+            double toX = (13 + i) / 16.0;
             double toY = (16 - i) / 16.0;
             double toZ = (13 + i) / 16.0;
 
@@ -53,6 +53,14 @@ public class LogBot extends ConvertingBlock implements LogBlockStacks
         }
 
         return shape;
+    }
+
+    private int getShapeForState(BlockState state)
+    {
+        if (state.get(VARIATION) == 1) { return 1; }
+        else if (state.get(VARIATION) == 2) { return 2; }
+
+        return 0;
     }
 
 
@@ -89,7 +97,8 @@ public class LogBot extends ConvertingBlock implements LogBlockStacks
                     .build(LootContextTypes.BLOCK);
 
 
-            if (miningDirection != null) {
+            if (miningDirection != null)
+            {
 
 
                 List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos),  new LootContext.Builder(lootContextParameterSet).build(null));

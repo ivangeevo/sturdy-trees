@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.block.blocks.*;
+import ivangeevo.sturdy_trees.block.blocks.old.*;
 import ivangeevo.sturdy_trees.block.util.LogType;
 import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -54,170 +55,170 @@ public class SturdyTreesBlocks implements SideModUtils {
 
     /** VARIANTS FOR LOG BLOCKS **/
 
-    public static final Block LOG_OAK_BOT_VAR1 = registerBlockWithoutItem("log_oak_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_BOT_VAR2 = registerBlockWithoutItem("log_oak_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_BOT_VAR3 = registerBlockWithoutItem("log_oak_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_BOT_VAR1 = registerBlockWithoutItem("log_oak_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_BOT_VAR2 = registerBlockWithoutItem("log_oak_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_BOT_VAR3 = registerBlockWithoutItem("log_oak_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_SPRUCE_BOT_VAR1 = registerBlockWithoutItem("log_spruce_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_BOT_VAR2 = registerBlockWithoutItem("log_spruce_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_BOT_VAR3 = registerBlockWithoutItem("log_spruce_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_BOT_VAR1 = registerBlockWithoutItem("log_spruce_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_BOT_VAR2 = registerBlockWithoutItem("log_spruce_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_BOT_VAR3 = registerBlockWithoutItem("log_spruce_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_BIRCH_BOT_VAR1 = registerBlockWithoutItem("log_birch_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_BOT_VAR2 = registerBlockWithoutItem("log_birch_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_BOT_VAR3 = registerBlockWithoutItem("log_birch_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_BOT_VAR1 = registerBlockWithoutItem("log_birch_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_BOT_VAR2 = registerBlockWithoutItem("log_birch_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_BOT_VAR3 = registerBlockWithoutItem("log_birch_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_JUNGLE_BOT_VAR1 = registerBlockWithoutItem("log_jungle_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_BOT_VAR2 = registerBlockWithoutItem("log_jungle_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_BOT_VAR3 = registerBlockWithoutItem("log_jungle_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_BOT_VAR1 = registerBlockWithoutItem("log_jungle_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_BOT_VAR2 = registerBlockWithoutItem("log_jungle_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_BOT_VAR3 = registerBlockWithoutItem("log_jungle_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_ACACIA_BOT_VAR1 = registerBlockWithoutItem("log_acacia_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_BOT_VAR2 = registerBlockWithoutItem("log_acacia_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_BOT_VAR3 = registerBlockWithoutItem("log_acacia_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_BOT_VAR1 = registerBlockWithoutItem("log_acacia_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_BOT_VAR2 = registerBlockWithoutItem("log_acacia_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_BOT_VAR3 = registerBlockWithoutItem("log_acacia_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_DARK_OAK_BOT_VAR1 = registerBlockWithoutItem("log_dark_oak_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_BOT_VAR2 = registerBlockWithoutItem("log_dark_oak_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_BOT_VAR3 = registerBlockWithoutItem("log_dark_oak_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_BOT_VAR1 = registerBlockWithoutItem("log_dark_oak_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_BOT_VAR2 = registerBlockWithoutItem("log_dark_oak_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_BOT_VAR3 = registerBlockWithoutItem("log_dark_oak_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_MANGROVE_BOT_VAR1 = registerBlockWithoutItem("log_mangrove_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_BOT_VAR2 = registerBlockWithoutItem("log_mangrove_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_BOT_VAR3 = registerBlockWithoutItem("log_mangrove_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_BOT_VAR1 = registerBlockWithoutItem("log_mangrove_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_BOT_VAR2 = registerBlockWithoutItem("log_mangrove_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_BOT_VAR3 = registerBlockWithoutItem("log_mangrove_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_CHERRY_BOT_VAR1 = registerBlockWithoutItem("log_cherry_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_BOT_VAR2 = registerBlockWithoutItem("log_cherry_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_BOT_VAR3 = registerBlockWithoutItem("log_cherry_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_BOT_VAR1 = registerBlockWithoutItem("log_cherry_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_BOT_VAR2 = registerBlockWithoutItem("log_cherry_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_BOT_VAR3 = registerBlockWithoutItem("log_cherry_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_WARPED_BOT_VAR1 = registerBlockWithoutItem("log_warped_bot_var1", new LogBot(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_WARPED_BOT_VAR2 = registerBlockWithoutItem("log_warped_bot_var2", new LogBotVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_WARPED_BOT_VAR3 = registerBlockWithoutItem("log_warped_bot_var3", new LogBotVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_BOT_VAR1 = registerBlockWithoutItem("log_warped_bot_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_BOT_VAR2 = registerBlockWithoutItem("log_warped_bot_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_BOT_VAR3 = registerBlockWithoutItem("log_warped_bot_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_OAK_TOP_VAR1 = registerBlockWithoutItem("log_oak_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_TOP_VAR2 = registerBlockWithoutItem("log_oak_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_TOP_VAR3 = registerBlockWithoutItem("log_oak_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-
-
-    public static final Block LOG_BIRCH_TOP_VAR1 = registerBlockWithoutItem("log_birch_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_TOP_VAR2 = registerBlockWithoutItem("log_birch_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_TOP_VAR3 = registerBlockWithoutItem("log_birch_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_TOP_VAR1 = registerBlockWithoutItem("log_oak_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_TOP_VAR2 = registerBlockWithoutItem("log_oak_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_TOP_VAR3 = registerBlockWithoutItem("log_oak_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_SPRUCE_TOP_VAR1 = registerBlockWithoutItem("log_spruce_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_TOP_VAR2 = registerBlockWithoutItem("log_spruce_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_TOP_VAR3 = registerBlockWithoutItem("log_spruce_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_TOP_VAR1 = registerBlockWithoutItem("log_birch_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_TOP_VAR2 = registerBlockWithoutItem("log_birch_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_TOP_VAR3 = registerBlockWithoutItem("log_birch_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_JUNGLE_TOP_VAR1 = registerBlockWithoutItem("log_jungle_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_TOP_VAR2 = registerBlockWithoutItem("log_jungle_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_TOP_VAR3 = registerBlockWithoutItem("log_jungle_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_TOP_VAR1 = registerBlockWithoutItem("log_spruce_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_TOP_VAR2 = registerBlockWithoutItem("log_spruce_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_TOP_VAR3 = registerBlockWithoutItem("log_spruce_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_ACACIA_TOP_VAR1 = registerBlockWithoutItem("log_acacia_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_TOP_VAR2 = registerBlockWithoutItem("log_acacia_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_TOP_VAR3 = registerBlockWithoutItem("log_acacia_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_TOP_VAR1 = registerBlockWithoutItem("log_jungle_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_TOP_VAR2 = registerBlockWithoutItem("log_jungle_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_TOP_VAR3 = registerBlockWithoutItem("log_jungle_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_DARK_OAK_TOP_VAR1 = registerBlockWithoutItem("log_dark_oak_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_TOP_VAR2 = registerBlockWithoutItem("log_dark_oak_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_TOP_VAR1 = registerBlockWithoutItem("log_acacia_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_TOP_VAR2 = registerBlockWithoutItem("log_acacia_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_TOP_VAR3 = registerBlockWithoutItem("log_acacia_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+
+
+    public static final Block LOG_DARK_OAK_TOP_VAR1 = registerBlockWithoutItem("log_dark_oak_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_TOP_VAR2 = registerBlockWithoutItem("log_dark_oak_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block LOG_DARK_OAK_TOP_VAR3 = registerBlockWithoutItem("log_dark_oak_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_MANGROVE_TOP_VAR1 = registerBlockWithoutItem("log_mangrove_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_TOP_VAR2 = registerBlockWithoutItem("log_mangrove_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_TOP_VAR3 = registerBlockWithoutItem("log_mangrove_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_TOP_VAR1 = registerBlockWithoutItem("log_mangrove_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_TOP_VAR2 = registerBlockWithoutItem("log_mangrove_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_TOP_VAR3 = registerBlockWithoutItem("log_mangrove_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_CHERRY_TOP_VAR1 = registerBlockWithoutItem("log_cherry_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_TOP_VAR2 = registerBlockWithoutItem("log_cherry_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_TOP_VAR3 = registerBlockWithoutItem("log_cherry_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_TOP_VAR1 = registerBlockWithoutItem("log_cherry_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_TOP_VAR2 = registerBlockWithoutItem("log_cherry_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_TOP_VAR3 = registerBlockWithoutItem("log_cherry_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_WARPED_TOP_VAR1 = registerBlockWithoutItem("log_warped_top_var1", new LogTopVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_WARPED_TOP_VAR2 = registerBlockWithoutItem("log_warped_top_var2", new LogTopVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_WARPED_TOP_VAR3 = registerBlockWithoutItem("log_warped_top_var3", new LogTopVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_TOP_VAR1 = registerBlockWithoutItem("log_warped_top_var1", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_TOP_VAR2 = registerBlockWithoutItem("log_warped_top_var2", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_TOP_VAR3 = registerBlockWithoutItem("log_warped_top_var3", new LogSpike(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_OAK_MID_VAR1 = registerBlockWithoutItem("log_oak_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_MID_VAR2 = registerBlockWithoutItem("log_oak_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_MID_VAR3 = registerBlockWithoutItem("log_oak_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-
-
-    public static final Block LOG_SPRUCE_MID_VAR1 = registerBlockWithoutItem("log_spruce_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_MID_VAR2 = registerBlockWithoutItem("log_spruce_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_MID_VAR3 = registerBlockWithoutItem("log_spruce_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_MID_VAR1 = registerBlockWithoutItem("log_oak_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_MID_VAR2 = registerBlockWithoutItem("log_oak_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_MID_VAR3 = registerBlockWithoutItem("log_oak_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_BIRCH_MID_VAR1 = registerBlockWithoutItem("log_birch_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_MID_VAR2 = registerBlockWithoutItem("log_birch_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_MID_VAR3 = registerBlockWithoutItem("log_birch_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_MID_VAR1 = registerBlockWithoutItem("log_spruce_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_MID_VAR2 = registerBlockWithoutItem("log_spruce_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_MID_VAR3 = registerBlockWithoutItem("log_spruce_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_JUNGLE_MID_VAR1 = registerBlockWithoutItem("log_jungle_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_MID_VAR2 = registerBlockWithoutItem("log_jungle_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_MID_VAR3 = registerBlockWithoutItem("log_jungle_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-
-    public static final Block LOG_ACACIA_MID_VAR1 = registerBlockWithoutItem("log_acacia_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_MID_VAR2 = registerBlockWithoutItem("log_acacia_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_MID_VAR3 = registerBlockWithoutItem("log_acacia_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_MID_VAR1 = registerBlockWithoutItem("log_birch_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_MID_VAR2 = registerBlockWithoutItem("log_birch_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_MID_VAR3 = registerBlockWithoutItem("log_birch_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_DARK_OAK_MID_VAR1 = registerBlockWithoutItem("log_dark_oak_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_MID_VAR2 = registerBlockWithoutItem("log_dark_oak_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_MID_VAR3 = registerBlockWithoutItem("log_dark_oak_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_MID_VAR1 = registerBlockWithoutItem("log_jungle_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_MID_VAR2 = registerBlockWithoutItem("log_jungle_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_MID_VAR3 = registerBlockWithoutItem("log_jungle_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+
+    public static final Block LOG_ACACIA_MID_VAR1 = registerBlockWithoutItem("log_acacia_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_MID_VAR2 = registerBlockWithoutItem("log_acacia_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_MID_VAR3 = registerBlockWithoutItem("log_acacia_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
-    public static final Block LOG_MANGROVE_MID_VAR1 = registerBlockWithoutItem("log_mangrove_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_MID_VAR2 = registerBlockWithoutItem("log_mangrove_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_MID_VAR3 = registerBlockWithoutItem("log_mangrove_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_MID_VAR1 = registerBlockWithoutItem("log_dark_oak_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_MID_VAR2 = registerBlockWithoutItem("log_dark_oak_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_MID_VAR3 = registerBlockWithoutItem("log_dark_oak_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_CHERRY_MID_VAR1 = registerBlockWithoutItem("log_cherry_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_MID_VAR2 = registerBlockWithoutItem("log_cherry_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_MID_VAR3 = registerBlockWithoutItem("log_cherry_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
-    public static final Block LOG_WARPED_MID_VAR1 = registerBlockWithoutItem("log_warped_mid_var1", new LogMidVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_WARPED_MID_VAR2 = registerBlockWithoutItem("log_warped_mid_var2", new LogMidVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_WARPED_MID_VAR3 = registerBlockWithoutItem("log_warped_mid_var3", new LogMidVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_MID_VAR1 = registerBlockWithoutItem("log_mangrove_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_MID_VAR2 = registerBlockWithoutItem("log_mangrove_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_MID_VAR3 = registerBlockWithoutItem("log_mangrove_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+
+    public static final Block LOG_CHERRY_MID_VAR1 = registerBlockWithoutItem("log_cherry_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_MID_VAR2 = registerBlockWithoutItem("log_cherry_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_MID_VAR3 = registerBlockWithoutItem("log_cherry_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+
+    public static final Block LOG_WARPED_MID_VAR1 = registerBlockWithoutItem("log_warped_mid_var1", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_MID_VAR2 = registerBlockWithoutItem("log_warped_mid_var2", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_WARPED_MID_VAR3 = registerBlockWithoutItem("log_warped_mid_var3", new LogChewed(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     public static final Block LOG_OAK_STRIPPED_VAR0 = registerBlockWithoutItem("log_oak_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_STRIPPED_VAR1 = registerBlockWithoutItem("log_oak_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_STRIPPED_VAR2 = registerBlockWithoutItem("log_oak_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_OAK_STRIPPED_VAR3 = registerBlockWithoutItem("log_oak_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_STRIPPED_VAR1 = registerBlockWithoutItem("log_oak_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_STRIPPED_VAR2 = registerBlockWithoutItem("log_oak_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_OAK_STRIPPED_VAR3 = registerBlockWithoutItem("log_oak_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     public static final Block LOG_BIRCH_STRIPPED_VAR0 = registerBlockWithoutItem("log_birch_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_STRIPPED_VAR1 = registerBlockWithoutItem("log_birch_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_STRIPPED_VAR2 = registerBlockWithoutItem("log_birch_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_BIRCH_STRIPPED_VAR3 = registerBlockWithoutItem("log_birch_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_STRIPPED_VAR1 = registerBlockWithoutItem("log_birch_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_STRIPPED_VAR2 = registerBlockWithoutItem("log_birch_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_BIRCH_STRIPPED_VAR3 = registerBlockWithoutItem("log_birch_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
 
     // For Spruce
     public static final Block LOG_SPRUCE_STRIPPED_VAR0 = registerBlockWithoutItem("log_spruce_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_STRIPPED_VAR1 = registerBlockWithoutItem("log_spruce_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_STRIPPED_VAR2 = registerBlockWithoutItem("log_spruce_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_SPRUCE_STRIPPED_VAR3 = registerBlockWithoutItem("log_spruce_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_STRIPPED_VAR1 = registerBlockWithoutItem("log_spruce_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_STRIPPED_VAR2 = registerBlockWithoutItem("log_spruce_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_SPRUCE_STRIPPED_VAR3 = registerBlockWithoutItem("log_spruce_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     // For Jungle
     public static final Block LOG_JUNGLE_STRIPPED_VAR0 = registerBlockWithoutItem("log_jungle_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_STRIPPED_VAR1 = registerBlockWithoutItem("log_jungle_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_STRIPPED_VAR2 = registerBlockWithoutItem("log_jungle_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_JUNGLE_STRIPPED_VAR3 = registerBlockWithoutItem("log_jungle_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_STRIPPED_VAR1 = registerBlockWithoutItem("log_jungle_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_STRIPPED_VAR2 = registerBlockWithoutItem("log_jungle_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_JUNGLE_STRIPPED_VAR3 = registerBlockWithoutItem("log_jungle_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     // For Acacia
     public static final Block LOG_ACACIA_STRIPPED_VAR0 = registerBlockWithoutItem("log_acacia_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_STRIPPED_VAR1 = registerBlockWithoutItem("log_acacia_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_STRIPPED_VAR2 = registerBlockWithoutItem("log_acacia_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_ACACIA_STRIPPED_VAR3 = registerBlockWithoutItem("log_acacia_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_STRIPPED_VAR1 = registerBlockWithoutItem("log_acacia_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_STRIPPED_VAR2 = registerBlockWithoutItem("log_acacia_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_ACACIA_STRIPPED_VAR3 = registerBlockWithoutItem("log_acacia_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     // For Dark Oak
     public static final Block LOG_DARK_OAK_STRIPPED_VAR0 = registerBlockWithoutItem("log_dark_oak_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_STRIPPED_VAR1 = registerBlockWithoutItem("log_dark_oak_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_STRIPPED_VAR2 = registerBlockWithoutItem("log_dark_oak_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_DARK_OAK_STRIPPED_VAR3 = registerBlockWithoutItem("log_dark_oak_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_STRIPPED_VAR1 = registerBlockWithoutItem("log_dark_oak_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_STRIPPED_VAR2 = registerBlockWithoutItem("log_dark_oak_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_DARK_OAK_STRIPPED_VAR3 = registerBlockWithoutItem("log_dark_oak_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     // For Mangrove
     public static final Block LOG_MANGROVE_STRIPPED_VAR0 = registerBlockWithoutItem("log_mangrove_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_STRIPPED_VAR1 = registerBlockWithoutItem("log_mangrove_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_STRIPPED_VAR2 = registerBlockWithoutItem("log_mangrove_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_MANGROVE_STRIPPED_VAR3 = registerBlockWithoutItem("log_mangrove_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_STRIPPED_VAR1 = registerBlockWithoutItem("log_mangrove_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_STRIPPED_VAR2 = registerBlockWithoutItem("log_mangrove_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_MANGROVE_STRIPPED_VAR3 = registerBlockWithoutItem("log_mangrove_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     // For Cherry
     public static final Block LOG_CHERRY_STRIPPED_VAR0 = registerBlockWithoutItem("log_cherry_stripped_var0", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_STRIPPED_VAR1 = registerBlockWithoutItem("log_cherry_stripped_var1", new LogStrippedVar1(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_STRIPPED_VAR2 = registerBlockWithoutItem("log_cherry_stripped_var2", new LogStrippedVar2(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
-    public static final Block LOG_CHERRY_STRIPPED_VAR3 = registerBlockWithoutItem("log_cherry_stripped_var3", new LogStrippedVar3(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_STRIPPED_VAR1 = registerBlockWithoutItem("log_cherry_stripped_var1", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_STRIPPED_VAR2 = registerBlockWithoutItem("log_cherry_stripped_var2", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block LOG_CHERRY_STRIPPED_VAR3 = registerBlockWithoutItem("log_cherry_stripped_var3", new LogStripped(FabricBlockSettings.create().strength(2F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     // Helper methods to get stripped log variants
     public static Block getStrippedDefaultVariant(LogType logType) {

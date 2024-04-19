@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -18,19 +19,15 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class ConvertingBlock extends Block {
+public abstract class ConvertingLogBlock extends Block
+{
 
-    public ConvertingBlock(AbstractBlock.Settings settings) {
+    public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
+
+    public ConvertingLogBlock(AbstractBlock.Settings settings) {
         super(settings);
     }
 
-    // Overriding and not calling super so that the default dropStack logic doesn't transfer
-    @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        player.incrementStat(Stats.MINED.getOrCreateStat(this));
-        player.addExhaustion(0.005f);
-
-    }
 
     protected Direction getMiningDirection(PlayerEntity player, World world, BlockPos pos) {
         // Get the player's eye position
@@ -45,10 +42,13 @@ public abstract class ConvertingBlock extends Block {
 
         BlockHitResult result = world.raycast(context);
 
-        if (result != null) {
+        if (result != null)
+        {
             Direction hitDirection = result.getSide();
             return hitDirection.getOpposite(); // Get the opposite direction
-        } else {
+        }
+        else
+        {
             return null;
         }
     }

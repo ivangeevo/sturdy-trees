@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import net.minecraft.block.BlockState;
@@ -8,12 +8,9 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -22,10 +19,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogMidVar1 extends ConvertingBlock implements LogBlockStacks {
+public class LogChewed extends ConvertingLogBlock
+{
 
 
-    public LogMidVar1(Settings settings) {
+    public LogChewed(Settings settings) {
         super(settings);
 
     }

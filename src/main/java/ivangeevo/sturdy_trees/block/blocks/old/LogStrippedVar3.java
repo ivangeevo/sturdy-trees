@@ -1,7 +1,6 @@
-package ivangeevo.sturdy_trees.block.blocks;
+package ivangeevo.sturdy_trees.block.blocks.old;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
@@ -23,10 +22,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LogStrippedVar3 extends ConvertingBlock implements LogBlockStacks {
+public class LogStrippedVar3 extends ConvertingLogBlock implements LogBlockStacks {
 
     public LogStrippedVar3(AbstractBlock.Settings settings) {
         super(settings);

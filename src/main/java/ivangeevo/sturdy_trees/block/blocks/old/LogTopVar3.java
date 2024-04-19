@@ -1,6 +1,6 @@
-package ivangeevo.sturdy_trees.block.blocks;
+package ivangeevo.sturdy_trees.block.blocks.old;
 
-import ivangeevo.sturdy_trees.ConvertingBlock;
+import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,10 +13,8 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -25,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogTopVar3 extends ConvertingBlock implements LogBlockStacks {
+public class LogTopVar3 extends ConvertingLogBlock implements LogBlockStacks {
 
 
 
