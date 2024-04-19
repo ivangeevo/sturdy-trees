@@ -20,7 +20,9 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
 
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg) {
+    protected void configure(RegistryWrapper.WrapperLookup arg)
+    {
+
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.STUMP_BLOCKS)
                 .add(SturdyTreesBlocks.STUMP_OAK)
                 .add(SturdyTreesBlocks.STUMP_BIRCH)

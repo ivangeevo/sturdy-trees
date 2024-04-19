@@ -298,7 +298,7 @@ public class LogStripped extends ConvertingBlock implements LogBlockStacks, Side
 
     private List<ItemStack> getDroppedPlankStacks(BlockState state, World world, BlockPos pos, ItemStack stack, Random random) {
 
-        LootContext lootContext = buildBlockLootContext((ServerWorld) world, pos,state,stack);
+        LootContext lootContext = LogBlockStacks.buildBlockLootContext((ServerWorld) world, pos,state,stack);
 
         if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)) {
             return getDroppedOakPlankStacks(state, lootContext);

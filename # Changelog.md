@@ -4,7 +4,12 @@
 
 ### v1.3
 
++ Reduced drop rate of sticks for Dead bush.
++ Brough back the logic to create vanilla stripped logs with right click on tree, 
+  but it costs 5 durabilty and requires an iron axe or above.
++ Fixed Deepslate from not dropping.
 
++ Refactored code for better manageability.
 
 ### v1.2
 
