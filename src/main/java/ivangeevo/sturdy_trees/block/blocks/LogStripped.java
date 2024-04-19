@@ -1,32 +1,19 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import ivangeevo.sturdy_trees.block.util.LogType;
-import ivangeevo.sturdy_trees.util.SideModUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Collections;
-import java.util.List;
 
 public class LogStripped extends ConvertingLogBlock
 {

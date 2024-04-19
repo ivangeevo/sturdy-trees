@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.block.blocks.old;
 
-import ivangeevo.sturdy_trees.ConvertingLogBlock;
+import ivangeevo.sturdy_trees.block.blocks.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

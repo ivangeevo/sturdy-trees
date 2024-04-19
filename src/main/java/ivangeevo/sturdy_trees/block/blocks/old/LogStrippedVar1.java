@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.block.blocks.old;
 
-import ivangeevo.sturdy_trees.ConvertingLogBlock;
+import ivangeevo.sturdy_trees.block.blocks.ConvertingLogBlock;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import ivangeevo.sturdy_trees.block.LogBlockStacks;
