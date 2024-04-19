@@ -45,29 +45,36 @@ public class TreeBreakManager implements LogBlockStacks
         }
     }
 
-    private static void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, Block... logVariants) {
+    private static void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack tool, Block... logVariants)
+    {
         boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || tool.isOf(Items.DIAMOND_AXE) ||
                 tool.isOf(Items.NETHERITE_AXE) || tool.isIn(SturdyTreesTags.Items.MODDED_AXES));
 
-        if (isAxe) {
+        if (isAxe)
+        {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
-        } else {
+        }
+        else
+        {
             Block strippedLog = logVariants[0];
             world.setBlockState(pos, strippedLog.getDefaultState());
 
-            for (int i = 0; i < logVariants.length - 1; i++) {
-                if (state.isOf(logVariants[i])) {
+            for (int i = 0; i < logVariants.length - 1; i++)
+            {
+                if (state.isOf(logVariants[i]))
+                {
                     world.setBlockState(pos, logVariants[i + 1].getDefaultState());
                     break;
                 }
             }
         }
-
+        /**
         // Logic for dropping items (stacks)
-        List<ItemStack> droppedStacks = getDroppedStacks(state, (ServerWorld) world, pos, tool, player);
+        List<ItemStack> droppedStacks = getLesserDroppedStacks(state, (ServerWorld) world, pos, tool, player);
         for (ItemStack stack : droppedStacks) {
             dropItemStack(world, pos, stack, player);
         }
+         **/
     }
 
 
@@ -83,7 +90,7 @@ public class TreeBreakManager implements LogBlockStacks
         world.spawnEntity(itemEntity);
     }
 
-    public static List<ItemStack> getDroppedStacks(BlockState state, ServerWorld serverWorld, BlockPos pos, ItemStack tool, PlayerEntity player) {
+    private static List<ItemStack> getLesserDroppedStacks(BlockState state, ServerWorld serverWorld, BlockPos pos, ItemStack tool, PlayerEntity player) {
 
         // Use the LootContextParameterSet appropriate for your context
         LootContext lootContext = LogBlockStacks.buildBlockLootContext(serverWorld, pos, state, tool);
@@ -99,28 +106,7 @@ public class TreeBreakManager implements LogBlockStacks
         boolean isLogMangrove = (state.isOf(Blocks.MANGROVE_LOG));
         boolean isLogCherry = (state.isOf(Blocks.CHERRY_LOG));
 
-
-
-
-        if (isAxe) {
-            if (isLogOak) {
-                return LogBlockStacks.getFullDroppedStacksOak(state, lootContext);
-            } else if (isLogBirch) {
-                return LogBlockStacks.getFullDroppedStacksBirch(state, lootContext);
-            } else if (isLogSpruce) {
-                return LogBlockStacks.getFullDroppedStacksSpruce(state, lootContext);
-            } else if (isLogJungle) {
-                return LogBlockStacks.getFullDroppedStacksJungle(state, lootContext);
-            } else if (isLogAcacia) {
-                return LogBlockStacks.getFullDroppedStacksAcacia(state, lootContext);
-            } else if (isLogDarkOak) {
-                return LogBlockStacks.getFullDroppedStacksDarkOak(state, lootContext);
-            } else if (isLogMangrove) {
-                return LogBlockStacks.getFullDroppedStacksMangrove(state, lootContext);
-            } else if (isLogCherry) {
-                return LogBlockStacks.getFullDroppedStacksCherry(state, lootContext);
-            }
-        } else  {
+        if (!isAxe) {
             if (isLogOak) {
                 return LogBlockStacks.getLesserDroppedBarkStacksOak(state, lootContext);
             } else if (isLogBirch) {
