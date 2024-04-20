@@ -22,10 +22,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogSpike extends ConvertingLogBlock
+public class LogSpikeBlock extends ConvertingLogBlock
 {
     public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
-    public LogSpike(Settings settings) { super(settings); }
+    public LogSpikeBlock(Settings settings) { super(settings); }
 
 
     @Override

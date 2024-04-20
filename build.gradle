@@ -39,6 +39,7 @@ processResources {
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
     inputs.property "btwr_version_required", 0.22
+
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {

@@ -15,12 +15,12 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class LogStripped extends ConvertingLogBlock
+public class LogStrippedBlock extends ConvertingLogBlock
 {
     public static final EnumProperty<LogType> LOG_TYPE = EnumProperty.of("log_type", LogType.class);
 
 
-    public LogStripped(AbstractBlock.Settings settings) {
+    public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
     }
 

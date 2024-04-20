@@ -18,11 +18,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LogChewed extends ConvertingLogBlock
+public class LogChewedBlock extends ConvertingLogBlock
 {
 
 
-    public LogChewed(Settings settings) {
+    public LogChewedBlock(Settings settings) {
         super(settings);
 
     }

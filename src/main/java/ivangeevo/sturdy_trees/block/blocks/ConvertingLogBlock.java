@@ -28,6 +28,10 @@ public abstract class ConvertingLogBlock extends Block
         super(settings);
     }
 
+    @Override
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+        super.afterBreak(world, player, pos, state, blockEntity, tool);
+    }
 
     protected Direction getMiningDirection(PlayerEntity player, World world, BlockPos pos) {
         // Get the player's eye position
