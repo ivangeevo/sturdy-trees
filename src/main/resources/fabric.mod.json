@@ -28,8 +28,7 @@
   "depends":{
     "fabricloader":">=${loader_version}",
     "fabric":"*",
-    "minecraft":"${minecraft_version}",
-    "btwr": "$btwr_version_required"
+    "minecraft":"${minecraft_version}"
   },
 
   "accessWidener" : "sturdy_trees.accesswidener"

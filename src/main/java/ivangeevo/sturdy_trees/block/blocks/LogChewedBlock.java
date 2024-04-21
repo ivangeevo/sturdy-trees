@@ -27,6 +27,7 @@ public class LogChewedBlock extends ConvertingLogBlock
 
     }
 
+    /**
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         // Define the dimensions for each element
@@ -47,47 +48,51 @@ public class LogChewedBlock extends ConvertingLogBlock
         // Combine the VoxelShapes into a single shape
         return VoxelShapes.union(topSideShape, middleShape, bottomSideShape);
     }
-
+     **/
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
+    {
+        VoxelShape shape = VoxelShapes.empty();
+        int varInt = getShapeForState(state);
+        int shapesAmount = getShapesAmountForState(state);
 
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
+        // Define dimensions for each element
+        for (int i = varInt; i <= shapesAmount; i++)
+        {
+            // Calculate 'from' coordinates dynamically
+            double fromX = (3 - i) / 16.0;
+            double fromY = 0.0;
+            double fromZ = (3 - i) / 16.0;
 
-        if (!world.isClient) {
+            // Calculate 'to' coordinates dynamically
+            double toX = (13 + i) / 16.0;
+            double toY = (16 - i) / 16.0;
+            double toZ = (13 + i) / 16.0;
 
-            BlockState aboveState = world.getBlockState(pos.down());
-
-
-            if (state.isOf(SturdyTreesBlocks.LOG_OAK_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_BIRCH_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_SPRUCE_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_JUNGLE_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_ACACIA_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_MID_VAR2.getDefaultState());
-            }  else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_MID_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_MID_VAR2.getDefaultState());
-            }
-            Direction miningDirection = getMiningDirection(player, world, pos);
-
-
-            if (miningDirection != null) {
-
-                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos), LogBlockStacks.buildBlockLootContext((ServerWorld) world,pos,state, stack));
-
-                for (ItemStack itemStack : droppedStacks) {
-                    dropStack(world, pos, miningDirection, itemStack);
-                }
-            }
+            // Create VoxelShape for each element and add to the main shape
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ));
         }
+
+        return shape;
     }
+
+    private int getShapeForState(BlockState state)
+    {
+        if (state.get(VARIATION) == 1) { return 1; }
+        else if (state.get(VARIATION) == 2) { return 2; }
+
+        return 0;
+    }
+
+    private int getShapesAmountForState(BlockState state)
+    {
+        if (state.get(VARIATION) == 1) { return 3; }
+        else if (state.get(VARIATION) == 2) { return 7; }
+
+        return 2;
+    }
+
+
 
 }

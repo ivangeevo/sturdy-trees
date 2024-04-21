@@ -6,6 +6,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.hit.BlockHitResult;
@@ -19,18 +22,49 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public abstract class ConvertingLogBlock extends Block
 {
-
     public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
 
-    public ConvertingLogBlock(AbstractBlock.Settings settings) {
+    public ConvertingLogBlock(AbstractBlock.Settings settings)
+    {
         super(settings);
     }
 
+
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
+        if (!world.isClient)
+        {
+            int var = state.get(VARIATION);
+            if (var < 3)
+            {
+                world.setBlockState(pos, this.getDefaultState().with(VARIATION, var + 1));
+            }
+
+            LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
+                    .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                    .add(LootContextParameters.TOOL, stack)
+                    .addOptional(LootContextParameters.THIS_ENTITY, player)
+                    .addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
+
+            if (getMiningDirection(player, world, pos) != null)
+            {
+
+
+                List<ItemStack> droppedStacks = state.getDroppedStacks(builder);
+
+                for (ItemStack itemStack : droppedStacks)
+                {
+                    dropStack(world, pos, getMiningDirection(player, world, pos), itemStack);
+                }
+            }
+        }
     }
 
     protected Direction getMiningDirection(PlayerEntity player, World world, BlockPos pos) {

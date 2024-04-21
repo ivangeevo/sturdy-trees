@@ -24,24 +24,24 @@ import java.util.List;
 public class TreeBreakManager implements LogBlockStacks
 {
 
-    public static void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool)
+    public static void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, ItemStack tool)
     {
         if (state.isOf(Blocks.OAK_LOG)) {
-            handleLogBreak(world, pos, state, player, tool, SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool, SturdyTreesBlocks.LOG_OAK_STRIPPED);
         } else if (state.isOf(Blocks.BIRCH_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,  SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,  SturdyTreesBlocks.LOG_BIRCH_STRIPPED);
         } else if (state.isOf(Blocks.SPRUCE_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_SPRUCE_STRIPPED);
         } else if (state.isOf(Blocks.JUNGLE_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_JUNGLE_STRIPPED);
         } else if (state.isOf(Blocks.ACACIA_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_ACACIA_STRIPPED);
         } else if (state.isOf(Blocks.DARK_OAK_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED);
         } else if (state.isOf(Blocks.MANGROVE_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_MANGROVE_STRIPPED);
         } else if (state.isOf(Blocks.CHERRY_LOG)) {
-            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_CHERRY_STRIPPED_VAR0);
+            handleLogBreak(world, pos, state, player, tool,SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
         }
     }
 
@@ -69,57 +69,5 @@ public class TreeBreakManager implements LogBlockStacks
             }
         }
 
-    }
-
-
-
-    private static void dropItemStack(World world, BlockPos pos, ItemStack stack, PlayerEntity player) {
-        Direction playerFacing = player.getHorizontalFacing();
-        double offsetX = -playerFacing.getOffsetX() * 0.5;
-        double offsetY = 0.2;
-        double offsetZ = -playerFacing.getOffsetZ() * 0.5;
-        Vec3d dropPos = new Vec3d(pos.getX() + 0.5 + offsetX, pos.getY() + offsetY, pos.getZ() + 0.5 + offsetZ);
-        ItemEntity itemEntity = new ItemEntity(world, dropPos.x, dropPos.y, dropPos.z, stack);
-        itemEntity.setToDefaultPickupDelay();
-        world.spawnEntity(itemEntity);
-    }
-
-    private static List<ItemStack> getLesserDroppedStacks(BlockState state, ServerWorld serverWorld, BlockPos pos, ItemStack tool, PlayerEntity player) {
-
-        // Use the LootContextParameterSet appropriate for your context
-        LootContext lootContext = LogBlockStacks.buildBlockLootContext(serverWorld, pos, state, tool);
-
-        boolean isAxe = (tool.isOf(Items.STONE_AXE) || tool.isOf(Items.IRON_AXE) || (tool.isOf(Items.DIAMOND_AXE) || (tool.isIn(SturdyTreesTags.Items.MODDED_AXES))));
-
-        boolean isLogOak = (state.isOf(Blocks.OAK_LOG));
-        boolean isLogBirch = (state.isOf(Blocks.BIRCH_LOG));
-        boolean isLogSpruce = (state.isOf(Blocks.SPRUCE_LOG));
-        boolean isLogJungle = (state.isOf(Blocks.JUNGLE_LOG));
-        boolean isLogAcacia = (state.isOf(Blocks.ACACIA_LOG));
-        boolean isLogDarkOak = (state.isOf(Blocks.DARK_OAK_LOG));
-        boolean isLogMangrove = (state.isOf(Blocks.MANGROVE_LOG));
-        boolean isLogCherry = (state.isOf(Blocks.CHERRY_LOG));
-
-        if (!isAxe) {
-            if (isLogOak) {
-                return LogBlockStacks.getLesserDroppedBarkStacksOak(state, lootContext);
-            } else if (isLogBirch) {
-                return LogBlockStacks.getLesserDroppedBarkStacksBirch(state, lootContext);
-            } else if (isLogSpruce) {
-                return LogBlockStacks.getLesserDroppedBarkStacksSpruce(state, lootContext);
-            } else if (isLogJungle) {
-                return LogBlockStacks.getLesserDroppedBarkStacksJungle(state, lootContext);
-            } else if (isLogAcacia) {
-                return LogBlockStacks.getLesserDroppedBarkStacksAcacia(state, lootContext);
-            } else if (isLogDarkOak) {
-                return LogBlockStacks.getLesserDroppedBarkStacksDarkOak(state, lootContext);
-            } else if (isLogMangrove) {
-                return LogBlockStacks.getLesserDroppedBarkStacksMangrove(state, lootContext);
-            } else if (isLogCherry) {
-                return LogBlockStacks.getLesserDroppedBarkStacksCherry(state, lootContext);
-            }
-        }
-
-        return Collections.emptyList(); // Return an empty list if none of the conditions match
     }
 }

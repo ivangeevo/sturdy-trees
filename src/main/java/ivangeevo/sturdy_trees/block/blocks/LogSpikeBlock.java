@@ -14,6 +14,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -64,48 +65,5 @@ public class LogSpikeBlock extends ConvertingLogBlock
 
 
 
-    @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
-
-        if (!world.isClient) {
-            if (state.isOf(SturdyTreesBlocks.LOG_OAK_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_OAK_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_BIRCH_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_ACACIA_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR2.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_BOT_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.LOG_CHERRY_BOT_VAR2.getDefaultState());
-            }
-            Direction miningDirection = getMiningDirection(player, world, pos);
-
-            LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder((ServerWorld)world)
-                    .add(LootContextParameters.ORIGIN, pos.toCenterPos())
-                    .add(LootContextParameters.BLOCK_STATE, state)
-                    .add(LootContextParameters.TOOL, stack)
-                    .build(LootContextTypes.BLOCK);
-
-
-            if (miningDirection != null)
-            {
-
-
-                List<ItemStack> droppedStacks = getLesserDroppedSawStacks(world.getBlockState(pos),  new LootContext.Builder(lootContextParameterSet).build(null));
-
-                for (ItemStack itemStack : droppedStacks) {
-                    dropStack(world, pos, miningDirection, itemStack);
-                }
-            }
-        }
-    }
 }

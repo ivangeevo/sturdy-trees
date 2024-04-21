@@ -23,7 +23,7 @@ public abstract class BlockMixin
     {
         if (state.isIn(BlockTags.LOGS))
         {
-            TreeBreakManager.onAfterBreak(world, player, pos, state, blockEntity, tool);
+            TreeBreakManager.onAfterBreak(world, player, pos, state, tool);
         }
     }
 
