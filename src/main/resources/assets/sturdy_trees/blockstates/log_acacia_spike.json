@@ -1,9 +1,17 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "sturdy_trees:block/log_acacia_bot_var1"
-      }
-    ]
+    "facing=up, variation=0": { "model": "sturdy_trees:block/log_acacia_bot_var1"},
+    "facing=down, variation=0": { "model": "sturdy_trees:block/log_acacia_bot_var1", "x": 180 },
+
+    "facing=up, variation=1": { "model": "sturdy_trees:block/log_acacia_bot_var2"},
+    "facing=down, variation=1": { "model": "sturdy_trees:block/log_acacia_bot_var2", "x": 180 },
+
+    "facing=up, variation=2": { "model": "sturdy_trees:block/log_acacia_bot_var3"},
+    "facing=down, variation=2": { "model": "sturdy_trees:block/log_acacia_bot_var3", "x": 180 }
+
+
+
+
+
   }
 }

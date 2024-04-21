@@ -3,6 +3,7 @@ package ivangeevo.sturdy_trees.block.blocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.PillarBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,17 +26,20 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class ConvertingLogBlock extends Block
+public abstract class ConvertingLogBlock extends PillarBlock
 {
     public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
 
     public ConvertingLogBlock(AbstractBlock.Settings settings)
     {
         super(settings);
+        this.setDefaultState(this.getStateManager().getDefaultState().with(VARIATION,0));
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
+    {
+        super.appendProperties(builder);
         builder.add(VARIATION);
     }
 
@@ -47,7 +51,7 @@ public abstract class ConvertingLogBlock extends Block
         if (!world.isClient)
         {
             int var = state.get(VARIATION);
-            if (var < 3)
+            if (var < 2)
             {
                 world.setBlockState(pos, this.getDefaultState().with(VARIATION, var + 1));
             }

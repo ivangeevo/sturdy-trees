@@ -1,39 +1,51 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class LogSpikeBlock extends ConvertingLogBlock
 {
-    public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
-    public LogSpikeBlock(Settings settings) { super(settings); }
+    private static final EnumProperty<Direction> FACING = Properties.FACING;
+
+    public LogSpikeBlock(Settings settings)
+    {
+        super(settings);
+    }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(DIRECTION);
+        builder.add(FACING);
+    }
+
+    @Override
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        world.setBlockState(pos, state.with(FACING, getDirection(world, pos)));
+    }
+
+    private static Direction getDirection(World world, BlockPos pos)
+    {
+        BlockState belowState = world.getBlockState(pos.down());
+        BlockState aboveState = world.getBlockState(pos.up());
+
+        if ( (belowState.getBlock() == Blocks.AIR) && (!(aboveState.getBlock() == Blocks.AIR)) )
+        {
+            return Direction.DOWN;
+        }
+
+        return Direction.UP;
+
     }
 
     @Override

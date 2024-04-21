@@ -1,9 +1,9 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "sturdy_trees:block/log_acacia_stripped_var0"
-      }
-    ]
+    "variation=0": [{"model": "sturdy_trees:block/log_acacia_stripped_var0"}],
+    "variation=1": [{"model": "sturdy_trees:block/log_acacia_stripped_var1"}],
+    "variation=2": [{"model": "sturdy_trees:block/log_acacia_stripped_var2"}],
+    "variation=3": [{"model": "sturdy_trees:block/log_acacia_stripped_var3"}]
+
   }
 }

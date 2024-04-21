@@ -1,9 +1,8 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "sturdy_trees:block/log_birch_mid_var1"
-      }
-    ]
+    "variation=0": [{"model": "sturdy_trees:block/log_birch_mid_var1"}],
+    "variation=1": [{"model": "sturdy_trees:block/log_birch_mid_var2"}],
+    "variation=2": [{"model": "sturdy_trees:block/log_birch_mid_var3"}]
+
   }
 }
