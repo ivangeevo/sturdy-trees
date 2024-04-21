@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
@@ -11,6 +12,7 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -28,6 +30,11 @@ public class LogSpikeBlock extends ConvertingLogBlock
     public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
     public LogSpikeBlock(Settings settings) { super(settings); }
 
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(DIRECTION);
+    }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
