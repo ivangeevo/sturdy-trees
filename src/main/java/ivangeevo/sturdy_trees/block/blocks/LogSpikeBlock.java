@@ -7,6 +7,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -24,14 +25,41 @@ public class LogSpikeBlock extends ConvertingLogBlock
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
+    {
         super.appendProperties(builder);
         builder.add(FACING);
     }
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation)
+    {
+        return LogSpikeBlock.changeRotation(state, rotation);
+    }
+
+    public static BlockState changeRotation(BlockState state, BlockRotation rotation)
+    {
+        if ( !(state.getBlock() instanceof LogSpikeBlock) )
+        {
+            return null;
+        }
+
+        if (rotation == BlockRotation.CLOCKWISE_180)
+        {
+            return state.with(FACING, Direction.UP);
+        }
+        return state.with(FACING, Direction.DOWN);
+    }
+
+
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.setBlockState(pos, state.with(FACING, getDirection(world, pos)));
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
+    {
+
+        if (!world.isClient)
+        {
+            world.setBlockState(pos, state.with(FACING, getDirection(world, pos)));
+        }
     }
 
     private static Direction getDirection(World world, BlockPos pos)
