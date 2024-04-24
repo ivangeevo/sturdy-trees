@@ -7,11 +7,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:cherry_planks",
+          "name": "minecraft:birch_planks",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_cherry_chewed",
+              "block": "sturdy_trees:log_birch_stripped",
               "properties": {
                 "variation": "0"
               }
@@ -24,7 +24,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_cherry_chewed",
+              "block": "sturdy_trees:log_birch_stripped",
               "properties": {
                 "variation": "1"
               }
@@ -37,7 +37,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_cherry_chewed",
+              "block": "sturdy_trees:log_birch_stripped",
               "properties": {
                 "variation": "2"
               }
@@ -50,7 +50,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_cherry_chewed",
+              "block": "sturdy_trees:log_birch_stripped",
               "properties": {
                 "variation": "3"
               }
@@ -65,5 +65,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/cherry_log"
+  "random_sequence": "sturdy_trees:log_birch_stripped"
 }

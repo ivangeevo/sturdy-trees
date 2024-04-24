@@ -41,8 +41,7 @@ public class TreeBreakManager
     }
 
     private static void handleLogBreak(World world, BlockPos pos, BlockState state, ItemStack tool, Block... logVariants) {
-        boolean isFullyBreakingAxe = tool.isIn(BTWRConventionalTags.Items.MODERN_AXES)
-                || tool.isIn(BTWRConventionalTags.Items.ADVANCED_AXES);
+        boolean isFullyBreakingAxe = tool.isIn(BTWRConventionalTags.Items.MODERN_AXES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_AXES);
 
         if (world instanceof ServerWorld)
         {

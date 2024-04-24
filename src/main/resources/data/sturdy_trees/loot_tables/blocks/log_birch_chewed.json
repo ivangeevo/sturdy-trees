@@ -7,26 +7,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:mangrove_planks",
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_mangrove_chewed",
-              "properties": {
-                "variation": "0"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "sturdy_trees:dust_saw",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_mangrove_chewed",
+              "block": "sturdy_trees:log_birch_chewed",
               "properties": {
-                "variation": "1"
+                "variation": "0"
               }
             }
           ]
@@ -37,9 +24,9 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_mangrove_chewed",
+              "block": "sturdy_trees:log_birch_chewed",
               "properties": {
-                "variation": "2"
+                "variation": "1"
               }
             }
           ]
@@ -50,9 +37,9 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_mangrove_chewed",
+              "block": "sturdy_trees:log_birch_chewed",
               "properties": {
-                "variation": "3"
+                "variation": "2"
               }
             }
           ]
@@ -65,5 +52,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/mangrove_log"
+  "random_sequence": "sturdy_trees:blocks/log_birch_chewed"
 }

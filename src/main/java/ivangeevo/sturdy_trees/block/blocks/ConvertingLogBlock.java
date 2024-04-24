@@ -47,8 +47,6 @@ public abstract class ConvertingLogBlock extends PillarBlock
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
     {
 
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
-
         if (!world.isClient)
         {
             int var = state.get(VARIATION);
@@ -57,64 +55,10 @@ public abstract class ConvertingLogBlock extends PillarBlock
                 world.setBlockState(pos, this.getDefaultState().with(VARIATION, var + 1));
             }
 
-            LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
-                    .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                    .add(LootContextParameters.TOOL, stack)
-                    .addOptional(LootContextParameters.THIS_ENTITY, player)
-                    .addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
-
-            if (getMiningDirection(player, world, pos) != null)
-            {
-
-
-                List<ItemStack> droppedStacks = state.getDroppedStacks(builder);
-
-                for (ItemStack itemStack : droppedStacks)
-                {
-                    dropStack(world, pos, getMiningDirection(player, world, pos), itemStack);
-                }
-            }
         }
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
     }
-
-    protected Direction getMiningDirection(PlayerEntity player, World world, BlockPos pos) {
-
-        // Get the player's eye position
-        Vec3d start = player.getCameraPosVec(1.0F);
-
-        // Calculate the look vector based on the player's pitch and yaw
-        Vec3d end = getVec3d(player, start);
-
-        RaycastContext context = new RaycastContext(
-                start, end, ShapeType.COLLIDER, FluidHandling.NONE, player
-        );
-
-        BlockHitResult result = world.raycast(context);
-
-        if (result != null)
-        {
-            Direction hitDirection = result.getSide();
-            return hitDirection.getOpposite(); // Get the opposite direction
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    @NotNull
-    private static Vec3d getVec3d(PlayerEntity player, Vec3d start) {
-        float pitch = player.getPitch();
-        float yaw = player.getYaw();
-
-        // Adjust the look vector to point at the center of the block
-        double reachDistance = 5.0D; // Adjust the reach distance as needed
-        double x = start.x + Math.sin(Math.toRadians(yaw)) * Math.cos(Math.toRadians(pitch)) * reachDistance;
-        double y = start.y + Math.sin(Math.toRadians(pitch)) * reachDistance;
-        double z = start.z - Math.cos(Math.toRadians(yaw)) * Math.cos(Math.toRadians(pitch)) * reachDistance;
-
-        return new Vec3d(x, y, z);
-    }
-
 
 }

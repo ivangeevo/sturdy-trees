@@ -7,26 +7,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:spruce_planks",
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_spruce_chewed",
-              "properties": {
-                "variation": "0"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "sturdy_trees:dust_saw",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_spruce_chewed",
+              "block": "sturdy_trees:log_dark_oak_spike_down",
               "properties": {
-                "variation": "1"
+                "variation": "0"
               }
             }
           ]
@@ -37,9 +24,9 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_spruce_chewed",
+              "block": "sturdy_trees:log_dark_oak_spike_down",
               "properties": {
-                "variation": "2"
+                "variation": "1"
               }
             }
           ]
@@ -50,9 +37,9 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_spruce_chewed",
+              "block": "sturdy_trees:log_dark_oak_spike_down",
               "properties": {
-                "variation": "3"
+                "variation": "2"
               }
             }
           ]
@@ -65,5 +52,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/spruce_log"
+  "random_sequence": "minecraft:blocks/acacia_log"
 }

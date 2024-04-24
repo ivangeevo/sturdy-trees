@@ -7,11 +7,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:birch_planks",
+          "name": "minecraft:dark_oak_planks",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_dark_oak_stripped",
               "properties": {
                 "variation": "0"
               }
@@ -24,7 +24,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_dark_oak_stripped",
               "properties": {
                 "variation": "1"
               }
@@ -37,7 +37,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_dark_oak_stripped",
               "properties": {
                 "variation": "2"
               }
@@ -50,7 +50,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_dark_oak_stripped",
               "properties": {
                 "variation": "3"
               }
@@ -65,5 +65,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/birch_log"
+  "random_sequence": "minecraft:blocks/dark_oak_log"
 }

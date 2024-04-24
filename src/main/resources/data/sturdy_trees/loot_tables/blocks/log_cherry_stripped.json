@@ -7,13 +7,26 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "minecraft:cherry_planks",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "sturdy_trees:log_cherry_stripped",
+              "properties": {
+                "variation": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "sturdy_trees:dust_saw",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_cherry_stripped",
               "properties": {
-                "variation": "0"
+                "variation": "1"
               }
             }
           ]
@@ -24,9 +37,9 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_cherry_stripped",
               "properties": {
-                "variation": "1"
+                "variation": "2"
               }
             }
           ]
@@ -37,9 +50,9 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "sturdy_trees:log_birch_chewed",
+              "block": "sturdy_trees:log_cherry_stripped",
               "properties": {
-                "variation": "2"
+                "variation": "3"
               }
             }
           ]
@@ -52,5 +65,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/acacia_log"
+  "random_sequence": "minecraft:blocks/cherry_log"
 }
