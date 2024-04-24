@@ -40,56 +40,27 @@ public abstract class AxeItemMixin extends MiningToolItem {
     @Inject(method = "useOnBlock", at = @At(value = "HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
-
+        Random random = context.getWorld().getRandom();
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
-        PlayerEntity playerEntity = context.getPlayer();
         BlockState blockState = world.getBlockState(blockPos);
-        Optional<BlockState> optional = this.getStrippedState(blockState);
-        Optional<BlockState> optional2 = Oxidizable.getDecreasedOxidationState(blockState);
-        Optional<BlockState> optional3 = Optional.ofNullable(HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get().get(blockState.getBlock())).map(block -> block.getStateWithProperties(blockState));
+        PlayerEntity playerEntity = context.getPlayer();
         ItemStack itemStack = context.getStack();
-        Optional<Object> optional4 = Optional.empty();
-        Random random = context.getWorld().getRandom();
+        Optional<BlockState> optional = this.getStrippedState(blockState);
 
-        /** BTWR **/
-        // Only modern (iron & above) axes can right click function.
 
-        if (itemStack.isIn(SturdyTreesTags.Items.MODERN_AXES) && random.nextFloat() >= 0.2f)
-        {
 
-        if (optional.isPresent() )
+        if (!context.getStack().isIn(SturdyTreesTags.Conventional.Items.MODERN_AXES) && random.nextFloat() >= 0.2f && optional.isPresent())
         {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            optional4 = Optional.of(optional);
-        }
-        else if (optional2.isPresent())
-        {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            world.syncWorldEvent(playerEntity, WorldEvents.BLOCK_SCRAPED, blockPos, 0);
-            optional4 = Optional.of(optional2);
-        }
-        else if (optional3.isPresent())
-        {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_WAX_OFF, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            world.syncWorldEvent(playerEntity, WorldEvents.WAX_REMOVED, blockPos, 0);
-            optional4 = Optional.of(optional3);
-        }
-        if (optional4.isPresent()) {
-            if (playerEntity instanceof ServerPlayerEntity) {
-                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 0.8f, 0.7f);
+
+            if (playerEntity != null)
+            {
+                itemStack.damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
             }
-            world.setBlockState(blockPos, (BlockState) optional4.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, (BlockState) optional4.get()));
-            if (playerEntity != null) {
-                itemStack.damage(5, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
-            }
-        }
 
-            cir.setReturnValue( ActionResult.success(world.isClient) );
+            cir.setReturnValue(ActionResult.SUCCESS);
         }
-        cir.setReturnValue( ActionResult.PASS );
-
 
     }
 

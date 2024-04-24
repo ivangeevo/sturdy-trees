@@ -22,9 +22,9 @@ public class LogChewedBlock extends ConvertingLogBlock
 {
 
 
-    public LogChewedBlock(Settings settings) {
+    public LogChewedBlock(Settings settings)
+    {
         super(settings);
-
     }
 
     /**

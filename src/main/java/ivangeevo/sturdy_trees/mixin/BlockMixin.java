@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,15 +18,8 @@ public abstract class BlockMixin
 {
 
     @Inject(method = "afterBreak", at = @At("HEAD"))
-    private void handleModLogBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
+    private void setState(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
-        if (state.isIn(BlockTags.LOGS))
-        {
-            TreeBreakManager.onAfterBreak(world, player, pos, state, tool);
-        }
+        TreeBreakManager.setStateForLog(world, pos, state, tool);
     }
-
-
-
-
 }

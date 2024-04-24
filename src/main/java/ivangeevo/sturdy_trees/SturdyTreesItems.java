@@ -53,8 +53,8 @@ public class SturdyTreesItems {
     public static void registerModItems() {
         SturdyTreesMod.LOGGER.info("Registering Mod Items for " + SturdyTreesMod.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addItemsToIngredientItemGroup);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addItemsToToolsItemGroup);
+        //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS.register(SturdyTreesItems::addItemsToIngredientItemGroup);
+        //ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addItemsToToolsItemGroup);
 
     }
 

@@ -44,7 +44,8 @@ public abstract class ConvertingLogBlock extends PillarBlock
     }
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
+    {
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
@@ -77,6 +78,7 @@ public abstract class ConvertingLogBlock extends PillarBlock
     }
 
     protected Direction getMiningDirection(PlayerEntity player, World world, BlockPos pos) {
+
         // Get the player's eye position
         Vec3d start = player.getCameraPosVec(1.0F);
 

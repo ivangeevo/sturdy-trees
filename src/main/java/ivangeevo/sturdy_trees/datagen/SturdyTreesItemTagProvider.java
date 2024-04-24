@@ -31,6 +31,7 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(SturdyTreesItems.BARK_CHERRY);
 
         getOrCreateTagBuilder(SturdyTreesTags.Items.MODERN_AXES)
+                .add(Items.STONE_AXE)
                 .add(Items.IRON_AXE)
                 .add(Items.DIAMOND_AXE)
                 .add(Items.NETHERITE_AXE);
