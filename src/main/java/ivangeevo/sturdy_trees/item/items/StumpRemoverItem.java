@@ -1,5 +1,6 @@
 package ivangeevo.sturdy_trees.item.items;
 
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,7 +26,7 @@ public class StumpRemoverItem extends Item {
         World world = context.getWorld();
 
         if (!world.isClient) {
-            if (stump.isIn(SturdyTreesTags.Conventional.Blocks.STUMP_BLOCKS))
+            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
             {
 
                 this.spawnParticles((ServerWorld) world, pos);

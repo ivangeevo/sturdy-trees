@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.mixin;
 
 
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
@@ -40,7 +41,6 @@ public abstract class AxeItemMixin extends MiningToolItem {
     @Inject(method = "useOnBlock", at = @At(value = "HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
-        Random random = context.getWorld().getRandom();
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
@@ -49,19 +49,30 @@ public abstract class AxeItemMixin extends MiningToolItem {
         Optional<BlockState> optional = this.getStrippedState(blockState);
 
 
-
-        if (!context.getStack().isIn(SturdyTreesTags.Conventional.Items.MODERN_AXES) && random.nextFloat() >= 0.2f && optional.isPresent())
+        if (optional.isPresent())
         {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 0.8f, 0.7f);
-
-            if (playerEntity != null)
+            if (!context.getStack().isIn(BTWRConventionalTags.Items.MODERN_AXES) && canConvertWithChance(world))
             {
-                itemStack.damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
-            }
+                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 0.5f, 0.7f);
 
-            cir.setReturnValue(ActionResult.SUCCESS);
+                if (playerEntity != null)
+                {
+                    itemStack.damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
+                }
+
+                cir.setReturnValue(ActionResult.SUCCESS);
+            }
+        }
+        else
+        {
+            cir.setReturnValue(ActionResult.FAIL);
         }
 
+    }
+
+    // Method to calculate random chance of conversion
+    private boolean canConvertWithChance(World world) {
+        return world.getRandom().nextFloat() >= 0.2f;
     }
 
 }

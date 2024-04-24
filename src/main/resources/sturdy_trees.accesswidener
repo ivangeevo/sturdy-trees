@@ -1,3 +1,4 @@
 accessWidener v1 named
 
-
+accessible field net/minecraft/item/ItemGroups INGREDIENTS Lnet/minecraft/registry/RegistryKey;
+accessible field net/minecraft/item/ItemGroups TOOLS Lnet/minecraft/registry/RegistryKey;

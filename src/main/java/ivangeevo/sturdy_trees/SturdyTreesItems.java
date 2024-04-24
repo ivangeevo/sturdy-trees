@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -53,8 +52,8 @@ public class SturdyTreesItems {
     public static void registerModItems() {
         SturdyTreesMod.LOGGER.info("Registering Mod Items for " + SturdyTreesMod.MOD_ID);
 
-        //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS.register(SturdyTreesItems::addItemsToIngredientItemGroup);
-        //ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addItemsToToolsItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addItemsToIngredientItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addItemsToToolsItemGroup);
 
     }
 

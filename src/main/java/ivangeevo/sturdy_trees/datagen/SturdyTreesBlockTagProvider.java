@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.datagen;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -19,16 +20,19 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
+        addToVanillaTags();
         addToModTags();
         addToConventionalTags();
+
     }
 
     private void addToConventionalTags()
     {
-        getOrCreateTagBuilder(SturdyTreesTags.Conventional.Blocks.MODDED_CONVERTING_BLOCKS)
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
                 .addTag(SturdyTreesTags.Blocks.STRIPPED_LOG_BLOCKS);
 
-        getOrCreateTagBuilder(SturdyTreesTags.Conventional.Blocks.STUMP_BLOCKS)
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
                 .add(SturdyTreesBlocks.STUMP_OAK)
                 .add(SturdyTreesBlocks.STUMP_BIRCH)
                 .add(SturdyTreesBlocks.STUMP_SPRUCE)
@@ -100,5 +104,11 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.LOG_CHERRY_CHEWED)
                 .add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
 
+    }
+
+    private void addToVanillaTags()
+    {
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .forceAddTag(SturdyTreesTags.Blocks.STRIPPED_LOG_BLOCKS);
     }
 }

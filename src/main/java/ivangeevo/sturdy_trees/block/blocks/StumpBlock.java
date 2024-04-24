@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +24,7 @@ public class StumpBlock extends Block
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 
 
-        if (tool.isIn(SturdyTreesTags.Conventional.Items.MODERN_CHISELS))
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS))
         {
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
