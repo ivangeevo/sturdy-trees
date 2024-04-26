@@ -40,8 +40,11 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(Items.NETHERITE_AXE);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK)
+                .add(Items.STONE_AXE)
                 .addTag(BTWRConventionalTags.Items.MODERN_AXES)
                 .addTag(BTWRConventionalTags.Items.ADVANCED_AXES);
+
+
 
 
 

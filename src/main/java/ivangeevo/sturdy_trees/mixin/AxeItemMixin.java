@@ -9,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -44,30 +45,28 @@ public abstract class AxeItemMixin extends MiningToolItem {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
-        PlayerEntity playerEntity = context.getPlayer();
-        ItemStack itemStack = context.getStack();
         Optional<BlockState> optional = this.getStrippedState(blockState);
 
 
         if (optional.isPresent())
         {
-            if (!context.getStack().isIn(BTWRConventionalTags.Items.MODERN_AXES) && canConvertWithChance(world))
-            {
-                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 0.5f, 0.7f);
-
-                if (playerEntity != null)
-                {
-                    itemStack.damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
-                }
-
-                cir.setReturnValue(ActionResult.SUCCESS);
-            }
-        }
+            cir.setReturnValue(ActionResult.FAIL);        }
         else
         {
-            cir.setReturnValue(ActionResult.FAIL);
+            cir.setReturnValue(ActionResult.PASS);
         }
 
+    }
+
+    @Override
+    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
+    {
+        if(state.isIn(BlockTags.LEAVES))
+        {
+            return super.getMiningSpeedMultiplier(stack, state) * 2.5f;
+        }
+
+        return super.getMiningSpeedMultiplier(stack, state);
     }
 
     // Method to calculate random chance of conversion

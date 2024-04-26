@@ -22,6 +22,7 @@ public class LogSpikeDownBlock extends ConvertingLogBlock
         super(settings);
     }
 
+/**
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
@@ -47,6 +48,7 @@ public class LogSpikeDownBlock extends ConvertingLogBlock
 
         return shape;
     }
+    **/
 
     private int getShapeForState(BlockState state)
     {

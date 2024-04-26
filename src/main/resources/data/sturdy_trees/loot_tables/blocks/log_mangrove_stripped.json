@@ -65,5 +65,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/mangrove_log"
+  "random_sequence": "sturdy_trees:log_mangrove_stripped"
 }

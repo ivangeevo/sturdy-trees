@@ -26,6 +26,8 @@ public class LogChewedBlock extends ConvertingLogBlock
         super(settings);
     }
 
+    // TODO: FIX OUTLINES FOR ALL MOD LOG BLOCKS
+
     /**
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -49,6 +51,7 @@ public class LogChewedBlock extends ConvertingLogBlock
     }
      **/
 
+    /**
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
@@ -75,6 +78,7 @@ public class LogChewedBlock extends ConvertingLogBlock
 
         return shape;
     }
+    **/
 
     private int getShapeForState(BlockState state)
     {

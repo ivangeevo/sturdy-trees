@@ -108,6 +108,10 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
     private void addToVanillaTags()
     {
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)
+                .forceAddTag(BlockTags.LEAVES);
+
+        getOrCreateTagBuilder(BlockTags.LOGS)
                 .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
     }
 }
