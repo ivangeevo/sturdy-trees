@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:stone_axe",
+    "#c:modern_axes",
+    "#c:advanced_axes"
+  ]
+}

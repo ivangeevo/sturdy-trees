@@ -10,6 +10,39 @@ base {
     archivesName = project.archives_base_name
 }
 
+def dataOutput = 'src/main/generated'
+
+loom {
+    runs {
+        //
+        // This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
+        //
+        datagenClient {
+            inherit client
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file(dataOutput)}"
+            vmArg "-Dfabric-api.datagen.modid=sturdy_trees"
+
+            runDir "build/datagen"
+        }
+    }
+}
+
+
+//
+// Adds the generated files into the jar you distribute to players.
+//
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    'src/main/generated'
+            ]
+        }
+    }
+}
+
 repositories {
 
 
@@ -39,6 +72,7 @@ processResources {
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
     inputs.property "btwr_version_required", 0.22
+
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -101,36 +135,5 @@ publishing {
         accessWidenerPath = file("src/main/resources/sturdy_trees.accesswidener")
     }
 
-    def dataOutput = 'src/main/generated'
 
-    loom {
-        runs {
-            //
-            // This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
-            //
-            datagenClient {
-                inherit client
-                name "Data Generation"
-                vmArg "-Dfabric-api.datagen"
-                vmArg "-Dfabric-api.datagen.output-dir=${file(dataOutput)}"
-                vmArg "-Dfabric-api.datagen.modid=sturdy_trees"
-
-                runDir "build/datagen"
-            }
-        }
-    }
-
-
-//
-// Adds the generated files into the jar you distribute to players.
-//
-    sourceSets {
-        main {
-            resources {
-                srcDirs += [
-                        'src/main/generated'
-                ]
-            }
-        }
-    }
 }

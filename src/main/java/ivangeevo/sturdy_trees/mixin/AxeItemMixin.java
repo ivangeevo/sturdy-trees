@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.mixin;
 
 
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
@@ -8,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -30,6 +32,7 @@ import java.util.Optional;
 public abstract class AxeItemMixin extends MiningToolItem {
 
 
+    @Shadow protected abstract Optional<BlockState> getStrippedState(BlockState state);
 
     public AxeItemMixin(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
         super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
@@ -39,13 +42,36 @@ public abstract class AxeItemMixin extends MiningToolItem {
     @Inject(method = "useOnBlock", at = @At(value = "HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
+        World world = context.getWorld();
+        BlockPos blockPos = context.getBlockPos();
+        BlockState blockState = world.getBlockState(blockPos);
+        Optional<BlockState> optional = this.getStrippedState(blockState);
 
-        if (!context.getStack().isIn(SturdyTreesTags.Items.MODERN_AXES) && !(context.getWorld().getRandom().nextFloat() >= 0.2f))
+
+        if (optional.isPresent())
         {
-            cir.cancel();
+            cir.setReturnValue(ActionResult.FAIL);        }
+        else
+        {
+            cir.setReturnValue(ActionResult.PASS);
         }
 
+    }
 
+    @Override
+    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
+    {
+        if(state.isIn(BlockTags.LEAVES))
+        {
+            return super.getMiningSpeedMultiplier(stack, state) * 2.5f;
+        }
+
+        return super.getMiningSpeedMultiplier(stack, state);
+    }
+
+    // Method to calculate random chance of conversion
+    private boolean canConvertWithChance(World world) {
+        return world.getRandom().nextFloat() >= 0.2f;
     }
 
 }

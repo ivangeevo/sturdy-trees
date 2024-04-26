@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "sturdy_trees:stump_oak",
+    "sturdy_trees:stump_birch",
+    "sturdy_trees:stump_spruce",
+    "sturdy_trees:stump_jungle",
+    "sturdy_trees:stump_acacia",
+    "sturdy_trees:stump_dark_oak",
+    "sturdy_trees:stump_mangrove",
+    "sturdy_trees:stump_cherry",
+    "sturdy_trees:stump_oak_var1",
+    "sturdy_trees:stump_birch_var1",
+    "sturdy_trees:stump_spruce_var1",
+    "sturdy_trees:stump_jungle_var1",
+    "sturdy_trees:stump_acacia_var1",
+    "sturdy_trees:stump_dark_oak_var1",
+    "sturdy_trees:stump_mangrove_var1",
+    "sturdy_trees:stump_cherry_var1"
+  ]
+}

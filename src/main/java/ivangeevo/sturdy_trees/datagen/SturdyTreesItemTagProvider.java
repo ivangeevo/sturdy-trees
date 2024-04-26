@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.datagen;
 
 import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -30,10 +31,22 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(SturdyTreesItems.BARK_MANGROVE)
                 .add(SturdyTreesItems.BARK_CHERRY);
 
-        getOrCreateTagBuilder(SturdyTreesTags.Items.MODERN_AXES)
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_AXES)
+                .add(Items.STONE_AXE)
                 .add(Items.IRON_AXE)
-                .add(Items.DIAMOND_AXE)
+                .add(Items.DIAMOND_AXE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_AXES)
                 .add(Items.NETHERITE_AXE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK)
+                .add(Items.STONE_AXE)
+                .addTag(BTWRConventionalTags.Items.MODERN_AXES)
+                .addTag(BTWRConventionalTags.Items.ADVANCED_AXES);
+
+
+
+
 
     }
 }

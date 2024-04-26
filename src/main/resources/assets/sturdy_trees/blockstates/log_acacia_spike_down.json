@@ -1,0 +1,11 @@
+{
+  "variants":
+  {
+    "variation=0":{ "model": "sturdy_trees:block/log_acacia_top_var1"},
+    "variation=1": { "model": "sturdy_trees:block/log_acacia_top_var2"},
+    "variation=2": { "model": "sturdy_trees:block/log_acacia_top_var3"}
+
+
+
+  }
+}

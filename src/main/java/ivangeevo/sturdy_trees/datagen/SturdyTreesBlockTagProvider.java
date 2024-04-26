@@ -1,8 +1,8 @@
 package ivangeevo.sturdy_trees.datagen;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -17,134 +17,101 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
         super(output, registriesFuture);
     }
 
-
-
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
+        addToVanillaTags();
+        addToModTags();
+        addToConventionalTags();
+    }
 
-        getOrCreateTagBuilder(SturdyTreesTags.Blocks.STUMP_BLOCKS)
+    private void addToConventionalTags()
+    {
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
+                .addTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
                 .add(SturdyTreesBlocks.STUMP_OAK)
                 .add(SturdyTreesBlocks.STUMP_BIRCH)
                 .add(SturdyTreesBlocks.STUMP_SPRUCE)
                 .add(SturdyTreesBlocks.STUMP_JUNGLE)
                 .add(SturdyTreesBlocks.STUMP_ACACIA)
                 .add(SturdyTreesBlocks.STUMP_DARK_OAK)
-                .add(SturdyTreesBlocks.STUMP_MANGROVE);
+                .add(SturdyTreesBlocks.STUMP_MANGROVE)
+                .add(SturdyTreesBlocks.STUMP_CHERRY)
 
+                .add(SturdyTreesBlocks.STUMP_OAK_VAR1)
+                .add(SturdyTreesBlocks.STUMP_BIRCH_VAR1)
+                .add(SturdyTreesBlocks.STUMP_SPRUCE_VAR1)
+                .add(SturdyTreesBlocks.STUMP_JUNGLE_VAR1)
+                .add(SturdyTreesBlocks.STUMP_ACACIA_VAR1)
+                .add(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)
+                .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
+                .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1);
+    }
 
+    private void addToModTags()
+    {
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)
 
-        getOrCreateTagBuilder(SturdyTreesTags.Blocks.STRIPPED_LOG_BLOCKS)
                 // Oak Logs
-                .add(SturdyTreesBlocks.LOG_OAK_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_OAK_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_OAK_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_OAK_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_OAK_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_OAK_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_OAK_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_OAK_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_OAK_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_OAK_STRIPPED_VAR3)
+                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_OAK_CHEWED)
+                .add(SturdyTreesBlocks.LOG_OAK_STRIPPED)
 
                 // Birch Logs
-                .add(SturdyTreesBlocks.LOG_BIRCH_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_BIRCH_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_BIRCH_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_BIRCH_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_BIRCH_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_BIRCH_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_BIRCH_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_BIRCH_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_BIRCH_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_BIRCH_STRIPPED_VAR3)
+                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_BIRCH_CHEWED)
+                .add(SturdyTreesBlocks.LOG_BIRCH_STRIPPED)
 
                 // Spruce Logs
-                .add(SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED_VAR3)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_CHEWED)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED)
 
                 // Jungle Logs
-                .add(SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED_VAR3)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_CHEWED)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED)
 
                 // Acacia Logs
-                .add(SturdyTreesBlocks.LOG_ACACIA_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_ACACIA_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_ACACIA_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_ACACIA_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_ACACIA_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_ACACIA_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_ACACIA_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_ACACIA_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_ACACIA_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_ACACIA_STRIPPED_VAR3)
+                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_ACACIA_CHEWED)
+                .add(SturdyTreesBlocks.LOG_ACACIA_STRIPPED)
 
                 // Dark Oak Logs
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED_VAR3)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_CHEWED)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED)
 
                 // Mangrove Logs
-                .add(SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR1)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR2)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_BOT_VAR3)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR1)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR2)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_TOP_VAR3)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_MID_VAR1)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_MID_VAR2)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_MID_VAR3)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR0)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR1)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR2)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED_VAR3);
+                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_MANGROVE_CHEWED)
+                .add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED)
+
+                // Cherry Logs
+                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_CHERRY_CHEWED)
+                .add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
+
+    }
+
+    private void addToVanillaTags()
+    {
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)
+                .forceAddTag(BlockTags.LEAVES);
 
         getOrCreateTagBuilder(BlockTags.LOGS)
-                .forceAddTag(SturdyTreesTags.Blocks.STRIPPED_LOG_BLOCKS);
-
-
-
-
+                .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
     }
 }

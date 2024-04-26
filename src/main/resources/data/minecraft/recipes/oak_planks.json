@@ -6,7 +6,7 @@
       "item": "minecraft:oak_log"
     },
     {
-      "tag": "btwr:axes_make_planks"
+      "tag": "c:axes_make_planks"
     }
   ],
   "result": {
