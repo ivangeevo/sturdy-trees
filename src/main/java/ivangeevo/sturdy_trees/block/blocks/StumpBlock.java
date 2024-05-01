@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -54,8 +55,14 @@ public class StumpBlock extends Block
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY_VAR1) {
+            } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY_VAR1)) {
                 world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+            }
+
+            if (world.isClient)
+            {
+                player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
 
             super.afterBreak(world, player, pos, state, blockEntity, tool);

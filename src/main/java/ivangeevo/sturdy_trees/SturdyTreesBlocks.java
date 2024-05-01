@@ -44,23 +44,23 @@ public class SturdyTreesBlocks implements SideModUtils {
     /** VARIANTS FOR LOG BLOCKS **/
 
     // Spike
-    public static final Block LOG_OAK_SPIKE_DOWN = registerBlockWithoutItem("log_oak_spike_down", createSpikeDown(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_SPRUCE_SPIKE_DOWN = registerBlockWithoutItem("log_spruce_spike_down", createSpikeDown(MapColor.SPRUCE_BROWN, MapColor.BROWN));
-    public static final Block LOG_BIRCH_SPIKE_DOWN = registerBlockWithoutItem("log_birch_spike_down", createSpikeDown(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
-    public static final Block LOG_JUNGLE_SPIKE_DOWN = registerBlockWithoutItem("log_jungle_spike_down", createSpikeDown(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_ACACIA_SPIKE_DOWN = registerBlockWithoutItem("log_acacia_spike_down", createSpikeDown(MapColor.ORANGE, MapColor.STONE_GRAY));
-    public static final Block LOG_DARK_OAK_SPIKE_DOWN = registerBlockWithoutItem("log_dark_oak_spike_down", createSpikeDown(MapColor.BROWN, MapColor.BROWN));
-    public static final Block LOG_MANGROVE_SPIKE_DOWN = registerBlockWithoutItem("log_mangrove_spike_down", createSpikeDown(MapColor.RED, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_CHERRY_SPIKE_DOWN = registerBlockWithoutItem("log_cherry_spike_down", createBambooSpikeDown(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
+    public static final Block LOG_OAK_SPIKE_DOWN = registerBlockWithoutItem("log_oak_spike_down", createSpike(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
+    public static final Block LOG_SPRUCE_SPIKE_DOWN = registerBlockWithoutItem("log_spruce_spike_down", createSpike(MapColor.SPRUCE_BROWN, MapColor.BROWN));
+    public static final Block LOG_BIRCH_SPIKE_DOWN = registerBlockWithoutItem("log_birch_spike_down", createSpike(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
+    public static final Block LOG_JUNGLE_SPIKE_DOWN = registerBlockWithoutItem("log_jungle_spike_down", createSpike(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
+    public static final Block LOG_ACACIA_SPIKE_DOWN = registerBlockWithoutItem("log_acacia_spike_down", createSpike(MapColor.ORANGE, MapColor.STONE_GRAY));
+    public static final Block LOG_DARK_OAK_SPIKE_DOWN = registerBlockWithoutItem("log_dark_oak_spike_down", createSpike(MapColor.BROWN, MapColor.BROWN));
+    public static final Block LOG_MANGROVE_SPIKE_DOWN = registerBlockWithoutItem("log_mangrove_spike_down", createSpike(MapColor.RED, MapColor.SPRUCE_BROWN));
+    public static final Block LOG_CHERRY_SPIKE_DOWN = registerBlockWithoutItem("log_cherry_spike_down", createBambooSpike(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
 
-    public static final Block LOG_OAK_SPIKE_UP = registerBlockWithoutItem("log_oak_spike_up", createSpikeUp(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_SPRUCE_SPIKE_UP = registerBlockWithoutItem("log_spruce_spike_up", createSpikeUp(MapColor.SPRUCE_BROWN, MapColor.BROWN));
-    public static final Block LOG_BIRCH_SPIKE_UP = registerBlockWithoutItem("log_birch_spike_up", createSpikeUp(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
-    public static final Block LOG_JUNGLE_SPIKE_UP = registerBlockWithoutItem("log_jungle_spike_up", createSpikeUp(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_ACACIA_SPIKE_UP = registerBlockWithoutItem("log_acacia_spike_up", createSpikeUp(MapColor.ORANGE, MapColor.STONE_GRAY));
-    public static final Block LOG_DARK_OAK_SPIKE_UP = registerBlockWithoutItem("log_dark_oak_spike_up", createSpikeUp(MapColor.BROWN, MapColor.BROWN));
-    public static final Block LOG_MANGROVE_SPIKE_UP = registerBlockWithoutItem("log_mangrove_spike_up", createSpikeUp(MapColor.RED, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_CHERRY_SPIKE_UP = registerBlockWithoutItem("log_cherry_spike_up", createBambooSpikeUp(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
+    public static final Block LOG_OAK_SPIKE_UP = registerBlockWithoutItem("log_oak_spike_up", createSpike(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
+    public static final Block LOG_SPRUCE_SPIKE_UP = registerBlockWithoutItem("log_spruce_spike_up", createSpike(MapColor.SPRUCE_BROWN, MapColor.BROWN));
+    public static final Block LOG_BIRCH_SPIKE_UP = registerBlockWithoutItem("log_birch_spike_up", createSpike(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
+    public static final Block LOG_JUNGLE_SPIKE_UP = registerBlockWithoutItem("log_jungle_spike_up", createSpike(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
+    public static final Block LOG_ACACIA_SPIKE_UP = registerBlockWithoutItem("log_acacia_spike_up", createSpike(MapColor.ORANGE, MapColor.STONE_GRAY));
+    public static final Block LOG_DARK_OAK_SPIKE_UP = registerBlockWithoutItem("log_dark_oak_spike_up", createSpike(MapColor.BROWN, MapColor.BROWN));
+    public static final Block LOG_MANGROVE_SPIKE_UP = registerBlockWithoutItem("log_mangrove_spike_up", createSpike(MapColor.RED, MapColor.SPRUCE_BROWN));
+    public static final Block LOG_CHERRY_SPIKE_UP = registerBlockWithoutItem("log_cherry_spike_up", createBambooSpike(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
 
 
     // Chewed
@@ -84,26 +84,17 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_CHERRY_STRIPPED = registerBlockWithoutItem("log_cherry_stripped", createBambooStripped(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
 
 
-    public static LogSpikeUpBlock createSpikeUp(MapColor topMapColor, MapColor sideMapColor) {
-        return new LogSpikeUpBlock(AbstractBlock.Settings.create().mapColor((state) ->
-                state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
-    }
 
-    public static LogSpikeUpBlock createBambooSpikeUp(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
-        return new LogSpikeUpBlock(AbstractBlock.Settings.create().mapColor((state) ->
-                        state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
-    }
 
-    public static LogSpikeDownBlock createSpikeDown(MapColor topMapColor, MapColor sideMapColor) {
-        return new LogSpikeDownBlock(AbstractBlock.Settings.create().mapColor((state) ->
+
+    public static LogSpikeBlock createSpike(MapColor topMapColor, MapColor sideMapColor) {
+        return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
                 .instrument(Instrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
     }
 
-    public static LogSpikeDownBlock createBambooSpikeDown(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
-        return new LogSpikeDownBlock(AbstractBlock.Settings.create().mapColor((state) ->
+    public static LogSpikeBlock createBambooSpike(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
+        return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
                 .instrument(Instrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
     }

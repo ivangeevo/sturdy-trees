@@ -8,6 +8,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -60,6 +61,18 @@ public class LogStrippedBlock extends ConvertingLogBlock
         // Logic to determine the block to replace with
         BlockState newState = getReplacementState(state, blockBelowState, blockAboveState);
         world.setBlockState(pos, newState);
+
+        int variation = state.get(VARIATION);
+
+
+        if (world.isClient)
+        {
+            switch (variation)
+            {
+                case 0: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+                case 2: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+            }
+        }
 
     }
 

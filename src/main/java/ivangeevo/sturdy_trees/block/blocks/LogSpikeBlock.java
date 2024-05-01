@@ -1,23 +1,18 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class LogSpikeDownBlock extends ConvertingLogBlock
+public class LogSpikeBlock extends ConvertingLogBlock
 {
 
-    public LogSpikeDownBlock(Settings settings)
+    public LogSpikeBlock(Settings settings)
     {
         super(settings);
     }
@@ -49,6 +44,23 @@ public class LogSpikeDownBlock extends ConvertingLogBlock
         return shape;
     }
     **/
+
+    @Override
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+
+        int variation = state.get(VARIATION);
+
+        if (world.isClient)
+        {
+            switch (variation)
+            {
+                case 1: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+                case 2: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+            }
+        }
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+    }
 
     private int getShapeForState(BlockState state)
     {

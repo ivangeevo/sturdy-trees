@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -46,13 +47,13 @@ public abstract class ConvertingLogBlock extends PillarBlock
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
     {
+        int variation = state.get(VARIATION);
 
         if (!world.isClient)
         {
-            int var = state.get(VARIATION);
-            if (var < 2)
+            if (variation < 2)
             {
-                world.setBlockState(pos, this.getDefaultState().with(VARIATION, var + 1));
+                world.setBlockState(pos, this.getDefaultState().with(VARIATION, variation + 1));
             }
 
         }

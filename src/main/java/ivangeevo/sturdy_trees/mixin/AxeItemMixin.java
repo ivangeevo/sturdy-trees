@@ -38,7 +38,7 @@ public abstract class AxeItemMixin extends MiningToolItem {
         super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
     }
 
-    // Adds conditions to stripping logic
+    // Removes stripping logic
     @Inject(method = "useOnBlock", at = @At(value = "HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
@@ -47,10 +47,11 @@ public abstract class AxeItemMixin extends MiningToolItem {
         BlockState blockState = world.getBlockState(blockPos);
         Optional<BlockState> optional = this.getStrippedState(blockState);
 
-
+        // check for the stripping logic and cancel if the optional is present.
         if (optional.isPresent())
         {
-            cir.setReturnValue(ActionResult.FAIL);        }
+            cir.setReturnValue(ActionResult.FAIL);
+        }
         else
         {
             cir.setReturnValue(ActionResult.PASS);
@@ -61,7 +62,7 @@ public abstract class AxeItemMixin extends MiningToolItem {
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
     {
-        if(state.isIn(BlockTags.LEAVES))
+        if (state.isIn(BlockTags.LEAVES))
         {
             return super.getMiningSpeedMultiplier(stack, state) * 2.5f;
         }
