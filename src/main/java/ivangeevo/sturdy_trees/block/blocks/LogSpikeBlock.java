@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,7 +12,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class LogSpikeBlock extends ConvertingLogBlock
 {
-
     public LogSpikeBlock(Settings settings)
     {
         super(settings);
@@ -54,8 +54,10 @@ public class LogSpikeBlock extends ConvertingLogBlock
         {
             switch (variation)
             {
-                case 1: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
-                case 2: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+                case 1: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+                case 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
         }
 

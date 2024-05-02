@@ -8,6 +8,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -18,36 +19,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class LogStrippedBlock extends ConvertingLogBlock
 {
-
-
     public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
     }
-
-    /**
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        // Define the dimensions from the model JSON
-        double fromX = 1.0 / 16.0; double fromY = 0.0; double fromZ = 1.0 / 16.0;
-        double toX = 15.0 / 16.0; double toY = 16.0 / 16.0; double toZ = 15.0 / 16.0;
-
-        // Create a VoxelShape based on the dimensions
-        VoxelShape shape = VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ);
-
-        return shape;
-    }
-    **/
-
-    private int getShapeForState(BlockState state)
-    {
-        if (state.get(VARIATION) == 1) { return 1; }
-        else if (state.get(VARIATION) == 2) { return 2; }
-        else if (state.get(VARIATION) == 3) { return 3; }
-
-        return 0;
-    }
-
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
@@ -69,16 +43,14 @@ public class LogStrippedBlock extends ConvertingLogBlock
         {
             switch (variation)
             {
-                case 0: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
-                case 2: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+                case 0: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+                case 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
         }
 
     }
-
-
-
-
 
     private BlockState getReplacementState(BlockState state, BlockState blockBelowState, BlockState blockAboveState)
     {

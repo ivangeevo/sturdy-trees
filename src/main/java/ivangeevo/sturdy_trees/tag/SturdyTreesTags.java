@@ -15,6 +15,8 @@ public final class SturdyTreesTags
         // All log blocks from the mod that have variation.(aka all ConvertingLogBlock's)
         public static final TagKey<Block> LOG_VARIATION_BLOCKS = registerTag("log_variation_blocks");
 
+        public static final TagKey<Block> LOG_SPIKE_UP_BLOCKS =  registerTag("log_spike_up_blocks");
+        public static final TagKey<Block> LOG_SPIKE_DOWN_BLOCKS =  registerTag("log_spike_down_blocks");
 
         private static TagKey<Block> registerTag(String id) {
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, id));

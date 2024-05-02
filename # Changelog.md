@@ -5,10 +5,10 @@
 ### v1.3
 
 + Rewrote most of the mod logic to work better and more efficiently.
++ Added recipes for making plank blocks from wooden slabs.
 + Made the drops for mod log blocks to be datapack compatible (they were hardcoded before)
 + Reduced drop rate of sticks for Dead bush.
-+ Brough back the logic  to create vanilla stripped logs with right click on tree(with an experimental one) -> 
-  Now it costs 5 durabilty, is chance based and requires an iron axe or above.
++ Brough back the logic to create vanilla stripped logs with right click.
 + Fixed Deepslate from not dropping because of wrong insertion of custom code.
 
 ### v1.2

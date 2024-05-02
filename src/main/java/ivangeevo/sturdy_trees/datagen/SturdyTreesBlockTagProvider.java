@@ -102,6 +102,26 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN)
                 .add(SturdyTreesBlocks.LOG_CHERRY_CHEWED)
                 .add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
+        
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_SPIKE_UP_BLOCKS)
+                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP)
+                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_SPIKE_DOWN_BLOCKS)
+                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN);
 
     }
 

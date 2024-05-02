@@ -1,11 +1,16 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,28 +24,17 @@ public class LogChewedBlock extends ConvertingLogBlock
 
     // TODO: FIX OUTLINES FOR ALL MOD LOG BLOCKS
 
-    /**
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        // Define the dimensions for each element
-        double topSideFromX = 1.0 / 16.0; double topSideFromY = 13.0 / 16.0; double topSideFromZ = 1.0 / 16.0;
-        double topSideToX = 15.0 / 16.0; double topSideToY = 16.0 / 16.0;double topSideToZ = 15.0 / 16.0;
+        int var = state.get(VARIATION);
+        double offset = (2 + var) / 16.0;
+        double to = 1.0 - offset;
 
-        double middleFromX = 2.0 / 16.0; double middleFromY = 3.0 / 16.0;double middleFromZ = 2.0 / 16.0;
-        double middleToX = 14.0 / 16.0; double middleToY = 13.0 / 16.0;double middleToZ = 14.0 / 16.0;
-
-        double bottomSideFromX = 1.0 / 16.0; double bottomSideFromY = 0.0;double bottomSideFromZ = 1.0 / 16.0;
-        double bottomSideToX = 15.0 / 16.0; double bottomSideToY = 3.0 / 16.0;double bottomSideToZ = 15.0 / 16.0;
-
-        // Create the VoxelShapes for each element
-        VoxelShape topSideShape = VoxelShapes.cuboid(topSideFromX, topSideFromY, topSideFromZ, topSideToX, topSideToY, topSideToZ);
-        VoxelShape middleShape = VoxelShapes.cuboid(middleFromX, middleFromY, middleFromZ, middleToX, middleToY, middleToZ);
-        VoxelShape bottomSideShape = VoxelShapes.cuboid(bottomSideFromX, bottomSideFromY, bottomSideFromZ, bottomSideToX, bottomSideToY, bottomSideToZ);
-
-        // Combine the VoxelShapes into a single shape
-        return VoxelShapes.union(topSideShape, middleShape, bottomSideShape);
+        // Create a VoxelShape based on the dimensions
+        return VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
     }
-     **/
+
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
@@ -51,8 +45,10 @@ public class LogChewedBlock extends ConvertingLogBlock
         {
             switch (variation)
             {
-                case 1: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
-                case 2: player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, 1.25F + (player.getWorld().random.nextFloat() * 0.25F) );
+                case 1: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+                case 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
         }
 
