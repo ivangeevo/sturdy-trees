@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "sturdy_trees:log_oak_spike_down",
+    "sturdy_trees:log_spruce_spike_down",
+    "sturdy_trees:log_birch_spike_down",
+    "sturdy_trees:log_jungle_spike_down",
+    "sturdy_trees:log_acacia_spike_down",
+    "sturdy_trees:log_dark_oak_spike_down",
+    "sturdy_trees:log_mangrove_spike_down",
+    "sturdy_trees:log_cherry_spike_down"
+  ]
+}
