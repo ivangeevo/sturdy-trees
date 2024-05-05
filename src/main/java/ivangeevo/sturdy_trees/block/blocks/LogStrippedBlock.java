@@ -23,6 +23,8 @@ public class LogStrippedBlock extends ConvertingLogBlock
         super(settings);
     }
 
+
+    // TODO: Fix breaking a log multiple times & then placing a block above it and breaking it again, resets to the default value here;
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
     {

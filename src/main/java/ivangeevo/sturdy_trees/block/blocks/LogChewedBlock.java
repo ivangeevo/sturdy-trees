@@ -22,7 +22,6 @@ public class LogChewedBlock extends ConvertingLogBlock
         super(settings);
     }
 
-    // TODO: FIX OUTLINES FOR ALL MOD LOG BLOCKS
 
 
     @Override
