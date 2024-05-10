@@ -76,7 +76,7 @@ public class StumpBlock extends ConvertingLogBlock
             } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_VAR1.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_VAR1.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_VAR1.getDefaultState());
             }
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK_VAR1)) {

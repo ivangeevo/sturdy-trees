@@ -1,8 +1,8 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
+import ivangeevo.sturdy_trees.screen.ModCraftingScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class CraftingStumpBlock extends StumpBlock
 {
-    private static final Text TITLE = Text.translatable("container.crafting");
+    private static final Text TITLE = Text.translatable("container.sturdy_trees.crafting");
 
     public CraftingStumpBlock(Settings settings) {
         super(settings);
@@ -34,7 +34,7 @@ public class CraftingStumpBlock extends StumpBlock
 
     @Override
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new CraftingScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE);
+        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new ModCraftingScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE);
     }
 
 }
