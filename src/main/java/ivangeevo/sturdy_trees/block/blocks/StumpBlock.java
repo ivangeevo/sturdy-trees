@@ -75,6 +75,8 @@ public class StumpBlock extends ConvertingLogBlock
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_VAR1.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_VAR1.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.STUMP_MANGROVE)) {
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_MANGROVE_VAR1.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_VAR1.getDefaultState());
             }
@@ -91,6 +93,8 @@ public class StumpBlock extends ConvertingLogBlock
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_CRAFTING.getDefaultState());
+            } else if (state.isOf(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)) {
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_MANGROVE_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY_VAR1)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_CRAFTING.getDefaultState());
             }

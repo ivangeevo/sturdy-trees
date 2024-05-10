@@ -1,5 +1,6 @@
 package ivangeevo.sturdy_trees.item.items;
 
+import ivangeevo.sturdy_trees.block.blocks.CraftingStumpBlock;
 import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.BlockState;
@@ -29,7 +30,7 @@ public class StumpRemoverItem extends Item
 
         if (!world.isClient)
         {
-            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
+            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS) || stump.getBlock() instanceof CraftingStumpBlock)
             {
 
                 this.spawnParticles((ServerWorld) world, pos);

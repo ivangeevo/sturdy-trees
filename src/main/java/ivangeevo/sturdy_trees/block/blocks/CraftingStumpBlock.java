@@ -27,7 +27,10 @@ public class CraftingStumpBlock extends StumpBlock
         if (world.isClient) {
             return ActionResult.SUCCESS;
         }
-        player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+        if (world.getBlockState(pos.up()).isAir())
+        {
+            player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+        }
         player.incrementStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
         return ActionResult.CONSUME;
     }

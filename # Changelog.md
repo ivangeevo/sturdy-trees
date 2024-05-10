@@ -11,6 +11,7 @@
 + Reduced drop rate of sticks from Dead bush.
 + Brough back the logic to create vanilla stripped logs with right click.
 + Fixed Deepslate from not dropping because of wrong insertion of custom code.
++ Fixed all stump textures & made them appropriately convert to crafting tables when using with Tough Environment Chisels.
 
 + Updated the mod to Fabric API 0.92.1 & Fabric Loader 0.15.10
 

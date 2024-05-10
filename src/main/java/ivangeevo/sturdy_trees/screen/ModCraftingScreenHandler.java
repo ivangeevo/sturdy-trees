@@ -121,8 +121,8 @@ public class ModCraftingScreenHandler
     public boolean canUse(PlayerEntity player) {
         // Define a collection of allowed block types
         Set<Block> allowedBlocks = new HashSet<>();
-        allowedBlocks.add(Blocks.CRAFTING_TABLE); // Add the default block
-        // Add any additional blocks you want to allow
+        allowedBlocks.add(Blocks.CRAFTING_TABLE);
+
         allowedBlocks.add(SturdyTreesBlocks.STUMP_OAK_CRAFTING);
         allowedBlocks.add(SturdyTreesBlocks.STUMP_BIRCH_CRAFTING);
         allowedBlocks.add(SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING);
