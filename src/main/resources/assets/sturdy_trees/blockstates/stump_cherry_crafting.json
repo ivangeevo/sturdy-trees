@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "sturdy_trees:block/stump_cherry_crafting"
+      }
+    ]
+  }
+}
