@@ -39,7 +39,6 @@ public class LogStrippedBlock extends ConvertingLogBlock
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
     {
 
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
 
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());
@@ -61,6 +60,9 @@ public class LogStrippedBlock extends ConvertingLogBlock
                         1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
         }
+
+        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
 
     }
 

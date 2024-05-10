@@ -55,8 +55,8 @@ public abstract class ConvertingLogBlock extends PillarBlock
         double offset = (2 + var) / 16.0;
         double to = 1.0 - offset;
 
-        double minY = isDownBlocks(state) ? -4 : 0f;
-        double maxY = isUpBlocks(state) ? 1 : 0f;
+        double minY = isDownBlocks(state) ? -4 : 0;
+        double maxY = isUpBlocks(state) ? 0.6 : 1;
 
         // Create a VoxelShape based on the dimensions
         return VoxelShapes.cuboid(offset, minY, offset, to, maxY, to);

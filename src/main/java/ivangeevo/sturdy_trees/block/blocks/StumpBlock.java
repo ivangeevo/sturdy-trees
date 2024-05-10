@@ -80,19 +80,19 @@ public class StumpBlock extends ConvertingLogBlock
             }
 
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_BIRCH_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_BIRCH_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_ACACIA_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_ACACIA_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_JUNGLE_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_JUNGLE_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_CRAFTING.getDefaultState());
             } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY_VAR1)) {
-                world.setBlockState(pos, Blocks.CRAFTING_TABLE.getDefaultState());
+                world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_CRAFTING.getDefaultState());
             }
 
             if (world.isClient)
