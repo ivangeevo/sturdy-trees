@@ -4,12 +4,15 @@
 
 ### v1.3
 
-+ Rewrote most of the mod logic to work better and more efficiently.
++ Rewrote most of the mod logic to work better.
 + Added recipes for making plank blocks from wooden slabs.
++ Added Crafting Stump blocks.
 + Made the drops for mod log blocks to be datapack compatible (they were hardcoded before)
-+ Reduced drop rate of sticks for Dead bush.
++ Reduced drop rate of sticks from Dead bush.
 + Brough back the logic to create vanilla stripped logs with right click.
 + Fixed Deepslate from not dropping because of wrong insertion of custom code.
+
++ Updated the mod to Fabric API 0.92.1 & Fabric Loader 0.15.10
 
 ### v1.2
 

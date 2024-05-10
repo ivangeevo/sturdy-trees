@@ -22,19 +22,6 @@ public class LogChewedBlock extends ConvertingLogBlock
         super(settings);
     }
 
-
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int var = state.get(VARIATION);
-        double offset = (2 + var) / 16.0;
-        double to = 1.0 - offset;
-
-        // Create a VoxelShape based on the dimensions
-        return VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
-    }
-
-
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 
@@ -53,54 +40,5 @@ public class LogChewedBlock extends ConvertingLogBlock
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);
     }
-
-    /**
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        VoxelShape shape = VoxelShapes.empty();
-        int varInt = getShapeForState(state);
-        int shapesAmount = getShapesAmountForState(state);
-
-        // Define dimensions for each element
-        for (int i = varInt; i <= shapesAmount; i++)
-        {
-            // Calculate 'from' coordinates dynamically
-            double fromX = (3 - i) / 16.0;
-            double fromY = 0.0;
-            double fromZ = (3 - i) / 16.0;
-
-            // Calculate 'to' coordinates dynamically
-            double toX = (13 + i) / 16.0;
-            double toY = (16 - i) / 16.0;
-            double toZ = (13 + i) / 16.0;
-
-            // Create VoxelShape for each element and add to the main shape
-            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(fromX, fromY, fromZ, toX, toY, toZ));
-        }
-
-        return shape;
-    }
-    **/
-
-
-
-    private int getShapeForState(BlockState state)
-    {
-        if (state.get(VARIATION) == 1) { return 1; }
-        else if (state.get(VARIATION) == 2) { return 2; }
-
-        return 0;
-    }
-
-    private int getShapesAmountForState(BlockState state)
-    {
-        if (state.get(VARIATION) == 1) { return 3; }
-        else if (state.get(VARIATION) == 2) { return 7; }
-
-        return 2;
-    }
-
-
 
 }

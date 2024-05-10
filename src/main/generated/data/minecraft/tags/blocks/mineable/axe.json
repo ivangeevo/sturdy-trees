@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#minecraft:logs",
     "#sturdy_trees:log_variation_blocks",
     "#minecraft:leaves"
   ]

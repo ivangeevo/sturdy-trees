@@ -38,16 +38,5 @@ public class LogSpikeBlock extends ConvertingLogBlock
         super.afterBreak(world, player, pos, state, blockEntity, stack);
     }
 
-    private int getShapeForState(BlockState state)
-    {
-        if (state.get(VARIATION) == 1) { return 1; }
-        else if (state.get(VARIATION) == 2) { return 2; }
-
-        return 0;
-    }
-
-
-
-
 
 }

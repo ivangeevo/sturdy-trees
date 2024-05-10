@@ -71,7 +71,7 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
-    inputs.property "btwr_version_required", 0.22
+    inputs.property "btwr_core_version", project.btwr_core_version
 
     filteringCharset "UTF-8"
 
@@ -79,7 +79,7 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "btwr_version_required": 0.22
+                "btwr_core_version": project.btwr_core_version
     }
 }
 

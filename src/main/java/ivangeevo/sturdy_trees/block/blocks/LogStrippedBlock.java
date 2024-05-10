@@ -23,6 +23,16 @@ public class LogStrippedBlock extends ConvertingLogBlock
         super(settings);
     }
 
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
+    {
+        int var = state.get(VARIATION);
+        double offset = (1 + var) / 16.0;
+        double to = 1.0 - offset;
+
+        // Create a VoxelShape based on the dimensions
+        return VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
+    }
 
     // TODO: Fix breaking a log multiple times & then placing a block above it and breaking it again, resets to the default value here;
     @Override
@@ -53,6 +63,8 @@ public class LogStrippedBlock extends ConvertingLogBlock
         }
 
     }
+
+
 
     private BlockState getReplacementState(BlockState state, BlockState blockBelowState, BlockState blockAboveState)
     {
