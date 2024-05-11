@@ -1,10 +1,7 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -66,66 +63,53 @@ public class LogStrippedBlock extends ConvertingLogBlock
 
     }
 
+    private BlockState getReplacementState(BlockState state, BlockState blockBelowState, BlockState blockAboveState) {
+        Block strippedVar = null;
+        Block chewedVar = null;
+        Block spikeUpVar = null;
+        Block spikeDownVar = null;
 
-
-    private BlockState getReplacementState(BlockState state, BlockState blockBelowState, BlockState blockAboveState)
-    {
-
-        Block strippedVar1 = null;
-        Block chewedVar1 = null;
-        Block spikeUpVar1 = null;
-        Block spikeDownVar1 = null;
-
-
-        // Assign the appropriate stripped variations based on the log type
+        // Assign the appropriate block variations based on the log type
         if (state.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_OAK_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_OAK_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_OAK_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_OAK_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_OAK_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_OAK_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_BIRCH_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_BIRCH_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_BIRCH_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_BIRCH_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_SPRUCE_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_SPRUCE_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_JUNGLE_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_JUNGLE_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_ACACIA_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_ACACIA_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_ACACIA_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_ACACIA_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_DARK_OAK_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_DARK_OAK_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_MANGROVE_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_MANGROVE_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN;
         } else if (state.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED)) {
-            strippedVar1 = SturdyTreesBlocks.LOG_CHERRY_STRIPPED;
-            chewedVar1 = SturdyTreesBlocks.LOG_CHERRY_CHEWED;
-            spikeUpVar1 = SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP;
-            spikeDownVar1 = SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN;
-
+            strippedVar = SturdyTreesBlocks.LOG_CHERRY_STRIPPED;
+            chewedVar = SturdyTreesBlocks.LOG_CHERRY_CHEWED;
+            spikeUpVar = SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP;
+            spikeDownVar = SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN;
         }
 
         // Check for blocks above and below
@@ -135,30 +119,28 @@ public class LogStrippedBlock extends ConvertingLogBlock
         // Default and neighboring replacement logic
         if (hasBlockAbove && hasBlockBelow)
         {
-            return chewedVar1.getDefaultState();
+            return chewedVar != null ? chewedVar.getDefaultState() : state;
         }
         else if (hasBlockAbove)
         {
-            return spikeDownVar1.getDefaultState();
+            return spikeDownVar != null ? spikeDownVar.getDefaultState() : state;
         }
         else if (hasBlockBelow)
         {
-            return spikeUpVar1.getDefaultState();
+            return spikeUpVar != null ? spikeUpVar.getDefaultState() : state;
         }
-            // Default, choose strippedVar0
+        else
+        {
+            // If the variation is 3 for stripped, break to air
+            if (state.get(VARIATION) == 3)
+            {
+                return Blocks.AIR.getDefaultState();
+            }
+            // Default, choose the next stripped variation
             int var = state.get(VARIATION);
-            assert strippedVar1 != null;
-            return strippedVar1.getDefaultState().with(VARIATION, var + 1);
-
-
+            return strippedVar != null ? strippedVar.getStateWithProperties(state.with(VARIATION, (var + 1) % 4)) : state;
+        }
     }
-
-
-
-
-
-
-
 
 
 

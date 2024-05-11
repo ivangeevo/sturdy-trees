@@ -48,6 +48,8 @@ public abstract class ConvertingLogBlock extends PillarBlock
         builder.add(VARIATION, CHARRED);
     }
 
+
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
@@ -55,11 +57,8 @@ public abstract class ConvertingLogBlock extends PillarBlock
         double offset = (2 + var) / 16.0;
         double to = 1.0 - offset;
 
-        double minY = isDownBlocks(state) ? -4 : 0;
-        double maxY = isUpBlocks(state) ? 0.6 : 1;
-
         // Create a VoxelShape based on the dimensions
-        return VoxelShapes.cuboid(offset, minY, offset, to, maxY, to);
+        return VoxelShapes.cuboid(offset, 0, offset, to, 1.0, to);
     }
 
     @Override
@@ -69,9 +68,10 @@ public abstract class ConvertingLogBlock extends PillarBlock
 
         if (!world.isClient)
         {
-            if (variation < 2)
+
+            if (variation < 2 && !(state.getBlock() instanceof LogStrippedBlock))
             {
-                world.setBlockState(pos, this.getDefaultState().with(VARIATION, variation + 1));
+                world.setBlockState(pos, getStateWithProperties(state.with(VARIATION, variation + 1)));
             }
 
         }
@@ -80,28 +80,6 @@ public abstract class ConvertingLogBlock extends PillarBlock
 
     }
 
-    private static boolean isUpBlocks(BlockState state)
-    {
-        return state.isOf(SturdyTreesBlocks.LOG_OAK_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP)
-                || state.isOf(SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP);
-    }
 
-    private static boolean isDownBlocks(BlockState state)
-    {
-        return state.isOf(SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN)
-                || state.isOf(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN);
-    }
 
 }
