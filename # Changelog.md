@@ -6,7 +6,7 @@
 
 + Rewrote most of the mod logic to work better.
 + Added recipes for making plank blocks from wooden slabs.
-+ Added Crafting Stump blocks.
++ Added Crafting Stump blocks. ( currently only acquired by breaking with Tough Environment chisel.)
 + Made the drops for mod log blocks to be datapack compatible (they were hardcoded before)
 + Reduced drop rate of sticks from Dead bush.
 + Brough back the logic to create vanilla stripped logs with right click.
