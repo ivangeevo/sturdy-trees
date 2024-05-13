@@ -31,20 +31,21 @@ public class LogSpikeBlock extends ConvertingLogBlock
         double offset = (2 + var) / 16.0;
         double to = 1.0 - offset;
 
+        /**
         if (var == 2 && isDownBlocks(state))
         {
             double minY = 0.6;
-            double maxY = 1;
+            double maxY = 1f;
             return VoxelShapes.cuboid(offset, minY, offset, to, maxY, to);
         }
         else if (isUpBlocks(state))
         {
             double minY = 0;
-            double maxY = 0.4f;
+            double maxY = 1f;
             return VoxelShapes.cuboid(offset, minY, offset, to, maxY, to);
 
         }
-
+         **/
 
         // Create a VoxelShape based on the dimensions
         return VoxelShapes.cuboid(offset, 0, offset, to, 1.0f, to);
