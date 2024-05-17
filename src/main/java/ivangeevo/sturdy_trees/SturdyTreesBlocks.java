@@ -22,29 +22,31 @@ public class SturdyTreesBlocks implements SideModUtils {
 
     /** STUMP BLOCKS **/
 
-    public static final Block STUMP_OAK = registerBlockWithoutItem("stump_oak", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_OAK_VAR1 = registerBlockWithoutItem("stump_oak_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
+    public static final Block STUMP_OAK = registerBlockWithoutItem("stump_oak", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_SPRUCE = registerBlockWithoutItem("stump_spruce", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_BIRCH = registerBlockWithoutItem("stump_birch", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_JUNGLE = registerBlockWithoutItem("stump_jungle", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_ACACIA = registerBlockWithoutItem("stump_acacia", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_DARK_OAK = registerBlockWithoutItem("stump_dark_oak", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_MANGROVE = registerBlockWithoutItem("stump_mangrove", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_CHERRY = registerBlockWithoutItem("stump_cherry", createStump(MapColor.OAK_TAN, BlockSoundGroup.CHERRY_WOOD));
+
+    public static final Block STUMP_OAK_VAR1 = registerBlockWithoutItem("stump_oak_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_SPRUCE_VAR1 = registerBlockWithoutItem("stump_spruce_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_BIRCH_VAR1 = registerBlockWithoutItem("stump_birch_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_JUNGLE_VAR1 = registerBlockWithoutItem("stump_jungle_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_ACACIA_VAR1 = registerBlockWithoutItem("stump_acacia_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_DARK_OAK_VAR1 = registerBlockWithoutItem("stump_dark_oak_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_MANGROVE_VAR1 = registerBlockWithoutItem("stump_mangrove_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.WOOD));
+    public static final Block STUMP_CHERRY_VAR1 = registerBlockWithoutItem("stump_cherry_var1", createStump(MapColor.OAK_TAN, BlockSoundGroup.CHERRY_WOOD));
+
     public static final Block STUMP_OAK_CRAFTING = registerBlockWithoutItem("stump_oak_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_SPRUCE = registerBlockWithoutItem("stump_spruce", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_SPRUCE_VAR1 = registerBlockWithoutItem("stump_spruce_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_SPRUCE_CRAFTING = registerBlockWithoutItem("stump_spruce_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_BIRCH = registerBlockWithoutItem("stump_birch", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_BIRCH_VAR1 = registerBlockWithoutItem("stump_birch_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_BIRCH_CRAFTING = registerBlockWithoutItem("stump_birch_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_JUNGLE = registerBlockWithoutItem("stump_jungle", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_JUNGLE_VAR1 = registerBlockWithoutItem("stump_jungle_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_JUNGLE_CRAFTING = registerBlockWithoutItem("stump_jungle_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_ACACIA = registerBlockWithoutItem("stump_acacia", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_ACACIA_VAR1 = registerBlockWithoutItem("stump_acacia_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_ACACIA_CRAFTING = registerBlockWithoutItem("stump_acacia_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_DARK_OAK = registerBlockWithoutItem("stump_dark_oak", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_DARK_OAK_VAR1 = registerBlockWithoutItem("stump_dark_oak_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_DARK_OAK_CRAFTING = registerBlockWithoutItem("stump_dark_oak_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_MANGROVE = registerBlockWithoutItem("stump_mangrove", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_MANGROVE_VAR1 = registerBlockWithoutItem("stump_mangrove_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_MANGROVE_CRAFTING = registerBlockWithoutItem("stump_mangrove_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_CHERRY = registerBlockWithoutItem("stump_cherry", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
-    public static final Block STUMP_CHERRY_VAR1 = registerBlockWithoutItem("stump_cherry_var1", new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
     public static final Block STUMP_CHERRY_CRAFTING = registerBlockWithoutItem("stump_cherry_crafting", new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.OAK_TAN).instrument(Instrument.BASS).burnable()));
 
 
@@ -123,6 +125,12 @@ public class SturdyTreesBlocks implements SideModUtils {
         return new LogStrippedBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
                 .instrument(Instrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
+    }
+
+    public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup)
+    {
+      return new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(soundGroup)
+              .mapColor(mapColor).instrument(Instrument.BASS).burnable());
     }
 
     public static LogStrippedBlock createBambooStripped(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
