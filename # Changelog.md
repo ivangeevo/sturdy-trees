@@ -2,6 +2,13 @@
 
 ---
 
+# v1.4
+
++ Added bamboo block to bamboo planks recipe with an axe.
++ Reduced Dead Bush Shaft drop rate even further, from 20 to 11 percent.
++ Code optimizations
+
+
 ### v1.3
 
 + Rewrote most of the mod logic to work better.
