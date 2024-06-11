@@ -53,10 +53,6 @@ public abstract class AxeItemMixin extends MiningToolItem {
         return super.getMiningSpeedMultiplier(stack, state);
     }
 
-    // Method to calculate random chance of conversion
-    private boolean canConvertWithChance(World world) {
-        return world.getRandom().nextFloat() >= 0.2f;
-    }
 
 
 
