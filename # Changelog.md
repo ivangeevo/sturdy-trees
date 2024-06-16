@@ -9,6 +9,7 @@
 + Reduced fuel values for Saw Dust and all Bark items.
 + Fixed missing textures for some stump blocks.
 + Fixed models in general for some of the custom log models.
++ Balanced (brough back to normal) the axes breaking speed for leaves, as it was too fast.
 
 
 ### v1.3
