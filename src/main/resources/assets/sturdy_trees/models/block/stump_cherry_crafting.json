@@ -3,7 +3,7 @@
   "textures": {
     "1": "minecraft:block/crafting_table_top",
     "2": "sturdy_trees:block/stump_cherry_crafting",
-    "3": "sturdy_trees:block/stump_cherry_top",
+    "3": "minecraft:block/cherry_log_top",
     "particle": "sturdy_trees:block/stump_cherry_crafting"
   },
   "elements": [

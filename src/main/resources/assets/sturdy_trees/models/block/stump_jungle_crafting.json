@@ -3,7 +3,7 @@
   "textures": {
     "1": "minecraft:block/crafting_table_top",
     "2": "sturdy_trees:block/stump_jungle_crafting",
-    "3": "minecraft:block/jungle_top",
+    "3": "minecraft:block/jungle_log_top",
     "particle": "sturdy_trees:block/stump_jungle_crafting"
   },
   "elements": [

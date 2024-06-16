@@ -7,6 +7,8 @@
 + Added bamboo block to bamboo planks recipe with an axe.
 + Reduced Dead Bush Shaft drop rate even further, from 20 to 11 percent.
 + Reduced fuel values for Saw Dust and all Bark items.
++ Fixed missing textures for some stump blocks.
++ Fixed models in general for some of the custom log models.
 
 
 ### v1.3
