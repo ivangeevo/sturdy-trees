@@ -11,7 +11,7 @@
 + Fixed models in general for some of the custom log models.
 + Balanced (brough back to normal) the axes breaking speed for leaves, as it was too fast.
 + Fixed code to work as intended on the server side as well.
-+ Updated the mod to Fabric API 0.92.2 & Fabric Loader 0.15.11
++ Updated the mod to Fabric API 0.92.2 & Fabric Loader 0.15.11 
 
 ### v1.3
 
