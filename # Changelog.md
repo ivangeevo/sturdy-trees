@@ -5,11 +5,12 @@
 # v1.4
 
 + Added bamboo block to bamboo planks recipe with an axe.
-+ Reduced Dead Bush Shaft drop rate even further, from 20 to 11 percent.
++ Reduced Dead Bush Shaft(Stick) drop rate even further, from 20 to 11 percent.
 + Reduced fuel values for Saw Dust and all Bark items.
 + Fixed missing textures for some stump blocks.
 + Fixed models in general for some of the custom log models.
 + Balanced (brough back to normal) the axes breaking speed for leaves, as it was too fast.
++ Fixed code to work as intended on the server side as well.
 
 
 ### v1.3

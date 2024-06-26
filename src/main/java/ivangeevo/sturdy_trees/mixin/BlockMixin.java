@@ -20,6 +20,6 @@ public abstract class BlockMixin
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void setState(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
-        TreeBreakManager.setStateForLog(world, pos, state, tool);
+        TreeBreakManager.getInstance().setStateForLog(world, pos, state, tool);
     }
 }
