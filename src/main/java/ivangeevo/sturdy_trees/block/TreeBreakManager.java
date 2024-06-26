@@ -1,5 +1,6 @@
 package ivangeevo.sturdy_trees.block;
 
+import com.sun.source.tree.Tree;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
@@ -16,8 +17,16 @@ import net.minecraft.world.World;
 
 public class TreeBreakManager
 {
+    private static final TreeBreakManager instance = new TreeBreakManager();
 
-    public static void setStateForLog(World world, BlockPos pos, BlockState state, ItemStack tool)
+    // Private constructor to prevent instantiation
+    private TreeBreakManager() {}
+    public static TreeBreakManager getInstance()
+    {
+        return instance;
+    }
+
+    public void setStateForLog(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
 
             if (state.isOf(Blocks.OAK_LOG)) {
@@ -40,8 +49,9 @@ public class TreeBreakManager
 
     }
 
-    private static void handleLogBreak(World world, BlockPos pos, BlockState state, ItemStack tool, Block... logVariants) {
-        boolean isFullyBreakingAxe = tool.isIn(BTWRConventionalTags.Items.MODERN_AXES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_AXES);
+    private void handleLogBreak(World world, BlockPos pos, BlockState state, ItemStack tool, Block... logVariants) {
+        boolean isFullyBreakingAxe = tool.isIn(BTWRConventionalTags.Items.MODERN_AXES)
+                || tool.isIn(BTWRConventionalTags.Items.ADVANCED_AXES);
 
         if (world instanceof ServerWorld)
         {

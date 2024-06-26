@@ -2,6 +2,17 @@
 
 ---
 
+# v1.4
+
++ Added bamboo block to bamboo planks recipe with an axe.
++ Reduced Dead Bush Shaft(Stick) drop rate even further, from 20 to 11 percent.
++ Reduced fuel values for Saw Dust and all Bark items.
++ Fixed missing textures for some stump blocks.
++ Fixed models in general for some of the custom log models.
++ Balanced (brough back to normal) the axes breaking speed for leaves, as it was too fast.
++ Fixed code to work as intended on the server side as well.
++ Updated the mod to Fabric API 0.92.2 & Fabric Loader 0.15.11
+
 ### v1.3
 
 + Rewrote most of the mod logic to work better.

@@ -1,14 +1,14 @@
 {
   "schemaVersion":1,
   "id":"sturdy_trees",
-  "version":"1.3",
+  "version":"1.4",
   "name":"Sturdy Trees",
   "description":"",
   "authors":[],
   "contact":{
-    "repo":"https://github.com/Ivan/sturdy_treesw-remastered-private"
+    "repo":"https://github.com/ivangeevo/sturdy-trees"
   },
-  "license":"All-Rights-Reserved",
+  "license":"MIT",
   "icon":"assets/sturdy_trees/icon.png",
   "environment":"*",
   "entrypoints":{
