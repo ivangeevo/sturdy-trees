@@ -12,7 +12,6 @@
 + Balanced (brough back to normal) the axes breaking speed for leaves, as it was too fast.
 + Fixed code to work as intended on the server side as well.
 
-
 ### v1.3
 
 + Rewrote most of the mod logic to work better.
