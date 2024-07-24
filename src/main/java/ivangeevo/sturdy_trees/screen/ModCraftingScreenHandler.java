@@ -18,10 +18,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
-import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ScreenHandler;
@@ -73,21 +70,28 @@ public class ModCraftingScreenHandler
         }
     }
 
-    protected static void updateResult(ScreenHandler handler, World world, PlayerEntity player, RecipeInputInventory craftingInventory, CraftingResultInventory resultInventory) {
-        ItemStack itemStack2;
-        CraftingRecipe craftingRecipe;
-        if (world.isClient) {
-            return;
+    protected static void updateResult(ScreenHandler handler, World world, PlayerEntity player, RecipeInputInventory craftingInventory, CraftingResultInventory resultInventory)
+    {
+        if (!world.isClient)
+        {
+            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
+            ItemStack itemStack = ItemStack.EMPTY;
+            Optional<RecipeEntry<CraftingRecipe>> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
+            if (optional.isPresent()) {
+                RecipeEntry<CraftingRecipe> recipeEntry = (RecipeEntry)optional.get();
+                CraftingRecipe craftingRecipe = (CraftingRecipe)recipeEntry.value();
+                if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, recipeEntry)) {
+                    ItemStack itemStack2 = craftingRecipe.craft(craftingInventory, world.getRegistryManager());
+                    if (itemStack2.isItemEnabled(world.getEnabledFeatures())) {
+                        itemStack = itemStack2;
+                    }
+                }
+            }
+
+            resultInventory.setStack(0, itemStack);
+            handler.setPreviousTrackedSlot(0, itemStack);
+            serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
         }
-        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
-        ItemStack itemStack = ItemStack.EMPTY;
-        Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
-        if (optional.isPresent() && resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe = optional.get()) && (itemStack2 = craftingRecipe.craft(craftingInventory, world.getRegistryManager())).isItemEnabled(world.getEnabledFeatures())) {
-            itemStack = itemStack2;
-        }
-        resultInventory.setStack(0, itemStack);
-        handler.setPreviousTrackedSlot(0, itemStack);
-        serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
     }
 
     @Override
@@ -107,8 +111,8 @@ public class ModCraftingScreenHandler
     }
 
     @Override
-    public boolean matches(Recipe<? super RecipeInputInventory> recipe) {
-        return recipe.matches(this.input, this.player.getWorld());
+    public boolean matches(RecipeEntry<? extends Recipe<RecipeInputInventory>> recipe) {
+        return recipe.value().matches(this.input, this.player.getWorld());
     }
 
     @Override
@@ -169,27 +173,44 @@ public class ModCraftingScreenHandler
             ItemStack itemStack2 = slot2.getStack();
             itemStack = itemStack2.copy();
             if (slot == 0) {
-                this.context.run((world, pos) -> itemStack2.getItem().onCraft(itemStack2, (World)world, player));
+                this.context.run((world, pos) -> {
+                    itemStack2.getItem().onCraftByPlayer(itemStack2, world, player);
+                });
                 if (!this.insertItem(itemStack2, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }
+
                 slot2.onQuickTransfer(itemStack2, itemStack);
-            } else if (slot >= 10 && slot < 46 ? !this.insertItem(itemStack2, 1, 10, false) && (slot < 37 ? !this.insertItem(itemStack2, 37, 46, false) : !this.insertItem(itemStack2, 10, 37, false)) : !this.insertItem(itemStack2, 10, 46, false)) {
+            } else if (slot >= 10 && slot < 46) {
+                if (!this.insertItem(itemStack2, 1, 10, false)) {
+                    if (slot < 37) {
+                        if (!this.insertItem(itemStack2, 37, 46, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if (!this.insertItem(itemStack2, 10, 37, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+            } else if (!this.insertItem(itemStack2, 10, 46, false)) {
                 return ItemStack.EMPTY;
             }
+
             if (itemStack2.isEmpty()) {
                 slot2.setStack(ItemStack.EMPTY);
             } else {
                 slot2.markDirty();
             }
+
             if (itemStack2.getCount() == itemStack.getCount()) {
                 return ItemStack.EMPTY;
             }
+
             slot2.onTakeItem(player, itemStack2);
             if (slot == 0) {
                 player.dropItem(itemStack2, false);
             }
         }
+
         return itemStack;
     }
 

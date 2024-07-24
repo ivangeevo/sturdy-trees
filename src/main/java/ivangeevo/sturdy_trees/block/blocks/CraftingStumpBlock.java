@@ -23,8 +23,10 @@ public class CraftingStumpBlock extends StumpBlock
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
+    {
+        if (world.isClient)
+        {
             return ActionResult.SUCCESS;
         }
         if (world.getBlockState(pos.up()).isAir())
@@ -34,6 +36,7 @@ public class CraftingStumpBlock extends StumpBlock
         player.incrementStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
         return ActionResult.CONSUME;
     }
+
 
     @Override
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {

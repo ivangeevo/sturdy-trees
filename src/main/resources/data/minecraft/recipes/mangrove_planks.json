@@ -13,7 +13,7 @@
     "count": 3,
     "item": "minecraft:mangrove_planks"
   },
-  "secondaryResult": [
+  "additionalDrops": [
     {
       "item": "sturdy_trees:bark_mangrove",
       "count": 1

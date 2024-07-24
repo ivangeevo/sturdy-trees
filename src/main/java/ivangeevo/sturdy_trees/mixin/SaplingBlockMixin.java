@@ -21,7 +21,7 @@ public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizab
 
     // Make the saplings not able to be grown fast with Bone Meal
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return false;
     }
 

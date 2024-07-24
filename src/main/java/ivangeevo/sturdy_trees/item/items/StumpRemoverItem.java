@@ -67,9 +67,9 @@ public class StumpRemoverItem extends Item
     }
 
     @Override
-    public void onCraft(ItemStack stack, World world, PlayerEntity player)
+    public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player)
     {
-        super.onCraft(stack, world, player);
+        super.onCraftByPlayer(stack, world, player);
 
         float pitch = (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F;
 
@@ -78,4 +78,5 @@ public class StumpRemoverItem extends Item
             player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.1F, pitch);
         }
     }
+
 }

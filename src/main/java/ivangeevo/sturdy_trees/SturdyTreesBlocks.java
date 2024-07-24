@@ -2,7 +2,6 @@ package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.block.blocks.*;
 import ivangeevo.sturdy_trees.util.SideModUtils;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -153,7 +152,7 @@ public class SturdyTreesBlocks implements SideModUtils {
 
     private static Item registerBlockItem(String name, Block block, ItemGroup tab) {
         return Registry.register(Registries.ITEM, new Identifier(SturdyTreesMod.MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings()));
+                new BlockItem(block, new Item.Settings()));
     }
 
     public static void registerModBlocks() {

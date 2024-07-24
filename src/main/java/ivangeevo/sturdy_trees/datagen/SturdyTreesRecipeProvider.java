@@ -5,7 +5,7 @@ import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
@@ -14,26 +14,28 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class SturdyTreesRecipeProvider extends FabricRecipeProvider
 {
 
 
-    public SturdyTreesRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public SturdyTreesRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    public void generate(Consumer<RecipeJsonProvider> exporter)
+    public void generate(RecipeExporter exporter)
     {
         this.addToModRecipes(exporter);
     }
 
-    private void addToModRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addToModRecipes(RecipeExporter exporter)
     {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.OAK_PLANKS).input('#', Items.OAK_SLAB).pattern("#").pattern("#").criterion("has_oak_planks", RecipeProvider.conditionsFromItem(Items.OAK_SLAB)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BIRCH_PLANKS).input('#', Items.BIRCH_SLAB).pattern("#").pattern("#").criterion("has_birch_planks", RecipeProvider.conditionsFromItem(Items.BIRCH_SLAB)).offerTo(exporter);
@@ -48,7 +50,7 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
 
 
     // Helper methods
-    public static void offerTwoInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input, ItemConvertible input2, @Nullable String group, int outputCount) {
+    public static void offerTwoInputShapelessRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, ItemConvertible input2, @Nullable String group, int outputCount) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
                 .input(input).input(input2)
                 .group(group)
@@ -56,7 +58,7 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
                 .offerTo(exporter, convertBetween(output, input));
     }
 
-    public static void offerThreeInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input, ItemConvertible input2, ItemConvertible input3, @Nullable String group, int outputCount) {
+    public static void offerThreeInputShapelessRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, ItemConvertible input2, ItemConvertible input3, @Nullable String group, int outputCount) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
                 .input(input).input(input2).input(input3)
                 .group(group)
@@ -64,11 +66,13 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
                 .offerTo(exporter, convertBetween(output, input));
     }
 
-    public static void offerFourInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input, ItemConvertible input2, ItemConvertible input3, ItemConvertible input4, @Nullable String group, int outputCount) {
+    public static void offerFourInputShapelessRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, ItemConvertible input2, ItemConvertible input3, ItemConvertible input4, @Nullable String group, int outputCount) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
                 .input(input).input(input2).input(input3).input(input4)
                 .group(group)
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, convertBetween(output, input));
     }
+
+
 }

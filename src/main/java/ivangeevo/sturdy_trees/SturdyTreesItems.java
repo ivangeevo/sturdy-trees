@@ -1,7 +1,6 @@
 package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.item.items.StumpRemoverItem;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
@@ -12,19 +11,19 @@ import net.minecraft.util.Identifier;
 
 public class SturdyTreesItems {
 
-    //public static final Item SHAFT = registerItem( "shaft", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
-    public static final Item STUMP_REMOVER = registerItem( "stump_remover", new StumpRemoverItem(new FabricItemSettings().maxCount(16)));
+    //public static final Item SHAFT = registerItem( "shaft", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
+    public static final Item STUMP_REMOVER = registerItem( "stump_remover", new StumpRemoverItem(new Item.Settings().maxCount(16)));
 
-    public static final Item DUST_SAW = registerItem( "dust_saw", new Item (new FabricItemSettings()));
+    public static final Item DUST_SAW = registerItem( "dust_saw", new Item (new Item.Settings()));
 
-    public static final Item BARK_OAK = registerItem( "bark_oak", new Item (new FabricItemSettings()));
-    public static final Item BARK_BIRCH = registerItem( "bark_birch", new Item (new FabricItemSettings()));
-    public static final Item BARK_SPRUCE = registerItem( "bark_spruce", new Item (new FabricItemSettings()));
-    public static final Item BARK_JUNGLE = registerItem( "bark_jungle", new Item (new FabricItemSettings()));
-    public static final Item BARK_ACACIA = registerItem( "bark_acacia", new Item (new FabricItemSettings()));
-    public static final Item BARK_DARK_OAK = registerItem( "bark_dark_oak", new Item (new FabricItemSettings()));
-    public static final Item BARK_MANGROVE = registerItem( "bark_mangrove", new Item (new FabricItemSettings()));
-    public static final Item BARK_CHERRY = registerItem( "bark_cherry", new Item (new FabricItemSettings()));
+    public static final Item BARK_OAK = registerItem( "bark_oak", new Item (new Item.Settings()));
+    public static final Item BARK_BIRCH = registerItem( "bark_birch", new Item (new Item.Settings()));
+    public static final Item BARK_SPRUCE = registerItem( "bark_spruce", new Item (new Item.Settings()));
+    public static final Item BARK_JUNGLE = registerItem( "bark_jungle", new Item (new Item.Settings()));
+    public static final Item BARK_ACACIA = registerItem( "bark_acacia", new Item (new Item.Settings()));
+    public static final Item BARK_DARK_OAK = registerItem( "bark_dark_oak", new Item (new Item.Settings()));
+    public static final Item BARK_MANGROVE = registerItem( "bark_mangrove", new Item (new Item.Settings()));
+    public static final Item BARK_CHERRY = registerItem( "bark_cherry", new Item (new Item.Settings()));
 
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {

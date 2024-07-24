@@ -13,7 +13,7 @@
     "count": 3,
     "item": "minecraft:dark_oak_planks"
   },
-  "secondaryResult": [
+  "additionalDrops": [
     {
       "item": "sturdy_trees:bark_dark_oak",
       "count": 1
