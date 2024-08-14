@@ -12,9 +12,9 @@
 
   "result": {
     "count": 2,
-    "item": "minecraft:stick"
+    "id": "minecraft:stick"
   },
-  "secondaryResult": [
+  "additionalDrops": [
     {
       "item": "sturdy_trees:bark_birch",
       "count": 1

@@ -14,7 +14,7 @@
   ],
   "result": {
     "count": 2,
-    "item": "sturdy_trees:stump_remover"
+    "id": "sturdy_trees:stump_remover"
   },
   "show_notification": false
 }

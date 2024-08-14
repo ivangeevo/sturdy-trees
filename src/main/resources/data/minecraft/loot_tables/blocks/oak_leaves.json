@@ -18,10 +18,7 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "items": [
-                          "minecraft:shears",
-                          "btwr:diamond_shears"
-                        ]
+                        "items": "#c:shears"
                       }
                     },
                     {
@@ -109,10 +106,7 @@
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "items": [
-                    "minecraft:shears",
-                    "btwr:diamond_shears"
-                  ]
+                  "items": "#c:shears"
                 }
               },
               {
@@ -167,10 +161,7 @@
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "items": [
-                    "minecraft:shears",
-                    "btwr:diamond_shears"
-                  ]
+                  "items": "#c:shears"
                 }
               },
               {
