@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -28,9 +29,10 @@ import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class ModCraftingScreenHandler
-        extends AbstractRecipeScreenHandler<RecipeInputInventory>
+        extends AbstractRecipeScreenHandler<CraftingRecipeInput, CraftingRecipe>
 {
     public static final int RESULT_ID = 0;
     private static final int INPUT_START = 1;
@@ -43,6 +45,9 @@ public class ModCraftingScreenHandler
     private final CraftingResultInventory result = new CraftingResultInventory();
     private final ScreenHandlerContext context;
     private final PlayerEntity player;
+
+    private boolean filling;
+
 
     public ModCraftingScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
@@ -70,18 +75,17 @@ public class ModCraftingScreenHandler
         }
     }
 
-    protected static void updateResult(ScreenHandler handler, World world, PlayerEntity player, RecipeInputInventory craftingInventory, CraftingResultInventory resultInventory)
-    {
-        if (!world.isClient)
-        {
+    protected static void updateResult(ScreenHandler handler, World world, PlayerEntity player, RecipeInputInventory craftingInventory, CraftingResultInventory resultInventory, @Nullable RecipeEntry<CraftingRecipe> recipe) {
+        if (!world.isClient) {
+            CraftingRecipeInput craftingRecipeInput = craftingInventory.createRecipeInput();
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
             ItemStack itemStack = ItemStack.EMPTY;
-            Optional<RecipeEntry<CraftingRecipe>> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
+            Optional<RecipeEntry<CraftingRecipe>> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingRecipeInput, world, recipe);
             if (optional.isPresent()) {
                 RecipeEntry<CraftingRecipe> recipeEntry = (RecipeEntry)optional.get();
                 CraftingRecipe craftingRecipe = (CraftingRecipe)recipeEntry.value();
                 if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, recipeEntry)) {
-                    ItemStack itemStack2 = craftingRecipe.craft(craftingInventory, world.getRegistryManager());
+                    ItemStack itemStack2 = craftingRecipe.craft(craftingRecipeInput, world.getRegistryManager());
                     if (itemStack2.isItemEnabled(world.getEnabledFeatures())) {
                         itemStack = itemStack2;
                     }
@@ -94,9 +98,19 @@ public class ModCraftingScreenHandler
         }
     }
 
+
     @Override
     public void onContentChanged(Inventory inventory) {
-        this.context.run((world, pos) -> ModCraftingScreenHandler.updateResult(this, world, this.player, this.input, this.result));
+        if (!this.filling) {
+            this.context.run((world, pos) -> {
+                updateResult(this, world, this.player, this.input, this.result, (RecipeEntry)null);
+            });
+        }
+
+    }
+
+    public void onInputSlotFillStart() {
+        this.filling = true;
     }
 
     @Override
@@ -111,8 +125,8 @@ public class ModCraftingScreenHandler
     }
 
     @Override
-    public boolean matches(RecipeEntry<? extends Recipe<RecipeInputInventory>> recipe) {
-        return recipe.value().matches(this.input, this.player.getWorld());
+    public boolean matches(RecipeEntry recipe) {
+        return ((CraftingRecipe)recipe.value()).matches(this.input.createRecipeInput(), this.player.getWorld());
     }
 
     @Override

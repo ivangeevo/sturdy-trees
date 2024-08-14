@@ -18,7 +18,7 @@ public final class SturdyTreesTags
         public static final TagKey<Block> LOG_SPIKE_DOWN_BLOCKS =  registerTag("log_spike_down_blocks");
 
         private static TagKey<Block> registerTag(String id) {
-            return TagKey.of(RegistryKeys.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, id));
+            return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, id));
         }
 
     }
@@ -30,7 +30,7 @@ public final class SturdyTreesTags
 
 
         private static TagKey<Item> registerTag(String id) {
-            return TagKey.of(RegistryKeys.ITEM, new Identifier(SturdyTreesMod.MOD_ID, id));
+            return TagKey.of(RegistryKeys.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, id));
         }
 
     }

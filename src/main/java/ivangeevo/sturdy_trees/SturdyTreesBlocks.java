@@ -7,8 +7,9 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.PillarBlock;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Instrument;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
@@ -97,61 +98,61 @@ public class SturdyTreesBlocks implements SideModUtils {
 
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup)
     {
-        return new StumpBlock(FabricBlockSettings.create().strength(50.0f).sounds(soundGroup)
-                .mapColor(mapColor).instrument(Instrument.BASS).burnable());
+        return new StumpBlock(AbstractBlock.Settings.create().strength(50.0f).sounds(soundGroup)
+                .mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable());
     }
 
     public static StumpBlock createStumpCrafting(MapColor mapColor)
     {
         return new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f)
-                .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(Instrument.BASS).burnable());
+                .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable());
     }
     public static LogSpikeBlock createSpike(MapColor topMapColor, MapColor sideMapColor) {
         return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
+                .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
     }
 
     public static LogSpikeBlock createBambooSpike(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
         return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
+                .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
     }
 
     public static LogChewedBlock createChewed(MapColor topMapColor, MapColor sideMapColor) {
         return new LogChewedBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
+                .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
     }
 
     public static LogChewedBlock createBambooChewed(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
         return new LogChewedBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
+                .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
     }
 
     public static LogStrippedBlock createStripped(MapColor topMapColor, MapColor sideMapColor) {
         return new LogStrippedBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
+                .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
     }
 
     public static LogStrippedBlock createBambooStripped(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
         return new LogStrippedBlock(AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                .instrument(Instrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
+                .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
     }
     private static Block registerBlockWithoutItem(String name, Block block) {
-        return Registry.register(Registries.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, name), block);
     }
 
     private static Block registerBlock(String name, Block block, ItemGroup tab) {
         registerBlockItem(name, block, tab);
-        return Registry.register(Registries.BLOCK, new Identifier(SturdyTreesMod.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, name), block);
     }
 
     private static Item registerBlockItem(String name, Block block, ItemGroup tab) {
-        return Registry.register(Registries.ITEM, new Identifier(SturdyTreesMod.MOD_ID, name),
+        return Registry.register(Registries.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, name),
                 new BlockItem(block, new Item.Settings()));
     }
 
