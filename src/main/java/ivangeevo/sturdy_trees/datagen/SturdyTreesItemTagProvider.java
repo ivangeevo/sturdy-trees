@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -37,7 +38,8 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(Items.DIAMOND_AXE);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_AXES)
-                .add(Items.NETHERITE_AXE);
+                .add(Items.NETHERITE_AXE)
+                .addOptional(new Identifier("bwt", "netherite_battle_axe"));
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK)
                 .add(Items.STONE_AXE)
