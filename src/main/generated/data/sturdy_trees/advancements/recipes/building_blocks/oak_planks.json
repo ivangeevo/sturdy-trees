@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oak_planks": {
+    "has_oak_slab": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:oak_slab"
-            ]
+            "items": "minecraft:oak_slab"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_oak_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_oak_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:oak_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

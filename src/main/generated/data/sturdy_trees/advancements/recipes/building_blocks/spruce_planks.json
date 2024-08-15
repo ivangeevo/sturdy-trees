@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_spruce_planks": {
+    "has_spruce_slab": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:spruce_slab"
-            ]
+            "items": "minecraft:spruce_slab"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_spruce_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_spruce_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:spruce_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

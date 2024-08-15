@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_birch_planks": {
+    "has_birch_slab": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:birch_slab"
-            ]
+            "items": "minecraft:birch_slab"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_birch_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_birch_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:birch_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

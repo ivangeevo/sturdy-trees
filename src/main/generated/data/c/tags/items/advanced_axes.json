@@ -1,6 +1,9 @@
 {
-  "replace": false,
   "values": [
-    "minecraft:netherite_axe"
+    "minecraft:netherite_axe",
+    {
+      "id": "bwt:netherite_battle_axe",
+      "required": false
+    }
   ]
 }

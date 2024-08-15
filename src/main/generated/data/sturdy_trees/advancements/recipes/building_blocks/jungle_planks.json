@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_jungle_planks": {
+    "has_jungle_slab": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:jungle_slab"
-            ]
+            "items": "minecraft:jungle_slab"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_jungle_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_jungle_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:jungle_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
