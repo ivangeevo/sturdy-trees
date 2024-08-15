@@ -1,6 +1,11 @@
 # <center>Sturdy Trees</center>
 
 ---
+## v1.4.1
+
++ Fixed a bug that caused leaves to always drop when broken by hand
++ General improvements for some loot tables and recipes that were causing problems since the 1.20.6 update
++ Updated the mod to latest fabric api version for 1.20.6
 
 ### v1.4
 

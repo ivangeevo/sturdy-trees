@@ -1,7 +1,7 @@
 {
   "schemaVersion":1,
   "id":"sturdy_trees",
-  "version":"1.4",
+  "version":"${version}",
   "name":"Sturdy Trees",
   "description":"",
   "authors":[],
