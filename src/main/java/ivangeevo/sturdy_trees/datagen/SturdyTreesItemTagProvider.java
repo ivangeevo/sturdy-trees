@@ -39,7 +39,7 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_AXES)
                 .add(Items.NETHERITE_AXE)
-                .addOptional(new Identifier("bwt", "netherite_battle_axe"));
+                .addOptional(Identifier.of("bwt", "netherite_battle_axe"));
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK)
                 .add(Items.STONE_AXE)
