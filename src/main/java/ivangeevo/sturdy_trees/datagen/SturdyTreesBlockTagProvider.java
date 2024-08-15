@@ -50,8 +50,6 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
                 .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1);
 
-
-
     }
 
     private void addToModTags()
