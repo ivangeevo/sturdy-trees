@@ -3,7 +3,7 @@
   "group": "misc",
   "ingredients": [
     {
-      "item": "minecraft:jungle_log"
+      "item": "minecraft:cherry_log"
     },
     {
       "tag": "c:primitive_axes"
@@ -15,7 +15,7 @@
   },
   "additionalDrops": [
     {
-      "item": "sturdy_trees:bark_jungle",
+      "item": "sturdy_trees:bark_cherry",
       "count": 1
     },
     {

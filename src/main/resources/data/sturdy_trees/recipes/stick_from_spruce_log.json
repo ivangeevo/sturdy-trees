@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "sticks",
+  "group": "misc",
   "ingredients": [
     {
       "item": "minecraft:spruce_log"
@@ -9,12 +9,11 @@
       "tag": "c:primitive_axes"
     }
   ],
-
   "result": {
     "count": 2,
     "id": "minecraft:stick"
   },
-  "secondaryResult": [
+  "additionalDrops": [
     {
       "item": "sturdy_trees:bark_spruce",
       "count": 1
