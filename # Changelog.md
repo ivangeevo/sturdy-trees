@@ -1,6 +1,10 @@
 # <center>Sturdy Trees</center>
 
 ---
+## v1.4.2
+
++ Fixed a bug where the recipe for getting sticks wasn't working as intended.
+
 ## v1.4.1
 
 + Fixed a bug that caused leaves to always drop when broken by hand
