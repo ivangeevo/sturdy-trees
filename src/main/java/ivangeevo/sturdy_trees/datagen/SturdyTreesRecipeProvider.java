@@ -51,4 +51,14 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
                 .criterion(criterionString, RecipeProvider.conditionsFromItem(slab));
 
     }
+
+    private ShapelessRecipeJsonBuilder sticksFromLog(Item sticks, Item axe, Item log)
+    {
+        String criterionString = "has_" + log.toString();
+        return new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, sticks,1)
+                .input(log)
+                .input(axe)
+                .criterion(criterionString, RecipeProvider.conditionsFromItem(log));
+
+    }
 }
