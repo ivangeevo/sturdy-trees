@@ -3,7 +3,7 @@
 ---
 ## v1.4.2
 
-+ Fixed a bug where the recipe for getting sticks wasn't working as intended.
++ Fixed some bugs related to crafting log recipes into sticks and planks to work as intended.
 
 ## v1.4.1
 
