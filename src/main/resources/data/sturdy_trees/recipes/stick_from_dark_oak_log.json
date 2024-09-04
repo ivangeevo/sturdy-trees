@@ -15,11 +15,11 @@
   },
   "additionalDrops": [
     {
-      "item": "sturdy_trees:bark_dark_oak",
+      "id": "sturdy_trees:bark_dark_oak",
       "count": 1
     },
     {
-      "item": "sturdy_trees:dust_saw",
+      "id": "sturdy_trees:dust_saw",
       "count": 1
     }
   ]
