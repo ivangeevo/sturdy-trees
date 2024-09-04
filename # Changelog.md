@@ -4,6 +4,7 @@
 ## v1.4.2
 
 + Fixed some bugs related to crafting log recipes into sticks and planks to work as intended.
++ Updated the mod to Fabric Loader 0.16.3
 
 ## v1.4.1
 
