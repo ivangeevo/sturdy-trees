@@ -4,10 +4,11 @@
 ## v1.4.3
 
 + Added support for stump blocks being broken by new chisel item tags introduced with the new Tough Environment update.
-+ Updated the mod to Fabric Loader 0.16.5
-+ Updated the mod to Fabric API 0.104.0
++ Updated the mod to Fabric Loader 0.16.5 & Fabric API 0.104.0
++ Updated the mod to require v0.26 of BTWR: Core
 
-## v1.4.2
+
++ ## v1.4.2
 
 + Fixed some bugs related to crafting log recipes into sticks and planks to work as intended.
 + Updated the mod to Fabric Loader 0.16.3
