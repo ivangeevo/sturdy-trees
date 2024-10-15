@@ -1,6 +1,12 @@
 # <center>Sturdy Trees</center>
 
 ---
+## v1.4.3
+
++ Added support for stump blocks being broken by new chisel item tags introduced with the new Tough Environment update.
++ Updated the mod to Fabric Loader 0.16.5
++ Updated the mod to Fabric API 0.104.0
+
 ## v1.4.2
 
 + Fixed some bugs related to crafting log recipes into sticks and planks to work as intended.

@@ -61,7 +61,7 @@ public class StumpBlock extends ConvertingLogBlock
     private void handleOnChiselBreak(World world, BlockPos pos, BlockState state, ItemStack tool, PlayerEntity player)
     {
 
-        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS))
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS))
         {
             if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
                 world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
