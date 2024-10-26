@@ -94,8 +94,6 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_CHERRY_STRIPPED = registerBlockWithoutItem("log_cherry_stripped", createBambooStripped(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
 
 
-
-
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup)
     {
         return new StumpBlock(AbstractBlock.Settings.create().strength(50f,2f).sounds(soundGroup)
