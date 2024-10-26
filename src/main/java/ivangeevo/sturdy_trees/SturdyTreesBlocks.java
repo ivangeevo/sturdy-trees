@@ -98,14 +98,14 @@ public class SturdyTreesBlocks implements SideModUtils {
 
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup)
     {
-        return new StumpBlock(AbstractBlock.Settings.create().strength(50.0f).sounds(soundGroup)
-                .mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable());
+        return new StumpBlock(AbstractBlock.Settings.create().strength(50f,2f).sounds(soundGroup)
+                .mapColor(mapColor).instrument(NoteBlockInstrument.BASS));
     }
 
     public static StumpBlock createStumpCrafting(MapColor mapColor)
     {
-        return new CraftingStumpBlock(FabricBlockSettings.create().strength(50.0f)
-                .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable());
+        return new CraftingStumpBlock(AbstractBlock.Settings.create().strength(50f,2f)
+                .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS));
     }
     public static LogSpikeBlock createSpike(MapColor topMapColor, MapColor sideMapColor) {
         return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor((state) ->

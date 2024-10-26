@@ -1,10 +1,11 @@
 # <center>Sturdy Trees</center>
 
 ---
-## v1.4.3
+## v1.5
 
 + Added support for stump blocks being broken by new chisel item tags introduced with the new Tough Environment update.
-+ Updated the mod to Fabric Loader 0.16.5 & Fabric API 0.104.0
++ Fixed stumps to be able of being broken by explosions( they were too tough before ;) )
++ Updated the mod to Fabric Loader 0.16.7 & Fabric API 0.106.0
 + Updated the mod to require v0.26 of BTWR: Core
 
 
