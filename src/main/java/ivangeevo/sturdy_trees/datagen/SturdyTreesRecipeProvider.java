@@ -1,5 +1,6 @@
 package ivangeevo.sturdy_trees.datagen;
 
+import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
@@ -38,6 +39,12 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
         planksFromSlab(Items.DARK_OAK_PLANKS, Items.DARK_OAK_SLAB).offerTo(exporter);
         planksFromSlab(Items.MANGROVE_PLANKS, Items.MANGROVE_SLAB).offerTo(exporter);
         planksFromSlab(Items.CHERRY_PLANKS, Items.CHERRY_SLAB).offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, SturdyTreesItems.STUMP_REMOVER)
+                .input(Items.ROTTEN_FLESH)
+                .input(Items.RED_MUSHROOM)
+                .criterion("has_red_mushroom", conditionsFromItem(Items.RED_MUSHROOM))
+                .offerTo(exporter);
     }
 
     private ShapedRecipeJsonBuilder planksFromSlab(Item planks, Item slab)

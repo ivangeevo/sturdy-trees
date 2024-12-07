@@ -3,6 +3,7 @@
 ## v1.5
 + Added BTWR-SL (Library mod) as dependency and removed BTWR: Core
 + Added mod description to display properly
++ Changed the stump remover recipe to not require creeper oysters
 ---
 
 ## v1.4.4
