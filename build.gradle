@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -44,6 +44,7 @@ sourceSets {
 }
 
 repositories {
+    maven { url "https://ivangeevo.github.io/btwr-shared-lib/" }
 
 
 }
@@ -58,6 +59,10 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    //modImplementation files("libs/btwr-core-0.27-1.21.1.jar")
+
+    modImplementation("org.ivangeevo:btwr-shared-lib:${project.btwr_lib_version}")
+
 }
 
 
@@ -65,7 +70,7 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
-    inputs.property "btwr_core_version", project.btwr_core_version
+    inputs.property "btwr_lib_version", project.btwr_lib_version
 
     filteringCharset "UTF-8"
 
@@ -73,8 +78,9 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "btwr_core_version": project.btwr_core_version
+                "btwr_lib_version": project.btwr_lib_version
     }
+
 }
 
 def targetJavaVersion = 21

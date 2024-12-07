@@ -3,7 +3,7 @@
   "id":"sturdy_trees",
   "version":"${version}",
   "name":"Sturdy Trees",
-  "description":"",
+  "description":"A mod making trees much tougher, with an interesting breaking mechanic.",
   "authors":[],
   "contact":{
     "repo":"https://github.com/ivangeevo/sturdy-trees"
@@ -29,7 +29,7 @@
     "fabricloader":">=${loader_version}",
     "fabric":"*",
     "minecraft":"${minecraft_version}",
-    "btwr": ">=${btwr_core_version}"
+    "btwr-sl": ">=${btwr_lib_version}"
   },
 
   "accessWidener" : "sturdy_trees.accesswidener"
