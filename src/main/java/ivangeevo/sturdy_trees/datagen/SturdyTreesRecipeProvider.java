@@ -29,8 +29,7 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
         this.addToModRecipes(exporter);
     }
 
-    private void addToModRecipes(RecipeExporter exporter)
-    {
+    private void addToModRecipes(RecipeExporter exporter) {
         planksFromSlab(Items.OAK_PLANKS, Items.OAK_SLAB).offerTo(exporter);
         planksFromSlab(Items.BIRCH_PLANKS, Items.BIRCH_SLAB).offerTo(exporter);
         planksFromSlab(Items.SPRUCE_PLANKS, Items.SPRUCE_SLAB).offerTo(exporter);
@@ -52,13 +51,4 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
 
     }
 
-    private ShapelessRecipeJsonBuilder sticksFromLog(Item sticks, Item axe, Item log)
-    {
-        String criterionString = "has_" + log.toString();
-        return new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, sticks,1)
-                .input(log)
-                .input(axe)
-                .criterion(criterionString, RecipeProvider.conditionsFromItem(log));
-
-    }
 }
