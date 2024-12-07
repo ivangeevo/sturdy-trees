@@ -1,7 +1,7 @@
 # <center>Sturdy Trees</center>
 
-v1.5
-+ Added BTWR-SL (Library mod) as dependency
+## v1.5
++ Added BTWR-SL (Library mod) as dependency and removed BTWR: Core
 + Added mod description to display properly
 ---
 
