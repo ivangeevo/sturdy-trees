@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_cherry_stripped",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "0"
+              }
+            }
+          ],
+          "name": "minecraft:cherry_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_cherry_stripped",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "1"
+              }
+            }
+          ],
+          "name": "sturdy_trees:dust_saw"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_cherry_stripped",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "2"
+              }
+            }
+          ],
+          "name": "minecraft:stick"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_cherry_stripped",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "3"
+              }
+            }
+          ],
+          "name": "sturdy_trees:dust_saw"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

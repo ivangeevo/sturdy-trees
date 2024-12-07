@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_birch_chewed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "0"
+              }
+            }
+          ],
+          "name": "sturdy_trees:dust_saw"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_birch_chewed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "1"
+              }
+            }
+          ],
+          "name": "minecraft:stick"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "sturdy_trees:log_birch_chewed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variation": "2"
+              }
+            }
+          ],
+          "name": "sturdy_trees:dust_saw"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
