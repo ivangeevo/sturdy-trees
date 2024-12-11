@@ -1,10 +1,12 @@
 # <center>Sturdy Trees</center>
 
 ## v1.5
+
 + Added BTWR-SL (Library mod) as dependency and removed BTWR: Core
 + Added mod description to display properly
 + Changed the stump remover recipe to not require creeper oysters
----
++ Updated the mod to Fabric API 0.110.0 & Fabric Loader 0.16.9
+
 
 ## v1.4.4
 
