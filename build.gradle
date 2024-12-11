@@ -59,7 +59,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // BTWR: Share Library
+    // BTWR: Shared Library
     modImplementation("org.ivangeevo:btwr-shared-lib:${project.btwr_lib_version}")
 
 }
