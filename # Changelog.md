@@ -1,5 +1,10 @@
 # <center>Sturdy Trees</center>
 
+## v1.5.1
+
++ Fixed version requirement for BTWR-SL
++ Updated the mod to Fabric API 0.114.0
+
 ## v1.5
 
 + Added BTWR-SL (Library mod) as dependency and removed BTWR: Core
