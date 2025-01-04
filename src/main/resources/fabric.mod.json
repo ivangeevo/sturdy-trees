@@ -29,7 +29,7 @@
     "fabricloader":">=${loader_version}",
     "fabric":"*",
     "minecraft":"${minecraft_version}",
-    "btwr_sl": ">=${btwr_lib_version}"
+    "btwr_sl": ">=${btwr_sl_version}"
   },
 
   "accessWidener" : "sturdy_trees.accesswidener"
