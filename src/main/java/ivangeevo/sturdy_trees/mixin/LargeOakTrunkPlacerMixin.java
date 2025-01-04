@@ -1,6 +1,8 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -26,6 +28,12 @@ public abstract class LargeOakTrunkPlacerMixin extends TrunkPlacer  {
 
     @Inject(method = "generate", at = @At("TAIL"))
     private void modifyGenerateMethodArgument(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.LARGE_OAK_TRUNK_TREES)) {
+            return;
+        }
+
         // Your logic to determine the position of the stump block based on the tree generation
         BlockState stumpBlock = SturdyTreesBlocks.STUMP_OAK.getDefaultState(); // Replace YOUR_STUMP_BLOCK with the actual block state of the stump block
 

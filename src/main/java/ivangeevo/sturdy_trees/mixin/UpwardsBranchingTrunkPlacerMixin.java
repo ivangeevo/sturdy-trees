@@ -2,7 +2,10 @@ package ivangeevo.sturdy_trees.mixin;
 
 import com.google.common.collect.Lists;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.IntProvider;
@@ -11,7 +14,6 @@ import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
-import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import net.minecraft.world.gen.trunk.UpwardsBranchingTrunkPlacer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,6 +39,12 @@ public abstract class UpwardsBranchingTrunkPlacerMixin extends TrunkPlacer {
 
     @Inject(method = "generate", at = @At("HEAD"), cancellable = true)
     private void injectedGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.UPWARDS_BRANCHING_TRUNK_TREES)) {
+            return;
+        }
+
         ArrayList<FoliagePlacer.TreeNode> list = Lists.newArrayList();
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         for (int i = 0; i < height; ++i) {

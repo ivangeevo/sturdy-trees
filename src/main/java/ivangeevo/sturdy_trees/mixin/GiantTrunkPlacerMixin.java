@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,6 +29,12 @@ public abstract class GiantTrunkPlacerMixin extends TrunkPlacer {
     @Inject(method = "generate", at = @At(value = "TAIL"))
     private void onGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> ci) {
         Block stumpBlock;
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.UPWARDS_BRANCHING_TRUNK_TREES)) {
+            return;
+        }
+
         BlockState trunkState = config.trunkProvider.get(random, startPos);
         if (trunkState.isOf(Blocks.SPRUCE_LOG)) {
             stumpBlock = SturdyTreesBlocks.STUMP_SPRUCE;

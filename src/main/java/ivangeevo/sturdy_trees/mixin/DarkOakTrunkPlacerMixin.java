@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,6 +32,12 @@ public abstract class DarkOakTrunkPlacerMixin extends TrunkPlacer {
     )
     private void modifyTrunkBlocks(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
         Block stumpBlock;
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.DARK_OAK_TRUNK_TREES)) {
+            return;
+        }
+
         BlockState trunkState = config.trunkProvider.get(random, startPos);
         if (trunkState.isOf(Blocks.DARK_OAK_LOG)) {
             stumpBlock = SturdyTreesBlocks.STUMP_DARK_OAK;

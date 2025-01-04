@@ -1,6 +1,8 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -26,6 +28,12 @@ public abstract class ForkingTrunkPlacerMixin extends TrunkPlacer {
 
     @Inject(method = "generate", at = @At(value = "TAIL"))
     private void onGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> ci) {
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.FORKING_TRUNK_TREES)) {
+            return;
+        }
+
         replacer.accept(startPos, SturdyTreesBlocks.STUMP_ACACIA.getDefaultState());
     }
 }

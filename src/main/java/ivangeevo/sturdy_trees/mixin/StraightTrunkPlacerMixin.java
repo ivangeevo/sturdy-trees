@@ -2,9 +2,14 @@ package ivangeevo.sturdy_trees.mixin;
 
 import com.google.common.collect.ImmutableList;
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.SturdyTreesMod;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TestableWorld;
@@ -13,6 +18,7 @@ import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -27,6 +33,7 @@ public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
     }
 
     // Helper method to determine stump block based on log type
+    @Unique
     private Block getStumpBlockForLog(Block logBlock) {
         // Customize this logic based on your block registry and log-stump mappings
         if (logBlock == Blocks.OAK_LOG) {
@@ -43,12 +50,17 @@ public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
 
     @Inject(method = "generate", at = @At("HEAD"), cancellable = true)
     private void injectedGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+        Block stumpBlock = getStumpBlockForLog(logBlock);
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.STRAIGHT_TRUNK_TREES)) {
+            return;
+        }
+
         StraightTrunkPlacer.setToDirt(world, replacer, random, startPos.down(), config);
         for (int i = 0; i < height; ++i) {
             this.getAndSetState(world, replacer, random, startPos.up(i), config);
         }
-        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
-        Block stumpBlock = getStumpBlockForLog(logBlock);
 
 
         replacer.accept(startPos, stumpBlock.getDefaultState());

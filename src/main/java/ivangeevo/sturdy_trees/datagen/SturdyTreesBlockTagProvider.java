@@ -5,6 +5,7 @@ import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 
@@ -125,6 +126,37 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN)
                 .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN)
                 .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.STRAIGHT_TRUNK_TREES)
+                .add(Blocks.OAK_LOG)
+                .add(Blocks.BIRCH_LOG)
+                .add(Blocks.SPRUCE_LOG)
+                .add(Blocks.JUNGLE_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.LARGE_OAK_TRUNK_TREES)
+                .add(Blocks.OAK_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.DARK_OAK_TRUNK_TREES)
+                .add(Blocks.DARK_OAK_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.FORKING_TRUNK_TREES)
+                .add(Blocks.ACACIA_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.MEGA_JUNGLE_TRUNK_TREES)
+                .add(Blocks.JUNGLE_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.GIANT_TRUNK_TREES)
+                .add(Blocks.SPRUCE_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.BENDING_TRUNK_TREES)
+                .add(Blocks.OAK_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.UPWARDS_BRANCHING_TRUNK_TREES)
+                .add(Blocks.MANGROVE_LOG);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.CHERRY_TRUNK_TREES)
+                .add(Blocks.CHERRY_LOG);
+
 
     }
 

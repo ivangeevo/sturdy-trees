@@ -1,6 +1,8 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -29,6 +31,12 @@ public abstract class CherryTrunkPlacerMixin extends TrunkPlacer
             TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height,
             BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir)
     {
+        Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
+
+        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.CHERRY_TRUNK_TREES)) {
+            return;
+        }
+
         BlockState stumpBlock = SturdyTreesBlocks.STUMP_CHERRY.getDefaultState();
 
         // Place the stump block
