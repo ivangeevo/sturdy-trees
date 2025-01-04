@@ -4,7 +4,6 @@
 + Fixed a bug with trees from other mods where their bottom part would not generate. This should allow compatibility with other mods
 to generate normally without missing "trunks".
 
-
 ## v1.5.1
 + Fixed version requirement for BTWR-SL
 + Updated the mod to Fabric API 0.114.0 && BTWR-SL v0.40
@@ -15,7 +14,6 @@ to generate normally without missing "trunks".
 + Added mod description to display properly
 + Changed the stump remover recipe to not require creeper oysters
 + Updated the mod to Fabric API 0.110.0 & Fabric Loader 0.16.9
-
 
 ## v1.4.4
 
