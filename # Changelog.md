@@ -1,5 +1,6 @@
 # <center>Sturdy Trees</center>
 
+
 ## v1.5.2
 + Fixed a bug with trees from other mods where their bottom part would not generate. This should allow compatibility with other mods
 to generate normally without missing "trunks".
