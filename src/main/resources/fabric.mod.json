@@ -4,11 +4,13 @@
   "version":"${version}",
   "name":"Sturdy Trees",
   "description":"A mod making trees much tougher, with an interesting breaking mechanic.",
-  "authors":[],
+  "authors":[
+    "ivangeevo"
+  ],
   "contact":{
     "repo":"https://github.com/ivangeevo/sturdy-trees"
   },
-  "license":"MIT",
+  "license":"CC-BY-4.0",
   "icon":"assets/sturdy_trees/icon.png",
   "environment":"*",
   "entrypoints":{
