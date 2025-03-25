@@ -13,7 +13,6 @@ import net.minecraft.util.Identifier;
 
 public class SturdyTreesItems {
 
-    //public static final Item SHAFT = registerItem( "shaft", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
     public static final Item STUMP_REMOVER = registerItem( "stump_remover", new StumpRemoverItem(new Item.Settings().maxCount(16)));
 
     public static final Item DUST_SAW = registerItem( "dust_saw", new Item (new Item.Settings()));
@@ -37,7 +36,6 @@ public class SturdyTreesItems {
         entries.add(BARK_DARK_OAK);
         entries.add(BARK_MANGROVE);
         entries.add(BARK_CHERRY);
-
     }
 
     private static void addItemsToToolsItemGroup(FabricItemGroupEntries entries) {

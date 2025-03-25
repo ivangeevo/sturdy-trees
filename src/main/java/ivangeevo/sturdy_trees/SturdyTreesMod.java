@@ -14,4 +14,5 @@ public class SturdyTreesMod implements ModInitializer {
         SturdyTreesBlocks.registerModBlocks();
         SturdyTreesItems.registerModItems();
     }
+
 }
