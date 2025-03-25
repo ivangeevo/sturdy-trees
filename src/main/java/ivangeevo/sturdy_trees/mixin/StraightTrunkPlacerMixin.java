@@ -1,15 +1,11 @@
 package ivangeevo.sturdy_trees.mixin;
 
 import com.google.common.collect.ImmutableList;
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.SturdyTreesMod;
+import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TestableWorld;

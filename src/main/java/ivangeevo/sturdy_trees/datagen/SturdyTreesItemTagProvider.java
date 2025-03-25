@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.datagen;
 
-import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 

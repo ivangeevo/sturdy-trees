@@ -1,6 +1,5 @@
 package ivangeevo.sturdy_trees.block;
 
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

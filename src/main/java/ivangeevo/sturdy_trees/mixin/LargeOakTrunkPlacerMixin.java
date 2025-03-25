@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.mixin;
 
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

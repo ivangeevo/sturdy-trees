@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.datagen;
 
-import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import ivangeevo.sturdy_trees.SturdyTreesMod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;

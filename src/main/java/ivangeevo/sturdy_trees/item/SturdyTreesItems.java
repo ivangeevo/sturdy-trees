@@ -1,5 +1,6 @@
-package ivangeevo.sturdy_trees;
+package ivangeevo.sturdy_trees.item;
 
+import ivangeevo.sturdy_trees.SturdyTreesMod;
 import ivangeevo.sturdy_trees.item.items.StumpRemoverItem;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;

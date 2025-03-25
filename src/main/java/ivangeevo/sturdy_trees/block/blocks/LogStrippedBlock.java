@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
+import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

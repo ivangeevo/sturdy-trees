@@ -1,5 +1,6 @@
-package ivangeevo.sturdy_trees;
+package ivangeevo.sturdy_trees.block;
 
+import ivangeevo.sturdy_trees.SturdyTreesMod;
 import ivangeevo.sturdy_trees.block.blocks.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
