@@ -31,8 +31,6 @@ public abstract class ConvertingLogBlock extends PillarBlock {
         builder.add(VARIATION, CHARRED);
     }
 
-
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         int var = state.get(VARIATION);
