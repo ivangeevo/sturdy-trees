@@ -55,49 +55,50 @@ public class StumpBlock extends ConvertingLogBlock {
     private void handleOnChiselBreak(World world, BlockPos pos, BlockState state, ItemStack tool, PlayerEntity player)
     {
 
-        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS))
-        {
-            if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_BIRCH)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_BIRCH_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_ACACIA)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_ACACIA_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_JUNGLE)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_JUNGLE_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_MANGROVE)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_MANGROVE_VAR1.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_VAR1.getDefaultState());
-            }
+        // only modern or advanced chisels can break stumps efficiently
+        if (!tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || !tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS)) {
+            return;
+        }
 
-            if (state.isOf(SturdyTreesBlocks.STUMP_OAK_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_BIRCH_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_BIRCH_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_ACACIA_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_ACACIA_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_JUNGLE_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_JUNGLE_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_MANGROVE_CRAFTING.getDefaultState());
-            } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY_VAR1)) {
-                world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_CRAFTING.getDefaultState());
-            }
+        if (state.isOf(SturdyTreesBlocks.STUMP_OAK)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_BIRCH)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_BIRCH_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_ACACIA)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_ACACIA_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_JUNGLE)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_JUNGLE_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_MANGROVE)) {
+               world.setBlockState(pos, SturdyTreesBlocks.STUMP_MANGROVE_VAR1.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_VAR1.getDefaultState());
+        }
 
-            if (world.isClient)
-            {
-                world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
-                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
-            }
+        if (state.isOf(SturdyTreesBlocks.STUMP_OAK_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_OAK_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_BIRCH_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_BIRCH_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_ACACIA_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_ACACIA_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_JUNGLE_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_JUNGLE_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_SPRUCE_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_DARK_OAK_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_MANGROVE_CRAFTING.getDefaultState());
+        } else if (state.isOf(SturdyTreesBlocks.STUMP_CHERRY_VAR1)) {
+            world.setBlockState(pos, SturdyTreesBlocks.STUMP_CHERRY_CRAFTING.getDefaultState());
+        }
+
+        if (world.isClient) {
+            world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+                    1.25F + (player.getWorld().random.nextFloat() * 0.25F));
         }
     }
 

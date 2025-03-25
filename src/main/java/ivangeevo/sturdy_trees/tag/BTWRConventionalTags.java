@@ -65,7 +65,6 @@ public class BTWRConventionalTags {
         public static final TagKey<Item> DO_KNOCKBACK_ITEMS = createTag("do_knockback_items");
 
 
-
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of("c", name));
         }

@@ -7,6 +7,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import java.util.Set;
 
 public record StumpType(String name, BlockSoundGroup soundType, BlockSoundGroup hangingSignSoundType) {
+
     private static final Set<StumpType> VALUES = new ObjectArraySet<>();
     public static final StumpType OAK;
     public static final StumpType SPRUCE;
@@ -28,11 +29,9 @@ public record StumpType(String name, BlockSoundGroup soundType, BlockSoundGroup 
         return type;
     }
 
-
     public String name() {
         return this.name;
     }
-
 
     static {
         OAK = register(new StumpType("oak"));

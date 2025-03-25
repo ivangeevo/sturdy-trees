@@ -57,6 +57,4 @@ public abstract class ConvertingLogBlock extends PillarBlock {
         super.afterBreak(world, player, pos, state, blockEntity, stack);
     }
 
-
-
 }
