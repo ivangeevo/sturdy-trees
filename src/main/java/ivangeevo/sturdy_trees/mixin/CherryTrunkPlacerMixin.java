@@ -33,13 +33,10 @@ public abstract class CherryTrunkPlacerMixin extends TrunkPlacer {
     {
         Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
 
-        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.CHERRY_TRUNK_TREES)) {
-            return;
+        if (logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.CHERRY_TRUNK_TREES)) {
+            // Place the stump block
+            replacer.accept(startPos, SturdyTreesBlocks.STUMP_CHERRY.getDefaultState());
         }
 
-        BlockState stumpBlock = SturdyTreesBlocks.STUMP_CHERRY.getDefaultState();
-
-        // Place the stump block
-        replacer.accept(startPos, stumpBlock);
     }
 }

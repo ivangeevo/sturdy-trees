@@ -30,14 +30,15 @@ public abstract class LargeOakTrunkPlacerMixin extends TrunkPlacer  {
     private void modifyGenerateMethodArgument(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> cir) {
         Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
 
-        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.LARGE_OAK_TRUNK_TREES)) {
-            return;
+        if (logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.LARGE_OAK_TRUNK_TREES)) {
+            // Place the stump block
+            replacer.accept(startPos, SturdyTreesBlocks.STUMP_OAK.getDefaultState());
         }
 
-        // Your logic to determine the position of the stump block based on the tree generation
-        BlockState stumpBlock = SturdyTreesBlocks.STUMP_OAK.getDefaultState(); // Replace YOUR_STUMP_BLOCK with the actual block state of the stump block
-
-        // Place the stump block
-        replacer.accept(startPos, stumpBlock);
     }
+
+    private void setReplacement(BiConsumer<BlockPos, BlockState> replacer, TreeFeatureConfig config) {
+
+    }
+
 }

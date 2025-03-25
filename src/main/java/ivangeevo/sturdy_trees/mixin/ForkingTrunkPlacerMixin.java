@@ -30,10 +30,10 @@ public abstract class ForkingTrunkPlacerMixin extends TrunkPlacer {
     private void onGenerate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config, CallbackInfoReturnable<List<FoliagePlacer.TreeNode>> ci) {
         Block logBlock = config.trunkProvider.get(random, startPos).getBlock();
 
-        if (!logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.FORKING_TRUNK_TREES)) {
-            return;
+        if (logBlock.getDefaultState().isIn(SturdyTreesTags.Blocks.FORKING_TRUNK_TREES)) {
+            // Place the stump block
+            replacer.accept(startPos, SturdyTreesBlocks.STUMP_ACACIA.getDefaultState());
         }
 
-        replacer.accept(startPos, SturdyTreesBlocks.STUMP_ACACIA.getDefaultState());
     }
 }

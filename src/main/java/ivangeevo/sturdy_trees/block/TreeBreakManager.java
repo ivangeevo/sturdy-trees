@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TreeBreakManager
-{
+public class TreeBreakManager {
+
     private static final TreeBreakManager instance = new TreeBreakManager();
 
     // Private constructor to prevent instantiation
@@ -37,16 +37,14 @@ public class TreeBreakManager
         logToStrippedLogMap.put(Blocks.CHERRY_LOG, SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
     }
 
-    public void setStateForLog(World world, BlockPos pos, BlockState state, ItemStack tool)
-    {
+    public void setStateForLog(World world, BlockPos pos, BlockState state, ItemStack tool) {
         Block strippedLog = logToStrippedLogMap.get(state.getBlock());
         if (strippedLog != null) {
             handleLogBreak(world, pos, tool, strippedLog);
         }
     }
 
-    private void handleLogBreak(World world, BlockPos pos, ItemStack tool, Block strippedLog)
-    {
+    private void handleLogBreak(World world, BlockPos pos, ItemStack tool, Block strippedLog) {
         boolean isFullyBreakingAxe = tool.isIn(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK);
 
         if (!(world instanceof ServerWorld)) {
