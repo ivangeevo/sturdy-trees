@@ -14,8 +14,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class LogChewedBlock extends ConvertingLogBlock
-{
+public class LogChewedBlock extends ConvertingLogBlock {
 
     public LogChewedBlock(Settings settings)
     {
@@ -27,13 +26,9 @@ public class LogChewedBlock extends ConvertingLogBlock
 
         int variation = state.get(VARIATION);
 
-        if (world.isClient)
-        {
-            switch (variation)
-            {
-                case 1: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
-                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
-                case 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+        if (!world.isClient) {
+            switch (variation) {
+                case 1,2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
                         1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
         }

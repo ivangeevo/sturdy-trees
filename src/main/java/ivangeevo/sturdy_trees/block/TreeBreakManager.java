@@ -42,24 +42,23 @@ public class TreeBreakManager
     {
         Block strippedLog = logToStrippedLogMap.get(state.getBlock());
         if (strippedLog != null) {
-            handleLogBreak(world, pos, state, tool, strippedLog);
+            handleLogBreak(world, pos, tool, strippedLog);
         }
     }
 
-    private void handleLogBreak(World world, BlockPos pos, BlockState state, ItemStack tool, Block strippedLog)
+    private void handleLogBreak(World world, BlockPos pos, ItemStack tool, Block strippedLog)
     {
         boolean isFullyBreakingAxe = tool.isIn(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK);
 
-        if (world instanceof ServerWorld)
-        {
-            if (isFullyBreakingAxe)
-            {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            }
-            else
-            {
-                world.setBlockState(pos, strippedLog.getDefaultState());
-            }
+        if (!(world instanceof ServerWorld)) {
+            return;
+        }
+
+        if (isFullyBreakingAxe) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        } else {
+            world.setBlockState(pos, strippedLog.getDefaultState());
         }
     }
+
 }

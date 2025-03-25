@@ -26,7 +26,6 @@ public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizab
 
     @Shadow public abstract void generate(ServerWorld world, BlockPos pos, BlockState state, Random random);
 
-
     @Shadow
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
         return (double)world.random.nextFloat() < 0.45;

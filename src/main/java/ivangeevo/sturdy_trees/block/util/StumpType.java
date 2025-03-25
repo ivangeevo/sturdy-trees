@@ -19,7 +19,6 @@ public record StumpType(String name, BlockSoundGroup soundType, BlockSoundGroup 
     public static final StumpType MANGROVE;
     public static final StumpType CHERRY;
 
-
     public StumpType(String name) {
         this(name, BlockSoundGroup.WOOD, BlockSoundGroup.HANGING_ROOTS);
     }

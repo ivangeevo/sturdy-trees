@@ -14,8 +14,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CraftingStumpBlock extends StumpBlock
-{
+public class CraftingStumpBlock extends StumpBlock {
+
     private static final Text TITLE = Text.translatable("container.sturdy_trees.crafting");
 
     public CraftingStumpBlock(Settings settings) {
@@ -25,14 +25,14 @@ public class CraftingStumpBlock extends StumpBlock
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
     {
-        if (world.isClient)
-        {
+        if (world.isClient) {
             return ActionResult.SUCCESS;
         }
-        if (world.getBlockState(pos.up()).isAir())
-        {
+
+        if (world.getBlockState(pos.up()).isAir()) {
             player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
         }
+
         player.incrementStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
         return ActionResult.CONSUME;
     }
@@ -40,7 +40,8 @@ public class CraftingStumpBlock extends StumpBlock
 
     @Override
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new ModCraftingScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE);
+        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) ->
+                new ModCraftingScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE);
     }
 
 }

@@ -1,14 +1,10 @@
 package ivangeevo.sturdy_trees.datagen;
 
-import ivangeevo.sturdy_trees.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import ivangeevo.sturdy_trees.SturdyTreesMod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.TallPlantBlock;
-import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -16,16 +12,12 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.SurvivesExplosionLootCondition;
-import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
 
@@ -42,8 +34,9 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
     }
 
     // tough wood types require an axe to break fully
-    private static final String[] overworldToughWoodTypes = new String[]
-            {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"};
+    private static final String[] overworldToughWoodTypes = new String[] {
+            "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
+    };
 
 
     @Override
@@ -71,8 +64,8 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
             Block block = Registries.BLOCK.get(logBlock);
             addDrop(block, dropsForSpikeLog(block));
         }
-    }
 
+    }
 
     /**
      * Generates a loot table for a stripped log with a given planks item.

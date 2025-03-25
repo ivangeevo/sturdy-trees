@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 @Mixin(CherryTrunkPlacer.class)
-public abstract class CherryTrunkPlacerMixin extends TrunkPlacer
-{
+public abstract class CherryTrunkPlacerMixin extends TrunkPlacer {
+
     public CherryTrunkPlacerMixin(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
         super(baseHeight, firstRandomHeight, secondRandomHeight);
     }
@@ -41,6 +41,5 @@ public abstract class CherryTrunkPlacerMixin extends TrunkPlacer
 
         // Place the stump block
         replacer.accept(startPos, stumpBlock);
-
     }
 }

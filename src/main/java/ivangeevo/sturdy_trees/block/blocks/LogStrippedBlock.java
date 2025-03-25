@@ -14,15 +14,14 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class LogStrippedBlock extends ConvertingLogBlock
-{
+public class LogStrippedBlock extends ConvertingLogBlock {
+
     public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         int var = state.get(VARIATION);
         double offset = (1 + var) / 16.0;
         double to = 1.0 - offset;
@@ -37,7 +36,6 @@ public class LogStrippedBlock extends ConvertingLogBlock
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
     {
 
-
         BlockState blockBelowState = world.getBlockState(pos.down());
         BlockState blockAboveState = world.getBlockState(pos.up());
 
@@ -48,13 +46,9 @@ public class LogStrippedBlock extends ConvertingLogBlock
         int variation = state.get(VARIATION);
 
 
-        if (world.isClient)
-        {
-            switch (variation)
-            {
-                case 0: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
-                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
-                case 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
+        if (world.isClient) {
+            switch (variation) {
+                case 0, 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
                         1.25F + (player.getWorld().random.nextFloat() * 0.25F));
             }
         }
@@ -118,23 +112,15 @@ public class LogStrippedBlock extends ConvertingLogBlock
         boolean hasBlockBelow = !blockBelowState.isAir();
 
         // Default and neighboring replacement logic
-        if (hasBlockAbove && hasBlockBelow)
-        {
+        if (hasBlockAbove && hasBlockBelow) {
             return chewedVar != null ? chewedVar.getDefaultState() : state;
-        }
-        else if (hasBlockAbove)
-        {
+        } else if (hasBlockAbove) {
             return spikeDownVar != null ? spikeDownVar.getDefaultState() : state;
-        }
-        else if (hasBlockBelow)
-        {
+        } else if (hasBlockBelow) {
             return spikeUpVar != null ? spikeUpVar.getDefaultState() : state;
-        }
-        else
-        {
+        } else {
             // If the variation is 3 for stripped, break to air
-            if (state.get(VARIATION) == 3)
-            {
+            if (state.get(VARIATION) == 3) {
                 return Blocks.AIR.getDefaultState();
             }
             // Default, choose the next stripped variation

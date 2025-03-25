@@ -39,6 +39,5 @@ public abstract class LargeOakTrunkPlacerMixin extends TrunkPlacer  {
 
         // Place the stump block
         replacer.accept(startPos, stumpBlock);
-
     }
 }

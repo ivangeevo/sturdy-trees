@@ -16,17 +16,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class SturdyTreesRecipeProvider extends FabricRecipeProvider
-{
-
+public class SturdyTreesRecipeProvider extends FabricRecipeProvider {
 
     public SturdyTreesRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    public void generate(RecipeExporter exporter)
-    {
+    public void generate(RecipeExporter exporter) {
         this.addToModRecipes(exporter);
     }
 
@@ -47,8 +44,7 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider
                 .offerTo(exporter);
     }
 
-    private ShapedRecipeJsonBuilder planksFromSlab(Item planks, Item slab)
-    {
+    private ShapedRecipeJsonBuilder planksFromSlab(Item planks, Item slab) {
         String criterionString = "has_" + slab.toString();
         return new ShapedRecipeJsonBuilder(RecipeCategory.BUILDING_BLOCKS, planks,1)
                 .input('#', slab)

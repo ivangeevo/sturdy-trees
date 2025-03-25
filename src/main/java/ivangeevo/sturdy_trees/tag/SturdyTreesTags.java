@@ -8,10 +8,9 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Unique;
 
-public final class SturdyTreesTags
-{
-    public static class Blocks
-    {
+public final class SturdyTreesTags {
+
+    public static class Blocks {
 
         // All log blocks from the mod that have variation.(aka all ConvertingLogBlock's)
         public static final TagKey<Block> LOG_VARIATION_BLOCKS = registerTag("log_variation_blocks");
@@ -35,8 +34,7 @@ public final class SturdyTreesTags
 
     }
 
-    public static class Items
-    {
+    public static class Items {
 
         public static final TagKey<Item> BARK_ITEMS = registerTag("bark_items");
 
@@ -46,7 +44,5 @@ public final class SturdyTreesTags
         }
 
     }
-
-
 
 }

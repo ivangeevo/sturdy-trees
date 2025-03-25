@@ -6,10 +6,10 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-public class BTWRConventionalTags
-{
-    public static class Blocks
-    {
+public class BTWRConventionalTags {
+
+    public static class Blocks {
+
         // Blocks that can convert on break and are from vanilla
         public static final TagKey<Block> VANILLA_CONVERTING_BLOCKS = createTag("vanilla_converting_blocks");
 
@@ -24,8 +24,8 @@ public class BTWRConventionalTags
         }
     }
 
-    public static class Items
-    {
+    public static class Items {
+
         /**
          * Custom Mod Tool ranks;
          * <p>1.<b>Primitive; 2.Modern; 3.Advanced;</b>
@@ -50,7 +50,6 @@ public class BTWRConventionalTags
 
         public static final TagKey<Item> AXES_HARVEST_FULL_BLOCK = createTag("axes_harvest_full_block");
 
-
         public static final TagKey<Item> PRIMITIVE_SHOVELS = createTag("primitive_shovels");
         public static final TagKey<Item> MODERN_SHOVELS = createTag("modern_shovels");
         public static final TagKey<Item> ADVANCED_SHOVELS = createTag("advanced_shovels");
@@ -64,6 +63,7 @@ public class BTWRConventionalTags
          *  knockback restriction is turned on.
          */
         public static final TagKey<Item> DO_KNOCKBACK_ITEMS = createTag("do_knockback_items");
+
 
 
         private static TagKey<Item> createTag(String name) {

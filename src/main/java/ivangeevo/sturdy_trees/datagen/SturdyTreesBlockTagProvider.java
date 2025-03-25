@@ -13,21 +13,18 @@ import java.util.concurrent.CompletableFuture;
 
 public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
-
     public SturdyTreesBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg)
-    {
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
         addToVanillaTags();
         addToModTags();
         addToConventionalTags();
     }
 
-    private void addToConventionalTags()
-    {
+    private void addToConventionalTags() {
 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
                 .addTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
@@ -51,12 +48,10 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
                 .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1);
 
-
-
     }
 
-    private void addToModTags()
-    {
+    private void addToModTags() {
+
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)
 
                 // Oak Logs
@@ -160,8 +155,8 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
 
     }
 
-    private void addToVanillaTags()
-    {
+    private void addToVanillaTags() {
+
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)

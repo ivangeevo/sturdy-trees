@@ -1,15 +1,12 @@
 package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.block.blocks.*;
-import ivangeevo.sturdy_trees.util.SideModUtils;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Instrument;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
@@ -18,7 +15,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
-public class SturdyTreesBlocks implements SideModUtils {
+public class SturdyTreesBlocks {
 
     /** STUMP BLOCKS **/
 
@@ -50,7 +47,6 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block STUMP_CHERRY_CRAFTING = registerBlockWithoutItem("stump_cherry_crafting", createStumpCrafting(MapColor.TERRACOTTA_WHITE));
 
 
-
     /** VARIANTS FOR LOG BLOCKS **/
 
     // Spike
@@ -71,7 +67,6 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_DARK_OAK_SPIKE_UP = registerBlockWithoutItem("log_dark_oak_spike_up", createSpike(MapColor.BROWN, MapColor.BROWN));
     public static final Block LOG_MANGROVE_SPIKE_UP = registerBlockWithoutItem("log_mangrove_spike_up", createSpike(MapColor.RED, MapColor.SPRUCE_BROWN));
     public static final Block LOG_CHERRY_SPIKE_UP = registerBlockWithoutItem("log_cherry_spike_up", createBambooSpike(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
-
 
     // Chewed
     public static final Block LOG_OAK_CHEWED = registerBlockWithoutItem("log_oak_chewed", createChewed(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
@@ -94,20 +89,19 @@ public class SturdyTreesBlocks implements SideModUtils {
     public static final Block LOG_CHERRY_STRIPPED = registerBlockWithoutItem("log_cherry_stripped", createBambooStripped(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
 
 
-    public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup)
-    {
+    public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup) {
         return new StumpBlock(AbstractBlock.Settings.create().strength(50f,2f).sounds(soundGroup)
                 .mapColor(mapColor).instrument(NoteBlockInstrument.BASS));
     }
 
-    public static StumpBlock createStumpCrafting(MapColor mapColor)
-    {
+    public static StumpBlock createStumpCrafting(MapColor mapColor) {
         return new CraftingStumpBlock(AbstractBlock.Settings.create().strength(50f,2f)
                 .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS));
     }
+
     public static LogSpikeBlock createSpike(MapColor topMapColor, MapColor sideMapColor) {
-        return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor((state) ->
-                        state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
+        return new LogSpikeBlock(AbstractBlock.Settings.create().mapColor(
+                (state) -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
                 .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).nonOpaque().burnable());
     }
 
@@ -140,6 +134,7 @@ public class SturdyTreesBlocks implements SideModUtils {
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
                 .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable());
     }
+
     private static Block registerBlockWithoutItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, name), block);
     }

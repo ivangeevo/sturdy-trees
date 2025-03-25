@@ -24,17 +24,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StumpBlock extends ConvertingLogBlock
-{
+public class StumpBlock extends ConvertingLogBlock {
 
     public StumpBlock(Settings settings) {
         super(settings);
     }
 
-
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         int var = state.get(VARIATION);
         double offset =  var / 16.0;
         double to = 1.0 - offset;
@@ -48,12 +45,9 @@ public class StumpBlock extends ConvertingLogBlock
 
         boolean isCharred = state.get(CHARRED);
 
-        if (!isCharred)
-        {
+        if (!isCharred) {
             handleOnChiselBreak(world, pos, state, tool, player);
-        }
-        else
-        {
+        } else {
             super.afterBreak(world, player, pos, state, blockEntity, tool);
         }
     }
@@ -106,7 +100,5 @@ public class StumpBlock extends ConvertingLogBlock
             }
         }
     }
-
-
 
 }

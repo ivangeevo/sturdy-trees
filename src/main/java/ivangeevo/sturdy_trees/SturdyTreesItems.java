@@ -1,8 +1,10 @@
 package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.item.items.StumpRemoverItem;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
@@ -25,7 +27,6 @@ public class SturdyTreesItems {
     public static final Item BARK_MANGROVE = registerItem( "bark_mangrove", new Item (new Item.Settings()));
     public static final Item BARK_CHERRY = registerItem( "bark_cherry", new Item (new Item.Settings()));
 
-
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
         entries.add(DUST_SAW);
         entries.add(BARK_OAK);
@@ -43,7 +44,6 @@ public class SturdyTreesItems {
         entries.add(STUMP_REMOVER);
     }
 
-
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, name), item);
     }
@@ -53,6 +53,10 @@ public class SturdyTreesItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addItemsToIngredientItemGroup);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addItemsToToolsItemGroup);
+
+        // Register fuel items
+        FuelRegistry.INSTANCE.add(SturdyTreesItems.DUST_SAW, 25);
+        FuelRegistry.INSTANCE.add(SturdyTreesTags.Items.BARK_ITEMS, 25);
 
     }
 

@@ -7,8 +7,7 @@ import net.minecraft.client.render.RenderLayer;
 
 public class SturdyTreesClient implements ClientModInitializer {
     @Override
-    public void onInitializeClient()
-    {
+    public void onInitializeClient() {
 
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_STRIPPED, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_SPIKE_UP, RenderLayer.getCutout());
@@ -59,8 +58,6 @@ public class SturdyTreesClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_STRIPPED, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN, RenderLayer.getCutout());
-
-
 
     }
 }

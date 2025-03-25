@@ -1,9 +1,13 @@
 # <center>Sturdy Trees</center>
 
+## v1.6
++ General code improvement/cleanup
++ Updated the mod to Fabric API 0.115.3 & BTWR Shared Library 0.48
+
 ## v1.5.3
 + Updated the mod to Fabric API 0.115.0, Fabric Loader 0.16.10 & BTWR Shared Library 0.47
 + Updated the mod license in the mod list to display the proper one (changed from MIT to CC-BY-4.0)
-+ Update the author of the mod (me)  to display in the mod list
++ Update the author of the mod (me) to display in the mod list
 
 ## v1.5.2
 + Fixed a bug with trees from other mods where their bottom part would not generate. This should allow compatibility with other mods

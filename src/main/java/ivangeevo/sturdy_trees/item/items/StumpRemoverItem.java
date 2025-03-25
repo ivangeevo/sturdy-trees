@@ -14,15 +14,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class StumpRemoverItem extends Item
-{
+public class StumpRemoverItem extends Item {
+
     public StumpRemoverItem(Settings settings) {
         super(settings);
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context)
-    {
+    public ActionResult useOnBlock(ItemUsageContext context) {
         BlockPos pos = context.getBlockPos();
         BlockState stump = context.getWorld().getBlockState(pos);
         ItemStack itemStack = context.getStack(); // Get the ItemStack associated with the context.
@@ -44,11 +43,12 @@ public class StumpRemoverItem extends Item
                 return ActionResult.SUCCESS; // Indicate a successful action.
             }
         }
+
         return ActionResult.FAIL;
     }
 
-    private void spawnParticles(ServerWorld world, BlockPos pos)
-    {
+    private void spawnParticles(ServerWorld world, BlockPos pos) {
+
         // Spawn the particles slightly above the block
         world.spawnParticles(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, 10, 0.2, 0.2, 0.2, 0.1);
 
@@ -63,18 +63,15 @@ public class StumpRemoverItem extends Item
 
             world.spawnParticles(ParticleTypes.SMOKE, smokeX, smokeY, smokeZ, 1, smokeVelX, smokeVelY, smokeVelZ, 2);
         }
-
     }
 
     @Override
-    public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player)
-    {
+    public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player) {
         super.onCraftByPlayer(stack, world, player);
 
         float pitch = (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F;
 
-        if (stack.getItem() != null)
-        {
+        if (stack.getItem() != null) {
             player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.1F, pitch);
         }
     }

@@ -32,8 +32,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ModCraftingScreenHandler
-        extends AbstractRecipeScreenHandler<CraftingRecipeInput, CraftingRecipe>
-{
+        extends AbstractRecipeScreenHandler<CraftingRecipeInput, CraftingRecipe> {
+
     public static final int RESULT_ID = 0;
     private static final int INPUT_START = 1;
     private static final int INPUT_END = 10;
@@ -173,7 +173,6 @@ public class ModCraftingScreenHandler
 
         return canUse[0]; // Return the final value after the context has been run
     }
-
 
 
 
