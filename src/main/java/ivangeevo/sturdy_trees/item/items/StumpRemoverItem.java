@@ -1,8 +1,7 @@
 package ivangeevo.sturdy_trees.item.items;
 
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.block.blocks.CraftingStumpBlock;
-import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
-import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;

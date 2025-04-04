@@ -15,7 +15,8 @@ public final class SturdyTreesTags {
         public static final TagKey<Block> LOG_VARIATION_BLOCKS = registerTag("log_variation_blocks");
         public static final TagKey<Block> LOG_SPIKE_UP_BLOCKS =  registerTag("log_spike_up_blocks");
         public static final TagKey<Block> LOG_SPIKE_DOWN_BLOCKS =  registerTag("log_spike_down_blocks");
-        
+
+        // Types of trees based on what trunk placer they're used in
         public static final TagKey<Block> STRAIGHT_TRUNK_TREES = registerTag("straight_trunk_trees");
         public static final TagKey<Block> LARGE_OAK_TRUNK_TREES = registerTag("large_oak_trunk_trees");
         public static final TagKey<Block> DARK_OAK_TRUNK_TREES = registerTag("dark_oak_trunk_trees");

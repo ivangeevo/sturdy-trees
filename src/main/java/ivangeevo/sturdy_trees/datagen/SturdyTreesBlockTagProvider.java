@@ -1,7 +1,7 @@
 package ivangeevo.sturdy_trees.datagen;
 
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -151,7 +151,6 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
 
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.CHERRY_TRUNK_TREES)
                 .add(Blocks.CHERRY_LOG);
-
 
     }
 
