@@ -1,11 +1,13 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
+import ivangeevo.sturdy_trees.block.LogBreakType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -18,6 +20,7 @@ public abstract class ConvertingLogBlock extends PillarBlock {
 
     public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
     public static final BooleanProperty CHARRED = BooleanProperty.of("charred");
+    //public static final EnumProperty<LogBreakType>
 
 
     public ConvertingLogBlock(AbstractBlock.Settings settings) {
