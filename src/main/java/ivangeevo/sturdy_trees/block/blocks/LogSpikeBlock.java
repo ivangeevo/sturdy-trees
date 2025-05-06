@@ -54,10 +54,9 @@ public class LogSpikeBlock extends ConvertingLogBlock {
 
         int variation = state.get(VARIATION);
 
-        if (world.isClient) {
-            switch (variation) {
-                case 1,2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
-                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+        if (!world.isClient()) {
+            if (variation == 1) {
+                this.playSpecialBreakSound(world, pos, player);
             }
         }
 

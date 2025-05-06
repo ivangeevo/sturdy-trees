@@ -43,13 +43,9 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         BlockState newState = getReplacementState(state, blockBelowState, blockAboveState);
         world.setBlockState(pos, newState);
 
-        int variation = state.get(VARIATION);
-
-
-        if (world.isClient) {
-            switch (variation) {
-                case 0, 2: world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
-                        1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+        if (!world.isClient) {
+            switch (state.get(VARIATION)) {
+                case 0, 2: this.playSpecialBreakSound(world, pos, player);
             }
         }
 

@@ -1,5 +1,8 @@
 # <center>Sturdy Trees</center>
 
+## v1.6(dev)
++ Optimized and fixed the wooden breaking sound for stripped, chewed & spike log blocks to play as it should.
+
 ## v1.5.4
 + General code improvement/cleanup
 + Updated the mod to Fabric API 0.115.3 & BTWR Shared Library 0.48

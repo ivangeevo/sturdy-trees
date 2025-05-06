@@ -1,13 +1,14 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.block.LogBreakType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -56,6 +57,15 @@ public abstract class ConvertingLogBlock extends PillarBlock {
         }
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);
+    }
+
+    protected void playSpecialBreakSound(World world, BlockPos pos, PlayerEntity player) {
+        world.playSound(null, pos, this.getSpecialBreakSound() , SoundCategory.BLOCKS, 0.1F,
+                1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+    }
+
+    protected SoundEvent getSpecialBreakSound() {
+        return SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
     }
 
 }
