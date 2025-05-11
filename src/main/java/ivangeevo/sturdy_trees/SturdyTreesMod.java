@@ -4,7 +4,6 @@ import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.block.TreeBreakHandler;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +16,7 @@ public class SturdyTreesMod implements ModInitializer {
     public void onInitialize() {
         SturdyTreesBlocks.registerModBlocks();
         SturdyTreesItems.registerModItems();
-        PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onBlockDestroyed);
+        TreeBreakHandler.registerBreakEvent();
     }
 
 }

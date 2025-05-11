@@ -1,6 +1,7 @@
 package ivangeevo.sturdy_trees.block;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +16,11 @@ import java.util.Map;
 
 public class TreeBreakHandler {
 
-    public static void onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
+    public static void registerBreakEvent() {
+        PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onBlockDestroyed);
+    }
+
+    private static void onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
         Block strippedLog = logToStrippedLogMap.get(state.getBlock());
         if (strippedLog != null) {
             handleLogBreak(world, pos, player, strippedLog);
