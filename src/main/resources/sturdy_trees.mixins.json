@@ -4,8 +4,9 @@
   "package": "ivangeevo.sturdy_trees.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BlockMixin",
     "CherryTrunkPlacerMixin",
+    "CraftingScreenHandlerMixin",
+    "CraftingTableBlockMixin",
     "DarkOakTrunkPlacerMixin",
     "ForkingTrunkPlacerMixin",
     "GiantTrunkPlacerMixin",

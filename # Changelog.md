@@ -1,6 +1,7 @@
 # <center>Sturdy Trees</center>
 
 ## v1.6(dev)
++ Changed all breaking logic to utilize Fabric API break events instead of mixing in into code myself.
 + Optimized and fixed the wooden breaking sound for stripped, chewed & spike log blocks to play as it should.
 
 ## v1.5.4
