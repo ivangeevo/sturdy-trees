@@ -22,7 +22,6 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
 
-
         getOrCreateTagBuilder(SturdyTreesTags.Items.BARK_ITEMS)
                 .add(SturdyTreesItems.BARK_OAK)
                 .add(SturdyTreesItems.BARK_SPRUCE)

@@ -28,7 +28,7 @@ public class StumpRemoverItem extends Item {
         World world = context.getWorld();
 
         if (!world.isClient) {
-            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS)) {
+            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS) || stump.isIn(SturdyTreesTags.Blocks.CRAFTING_STUMPS)) {
                 this.spawnParticles((ServerWorld) world, pos);
                 world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.MASTER, 1.0F,
                         (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F);

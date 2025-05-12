@@ -34,7 +34,6 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
         getOrCreateTagBuilder(ConventionalBlockTags.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
                 .forceAddTag(SturdyTreesTags.Blocks.CRAFTING_STUMPS);
 
-
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
                 .addTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
 
@@ -57,7 +56,8 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
                 .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1)
 
-                .addTag(SturdyTreesTags.Blocks.CRAFTING_STUMPS);
+                //.addTag(SturdyTreesTags.Blocks.CRAFTING_STUMPS)
+        ;
     }
 
     private void addToModTags() {
@@ -103,8 +103,6 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.LOG_CHERRY_CHEWED)
                 .add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
 
-
-
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.CRAFTING_STUMPS)
                 .add(SturdyTreesBlocks.STUMP_OAK_CRAFTING)
                 .add(SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING)
@@ -114,7 +112,6 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_DARK_OAK_CRAFTING)
                 .add(SturdyTreesBlocks.STUMP_MANGROVE_CRAFTING)
                 .add(SturdyTreesBlocks.STUMP_CHERRY_CRAFTING);
-        
 
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.STRAIGHT_TRUNK_TREES)
                 .add(Blocks.OAK_LOG)
