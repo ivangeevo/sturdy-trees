@@ -15,6 +15,7 @@
     "sturdy_trees:stump_acacia_var1",
     "sturdy_trees:stump_dark_oak_var1",
     "sturdy_trees:stump_mangrove_var1",
-    "sturdy_trees:stump_cherry_var1"
+    "sturdy_trees:stump_cherry_var1",
+    "#sturdy_trees:crafting_stumps"
   ]
 }

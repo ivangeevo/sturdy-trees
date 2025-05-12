@@ -11,10 +11,10 @@ public final class SturdyTreesTags {
 
     public static class Blocks {
 
+        public static final TagKey<Block> CRAFTING_STUMPS = registerTag("crafting_stumps");
+
         // All log blocks from the mod that have variation.(aka all ConvertingLogBlock's)
         public static final TagKey<Block> LOG_VARIATION_BLOCKS = registerTag("log_variation_blocks");
-        public static final TagKey<Block> LOG_SPIKE_UP_BLOCKS =  registerTag("log_spike_up_blocks");
-        public static final TagKey<Block> LOG_SPIKE_DOWN_BLOCKS =  registerTag("log_spike_down_blocks");
 
         // Types of trees based on what trunk placer they're used in
         public static final TagKey<Block> STRAIGHT_TRUNK_TREES = registerTag("straight_trunk_trees");
@@ -27,7 +27,6 @@ public final class SturdyTreesTags {
         public static final TagKey<Block> UPWARDS_BRANCHING_TRUNK_TREES = registerTag("upwards_branching_trunk_trees");
         public static final TagKey<Block> CHERRY_TRUNK_TREES = registerTag("cherry_trunk_trees");
 
-
         private static TagKey<Block> registerTag(String id) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, id));
         }
@@ -37,7 +36,6 @@ public final class SturdyTreesTags {
     public static class Items {
 
         public static final TagKey<Item> BARK_ITEMS = registerTag("bark_items");
-
 
         private static TagKey<Item> registerTag(String id) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, id));

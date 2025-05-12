@@ -11,9 +11,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,12 +18,13 @@ public abstract class ConvertingLogBlock extends PillarBlock {
 
     public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
     public static final BooleanProperty CHARRED = BooleanProperty.of("charred");
-    //public static final EnumProperty<LogBreakType>
-
 
     public ConvertingLogBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(VARIATION,0).with(CHARRED, false));
+        this.setDefaultState(this.getStateManager().getDefaultState()
+                .with(VARIATION, 0)
+                .with(CHARRED, false)
+        );
     }
 
     @Override
@@ -36,31 +34,19 @@ public abstract class ConvertingLogBlock extends PillarBlock {
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int var = state.get(VARIATION);
-        double offset = (2 + var) / 16.0;
-        double to = 1.0 - offset;
-
-        // Create a VoxelShape based on the dimensions
-        return VoxelShapes.cuboid(offset, 0, offset, to, 1.0, to);
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+        this.tryConvert(world, pos, state, player);
+        super.afterBreak(world, player, pos, state, blockEntity, tool);
     }
 
-    @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack)
-    {
-        int variation = state.get(VARIATION);
-
-        if (!world.isClient) {
-            if (variation < 2 && !(state.getBlock() instanceof LogStrippedBlock)) {
-                world.setBlockState(pos, getStateWithProperties(state.with(VARIATION, variation + 1)));
-            }
-        }
-
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
+    protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        this.playSoundsOnBreak(world, pos, state, player);
     }
+
+    protected void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {}
 
     protected void playSpecialBreakSound(World world, BlockPos pos, PlayerEntity player) {
-        world.playSound(null, pos, this.getSpecialBreakSound() , SoundCategory.BLOCKS, 0.1F,
+        world.playSound(null, pos, this.getSpecialBreakSound(), SoundCategory.BLOCKS, 0.1F,
                 1.25F + (player.getWorld().random.nextFloat() * 0.25F));
     }
 

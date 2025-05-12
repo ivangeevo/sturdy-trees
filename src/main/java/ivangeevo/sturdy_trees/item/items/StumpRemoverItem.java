@@ -1,8 +1,9 @@
 package ivangeevo.sturdy_trees.item.items;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
-import ivangeevo.sturdy_trees.block.blocks.CraftingStumpBlock;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CraftingTableBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
@@ -26,18 +27,14 @@ public class StumpRemoverItem extends Item {
         ItemStack itemStack = context.getStack(); // Get the ItemStack associated with the context.
         World world = context.getWorld();
 
-        if (!world.isClient)
-        {
-            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS) || stump.getBlock() instanceof CraftingStumpBlock)
-            {
-
+        if (!world.isClient) {
+            if (stump.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS)) {
                 this.spawnParticles((ServerWorld) world, pos);
                 world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.MASTER, 1.0F,
                         (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F);
 
                 world.removeBlock(pos, false);
                 itemStack.decrement(1); // Consume one item from the ItemStack.
-
 
                 return ActionResult.SUCCESS; // Indicate a successful action.
             }

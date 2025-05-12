@@ -5,6 +5,7 @@ import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -22,9 +23,17 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
         addToVanillaTags();
         addToModTags();
         addToConventionalTags();
+
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .addTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
+
     }
 
     private void addToConventionalTags() {
+
+        getOrCreateTagBuilder(ConventionalBlockTags.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
+                .forceAddTag(SturdyTreesTags.Blocks.CRAFTING_STUMPS);
+
 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
                 .addTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
@@ -46,81 +55,66 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_ACACIA_VAR1)
                 .add(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)
                 .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
-                .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1);
+                .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1)
 
+                .addTag(SturdyTreesTags.Blocks.CRAFTING_STUMPS);
     }
 
     private void addToModTags() {
 
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)
-
                 // Oak Logs
-                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_OAK_SPIKE)
                 .add(SturdyTreesBlocks.LOG_OAK_CHEWED)
                 .add(SturdyTreesBlocks.LOG_OAK_STRIPPED)
 
                 // Birch Logs
-                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE)
                 .add(SturdyTreesBlocks.LOG_BIRCH_CHEWED)
                 .add(SturdyTreesBlocks.LOG_BIRCH_STRIPPED)
 
                 // Spruce Logs
-                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE)
                 .add(SturdyTreesBlocks.LOG_SPRUCE_CHEWED)
                 .add(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED)
 
                 // Jungle Logs
-                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE)
                 .add(SturdyTreesBlocks.LOG_JUNGLE_CHEWED)
                 .add(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED)
 
                 // Acacia Logs
-                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE)
                 .add(SturdyTreesBlocks.LOG_ACACIA_CHEWED)
                 .add(SturdyTreesBlocks.LOG_ACACIA_STRIPPED)
 
                 // Dark Oak Logs
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE)
                 .add(SturdyTreesBlocks.LOG_DARK_OAK_CHEWED)
                 .add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED)
 
                 // Mangrove Logs
-                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE)
                 .add(SturdyTreesBlocks.LOG_MANGROVE_CHEWED)
                 .add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED)
 
                 // Cherry Logs
-                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN)
+                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE)
                 .add(SturdyTreesBlocks.LOG_CHERRY_CHEWED)
                 .add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
-        
-        getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_SPIKE_UP_BLOCKS)
-                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_UP)
-                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_UP);
 
-        getOrCreateTagBuilder(SturdyTreesTags.Blocks.LOG_SPIKE_DOWN_BLOCKS)
-                .add(SturdyTreesBlocks.LOG_OAK_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_SPRUCE_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_BIRCH_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_JUNGLE_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_ACACIA_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_MANGROVE_SPIKE_DOWN)
-                .add(SturdyTreesBlocks.LOG_CHERRY_SPIKE_DOWN);
+
+
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.CRAFTING_STUMPS)
+                .add(SturdyTreesBlocks.STUMP_OAK_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_BIRCH_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_JUNGLE_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_ACACIA_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_DARK_OAK_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_MANGROVE_CRAFTING)
+                .add(SturdyTreesBlocks.STUMP_CHERRY_CRAFTING);
+        
 
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.STRAIGHT_TRUNK_TREES)
                 .add(Blocks.OAK_LOG)

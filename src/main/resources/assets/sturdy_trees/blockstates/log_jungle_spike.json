@@ -1,0 +1,12 @@
+{
+  "variants":
+  {
+    "variation=0,facing=down":{ "model": "sturdy_trees:block/log_jungle_top_var1"},
+    "variation=1,facing=down": { "model": "sturdy_trees:block/log_jungle_top_var2"},
+    "variation=2,facing=down": { "model": "sturdy_trees:block/log_jungle_top_var3"},
+
+    "variation=0,facing=up":{ "model": "sturdy_trees:block/log_jungle_bot_var1"},
+    "variation=1,facing=up": { "model": "sturdy_trees:block/log_jungle_bot_var2"},
+    "variation=2,facing=up": { "model": "sturdy_trees:block/log_jungle_bot_var3"}
+  }
+}

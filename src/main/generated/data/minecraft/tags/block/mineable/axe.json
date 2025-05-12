@@ -2,6 +2,7 @@
   "values": [
     "#minecraft:logs",
     "#sturdy_trees:log_variation_blocks",
-    "#minecraft:leaves"
+    "#minecraft:leaves",
+    "#c:stump_blocks"
   ]
 }

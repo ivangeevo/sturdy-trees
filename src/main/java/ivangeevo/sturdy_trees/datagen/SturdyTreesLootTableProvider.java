@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import static ivangeevo.sturdy_trees.block.blocks.ConvertingLogBlock.VARIATION;
+import static ivangeevo.sturdy_trees.block.blocks.LogStrippedBlock.VARIATION;
 
 public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
 
@@ -197,8 +197,7 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
         List<Identifier> list = new ArrayList<>();
 
         for (String woodType : overworldToughWoodTypes) {
-            list.add(Identifier.of(SturdyTreesMod.MOD_ID, "log_" + woodType + "_spike_up"));
-            list.add(Identifier.of(SturdyTreesMod.MOD_ID, "log_" + woodType + "_spike_down"));
+            list.add(Identifier.of(SturdyTreesMod.MOD_ID, "log_" + woodType + "_spike"));
         }
 
         return list;
