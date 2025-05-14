@@ -1,6 +1,7 @@
-package ivangeevo.sturdy_trees.block;
+package ivangeevo.sturdy_trees;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,7 +9,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -23,7 +26,7 @@ public class TreeBreakHandler {
     private static void onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
         Block strippedLog = logToStrippedLogMap.get(state.getBlock());
         if (strippedLog != null) {
-            handleLogBreak(world, pos, player, strippedLog);
+            handleLogBreak(world, pos, state, player, strippedLog);
         }
     }
 
@@ -40,7 +43,7 @@ public class TreeBreakHandler {
         logToStrippedLogMap.put(Blocks.CHERRY_LOG, SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
     }
 
-    private static void handleLogBreak(World world, BlockPos pos, PlayerEntity player, Block strippedLog) {
+    private static void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, Block strippedLog) {
         boolean isFullyBreakingAxe = player.getWeaponStack().isIn(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK);
 
         if (!(world instanceof ServerWorld)) {
@@ -50,8 +53,13 @@ public class TreeBreakHandler {
         if (isFullyBreakingAxe || player.isCreative()) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {
-            world.setBlockState(pos, strippedLog.getDefaultState());
+            world.setBlockState(pos, strippedLog.getStateWithProperties(
+                    strippedLog.getDefaultState()
+                            .with(Properties.AXIS, state.get(Properties.AXIS)))
+            );
         }
     }
+
+
 
 }

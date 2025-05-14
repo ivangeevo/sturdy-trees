@@ -1,7 +1,6 @@
 package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
-import ivangeevo.sturdy_trees.block.TreeBreakHandler;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;

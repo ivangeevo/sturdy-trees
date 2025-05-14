@@ -5,7 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class LogChewedBlock extends ConvertingLogBlock {
+public class LogChewedBlock extends LogStrippedBlock {
 
     public LogChewedBlock(Settings settings)
     {
@@ -20,10 +20,14 @@ public class LogChewedBlock extends ConvertingLogBlock {
     }
 
     @Override
+    protected int getOutlineOffset() {
+        return 2;
+    }
+
+    @Override
     protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         int breakLevel = state.get(VARIATION);
         if (breakLevel >= 2) { return; }
         world.setBlockState(pos, getStateWithProperties(state.with(VARIATION, breakLevel + 1)));
-        super.tryConvert(world, pos, state, player);
     }
 }

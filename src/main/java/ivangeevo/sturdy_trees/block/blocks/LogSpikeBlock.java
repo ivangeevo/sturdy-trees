@@ -2,19 +2,15 @@ package ivangeevo.sturdy_trees.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class LogSpikeBlock extends ConvertingLogBlock {
+public class LogSpikeBlock extends LogStrippedBlock {
 
     public static final DirectionProperty FACING = Properties.FACING;
 
@@ -34,16 +30,12 @@ public class LogSpikeBlock extends ConvertingLogBlock {
         int breakLevel = state.get(VARIATION);
         if (breakLevel >= 2) { return; }
         world.setBlockState(pos, getStateWithProperties(state.with(VARIATION, breakLevel + 1)));
-        super.tryConvert(world, pos, state, player);
+        this.playSoundsOnBreak(world, pos, state, player);
     }
 
     @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        // TODO: FIX OUTLINE FOR THE SPIKE LOG
-        int var = state.get(VARIATION);
-        double offset = (2 + var) / 16.0;
-        double to = 1.0 - offset;
-        return VoxelShapes.cuboid(offset, 0, offset, to, 1.0f, to);
+    protected int getOutlineOffset() {
+        return 2;
     }
 
     @Override
@@ -52,4 +44,5 @@ public class LogSpikeBlock extends ConvertingLogBlock {
             this.playSpecialBreakSound(world, pos, player);
         }
     }
+
 }

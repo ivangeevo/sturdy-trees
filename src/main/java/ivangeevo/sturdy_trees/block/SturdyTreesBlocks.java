@@ -77,47 +77,6 @@ public class SturdyTreesBlocks {
     public static final Block LOG_MANGROVE_STRIPPED = registerBlockWithoutItem("log_mangrove_stripped", createStripped(MapColor.RED, MapColor.SPRUCE_BROWN));
     public static final Block LOG_CHERRY_STRIPPED = registerBlockWithoutItem("log_cherry_stripped", createBambooStripped(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
 
-    /**
-    // Spike
-    public static final Block LOG_OAK_SPIKE_DOWN = registerBlockWithoutItem("log_oak_spike_down", createSpike(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_SPRUCE_SPIKE_DOWN = registerBlockWithoutItem("log_spruce_spike_down", createSpike(MapColor.SPRUCE_BROWN, MapColor.BROWN));
-    public static final Block LOG_BIRCH_SPIKE_DOWN = registerBlockWithoutItem("log_birch_spike_down", createSpike(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
-    public static final Block LOG_JUNGLE_SPIKE_DOWN = registerBlockWithoutItem("log_jungle_spike_down", createSpike(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_ACACIA_SPIKE_DOWN = registerBlockWithoutItem("log_acacia_spike_down", createSpike(MapColor.ORANGE, MapColor.STONE_GRAY));
-    public static final Block LOG_DARK_OAK_SPIKE_DOWN = registerBlockWithoutItem("log_dark_oak_spike_down", createSpike(MapColor.BROWN, MapColor.BROWN));
-    public static final Block LOG_MANGROVE_SPIKE_DOWN = registerBlockWithoutItem("log_mangrove_spike_down", createSpike(MapColor.RED, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_CHERRY_SPIKE_DOWN = registerBlockWithoutItem("log_cherry_spike_down", createBambooSpike(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
-
-    public static final Block LOG_OAK_SPIKE_UP = registerBlockWithoutItem("log_oak_spike_up", createSpike(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_SPRUCE_SPIKE_UP = registerBlockWithoutItem("log_spruce_spike_up", createSpike(MapColor.SPRUCE_BROWN, MapColor.BROWN));
-    public static final Block LOG_BIRCH_SPIKE_UP = registerBlockWithoutItem("log_birch_spike_up", createSpike(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
-    public static final Block LOG_JUNGLE_SPIKE_UP = registerBlockWithoutItem("log_jungle_spike_up", createSpike(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_ACACIA_SPIKE_UP = registerBlockWithoutItem("log_acacia_spike_up", createSpike(MapColor.ORANGE, MapColor.STONE_GRAY));
-    public static final Block LOG_DARK_OAK_SPIKE_UP = registerBlockWithoutItem("log_dark_oak_spike_up", createSpike(MapColor.BROWN, MapColor.BROWN));
-    public static final Block LOG_MANGROVE_SPIKE_UP = registerBlockWithoutItem("log_mangrove_spike_up", createSpike(MapColor.RED, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_CHERRY_SPIKE_UP = registerBlockWithoutItem("log_cherry_spike_up", createBambooSpike(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
-
-    // Chewed
-    public static final Block LOG_OAK_CHEWED = registerBlockWithoutItem("log_oak_chewed", createChewed(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_SPRUCE_CHEWED = registerBlockWithoutItem("log_spruce_chewed", createChewed(MapColor.SPRUCE_BROWN, MapColor.BROWN));
-    public static final Block LOG_BIRCH_CHEWED = registerBlockWithoutItem("log_birch_chewed", createChewed(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
-    public static final Block LOG_JUNGLE_CHEWED = registerBlockWithoutItem("log_jungle_chewed", createChewed(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_ACACIA_CHEWED = registerBlockWithoutItem("log_acacia_chewed", createChewed(MapColor.ORANGE, MapColor.STONE_GRAY));
-    public static final Block LOG_DARK_OAK_CHEWED = registerBlockWithoutItem("log_dark_oak_chewed", createChewed(MapColor.BROWN, MapColor.BROWN));
-    public static final Block LOG_MANGROVE_CHEWED = registerBlockWithoutItem("log_mangrove_chewed", createChewed(MapColor.RED, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_CHERRY_CHEWED = registerBlockWithoutItem("log_cherry_chewed", createBambooChewed(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
-
-    // Stripped
-    public static final Block LOG_OAK_STRIPPED = registerBlockWithoutItem("log_oak_stripped", createStripped(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_BIRCH_STRIPPED = registerBlockWithoutItem("log_birch_stripped", createStripped(MapColor.SPRUCE_BROWN, MapColor.BROWN));
-    public static final Block LOG_SPRUCE_STRIPPED = registerBlockWithoutItem("log_spruce_stripped", createStripped(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
-    public static final Block LOG_JUNGLE_STRIPPED = registerBlockWithoutItem("log_jungle_stripped", createStripped(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_ACACIA_STRIPPED = registerBlockWithoutItem("log_acacia_stripped", createStripped(MapColor.ORANGE, MapColor.STONE_GRAY));
-    public static final Block LOG_DARK_OAK_STRIPPED = registerBlockWithoutItem("log_dark_oak_stripped", createStripped(MapColor.BROWN, MapColor.BROWN));
-    public static final Block LOG_MANGROVE_STRIPPED = registerBlockWithoutItem("log_mangrove_stripped", createStripped(MapColor.RED, MapColor.SPRUCE_BROWN));
-    public static final Block LOG_CHERRY_STRIPPED = registerBlockWithoutItem("log_cherry_stripped", createBambooStripped(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD));
-    **/
-
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup) {
         return new StumpBlock(AbstractBlock.Settings.create().strength(50f,2f).sounds(soundGroup)
                 .mapColor(mapColor).instrument(NoteBlockInstrument.BASS));

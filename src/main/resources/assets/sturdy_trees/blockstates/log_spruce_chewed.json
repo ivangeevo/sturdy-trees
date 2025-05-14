@@ -1,8 +1,15 @@
 {
   "variants": {
-    "variation=0": [{"model": "sturdy_trees:block/log_spruce_mid_var1"}],
-    "variation=1": [{"model": "sturdy_trees:block/log_spruce_mid_var2"}],
-    "variation=2": [{"model": "sturdy_trees:block/log_spruce_mid_var3"}]
+    "variation=0,axis=x": [{ "model": "sturdy_trees:block/log_spruce_mid_var1", "x": 90, "y": 90 }],
+    "variation=0,axis=y": [{ "model": "sturdy_trees:block/log_spruce_mid_var1"}],
+    "variation=0,axis=z": [{ "model": "sturdy_trees:block/log_spruce_mid_var1", "x": 90 }],
 
+    "variation=1,axis=x": [{ "model": "sturdy_trees:block/log_spruce_mid_var2", "x": 90, "y": 90 }],
+    "variation=1,axis=y": [{ "model": "sturdy_trees:block/log_spruce_mid_var2"}],
+    "variation=1,axis=z": [{ "model": "sturdy_trees:block/log_spruce_mid_var2", "x": 90}],
+
+    "variation=2,axis=x": [{ "model": "sturdy_trees:block/log_spruce_mid_var3", "x": 90, "y": 90 }],
+    "variation=2,axis=y": [{ "model": "sturdy_trees:block/log_spruce_mid_var3"}],
+    "variation=2,axis=z": [{ "model": "sturdy_trees:block/log_spruce_mid_var3", "x": 90}]
   }
 }

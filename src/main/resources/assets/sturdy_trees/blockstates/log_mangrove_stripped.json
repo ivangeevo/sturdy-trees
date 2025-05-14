@@ -1,9 +1,19 @@
 {
   "variants": {
-    "variation=0": [{"model": "sturdy_trees:block/log_mangrove_stripped_var0"}],
-    "variation=1": [{"model": "sturdy_trees:block/log_mangrove_stripped_var1"}],
-    "variation=2": [{"model": "sturdy_trees:block/log_mangrove_stripped_var2"}],
-    "variation=3": [{"model": "sturdy_trees:block/log_mangrove_stripped_var3"}]
+    "variation=0,axis=x": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var0", "x": 90, "y": 90 }],
+    "variation=0,axis=y": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var0"}],
+    "variation=0,axis=z": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var0", "x": 90 }],
 
+    "variation=1,axis=x": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var1", "x": 90, "y": 90 }],
+    "variation=1,axis=y": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var1"}],
+    "variation=1,axis=z": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var1", "x": 90}],
+
+    "variation=2,axis=x": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var2", "x": 90, "y": 90 }],
+    "variation=2,axis=y": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var2"}],
+    "variation=2,axis=z": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var2", "x": 90}],
+
+    "variation=3,axis=x": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var3", "x": 90, "y": 90 }],
+    "variation=3,axis=y": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var3"}],
+    "variation=3,axis=z": [{ "model": "sturdy_trees:block/log_mangrove_stripped_var3", "x": 90 }]
   }
 }
