@@ -98,116 +98,10 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         return SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
     }
 
-    /**
     private BlockState getReplacementState(World world, BlockPos pos, BlockState currentState) {
         Block strippedVar = null;
         Block chewedVar = null;
         Block spikeVar = null;
-
-        BlockState blockBelowState = world.getBlockState(pos.down());
-        BlockState blockAboveState = world.getBlockState(pos.up());
-        BlockState blockNorthState = world.getBlockState(pos.north());
-        BlockState blockSouthState = world.getBlockState(pos.south());
-        BlockState blockEastState = world.getBlockState(pos.east());
-        BlockState blockWestState = world.getBlockState(pos.west());
-
-
-        // Assign the appropriate block variations based on the log type
-        if (currentState.isOf(SturdyTreesBlocks.LOG_OAK_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_OAK_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_OAK_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_OAK_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_BIRCH_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_BIRCH_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_BIRCH_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_BIRCH_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_SPRUCE_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_SPRUCE_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_SPRUCE_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_JUNGLE_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_JUNGLE_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_JUNGLE_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_ACACIA_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_ACACIA_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_ACACIA_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_ACACIA_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_DARK_OAK_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_DARK_OAK_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_MANGROVE_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_MANGROVE_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_MANGROVE_SPIKE;
-        } else if (currentState.isOf(SturdyTreesBlocks.LOG_CHERRY_STRIPPED)) {
-            strippedVar = SturdyTreesBlocks.LOG_CHERRY_STRIPPED;
-            chewedVar = SturdyTreesBlocks.LOG_CHERRY_CHEWED;
-            spikeVar = SturdyTreesBlocks.LOG_CHERRY_SPIKE;
-        }
-
-         // Determine neighbor presence based on axis
-         Direction.Axis axis = currentState.get(AXIS);
-         Direction dirPos, dirNeg;
-         boolean hasPos, hasNeg;
-
-         switch (axis) {
-             case X -> {
-                 dirPos = Direction.EAST;
-                 dirNeg = Direction.WEST;
-                 hasPos = !blockWestState.isAir();
-                 hasNeg = !blockEastState.isAir();
-             }
-             case Z -> {
-                 dirPos = Direction.NORTH;
-                 dirNeg = Direction.SOUTH;
-                 hasPos = !blockSouthState.isAir();
-                 hasNeg = !blockNorthState.isAir();
-             }
-             default -> {
-                 dirPos = Direction.UP;
-                 dirNeg = Direction.DOWN;
-                 hasPos = !blockBelowState.isAir();
-                 hasNeg = !blockAboveState.isAir();
-             }
-         }
-
-         Direction facing = ;
-         BlockPos backPos = pos.offset(facing.getOpposite());
-         BlockState backState = world.getBlockState(backPos);
-
-         // Main logic
-         if (hasNeg && hasPos) {
-             return chewedVar != null ? chewedVar.getStateWithProperties(currentState) : currentState;
-         } else if (hasNeg) {
-             return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, dirNeg) : currentState;
-         } else if (hasPos) {
-             return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, dirPos) : currentState;
-         } else if (currentState.get(VARIATION) == 3) {
-             return Blocks.AIR.getDefaultState();
-         } else {
-             int level = currentState.get(VARIATION);
-             return strippedVar != null
-                     ? strippedVar.getStateWithProperties(currentState.with(VARIATION, (level + 1) % 4))
-                     : currentState;
-         }
-
-    }
-     **/
-
-    private BlockState getReplacementState(World world, BlockPos pos, BlockState currentState) {
-        Block strippedVar = null;
-        Block chewedVar = null;
-        Block spikeVar = null;
-
-        // Grab neighbor block states
-        BlockState blockBelowState = world.getBlockState(pos.down());
-        BlockState blockAboveState = world.getBlockState(pos.up());
-        BlockState blockNorthState = world.getBlockState(pos.north());
-        BlockState blockSouthState = world.getBlockState(pos.south());
-        BlockState blockEastState = world.getBlockState(pos.east());
-        BlockState blockWestState = world.getBlockState(pos.west());
 
         // Define blocks to change
         Identifier id = Registries.BLOCK.getId(currentState.getBlock());
@@ -228,20 +122,20 @@ public class LogStrippedBlock extends ConvertingLogBlock {
             case X -> {
                 dirPos = Direction.EAST;
                 dirNeg = Direction.WEST;
-                statePos = blockWestState;
-                stateNeg = blockEastState;
+                statePos = world.getBlockState(pos.west());
+                stateNeg = world.getBlockState(pos.east());
             }
             case Z -> {
                 dirPos = Direction.NORTH;
                 dirNeg = Direction.SOUTH;
-                statePos = blockSouthState;
-                stateNeg = blockNorthState;
+                statePos = world.getBlockState(pos.south());
+                stateNeg = world.getBlockState(pos.north());
             }
             default -> {
                 dirPos = Direction.UP;
                 dirNeg = Direction.DOWN;
-                statePos = blockBelowState;
-                stateNeg = blockAboveState;
+                statePos = world.getBlockState(pos.down());
+                stateNeg = world.getBlockState(pos.up());
             }
         }
 
