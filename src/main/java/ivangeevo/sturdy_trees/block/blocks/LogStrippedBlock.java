@@ -3,16 +3,19 @@ package ivangeevo.sturdy_trees.block.blocks;
 import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,19 +23,6 @@ import java.util.Map;
 import static ivangeevo.sturdy_trees.block.blocks.LogSpikeBlock.FACING;
 
 public class LogStrippedBlock extends ConvertingLogBlock {
-
-    private static final Map<Block, Block> logToStrippedLogMap = new HashMap<>();
-
-    static {
-        logToStrippedLogMap.put(SturdyTreesBlocks.LOG_OAK_STRIPPED, SturdyTreesBlocks.LOG_OAK_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.BIRCH_LOG, SturdyTreesBlocks.LOG_BIRCH_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.SPRUCE_LOG, SturdyTreesBlocks.LOG_SPRUCE_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.JUNGLE_LOG, SturdyTreesBlocks.LOG_JUNGLE_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.ACACIA_LOG, SturdyTreesBlocks.LOG_ACACIA_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.DARK_OAK_LOG, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.MANGROVE_LOG, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED);
-        logToStrippedLogMap.put(SturdyTreesBlocks.CHERRY_LOG, SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
-    }
 
     public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -108,6 +98,7 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         return SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
     }
 
+    /**
     private BlockState getReplacementState(World world, BlockPos pos, BlockState currentState) {
         Block strippedVar = null;
         Block chewedVar = null;
@@ -159,33 +150,8 @@ public class LogStrippedBlock extends ConvertingLogBlock {
          // Determine neighbor presence based on axis
          Direction.Axis axis = currentState.get(AXIS);
          Direction dirPos, dirNeg;
+         boolean hasPos, hasNeg;
 
-         //boolean hasPos, hasNeg;
-
-        BlockState statePos, stateNeg;
-
-        switch (axis) {
-            case X -> {
-                dirPos = Direction.EAST;
-                dirNeg = Direction.WEST;
-                statePos = blockEastState;
-                stateNeg = blockWestState;
-            }
-            case Z -> {
-                dirPos = Direction.SOUTH;
-                dirNeg = Direction.NORTH;
-                statePos = blockSouthState;
-                stateNeg = blockNorthState;
-            }
-            default -> {
-                dirPos = Direction.UP;
-                dirNeg = Direction.DOWN;
-                statePos = blockAboveState;
-                stateNeg = blockBelowState;
-            }
-        }
-
-         /**
          switch (axis) {
              case X -> {
                  dirPos = Direction.EAST;
@@ -206,12 +172,10 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                  hasNeg = !blockAboveState.isAir();
              }
          }
-          **/
 
-        // Check whether solid, full, non-replaceable block exists
-        boolean hasPos = isSolidBlockAtBase(world, pos.offset(dirPos), statePos);
-        boolean hasNeg = isSolidBlockAtBase(world, pos.offset(dirNeg), stateNeg);
-
+         Direction facing = ;
+         BlockPos backPos = pos.offset(facing.getOpposite());
+         BlockState backState = world.getBlockState(backPos);
 
          // Main logic
          if (hasNeg && hasPos) {
@@ -230,21 +194,92 @@ public class LogStrippedBlock extends ConvertingLogBlock {
          }
 
     }
+     **/
 
-    // checks if the block against the currently replaced block is solid full block
-    private boolean isSolidBlockAtBase(World world, BlockPos pos, BlockState base) {
-      return base.isOpaqueFullCube(world, pos) && !base.isReplaceable();
+    private BlockState getReplacementState(World world, BlockPos pos, BlockState currentState) {
+        Block strippedVar = null;
+        Block chewedVar = null;
+        Block spikeVar = null;
+
+        // Grab neighbor block states
+        BlockState blockBelowState = world.getBlockState(pos.down());
+        BlockState blockAboveState = world.getBlockState(pos.up());
+        BlockState blockNorthState = world.getBlockState(pos.north());
+        BlockState blockSouthState = world.getBlockState(pos.south());
+        BlockState blockEastState = world.getBlockState(pos.east());
+        BlockState blockWestState = world.getBlockState(pos.west());
+
+        // Define blocks to change
+        Identifier id = Registries.BLOCK.getId(currentState.getBlock());
+
+        if (id.getPath().endsWith("_stripped")) {
+            String base = id.getPath().replace("_stripped", "");
+            strippedVar = currentState.getBlock(); // already stripped
+            chewedVar = Registries.BLOCK.get(Identifier.of(id.getNamespace(), base + "_chewed"));
+            spikeVar = Registries.BLOCK.get(Identifier.of(id.getNamespace(), base + "_spike"));
+        }
+
+        // Determine directions based on axis
+        Direction.Axis axis = currentState.get(AXIS);
+        Direction dirPos, dirNeg;
+        BlockState statePos, stateNeg;
+
+        switch (axis) {
+            case X -> {
+                dirPos = Direction.EAST;
+                dirNeg = Direction.WEST;
+                statePos = blockWestState;
+                stateNeg = blockEastState;
+            }
+            case Z -> {
+                dirPos = Direction.NORTH;
+                dirNeg = Direction.SOUTH;
+                statePos = blockSouthState;
+                stateNeg = blockNorthState;
+            }
+            default -> {
+                dirPos = Direction.UP;
+                dirNeg = Direction.DOWN;
+                statePos = blockBelowState;
+                stateNeg = blockAboveState;
+            }
+        }
+
+        // Check whether solid, full, non-replaceable block exists
+        boolean hasPos = isSolidBlockAtBase(world, pos.offset(dirPos), statePos);
+        boolean hasNeg = isSolidBlockAtBase(world, pos.offset(dirNeg), stateNeg);
+
+        // Apply logic
+        if (hasNeg && hasPos) {
+            return chewedVar != null ? chewedVar.getStateWithProperties(currentState) : currentState;
+        } else if (hasNeg) {
+            return getSpikeState(spikeVar, currentState, dirNeg);
+        } else if (hasPos) {
+            return getSpikeState(spikeVar, currentState, dirPos);
+        } else if (currentState.get(VARIATION) == 3) {
+            return Blocks.AIR.getDefaultState();
+        } else {
+            int level = currentState.get(VARIATION);
+            return strippedVar != null
+                    ? strippedVar.getStateWithProperties(currentState.with(VARIATION, (level + 1) % 4))
+                    : currentState;
+        }
     }
 
     // Only apply FACING if the block actually has that property
     private BlockState getSpikeState(Block spikeVar, BlockState currentState, Direction facing) {
-        if (spikeVar instanceof LogSpikeBlock spikeBlock) {
+        if (spikeVar instanceof LogSpikeBlock) {
             BlockState base = spikeVar.getStateWithProperties(currentState);
             if (base.contains(FACING)) {
                 return base.with(FACING, facing);
             }
         }
         return currentState;
+    }
+
+    // checks if the block against the currently replaced block is solid full block
+    private boolean isSolidBlockAtBase(World world, BlockPos pos, BlockState base) {
+      return base.isOpaqueFullCube(world, pos) && !base.isReplaceable();
     }
 
 }
