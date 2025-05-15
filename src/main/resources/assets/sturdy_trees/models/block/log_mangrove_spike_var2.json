@@ -1,0 +1,7 @@
+{
+	"parent": "sturdy_trees:block/parent/cube_spike_var2",
+	"textures": {
+		"end": "sturdy_trees:block/log_mangrove_stripped_top",
+		"side": "sturdy_trees:block/log_mangrove_stripped_side"
+	}
+}

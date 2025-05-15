@@ -1,0 +1,7 @@
+{
+	"parent": "sturdy_trees:block/parent/cube_spike_var1",
+	"textures": {
+		"end": "sturdy_trees:block/log_acacia_stripped_top",
+		"side": "sturdy_trees:block/log_acacia_stripped_side"
+	}
+}

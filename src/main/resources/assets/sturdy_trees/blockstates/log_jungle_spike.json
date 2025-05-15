@@ -1,12 +1,31 @@
 {
   "variants":
   {
-    "variation=0,facing=down":{ "model": "sturdy_trees:block/log_jungle_top_var1"},
-    "variation=1,facing=down": { "model": "sturdy_trees:block/log_jungle_top_var2"},
-    "variation=2,facing=down": { "model": "sturdy_trees:block/log_jungle_top_var3"},
+    "variation=0,facing=up":{ "model": "sturdy_trees:block/log_jungle_spike_var1"},
+    "variation=1,facing=up": { "model": "sturdy_trees:block/log_jungle_spike_var2"},
+    "variation=2,facing=up": { "model": "sturdy_trees:block/log_jungle_spike_var3"},
 
-    "variation=0,facing=up":{ "model": "sturdy_trees:block/log_jungle_bot_var1"},
-    "variation=1,facing=up": { "model": "sturdy_trees:block/log_jungle_bot_var2"},
-    "variation=2,facing=up": { "model": "sturdy_trees:block/log_jungle_bot_var3"}
+    "variation=0,facing=down":{ "model": "sturdy_trees:block/log_jungle_spike_var1", "x": 180 },
+    "variation=1,facing=down": { "model": "sturdy_trees:block/log_jungle_spike_var2", "x": 180 },
+    "variation=2,facing=down": { "model": "sturdy_trees:block/log_jungle_spike_var3", "x": 180 },
+
+    "variation=0,facing=north":{ "model": "sturdy_trees:block/log_jungle_spike_var1", "x": 90 },
+    "variation=1,facing=north": { "model": "sturdy_trees:block/log_jungle_spike_var2", "x": 90 },
+    "variation=2,facing=north": { "model": "sturdy_trees:block/log_jungle_spike_var3", "x": 90 },
+
+    "variation=0,facing=south":{ "model": "sturdy_trees:block/log_jungle_spike_var1", "x": 90, "y": 180 },
+    "variation=1,facing=south": { "model": "sturdy_trees:block/log_jungle_spike_var2", "x": 90, "y": 180 },
+    "variation=2,facing=south": { "model": "sturdy_trees:block/log_jungle_spike_var3", "x": 90, "y": 180 },
+
+    "variation=0,facing=east":{ "model": "sturdy_trees:block/log_jungle_spike_var1", "x": 90, "y": 90 },
+    "variation=1,facing=east": { "model": "sturdy_trees:block/log_jungle_spike_var2", "x": 90, "y": 90 },
+    "variation=2,facing=east": { "model": "sturdy_trees:block/log_jungle_spike_var3", "x": 90, "y": 90 },
+
+    "variation=0,facing=west":{ "model": "sturdy_trees:block/log_jungle_spike_var1", "x": 90, "y": 270 },
+    "variation=1,facing=west": { "model": "sturdy_trees:block/log_jungle_spike_var2", "x": 90, "y": 270 },
+    "variation=2,facing=west": { "model": "sturdy_trees:block/log_jungle_spike_var3", "x": 90, "y": 270 }
+
   }
 }
+
+

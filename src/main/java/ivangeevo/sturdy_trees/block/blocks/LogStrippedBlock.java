@@ -14,9 +14,25 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static ivangeevo.sturdy_trees.block.blocks.LogSpikeBlock.FACING;
 
 public class LogStrippedBlock extends ConvertingLogBlock {
+
+    private static final Map<Block, Block> logToStrippedLogMap = new HashMap<>();
+
+    static {
+        logToStrippedLogMap.put(SturdyTreesBlocks.LOG_OAK_STRIPPED, SturdyTreesBlocks.LOG_OAK_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.BIRCH_LOG, SturdyTreesBlocks.LOG_BIRCH_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.SPRUCE_LOG, SturdyTreesBlocks.LOG_SPRUCE_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.JUNGLE_LOG, SturdyTreesBlocks.LOG_JUNGLE_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.ACACIA_LOG, SturdyTreesBlocks.LOG_ACACIA_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.DARK_OAK_LOG, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.MANGROVE_LOG, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED);
+        logToStrippedLogMap.put(SturdyTreesBlocks.CHERRY_LOG, SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
+    }
 
     public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -140,89 +156,48 @@ public class LogStrippedBlock extends ConvertingLogBlock {
             spikeVar = SturdyTreesBlocks.LOG_CHERRY_SPIKE;
         }
 
-        // Check for blocks above and below
-        boolean hasBlockAbove = !blockAboveState.isAir();
-        boolean hasBlockBelow = !blockBelowState.isAir();
-        boolean hasBlockNorth = !blockNorthState.isAir();
-        boolean hasBlockSouth = !blockSouthState.isAir();
-        boolean hasBlockEast = !blockEastState.isAir();
-        boolean hasBlockWest = !blockWestState.isAir();
-
-        /**
-        if (currentState.get(AXIS) == Direction.Axis.Z) {
-            // Default and neighboring replacement logic
-            if (hasBlockNorth && hasBlockSouth) {
-                return chewedVar != null ? chewedVar.getStateWithProperties(currentState) : currentState;
-            } else if (hasBlockNorth) {
-                return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, Direction.SOUTH) : currentState;
-            } else if (hasBlockSouth) {
-                return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, Direction.NORTH) : currentState;
-            } else {
-                // If the variation is 3 for stripped, break to air
-                if (currentState.get(VARIATION) == 3) {
-                    return Blocks.AIR.getDefaultState();
-                }
-                // Default, choose the next stripped variation
-                int level = currentState.get(VARIATION);
-                return strippedVar != null ? strippedVar.getStateWithProperties(currentState.with(VARIATION, (level + 1) % 4)) : currentState;
-            }
-
-        } else if (currentState.get(AXIS) == Direction.Axis.X) {
-            // Default and neighboring replacement logic
-            if (hasBlockEast && hasBlockWest) {
-                return chewedVar != null ? chewedVar.getStateWithProperties(currentState) : currentState;
-            } else if (hasBlockEast) {
-                return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, Direction.WEST) : currentState;
-            } else if (hasBlockWest) {
-                return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, Direction.EAST) : currentState;
-            } else {
-                // If the variation is 3 for stripped, break to air
-                if (currentState.get(VARIATION) == 3) {
-                    return Blocks.AIR.getDefaultState();
-                }
-                // Default, choose the next stripped variation
-                int level = currentState.get(VARIATION);
-                return strippedVar != null ? strippedVar.getStateWithProperties(currentState.with(VARIATION, (level + 1) % 4)) : currentState;
-            }
-
-        } else {
-            // Default and neighboring replacement logic
-            if (hasBlockAbove && hasBlockBelow) {
-                return chewedVar != null ? chewedVar.getStateWithProperties(currentState) : currentState;
-            } else if (hasBlockAbove) {
-                return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, Direction.DOWN) : currentState;
-            } else if (hasBlockBelow) {
-                return spikeVar != null ? spikeVar.getStateWithProperties(currentState).with(FACING, Direction.UP) : currentState;
-            } else {
-                // If the variation is 3 for stripped, break to air
-                if (currentState.get(VARIATION) == 3) {
-                    return Blocks.AIR.getDefaultState();
-                }
-                // Default, choose the next stripped variation
-                int level = currentState.get(VARIATION);
-                return strippedVar != null ? strippedVar.getStateWithProperties(currentState.with(VARIATION, (level + 1) % 4)) : currentState;
-            }
-
-        }
-         **/
-
          // Determine neighbor presence based on axis
          Direction.Axis axis = currentState.get(AXIS);
          Direction dirPos, dirNeg;
-         boolean hasPos, hasNeg;
 
+         //boolean hasPos, hasNeg;
+
+        BlockState statePos, stateNeg;
+
+        switch (axis) {
+            case X -> {
+                dirPos = Direction.EAST;
+                dirNeg = Direction.WEST;
+                statePos = blockEastState;
+                stateNeg = blockWestState;
+            }
+            case Z -> {
+                dirPos = Direction.SOUTH;
+                dirNeg = Direction.NORTH;
+                statePos = blockSouthState;
+                stateNeg = blockNorthState;
+            }
+            default -> {
+                dirPos = Direction.UP;
+                dirNeg = Direction.DOWN;
+                statePos = blockAboveState;
+                stateNeg = blockBelowState;
+            }
+        }
+
+         /**
          switch (axis) {
              case X -> {
                  dirPos = Direction.EAST;
                  dirNeg = Direction.WEST;
-                 hasPos = !blockEastState.isAir();
-                 hasNeg = !blockWestState.isAir();
+                 hasPos = !blockWestState.isAir();
+                 hasNeg = !blockEastState.isAir();
              }
              case Z -> {
                  dirPos = Direction.NORTH;
                  dirNeg = Direction.SOUTH;
-                 hasPos = !blockNorthState.isAir();
-                 hasNeg = !blockSouthState.isAir();
+                 hasPos = !blockSouthState.isAir();
+                 hasNeg = !blockNorthState.isAir();
              }
              default -> {
                  dirPos = Direction.UP;
@@ -231,6 +206,12 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                  hasNeg = !blockAboveState.isAir();
              }
          }
+          **/
+
+        // Check whether solid, full, non-replaceable block exists
+        boolean hasPos = isSolidBlockAtBase(world, pos.offset(dirPos), statePos);
+        boolean hasNeg = isSolidBlockAtBase(world, pos.offset(dirNeg), stateNeg);
+
 
          // Main logic
          if (hasNeg && hasPos) {
@@ -248,6 +229,22 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                      : currentState;
          }
 
+    }
+
+    // checks if the block against the currently replaced block is solid full block
+    private boolean isSolidBlockAtBase(World world, BlockPos pos, BlockState base) {
+      return base.isOpaqueFullCube(world, pos) && !base.isReplaceable();
+    }
+
+    // Only apply FACING if the block actually has that property
+    private BlockState getSpikeState(Block spikeVar, BlockState currentState, Direction facing) {
+        if (spikeVar instanceof LogSpikeBlock spikeBlock) {
+            BlockState base = spikeVar.getStateWithProperties(currentState);
+            if (base.contains(FACING)) {
+                return base.with(FACING, facing);
+            }
+        }
+        return currentState;
     }
 
 }
