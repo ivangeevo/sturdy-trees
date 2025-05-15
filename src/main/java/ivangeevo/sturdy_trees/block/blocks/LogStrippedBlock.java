@@ -1,6 +1,5 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
@@ -15,10 +14,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static ivangeevo.sturdy_trees.block.blocks.LogSpikeBlock.FACING;
 
@@ -51,7 +46,6 @@ public class LogStrippedBlock extends ConvertingLogBlock {
     protected int getOutlineOffset() {
         return 1;
     }
-
 
     protected static VoxelShape rotateYtoX(VoxelShape shape) {
         VoxelShape[] buffer = new VoxelShape[]{VoxelShapes.empty()};

@@ -46,10 +46,6 @@ public class TreeBreakHandler {
     private static void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, Block strippedLog) {
         boolean isFullyBreakingAxe = player.getWeaponStack().isIn(BTWRConventionalTags.Items.AXES_HARVEST_FULL_BLOCK);
 
-        if (!(world instanceof ServerWorld)) {
-            return;
-        }
-
         if (isFullyBreakingAxe || player.isCreative()) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {

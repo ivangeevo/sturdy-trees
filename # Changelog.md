@@ -2,7 +2,7 @@
 
 ## v1.6(dev)
 + Fixed partial logs (chewed, stripped or spikes) to break instantly in creative instead of in layers
-+ Changed all breaking logic to utilize Fabric API break events instead of mixing in into code myself.
++ Changed some block breaking logic to utilize Fabric API break events instead of mixing in into code of existing blocks.
 + Optimized and fixed the wooden breaking sound for stripped, chewed & spike log blocks to play as it should.
 
 ## v1.5.4
@@ -54,7 +54,7 @@ to generate normally without missing "trunks".
 + General improvements for some loot tables and recipes that were causing problems since the 1.20.6 update
 + Updated the mod to latest fabric api version for 1.20.6
 
-### v1.4
+## v1.4
 
 + Added bamboo block to bamboo planks recipe with an axe.
 + Reduced Dead Bush Shaft(Stick) drop rate even further, from 20 to 11 percent.
@@ -65,7 +65,7 @@ to generate normally without missing "trunks".
 + Fixed code to work as intended on the server side as well.
 + Updated the mod to Fabric API 0.92.2 & Fabric Loader 0.15.11 
 
-### v1.3
+## v1.3
 
 + Rewrote most of the mod logic to work better.
 + Added recipes for making plank blocks from wooden slabs.
@@ -78,7 +78,7 @@ to generate normally without missing "trunks".
 
 + Updated the mod to Fabric API 0.92.1 & Fabric Loader 0.15.10
 
-### v1.2
+## v1.2
 
 + Requires the BTWR-Core mod to run from now on.
 + BTWR-Core provides a way for shearing the creepers and acquiring the creeper oysters needed to craft Stump Remover item(wasn't available before).
@@ -107,12 +107,12 @@ to generate normally without missing "trunks".
 + Removed being able to quick grow saplings with Bone meal.
 
 
-### v1.0
+## v1.0
 
 + Release
 
 
-### pre-release 0.5
+## pre-release 0.5
 
 + Initial start of keeping changelogs.
 + Moved all the tree logic from BTWR to this mod.
