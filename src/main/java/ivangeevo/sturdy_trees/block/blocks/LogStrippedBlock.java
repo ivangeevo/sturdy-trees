@@ -1,8 +1,11 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
+import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.minecraft.block.*;
+import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -14,6 +17,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.event.GameEvent;
 
 import static ivangeevo.sturdy_trees.block.blocks.LogSpikeBlock.FACING;
 
@@ -39,6 +44,64 @@ public class LogStrippedBlock extends ConvertingLogBlock {
             default -> shape;
         };
     }
+
+    @Override
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        this.spawnBreakParticles(world, player, pos, state);
+
+        if (!world.isClient && state.get(VARIATION) == 0) {
+            Block thisBlock = state.getBlock();
+            Identifier id = Registries.BLOCK.getId(thisBlock);
+            String[] parts = id.getPath().split("_");
+
+            if (parts.length >= 3 && parts[0].equals("log")) {
+                String woodType = parts[1]; // e.g., spruce
+
+                Identifier chewedId = Identifier.of(id.getNamespace(), "log_" + woodType + "_chewed");
+                Block chewedBlock = Registries.BLOCK.get(chewedId);
+
+                Identifier spikeId = Identifier.of(id.getNamespace(), "log_" + woodType + "_spike");
+                Block spikeBlock = Registries.BLOCK.get(spikeId);
+
+                if (spikeBlock != Blocks.AIR) {
+                    for (Direction dir : Direction.values()) {
+                        BlockPos otherPos = pos.offset(dir);
+                        BlockState otherState = world.getBlockState(otherPos);
+
+                        if (otherState.getBlock() == chewedBlock) {
+                            int variation = otherState.getOrEmpty(VARIATION).orElse(-1);
+                            if (variation >= 0 && variation <= 2) {
+                                // Build states preserving properties
+                                BlockState newSelfState = spikeBlock.getStateWithProperties(state)
+                                        .with(Properties.FACING, dir)
+                                        .with(VARIATION, 0); // this block always becomes variation 0
+
+                                BlockState newOtherState = spikeBlock.getStateWithProperties(otherState)
+                                        .with(Properties.FACING, dir.getOpposite() )
+                                        .with(VARIATION, variation); // preserve variation of chewed block
+
+                                // Replace the chewed block
+                                world.setBlockState(otherPos, newOtherState, Block.NOTIFY_ALL);
+
+                                return newSelfState;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (state.isIn(BlockTags.GUARDED_BY_PIGLINS)) {
+            PiglinBrain.onGuardedBlockInteracted(player, false);
+        }
+
+        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(player, state));
+        return state;
+    }
+
+
+
+
 
     /**
      * Sets the amount to offset the outline by (outline shape)

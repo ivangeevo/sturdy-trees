@@ -19,17 +19,6 @@ import java.util.Map;
 
 public class TreeBreakHandler {
 
-    public static void registerBreakEvent() {
-        PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onBlockDestroyed);
-    }
-
-    private static void onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
-        Block strippedLog = logToStrippedLogMap.get(state.getBlock());
-        if (strippedLog != null) {
-            handleLogBreak(world, pos, state, player, strippedLog);
-        }
-    }
-
     private static final Map<Block, Block> logToStrippedLogMap = new HashMap<>();
 
     static {
@@ -41,6 +30,17 @@ public class TreeBreakHandler {
         logToStrippedLogMap.put(Blocks.DARK_OAK_LOG, SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED);
         logToStrippedLogMap.put(Blocks.MANGROVE_LOG, SturdyTreesBlocks.LOG_MANGROVE_STRIPPED);
         logToStrippedLogMap.put(Blocks.CHERRY_LOG, SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
+    }
+
+    public static void registerBreakEvent() {
+        PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onBlockDestroyed);
+    }
+
+    private static void onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
+        Block strippedLog = logToStrippedLogMap.get(state.getBlock());
+        if (strippedLog != null) {
+            handleLogBreak(world, pos, state, player, strippedLog);
+        }
     }
 
     private static void handleLogBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, Block strippedLog) {
@@ -55,7 +55,5 @@ public class TreeBreakHandler {
             );
         }
     }
-
-
 
 }
