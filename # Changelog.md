@@ -1,7 +1,7 @@
 # <center>Sturdy Trees</center>
 
 ## v2.0(dev)
-+ Made certain logs to update themselves or their neighbours on break so the logs model flows better overall (as it does in original BTW)
++ Made certain logs to update themselves and/or their neighbours on break so the logs model flows better overall (as it does in original BTW)
 + Fixed partial logs (chewed, stripped or spikes) to break instantly in creative instead of in layers
 + Fixed logs from the mod to be able to break into horizontal logs and also improved models/blockstate json files a lot.
 + Changed some block breaking logic to utilize Fabric API break events instead of mixing in into code of existing blocks.
