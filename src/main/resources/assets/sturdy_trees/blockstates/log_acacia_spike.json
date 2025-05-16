@@ -21,10 +21,26 @@
     "variation=1,facing=east,connected=false": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 90, "y": 90 },
     "variation=2,facing=east,connected=false": { "model": "sturdy_trees:block/log_acacia_spike_var3", "x": 90, "y": 90 },
 
-    "variation=0,facing=west,connected=false":{ "model": "sturdy_trees:block/log_acacia_spike_var1", "x": 90, "y": 270 },
-    "variation=1,facing=west,connected=false": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 90, "y": 270 },
-    "variation=2,facing=west,connected=false": { "model": "sturdy_trees:block/log_acacia_spike_var3", "x": 90, "y": 270 }
+    "variation=0,facing=west,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var1", "x": 90, "y": 270 },
+    "variation=0,facing=up,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var1"},
+    "variation=0,facing=down,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var1", "x": 180 },
+    "variation=0,facing=north,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var1", "x": 90 },
+    "variation=0,facing=south,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var1", "x": 90, "y": 180 },
+    "variation=0,facing=east,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var1", "x": 90, "y": 90 },
 
+    "variation=1,facing=west,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 90, "y": 270 },
+    "variation=1,facing=up,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var2"},
+    "variation=1,facing=down,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 180 },
+    "variation=1,facing=north,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 90 },
+    "variation=1,facing=south,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 90, "y": 180 },
+    "variation=1,facing=east,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var2", "x": 90, "y": 90 },
+
+    "variation=2,facing=west,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var3_connected", "x": 90, "y": 270 },
+    "variation=2,facing=up,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var3_connected"},
+    "variation=2,facing=down,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var3_connected", "x": 180 },
+    "variation=2,facing=north,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var3_connected", "x": 90 },
+    "variation=2,facing=south,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var3_connected", "x": 90, "y": 180 },
+    "variation=2,facing=east,connected=true": { "model": "sturdy_trees:block/log_acacia_spike_var3_connected", "x": 90, "y": 90 }
   }
 }
 
