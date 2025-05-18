@@ -60,6 +60,9 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                 Identifier chewedId = Identifier.of(id.getNamespace(), "log_" + woodType + "_chewed");
                 Block chewedBlock = Registries.BLOCK.get(chewedId);
 
+                Identifier strippedId = Identifier.of(id.getNamespace(), "log_" + woodType + "_stripped");
+                Block strippedBlock = Registries.BLOCK.get(strippedId);
+
                 Identifier spikeId = Identifier.of(id.getNamespace(), "log_" + woodType + "_spike");
                 Block spikeBlock = Registries.BLOCK.get(spikeId);
 
@@ -86,6 +89,23 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                                 return newSelfState;
                             }
                         }
+
+                        if (otherState.getBlock() == strippedBlock) {
+                            int variation = otherState.getOrEmpty(VARIATION).orElse(-1);
+                            if (variation >= 0 && variation <= 3) {
+                                // Build states preserving properties
+                                BlockState newSelfState = spikeBlock.getStateWithProperties(state)
+                                        .with(Properties.FACING, dir)
+                                        .with(VARIATION, 0); // this block always becomes variation 0
+
+                                BlockState newOtherState = strippedBlock.getStateWithProperties(otherState);
+
+                                // Replace the stripped block
+                                world.setBlockState(otherPos, newOtherState, Block.NOTIFY_ALL);
+
+                                return newSelfState;
+                            }
+                        }
                     }
                 }
             }
@@ -98,9 +118,6 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(player, state));
         return state;
     }
-
-
-
 
 
     /**

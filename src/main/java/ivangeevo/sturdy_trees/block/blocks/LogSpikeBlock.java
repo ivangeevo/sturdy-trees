@@ -41,7 +41,8 @@ public class LogSpikeBlock extends LogStrippedBlock {
     @Override
     protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         Direction facing = state.get(FACING);
-        if (direction == facing) {
+        // Connect a spike block to neighbours if the axis or the facing of the spike match the neighbour's respective orientation method
+        if (direction == facing || direction.getAxis() == facing.getAxis()) {
             boolean connected = isTouchingSide(world, neighborPos, facing.getOpposite());
             return state.with(CONNECTED, connected);
         }
