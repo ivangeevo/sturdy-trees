@@ -80,7 +80,7 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                                         .with(VARIATION, 0); // this block always becomes variation 0
 
                                 BlockState newOtherState = spikeBlock.getStateWithProperties(otherState)
-                                        .with(Properties.FACING, dir.getOpposite() )
+                                        .with(Properties.FACING, dir.getOpposite())
                                         .with(VARIATION, variation); // preserve variation of chewed block
 
                                 // Replace the chewed block
