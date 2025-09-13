@@ -1,6 +1,6 @@
 # <center>Sturdy Trees</center>
 
-## v1.6(dev)
+## v1.6
 + Made certain logs to update themselves and/or their neighbours on break so the logs model flows better overall (as it does in original BTW)
 + Fixed partial logs (chewed, stripped or spikes) to break instantly in creative instead of in layers
 + Fixed logs from the mod to be able to break into horizontal logs and also improved models/blockstate json files a lot.
