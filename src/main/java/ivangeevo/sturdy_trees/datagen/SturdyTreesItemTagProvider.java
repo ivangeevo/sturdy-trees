@@ -21,7 +21,16 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
+        this.addToVanillaTags();
+        this.addToModTags();
+        this.addToConventionalTags();
+    }
 
+    private void addToVanillaTags() {
+
+    }
+
+    private void addToModTags() {
         getOrCreateTagBuilder(SturdyTreesTags.Items.BARK_ITEMS)
                 .add(SturdyTreesItems.BARK_OAK)
                 .add(SturdyTreesItems.BARK_SPRUCE)
@@ -32,6 +41,9 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(SturdyTreesItems.BARK_MANGROVE)
                 .add(SturdyTreesItems.BARK_CHERRY);
 
+    }
+
+    private void addToConventionalTags() {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_AXES)
                 .add(Items.STONE_AXE)
                 .add(Items.IRON_AXE)
