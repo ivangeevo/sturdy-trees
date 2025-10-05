@@ -34,24 +34,6 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
             "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
     };
 
-    private static List<Identifier> getNormalLogsIDs() {
-        List<Identifier> logs = new ArrayList<>();
-        for (String woodType : overworldToughWoodTypes) {
-            logs.add(Identifier.ofVanilla("log_" + woodType));
-        }
-
-        return logs;
-    }
-
-    private static List<Identifier> getStrippedLogsIDs() {
-        List<Identifier> logs = new ArrayList<>();
-        for (String woodType : overworldToughWoodTypes) {
-            logs.add(Identifier.ofVanilla("stripped_" + woodType + "_log"));
-        }
-
-        return logs;
-    }
-
     @Override
     public void generate(RecipeExporter exporter) {
         this.addToVanillaRecipes(exporter);
@@ -161,7 +143,7 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
                 .input(strippedLog)
                 .criterion("has_" + strippedType, conditionsFromItem(strippedLog))
                 .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, planksType + "_from_" + strippedType + "_tool_crafting"));
-         }
+    }
 
     private void planksFromSlab(Item planks, Item slab, RecipeExporter exporter) {
         Identifier planksId = Registries.ITEM.getId(planks);

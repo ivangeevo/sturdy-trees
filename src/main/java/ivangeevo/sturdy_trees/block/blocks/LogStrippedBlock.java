@@ -1,6 +1,5 @@
 package ivangeevo.sturdy_trees.block.blocks;
 
-import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +16,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
 
 import static ivangeevo.sturdy_trees.block.blocks.LogSpikeBlock.FACING;
@@ -53,8 +51,9 @@ public class LogStrippedBlock extends ConvertingLogBlock {
             Block thisBlock = state.getBlock();
             Identifier id = Registries.BLOCK.getId(thisBlock);
             String[] parts = id.getPath().split("_");
+            boolean isLogBlock = parts.length >= 3 && parts[0].equals("log");
 
-            if (parts.length >= 3 && parts[0].equals("log")) {
+            if (isLogBlock) {
                 String woodType = parts[1]; // e.g., spruce
 
                 Identifier chewedId = Identifier.of(id.getNamespace(), "log_" + woodType + "_chewed");

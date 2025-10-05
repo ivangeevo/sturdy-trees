@@ -23,10 +23,6 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
         addToVanillaTags();
         addToModTags();
         addToConventionalTags();
-
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
-                .addTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
-
     }
 
     private void addToConventionalTags() {
@@ -54,10 +50,7 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_ACACIA_VAR1)
                 .add(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)
                 .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
-                .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1)
-
-                //.addTag(SturdyTreesTags.Blocks.CRAFTING_STUMPS)
-        ;
+                .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1);
     }
 
     private void addToModTags() {
@@ -150,7 +143,7 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS)
-                .forceAddTag(BlockTags.LEAVES);
+                .addTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
 
         getOrCreateTagBuilder(BlockTags.LOGS)
                 .forceAddTag(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS);
