@@ -4,6 +4,7 @@
 + Fixed recipes for crafting plans/sticks with axes & other tools to work without issues by using a custom recipe by BTWR: Shared Library and remove the old logic for modifying recipe remainder for items with mixins.
 + Added recipes for stripped logs for planks/sticks crafting with tools.
 + Removed leaves blocks from the AXE_MINEABLE block tag to normalize leaves blocks breaking speed as it was never intended to increase it.
++ Updated the mod to BTWR Shared Library 0.59
 
 ## v1.6
 + Made certain logs to update themselves and/or their neighbours on break so the logs model flows better overall (as it does in original BTW)
