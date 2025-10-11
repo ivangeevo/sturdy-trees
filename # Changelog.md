@@ -1,6 +1,6 @@
 # <center>Sturdy Trees</center>
 
-## v1.6.2(dev)
+## v1.6.2
 + Updated mod recipes to use the new renamed ExtendedShapelessRecipe from BTWR: SL v0.60
 + Added a configuration option with Mod Menu to toggle whether saplings can be fertilized with bone meal or not
 + Added missing recipes for bamboo stripped/normal blocks to planks with tool and disabled the vanilla recipe for those
