@@ -4,10 +4,6 @@
     {
       "count": 1,
       "id": "sturdy_trees:dust_saw"
-    },
-    {
-      "count": 1,
-      "id": "sturdy_trees:bark_cherry"
     }
   ],
   "category": "misc",
@@ -16,7 +12,7 @@
       "tag": "c:primitive_axes"
     },
     {
-      "item": "minecraft:cherry_log"
+      "item": "minecraft:bamboo_block"
     }
   ],
   "result": {

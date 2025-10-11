@@ -2,8 +2,10 @@
 
 ## v1.6.2(dev)
 + Updated mod recipes to use the new renamed ExtendedShapelessRecipe from BTWR: SL v0.60
++ Added a configuration option with Mod Menu to toggle whether saplings can be fertilized with bone meal or not
 + Added missing recipes for bamboo stripped/normal blocks to planks with tool and disabled the vanilla recipe for those
 + Added missing recipe for making bamboo planks by combining 2 bamboo slabs
++ Added translations for all mod blocks, most of them were ones without an item, but with this change they will properly display with mods like WAILA
 + Split the mod client environment from the main package
 + (not yet) Updated the mod to BTWR Shared Library 0.60
 

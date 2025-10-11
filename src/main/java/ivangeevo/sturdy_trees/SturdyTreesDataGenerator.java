@@ -1,9 +1,6 @@
 package ivangeevo.sturdy_trees;
 
-import ivangeevo.sturdy_trees.datagen.SturdyTreesBlockTagProvider;
-import ivangeevo.sturdy_trees.datagen.SturdyTreesItemTagProvider;
-import ivangeevo.sturdy_trees.datagen.SturdyTreesLootTableProvider;
-import ivangeevo.sturdy_trees.datagen.SturdyTreesRecipeProvider;
+import ivangeevo.sturdy_trees.datagen.*;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -17,6 +14,7 @@ public class SturdyTreesDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(SturdyTreesItemTagProvider::new);
         pack.addProvider(SturdyTreesRecipeProvider::new);
         pack.addProvider(SturdyTreesLootTableProvider::new);
+        pack.addProvider(SturdyTreesLangProvider::new);
     }
 
 }

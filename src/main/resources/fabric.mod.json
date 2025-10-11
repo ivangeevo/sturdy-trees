@@ -16,7 +16,9 @@
   "entrypoints":{
     "client":["ivangeevo.sturdy_trees.SturdyTreesClient"],
     "main":["ivangeevo.sturdy_trees.SturdyTreesMod"],
-    "fabric-datagen": ["ivangeevo.sturdy_trees.SturdyTreesDataGenerator"]
+    "fabric-datagen": ["ivangeevo.sturdy_trees.SturdyTreesDataGenerator"],
+    "modmenu": ["ivangeevo.sturdy_trees.config.SturdyTreesModMenu"]
+
   },
   "mixins":[
     "sturdy_trees.mixins.json",
