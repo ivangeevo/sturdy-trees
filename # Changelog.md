@@ -1,5 +1,7 @@
 # <center>Sturdy Trees</center>
 
+## v1.7(dev)
+
 ## v1.6.2
 + Updated mod recipes to use the new renamed ExtendedShapelessRecipe from BTWR: SL v0.60
 + Added a configuration option with Mod Menu to toggle whether saplings can be fertilized with bone meal or not
