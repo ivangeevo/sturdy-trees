@@ -1,4 +1,4 @@
-package ivangeevo.sturdy_trees.client;
+package ivangeevo.sturdy_trees;
 
 import ivangeevo.sturdy_trees.block.SturdyTreesBlocks;
 import net.fabricmc.api.ClientModInitializer;
@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
 
 public class SturdyTreesClient implements ClientModInitializer {
+
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_STRIPPED, RenderLayer.getCutout());

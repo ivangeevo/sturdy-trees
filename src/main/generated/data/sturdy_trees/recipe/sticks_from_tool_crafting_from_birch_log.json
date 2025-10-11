@@ -1,5 +1,5 @@
 {
-  "type": "btwr_sl:crafting_shapeless_with_tool",
+  "type": "btwr_sl:crafting_shapeless_extended",
   "additional_drops": [
     {
       "count": 1,

@@ -1,6 +1,6 @@
 package ivangeevo.sturdy_trees.datagen;
 
-import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.ExtendedShapelessRecipe;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import ivangeevo.sturdy_trees.SturdyTreesMod;
@@ -19,8 +19,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
@@ -73,6 +71,8 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
         planksWithAxe(Items.DARK_OAK_PLANKS, Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, SturdyTreesItems.BARK_DARK_OAK, exporter);
         planksWithAxe(Items.MANGROVE_PLANKS, Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, SturdyTreesItems.BARK_MANGROVE, exporter);
         planksWithAxe(Items.CHERRY_PLANKS, Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, SturdyTreesItems.BARK_SPRUCE, exporter);
+        planksWithAxe(Items.BAMBOO_PLANKS, Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK, null, exporter);
+
     }
 
     private void createSticksWithAxe(RecipeExporter exporter) {
@@ -84,6 +84,7 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
         sticksWithAxes(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, SturdyTreesItems.BARK_DARK_OAK, exporter);
         sticksWithAxes(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, SturdyTreesItems.BARK_MANGROVE, exporter);
         sticksWithAxes(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, SturdyTreesItems.BARK_CHERRY, exporter);
+        sticksWithAxes(Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK, null, exporter);
     }
 
     private void createPlanksFromSlabs(RecipeExporter exporter) {
@@ -95,23 +96,28 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
         planksFromSlab(Items.DARK_OAK_PLANKS, Items.DARK_OAK_SLAB, exporter);
         planksFromSlab(Items.MANGROVE_PLANKS, Items.MANGROVE_SLAB, exporter);
         planksFromSlab(Items.CHERRY_PLANKS, Items.CHERRY_SLAB, exporter);
+        planksFromSlab(Items.BAMBOO_PLANKS, Items.BAMBOO_SLAB, exporter);
     }
 
     private void sticksWithAxes(Item log, Item strippedLog, Item barkItem, RecipeExporter exporter) {
         String logType = Registries.ITEM.getId(log).getPath();
 
         // From log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
-                .additionalDrop(barkItem)
+        ExtendedShapelessRecipe.JsonBuilder builder = (ExtendedShapelessRecipe.JsonBuilder) ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
                 .additionalDrop(SturdyTreesItems.DUST_SAW)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.PRIMITIVE_AXES),1)
                 .input(log)
-                .criterion("has_" + logType, conditionsFromItem(log))
-                .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID,"sticks_from_tool_crafting_from_" + logType));
+                .criterion("has_" + logType, conditionsFromItem(log));
+
+        if (barkItem != null) {
+            builder.additionalDrop(barkItem);
+        }
+
+        builder.offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, "sticks_from_tool_crafting_from_" + logType));
 
         // From stripped log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
                 .additionalDrop(SturdyTreesItems.DUST_SAW, 2)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.PRIMITIVE_AXES),1)
@@ -125,18 +131,23 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
         String planksType = Registries.ITEM.getId(planks).getPath();
         String strippedType = Registries.ITEM.getId(strippedLog).getPath();
 
+
         // From log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
-                .additionalDrop(bark)
+        ExtendedShapelessRecipe.JsonBuilder builder = (ExtendedShapelessRecipe.JsonBuilder) ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
                 .additionalDrop(SturdyTreesItems.DUST_SAW)
                 .withToolDamage()
-                .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
+                .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS), 1)
                 .input(log)
-                .criterion("has_" + logType, conditionsFromItem(log))
-                .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, planksType + "_from_" + logType + "_tool_crafting"));
+                .criterion("has_" + logType, conditionsFromItem(log));
+
+        if (bark != null) {
+            builder.additionalDrop(bark);
+        }
+
+        builder.offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, planksType + "_from_" + logType + "_tool_crafting"));
 
         // From stripped log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
                 .additionalDrop(SturdyTreesItems.DUST_SAW, 2)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)

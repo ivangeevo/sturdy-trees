@@ -2,12 +2,8 @@
   "type": "btwr_sl:crafting_shapeless_extended",
   "additional_drops": [
     {
-      "count": 1,
+      "count": 2,
       "id": "sturdy_trees:dust_saw"
-    },
-    {
-      "count": 1,
-      "id": "sturdy_trees:bark_jungle"
     }
   ],
   "category": "misc",
@@ -16,12 +12,12 @@
       "tag": "c:axes_make_planks"
     },
     {
-      "item": "minecraft:jungle_log"
+      "item": "minecraft:stripped_bamboo_block"
     }
   ],
   "result": {
     "count": 4,
-    "id": "minecraft:jungle_planks"
+    "id": "minecraft:bamboo_planks"
   },
   "tool_damage": 1
 }

@@ -14,18 +14,16 @@
   "icon":"assets/sturdy_trees/icon.png",
   "environment":"*",
   "entrypoints":{
-    "client":[
-      "ivangeevo.sturdy_trees.client.SturdyTreesClient"
-    ],
-    "main":[
-      "ivangeevo.sturdy_trees.SturdyTreesMod"
-    ],
-    "fabric-datagen": [
-      "ivangeevo.sturdy_trees.SturdyTreesDataGenerator"
-    ]
+    "client":["ivangeevo.sturdy_trees.SturdyTreesClient"],
+    "main":["ivangeevo.sturdy_trees.SturdyTreesMod"],
+    "fabric-datagen": ["ivangeevo.sturdy_trees.SturdyTreesDataGenerator"]
   },
   "mixins":[
-    "sturdy_trees.mixins.json"
+    "sturdy_trees.mixins.json",
+    {
+      "config": "sturdy_trees.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends":{
     "fabricloader":">=${loader_version}",

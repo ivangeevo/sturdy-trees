@@ -1,16 +1,23 @@
 # <center>Sturdy Trees</center>
 
+## v1.6.2(dev)
++ Updated mod recipes to use the new renamed ExtendedShapelessRecipe from BTWR: SL v0.60
++ Added missing recipes for bamboo stripped/normal blocks to planks with tool and disabled the vanilla recipe for those
++ Added missing recipe for making bamboo planks by combining 2 bamboo slabs
++ Split the mod client environment from the main package
++ (not yet) Updated the mod to BTWR Shared Library 0.60
+
 ## v1.6.1
-+ Fixed recipes for crafting plans/sticks with axes & other tools to work without issues by using a custom recipe by BTWR: Shared Library and remove the old logic for modifying recipe remainder for items with mixins.
++ Fixed recipes for crafting planks/sticks with axes and other tools to work without issues by using a custom recipe by BTWR: Shared Library and remove the old logic for modifying recipe remainder for items with mixins.
 + Added recipes for stripped logs for planks/sticks crafting with tools.
 + Removed leaves blocks from the AXE_MINEABLE block tag to normalize leaves blocks breaking speed as it was never intended to increase it.
 + Updated the mod to BTWR Shared Library 0.59
 
 ## v1.6
-+ Made certain logs to update themselves and/or their neighbours on break so the logs model flows better overall (as it does in original BTW)
++ Made certain logs to update themselves and/or their neighbors on break so the logs model flows better overall (as it does in the original BTW)
 + Fixed partial logs (chewed, stripped or spikes) to break instantly in creative instead of in layers
 + Fixed logs from the mod to be able to break into horizontal logs and also improved models/blockstate json files a lot.
-+ Changed some block breaking logic to utilize Fabric API break events instead of mixing in into code of existing blocks.
++ Changed some block breaking logic to use Fabric API break events instead of mixing in into code of existing blocks.
 + Optimized and fixed the wooden breaking sound for stripped, chewed & spike log blocks to play as they should.
 + Updated the mod to Fabric API 0.116.6, Fabric Loader 0.17.2 & BTWR Shared Library 0.58
 
