@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SaplingBlock.class)
 public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizable {
+
     public SaplingBlockMixin(Settings settings) {
         super(settings);
     }
@@ -36,6 +37,7 @@ public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizab
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
         return (double)world.random.nextFloat() < 0.45;
     }
+
     @Shadow
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         this.generate(world, pos, state, random);
