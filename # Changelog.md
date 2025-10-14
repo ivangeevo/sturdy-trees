@@ -1,6 +1,8 @@
 # <center>Sturdy Trees</center>
 
-## v1.7(dev)
+## v1.6.3
++ Updated ExtendedShapelessRecipe from BTWR: Shared Library, which fixes some bugs with recipes using it
++ Updated the mod to Fabric API 0.116.7 & BTWR: Shared Library 0.61
 
 ## v1.6.2
 + Updated mod recipes to use the new renamed ExtendedShapelessRecipe from BTWR: SL v0.60
@@ -9,7 +11,7 @@
 + Added missing recipe for making bamboo planks by combining 2 bamboo slabs
 + Added translations for all mod blocks, most of them were ones without an item, but with this change they will properly display with mods like WAILA
 + Split the mod client environment from the main package
-+ (not yet) Updated the mod to BTWR Shared Library 0.60
++ Updated the mod to BTWR Shared Library 0.60
 
 ## v1.6.1
 + Fixed recipes for crafting planks/sticks with axes and other tools to work without issues by using a custom recipe by BTWR: Shared Library and remove the old logic for modifying recipe remainder for items with mixins.
