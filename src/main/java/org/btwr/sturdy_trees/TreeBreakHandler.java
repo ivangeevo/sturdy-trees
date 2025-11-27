@@ -1,6 +1,6 @@
 package org.btwr.sturdy_trees;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.Block;
@@ -30,7 +30,7 @@ public class TreeBreakHandler {
         logToStrippedLogMap.put(Blocks.CHERRY_LOG, SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
     }
 
-    public static void registerBreakEvent() {
+    public static void register() {
         PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onBlockDestroyed);
     }
 

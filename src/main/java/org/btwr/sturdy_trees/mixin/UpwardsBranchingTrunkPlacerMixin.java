@@ -27,6 +27,7 @@ import java.util.function.BiConsumer;
 
 @Mixin(UpwardsBranchingTrunkPlacer.class)
 public abstract class UpwardsBranchingTrunkPlacerMixin extends TrunkPlacer {
+
     @Shadow @Final private IntProvider extraBranchLength;
     @Shadow @Final private IntProvider extraBranchSteps;
     @Shadow protected abstract void generateExtraBranch(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, TreeFeatureConfig config, List<FoliagePlacer.TreeNode> nodes, BlockPos.Mutable pos, int yOffset, Direction direction, int length, int steps);
@@ -61,4 +62,5 @@ public abstract class UpwardsBranchingTrunkPlacerMixin extends TrunkPlacer {
         replacer.accept(startPos, SturdyTreesBlocks.STUMP_MANGROVE.getDefaultState());
         cir.setReturnValue(list);
     }
+
 }

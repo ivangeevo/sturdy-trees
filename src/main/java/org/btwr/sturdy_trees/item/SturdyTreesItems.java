@@ -47,7 +47,7 @@ public class SturdyTreesItems {
         return Registry.register(Registries.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, name), item);
     }
 
-    public static void registerModItems() {
+    public static void register() {
         SturdyTreesMod.LOGGER.info("Registering Mod Items for " + SturdyTreesMod.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addItemsToIngredientItemGroup);

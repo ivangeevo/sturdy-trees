@@ -138,7 +138,7 @@ public class SturdyTreesBlocks {
                 new BlockItem(block, new Item.Settings()));
     }
 
-    public static void registerModBlocks() {
+    public static void register() {
         SturdyTreesMod.LOGGER.debug("Registering ModBlocks for " + SturdyTreesMod.MOD_ID);
     }
 

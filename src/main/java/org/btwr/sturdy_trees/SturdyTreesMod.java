@@ -16,11 +16,10 @@ public class SturdyTreesMod implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Sturdy Trees");
-
         SturdyTreesConfig.register();
-        SturdyTreesBlocks.registerModBlocks();
-        SturdyTreesItems.registerModItems();
-        TreeBreakHandler.registerBreakEvent();
+        SturdyTreesBlocks.register();
+        SturdyTreesItems.register();
+        TreeBreakHandler.register();
     }
 
 }

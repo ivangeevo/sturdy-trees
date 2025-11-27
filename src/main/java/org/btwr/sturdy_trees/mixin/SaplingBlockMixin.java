@@ -1,6 +1,5 @@
 package org.btwr.sturdy_trees.mixin;
 
-import org.btwr.sturdy_trees.SturdyTreesMod;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.block.PlantBlock;

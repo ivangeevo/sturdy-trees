@@ -1,8 +1,8 @@
 package org.btwr.sturdy_trees.datagen;
 
-import btwr.btwr_sl.lib.recipe.ExtendedShapelessRecipe;
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
-import btwr.btwr_sl.tag.BTWRConventionalTags;
+import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
-public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
     
     public SturdyTreesRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -129,7 +129,6 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
         String logType = Registries.ITEM.getId(log).getPath();
         String planksType = Registries.ITEM.getId(planks).getPath();
         String strippedType = Registries.ITEM.getId(strippedLog).getPath();
-
 
         // From log
         ExtendedShapelessRecipe.JsonBuilder builder = (ExtendedShapelessRecipe.JsonBuilder) ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)

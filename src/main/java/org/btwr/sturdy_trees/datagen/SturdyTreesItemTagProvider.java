@@ -1,6 +1,6 @@
 package org.btwr.sturdy_trees.datagen;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -39,7 +39,6 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(SturdyTreesItems.BARK_DARK_OAK)
                 .add(SturdyTreesItems.BARK_MANGROVE)
                 .add(SturdyTreesItems.BARK_CHERRY);
-
     }
 
     private void addToConventionalTags() {

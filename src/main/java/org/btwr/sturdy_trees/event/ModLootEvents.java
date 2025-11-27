@@ -1,6 +1,5 @@
 package org.btwr.sturdy_trees.event;
 
-import btwr.btwr_sl.BTWRSLMod;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -14,6 +13,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.BTWRSLMod;
 
 public class ModLootEvents {
 

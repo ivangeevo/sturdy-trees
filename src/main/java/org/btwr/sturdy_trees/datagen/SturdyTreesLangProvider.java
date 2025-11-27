@@ -92,7 +92,6 @@ public class SturdyTreesLangProvider extends FabricLanguageProvider {
         tb.add(SturdyTreesItems.BARK_DARK_OAK, "Dark Oak Bark");
         tb.add(SturdyTreesItems.BARK_MANGROVE, "Mangrove Bark");
         tb.add(SturdyTreesItems.BARK_CHERRY, "Cherry Bark");
-
         tb.add(SturdyTreesItems.STUMP_REMOVER, "Stump Remover");
     }
 

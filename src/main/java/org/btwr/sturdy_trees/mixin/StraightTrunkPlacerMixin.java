@@ -24,6 +24,7 @@ import java.util.function.BiConsumer;
 
 @Mixin(StraightTrunkPlacer.class)
 public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
+
     public StraightTrunkPlacerMixin(int i, int j, int k) {
         super(i, j, k);
     }
@@ -34,11 +35,14 @@ public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
         // Customize this logic based on your block registry and log-stump mappings
         if (logBlock == Blocks.OAK_LOG) {
             return SturdyTreesBlocks.STUMP_OAK;
-        } else if (logBlock == Blocks.BIRCH_LOG) {
+        }
+        else if (logBlock == Blocks.BIRCH_LOG) {
             return SturdyTreesBlocks.STUMP_BIRCH;
-        } else if (logBlock == Blocks.SPRUCE_LOG) {
+        }
+        else if (logBlock == Blocks.SPRUCE_LOG) {
             return SturdyTreesBlocks.STUMP_SPRUCE;
-        } else if (logBlock == Blocks.JUNGLE_LOG) {
+        }
+        else if (logBlock == Blocks.JUNGLE_LOG) {
             return SturdyTreesBlocks.STUMP_JUNGLE;
         }
         return Blocks.AIR;
@@ -62,4 +66,5 @@ public abstract class StraightTrunkPlacerMixin extends TrunkPlacer {
         replacer.accept(startPos, stumpBlock.getDefaultState());
         cir.setReturnValue(ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false)));
     }
+
 }
