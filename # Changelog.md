@@ -1,8 +1,9 @@
 # <center>Sturdy Trees</center>
 
 ## v1.6.4
++ Changed all configuration options setting to be handled with Supermartijn642's Config Lib internally instead of Cloth Config API, which is used only for client side config options. Cloth Config is still used for creating all screens for access through Mod Menu.
 + Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
-+ Updated the mod to BTWR: Shared Library 0.6.4
++ Updated the mod to Fabric Loader 0.17.3 & BTWR: Shared Library 0.6.4
 
 ## v1.6.3
 + Updated ExtendedShapelessRecipe from BTWR: Shared Library, which fixes some bugs with recipes using it
