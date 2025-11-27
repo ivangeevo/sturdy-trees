@@ -1,5 +1,7 @@
 # <center>Sturdy Trees</center>
 
+## v???(dev)
+
 ## v1.6.4
 + Changed all configuration options setting to be handled with Supermartijn642's Config Lib internally instead of Cloth Config API, which is used only for client side config options. Cloth Config is still used for creating all screens for access through Mod Menu.
 + Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
