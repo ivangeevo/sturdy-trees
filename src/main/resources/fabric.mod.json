@@ -14,11 +14,10 @@
   "icon":"assets/sturdy_trees/icon.png",
   "environment":"*",
   "entrypoints":{
-    "client":["ivangeevo.sturdy_trees.SturdyTreesClient"],
-    "main":["ivangeevo.sturdy_trees.SturdyTreesMod"],
-    "fabric-datagen": ["ivangeevo.sturdy_trees.SturdyTreesDataGenerator"],
-    "modmenu": ["ivangeevo.sturdy_trees.config.SturdyTreesModMenu"]
-
+    "client":["org.btwr.sturdy_trees.SturdyTreesClient"],
+    "main":["org.btwr.sturdy_trees.SturdyTreesMod"],
+    "fabric-datagen": ["org.btwr.sturdy_trees.SturdyTreesDataGenerator"],
+    "modmenu": ["org.btwr.sturdy_trees.config.SturdyTreesModMenu"]
   },
   "mixins":[
     "sturdy_trees.mixins.json",
@@ -33,7 +32,5 @@
     "minecraft":"${minecraft_version}",
     "btwr_sl": ">=${btwr_sl_version}"
   },
-
   "accessWidener" : "sturdy_trees.accesswidener"
-
 }

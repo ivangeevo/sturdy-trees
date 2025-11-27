@@ -1,5 +1,9 @@
 # <center>Sturdy Trees</center>
 
+## v1.6.4
++ Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
++ Updated the mod to BTWR: Shared Library 0.6.4
+
 ## v1.6.3
 + Updated ExtendedShapelessRecipe from BTWR: Shared Library, which fixes some bugs with recipes using it
 + Updated the mod to Fabric API 0.116.7 & BTWR: Shared Library 0.61
