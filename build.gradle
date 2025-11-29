@@ -48,9 +48,6 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // Supermartijn642's Config Lib
-    modApi "maven.modrinth:supermartijn642s-config-lib:${project.supermartijn642s_config_lib_version}"
-
     // Cloth Config API
     modApi "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 
@@ -88,7 +85,7 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                btwr_sl_version: project.btwr_sl_version
+                "btwr_sl_version": project.btwr_sl_version
     }
 
 }
