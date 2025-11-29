@@ -1,33 +1,33 @@
 package org.btwr.sturdy_trees.config;
 
-import com.google.common.reflect.Reflection;
-import com.supermartijn642.configlib.api.ConfigBuilders;
-import com.supermartijn642.configlib.api.IConfigBuilder;
+import org.btwr.shared_library.api.config.ConfigBuilder;
+import org.btwr.shared_library.api.config.ConfigGroup;
+import org.btwr.shared_library.api.config.ConfigSetting;
+import org.btwr.shared_library.api.config.TomlConfigManager;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 
 import java.util.function.Supplier;
 
 public class SturdyTreesConfig {
 
-    public static void register() {
-        Reflection.initialize(Settings.class);
-    }
+    /** Replace with your MOD_ID for easy adaptation **/
+    private static final String MOD_ID = SturdyTreesMod.MOD_ID;
 
-    public static class Settings {
-        public static final Supplier<Boolean> saplingsFertilizable;
+    public static final ConfigGroup CONFIG;
 
-        static {
-            // construct a new config builder
-            IConfigBuilder builder = ConfigBuilders.newTomlConfig(SturdyTreesMod.MOD_ID, "btwr_core", true);
+    /** Call this method in your mod initializer so the class can initialize **/
+    public static void register() {}
 
-            // Boolean checks
-            saplingsFertilizable = builder
-                    .comment("Disables knockback if not using a suitable weapon")
-                    .define("knockbackRestrictions", true);
+    public static final ConfigSetting<Boolean> saplingsFertilizable =
+            ConfigBuilder.booleanSetting("saplingsFertilizable")
+                    .defaultValue(false)
+                    .comment("Toggles whether saplings are fertilizable in the normal manner")
+                    .build();
 
-            // build the config
-            builder.build();
-        }
+    static {
+           CONFIG = new ConfigGroup(String.format("%s/%s_common.toml", MOD_ID, MOD_ID));
+           CONFIG.add(saplingsFertilizable);
+           TomlConfigManager.registerGroup(CONFIG); // auto init/load/save
     }
 
 }

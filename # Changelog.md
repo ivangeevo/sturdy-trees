@@ -1,6 +1,10 @@
 # <center>Sturdy Trees</center>
 
-## v???(dev)
+## v1.6.5
++ Fixed problems with existing configuration option where it was displaying wrong value/incorrect comments for what it does
++ Changed all configuration options in the mod to use the custom config library added by BTWR: Shared Library. This fixes the bug from last version that crashed the game without any warnings of the missing library that created the configurations
++ Removed Supermartijn642's config lib as the one creating configuration setting as it requires itself as a dependency to work properly
++ Updated the mod to BTWR: Shared Library 0.6.5
 
 ## v1.6.4
 + Changed all configuration options setting to be handled with Supermartijn642's Config Lib internally instead of Cloth Config API, which is used only for client side config options. Cloth Config is still used for creating all screens for access through Mod Menu.

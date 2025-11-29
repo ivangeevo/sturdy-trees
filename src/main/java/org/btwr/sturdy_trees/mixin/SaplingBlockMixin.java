@@ -38,7 +38,7 @@ public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizab
     // Make the saplings not able to be grown fast with Bone Meal
     @Inject(method = "isFertilizable", at = @At("HEAD"), cancellable = true)
     private void setIsFertilizable(WorldView world, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (!SturdyTreesConfig.Settings.saplingsFertilizable.get()) {
+        if (!SturdyTreesConfig.saplingsFertilizable.get()) {
             cir.setReturnValue(false);
         }
     }
