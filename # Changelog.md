@@ -1,5 +1,7 @@
 # <center>Sturdy Trees</center>
 
+### v???(dev)
+
 ## v1.6.6
 + Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7
 + Updated the mod to BTWR: Shared Library 0.7
