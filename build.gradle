@@ -56,7 +56,7 @@ dependencies {
 
     // BTWR: Shared Library
     modImplementation("maven.modrinth:btwr-shared-library:${project.btwr_sl_version}")
-    //modImplementation files("libs/btwr-shared-lib-${project.btwr_sl_version}.jar")
+    //modImplementation files("libs/btwr-shared-library-${project.btwr_sl_version}.jar")
 
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"

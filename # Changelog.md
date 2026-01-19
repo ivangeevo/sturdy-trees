@@ -1,5 +1,9 @@
 # <center>Sturdy Trees</center>
 
+## v1.6.6
++ Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7
++ Updated the mod to BTWR: Shared Library 0.7
+
 ## v1.6.5
 + Fixed problems with existing configuration option where it was displaying wrong value/incorrect comments for what it does
 + Changed all configuration options in the mod to use the custom config library added by BTWR: Shared Library. This fixes the bug from last version that crashed the game without any warnings of the missing library that created the configurations

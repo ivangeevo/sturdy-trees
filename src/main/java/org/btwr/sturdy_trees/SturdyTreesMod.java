@@ -4,6 +4,7 @@ import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 import org.btwr.sturdy_trees.config.SturdyTreesConfig;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.api.ModInitializer;
+import org.btwr.sturdy_trees.util.DirectionalDropManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,7 @@ public class SturdyTreesMod implements ModInitializer {
         SturdyTreesConfig.register();
         SturdyTreesBlocks.register();
         SturdyTreesItems.register();
+        DirectionalDropManager.register();
         TreeBreakHandler.register();
     }
 

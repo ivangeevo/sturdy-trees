@@ -1,6 +1,6 @@
 package org.btwr.sturdy_trees.datagen;
 
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

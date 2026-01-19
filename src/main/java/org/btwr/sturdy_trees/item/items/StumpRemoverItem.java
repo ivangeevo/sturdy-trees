@@ -1,6 +1,6 @@
 package org.btwr.sturdy_trees.item.items;
 
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

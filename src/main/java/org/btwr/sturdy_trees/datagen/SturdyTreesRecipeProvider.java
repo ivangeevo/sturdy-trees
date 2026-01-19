@@ -1,7 +1,7 @@
 package org.btwr.sturdy_trees.datagen;
 
 import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
