@@ -14,20 +14,22 @@ import org.jetbrains.annotations.Nullable;
 public abstract class ConvertingLogBlock extends PillarBlock {
 
     public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
+
+    // Charring functionality not added fully yet, so we exclude mentions in code for now
     public static final BooleanProperty CHARRED = BooleanProperty.of("charred");
 
     public ConvertingLogBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(VARIATION, 0)
-                .with(CHARRED, false)
+                //.with(CHARRED, false)
         );
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(VARIATION, CHARRED);
+        builder.add(VARIATION /**, CHARRED**/);
     }
 
     @Override

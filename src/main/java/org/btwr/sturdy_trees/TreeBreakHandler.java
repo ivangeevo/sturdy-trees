@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Handles conversion of vanilla logs to their custom stripped block variants **/
 public class TreeBreakHandler {
 
     private static final Map<Block, Block> logToStrippedLogMap = new HashMap<>();

@@ -33,9 +33,11 @@ public class LogSpikeBlock extends LogStrippedBlock {
     @Override
     protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         int breakLevel = state.get(VARIATION);
-        if (breakLevel >= 2) { return; }
+        if (breakLevel >= 2) {
+            return;
+        }
         world.setBlockState(pos, getStateWithProperties(state.with(VARIATION, breakLevel + 1)));
-        this.playSoundsOnBreak(world, pos, state, player);
+        //this.playSoundsOnBreak(world, pos, state, player);
     }
 
     @Override
