@@ -2,41 +2,68 @@ package org.btwr.sturdy_trees.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class LogSpikeBlock extends LogStrippedBlock {
+public class LogSpikeBlock extends ConvertingLogBlock {
 
+    public static final IntProperty SPIKE_VARIATION = IntProperty.of("variation", 0, 2);
     public static final DirectionProperty FACING = Properties.FACING;
     public static final BooleanProperty CONNECTED = BooleanProperty.of("connected");
 
     public LogSpikeBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(FACING, Direction.UP).with(CONNECTED, false));
+        this.setDefaultState(this.getStateManager()
+                .getDefaultState()
+                .with(SPIKE_VARIATION, 0)
+                .with(FACING, Direction.UP)
+                .with(CONNECTED, false)
+        );
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(FACING, CONNECTED);
+        builder.add(SPIKE_VARIATION, FACING, CONNECTED);
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        int var = state.get(SPIKE_VARIATION);
+        Direction.Axis axis = state.get(Properties.AXIS);
+
+        double offset = (this.getOutlineOffset() + var) / 16.0;
+        double to = 1.0 - offset;
+
+        VoxelShape shape = VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
+
+        return switch (axis) {
+            case X -> rotateYtoX(shape);
+            case Z -> rotateYtoZ(shape);
+            default -> shape;
+        };
     }
 
     @Override
     protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        int breakLevel = state.get(VARIATION);
+        int breakLevel = state.get(SPIKE_VARIATION);
         if (breakLevel >= 2) {
             return;
         }
-        world.setBlockState(pos, getStateWithProperties(state.with(VARIATION, breakLevel + 1)));
+        world.setBlockState(pos, getStateWithProperties(state.with(SPIKE_VARIATION, breakLevel + 1)));
         //this.playSoundsOnBreak(world, pos, state, player);
     }
 
@@ -76,7 +103,7 @@ public class LogSpikeBlock extends LogStrippedBlock {
 
     @Override
     protected void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (state.get(VARIATION) == 1) {
+        if (state.get(SPIKE_VARIATION) == 1) {
             this.playSpecialBreakSound(world, pos, player);
         }
     }

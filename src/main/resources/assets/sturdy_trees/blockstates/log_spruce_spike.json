@@ -1,47 +1,94 @@
 {
-  "variants":
-  {
-    "variation=0,facing=up,connected=false":{ "model": "sturdy_trees:block/log_spruce_spike_var1"},
-    "variation=1,facing=up,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var2"},
-    "variation=2,facing=up,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var3"},
+  "multipart": [
 
-    "variation=0,facing=down,connected=false":{ "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 180 },
-    "variation=1,facing=down,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 180 },
-    "variation=2,facing=down,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 180 },
+    { "when": { "facing": "up", "axis": "y", "connected": false, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1" } },
+    { "when": { "facing": "up", "axis": "y", "connected": false, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2" } },
+    { "when": { "facing": "up", "axis": "y", "connected": false, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3" } },
 
-    "variation=0,facing=north,connected=false":{ "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90 },
-    "variation=1,facing=north,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90 },
-    "variation=2,facing=north,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90 },
+    { "when": { "facing": "up", "axis": "y", "connected": true, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1" } },
+    { "when": { "facing": "up", "axis": "y", "connected": true, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2" } },
+    { "when": { "facing": "up", "axis": "y", "connected": true, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected" } },
 
-    "variation=0,facing=south,connected=false":{ "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 180 },
-    "variation=1,facing=south,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 180 },
-    "variation=2,facing=south,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90, "y": 180 },
 
-    "variation=0,facing=east,connected=false":{ "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 90 },
-    "variation=1,facing=east,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 90 },
-    "variation=2,facing=east,connected=false": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90, "y": 90 },
+    { "when": { "facing": "down", "axis": "y", "connected": false, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 180 } },
+    { "when": { "facing": "down", "axis": "y", "connected": false, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 180 } },
+    { "when": { "facing": "down", "axis": "y", "connected": false, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 180 } },
 
-    "variation=0,facing=west,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 270 },
-    "variation=0,facing=up,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var1"},
-    "variation=0,facing=down,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 180 },
-    "variation=0,facing=north,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90 },
-    "variation=0,facing=south,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 180 },
-    "variation=0,facing=east,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 90 },
+    { "when": { "facing": "down", "axis": "y", "connected": true, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 180 } },
+    { "when": { "facing": "down", "axis": "y", "connected": true, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 180 } },
+    { "when": { "facing": "down", "axis": "y", "connected": true, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 180 } },
 
-    "variation=1,facing=west,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 270 },
-    "variation=1,facing=up,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var2"},
-    "variation=1,facing=down,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 180 },
-    "variation=1,facing=north,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90 },
-    "variation=1,facing=south,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 180 },
-    "variation=1,facing=east,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 90 },
 
-    "variation=2,facing=west,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90, "y": 270 },
-    "variation=2,facing=up,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected"},
-    "variation=2,facing=down,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 180 },
-    "variation=2,facing=north,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90 },
-    "variation=2,facing=south,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90, "y": 180 },
-    "variation=2,facing=east,connected=true": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90, "y": 90 }
-  }
+    { "when": { "facing": "north", "axis": "z", "connected": false, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90 } },
+    { "when": { "facing": "north", "axis": "z", "connected": false, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90 } },
+    { "when": { "facing": "north", "axis": "z", "connected": false, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90 } },
+
+    { "when": { "facing": "north", "axis": "z", "connected": true, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90 } },
+    { "when": { "facing": "north", "axis": "z", "connected": true, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90 } },
+    { "when": { "facing": "north", "axis": "z", "connected": true, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90 } },
+
+
+    { "when": { "facing": "south", "axis": "z", "connected": false, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 180 } },
+    { "when": { "facing": "south", "axis": "z", "connected": false, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 180 } },
+    { "when": { "facing": "south", "axis": "z", "connected": false, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90, "y": 180 } },
+
+    { "when": { "facing": "south", "axis": "z", "connected": true, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 180 } },
+    { "when": { "facing": "south", "axis": "z", "connected": true, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 180 } },
+    { "when": { "facing": "south", "axis": "z", "connected": true, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90, "y": 180 } },
+
+
+    { "when": { "facing": "east", "axis": "x", "connected": false, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 90 } },
+    { "when": { "facing": "east", "axis": "x", "connected": false, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 90 } },
+    { "when": { "facing": "east", "axis": "x", "connected": false, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90, "y": 90 } },
+
+    { "when": { "facing": "east", "axis": "x", "connected": true, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 90 } },
+    { "when": { "facing": "east", "axis": "x", "connected": true, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 90 } },
+    { "when": { "facing": "east", "axis": "x", "connected": true, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90, "y": 90 } },
+
+
+    { "when": { "facing": "west", "axis": "x", "connected": false, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 270 } },
+    { "when": { "facing": "west", "axis": "x", "connected": false, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 270 } },
+    { "when": { "facing": "west", "axis": "x", "connected": false, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3", "x": 90, "y": 270 } },
+
+    { "when": { "facing": "west", "axis": "x", "connected": true, "variation": 0 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var1", "x": 90, "y": 270 } },
+    { "when": { "facing": "west", "axis": "x", "connected": true, "variation": 1 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var2", "x": 90, "y": 270 } },
+    { "when": { "facing": "west", "axis": "x", "connected": true, "variation": 2 },
+      "apply": { "model": "sturdy_trees:block/log_spruce_spike_var3_connected", "x": 90, "y": 270 } }
+
+  ]
 }
-
-

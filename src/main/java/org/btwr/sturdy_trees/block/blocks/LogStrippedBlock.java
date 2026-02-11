@@ -1,13 +1,10 @@
 package org.btwr.sturdy_trees.block.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -16,11 +13,11 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
 
-import static org.btwr.sturdy_trees.block.blocks.LogSpikeBlock.FACING;
 
 public class LogStrippedBlock extends ConvertingLogBlock {
+
+    public static final IntProperty VARIATION = IntProperty.of("variation", 0, 3);
 
     public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -43,6 +40,16 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         };
     }
 
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(VARIATION);
+    }
+
+
+    // Removed the neighboring replacement logic as it was causing issues and I don't really understand what I coded here *facepalm*
+    // Ideally all the log classes would need to be reworked like I've tried to do so in the dev/logs-class-overhaul branch
+    /**
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         this.spawnBreakParticles(world, player, pos, state);
@@ -117,33 +124,8 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(player, state));
         return state;
     }
+    **/
 
-    /**
-     * Sets the amount to offset the outline by (outline shape)
-     **/
-    protected int getOutlineOffset() {
-        return 1;
-    }
-
-    protected static VoxelShape rotateYtoX(VoxelShape shape) {
-        VoxelShape[] buffer = new VoxelShape[]{VoxelShapes.empty()};
-        shape.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> {
-            // Swap Y and X
-            buffer[0] = VoxelShapes.union(buffer[0],
-                    VoxelShapes.cuboid(minY, minX, minZ, maxY, maxX, maxZ));
-        });
-        return buffer[0];
-    }
-
-    protected static VoxelShape rotateYtoZ(VoxelShape shape) {
-        VoxelShape[] buffer = new VoxelShape[]{VoxelShapes.empty()};
-        shape.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> {
-            // Swap Y and Z
-            buffer[0] = VoxelShapes.union(buffer[0],
-                    VoxelShapes.cuboid(minX, minZ, minY, maxX, maxZ, maxY));
-        });
-        return buffer[0];
-    }
 
     @Override
     protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
@@ -160,14 +142,11 @@ public class LogStrippedBlock extends ConvertingLogBlock {
         }
     }
 
-    protected void playSpecialBreakSound(World world, BlockPos pos, PlayerEntity player) {
-        world.playSound(null, pos, this.getSpecialBreakSound(), SoundCategory.BLOCKS, 0.1F,
-                1.25F + (player.getWorld().random.nextFloat() * 0.25F));
+    @Override
+    protected int getOutlineOffset() {
+        return 1;
     }
 
-    protected SoundEvent getSpecialBreakSound() {
-        return SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
-    }
 
     private BlockState getReplacementState(World world, BlockPos pos, BlockState currentState) {
         Block strippedVar = null;
@@ -216,7 +195,7 @@ public class LogStrippedBlock extends ConvertingLogBlock {
 
         // Apply logic
         if (hasNeg && hasPos) {
-            return chewedVar != null ? chewedVar.getStateWithProperties(currentState) : currentState;
+            return chewedVar != null ? getChewedState(chewedVar, currentState) : currentState;
         }
         else if (hasNeg) {
             return getSpikeState(spikeVar, currentState, dirNeg);
@@ -237,14 +216,40 @@ public class LogStrippedBlock extends ConvertingLogBlock {
 
     // Only apply FACING if the block actually has that property
     private BlockState getSpikeState(Block spikeVar, BlockState currentState, Direction facing) {
-        if (spikeVar instanceof LogSpikeBlock) {
-            BlockState base = spikeVar.getStateWithProperties(currentState);
-            if (base.contains(FACING)) {
-                return base.with(FACING, facing);
-            }
+        if (!(spikeVar instanceof LogSpikeBlock)) {
+            return currentState;
         }
-        return currentState;
+
+        int logVar = currentState.get(VARIATION);
+
+        // Map 0–3 from logs to 0–2 for spikes
+        int spikeVarValue = Math.min(logVar, 2);
+
+        BlockState spikeState = spikeVar.getDefaultState()
+                .with(LogSpikeBlock.SPIKE_VARIATION, spikeVarValue);
+
+        // Copy axis-based orientation into facing
+        if (spikeState.contains(LogSpikeBlock.FACING)) {
+            spikeState = spikeState.with(LogSpikeBlock.FACING, facing);
+        }
+
+        return spikeState;
     }
+
+    private BlockState getChewedState(Block chewedVar, BlockState currentState) {
+        if (!(chewedVar instanceof LogChewedBlock)) {
+            return currentState;
+        }
+
+        int logVar = currentState.get(VARIATION);
+
+        int chewedVarValue = Math.min(logVar, 2);
+
+        return chewedVar.getDefaultState()
+                .with(LogChewedBlock.CHEWED_VARIATION, chewedVarValue)
+                .with(AXIS, currentState.get(AXIS));
+    }
+
 
     // checks if the block against the currently replaced block is solid full block
     private boolean isSolidBlockAtBase(World world, BlockPos pos, BlockState base) {
