@@ -1,9 +1,11 @@
 # <center>Sturdy Trees</center>
 
-## v1.6.7(dev)
+## v2.0(dev)
++ Changed how stump blocks are handled internally. This means that existing stumps in your world would likely be affected/missing
 + Changed the collision shapes for all log block variations to be a full cube. This matches retail BTW behavior and fixes issues with mobs trying to pathfind on top of those blocks
 + Fixed missing blockstate combinations for spike log blocks which caused many warnings in the console
 + Removed the neighboring replacement logic which makes log models flow better as it was causing issues and didn't work exactly as intended. Ideally the all the log classes need to be reworked to match BTW more closely, but that turned out to be a bigger endeavour than I can handle at the moment, so I'm leaving it for later on when I have the technical knowledge to do so
++ Rewrote most of the project internally
 
 ## v1.6.6
 + Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7

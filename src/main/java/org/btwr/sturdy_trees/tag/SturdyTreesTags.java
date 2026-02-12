@@ -37,6 +37,8 @@ public final class SturdyTreesTags {
 
         public static final TagKey<Item> BARK_ITEMS = registerTag("bark_items");
 
+        public static final TagKey<Item> STUMP_EFFICIENT = registerTag("stump_efficient");
+
         private static TagKey<Item> registerTag(String id) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, id));
         }

@@ -41,16 +41,7 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.STUMP_ACACIA)
                 .add(SturdyTreesBlocks.STUMP_DARK_OAK)
                 .add(SturdyTreesBlocks.STUMP_MANGROVE)
-                .add(SturdyTreesBlocks.STUMP_CHERRY)
-
-                .add(SturdyTreesBlocks.STUMP_OAK_VAR1)
-                .add(SturdyTreesBlocks.STUMP_BIRCH_VAR1)
-                .add(SturdyTreesBlocks.STUMP_SPRUCE_VAR1)
-                .add(SturdyTreesBlocks.STUMP_JUNGLE_VAR1)
-                .add(SturdyTreesBlocks.STUMP_ACACIA_VAR1)
-                .add(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1)
-                .add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1)
-                .add(SturdyTreesBlocks.STUMP_CHERRY_VAR1);
+                .add(SturdyTreesBlocks.STUMP_CHERRY);
     }
 
     private void addToModTags() {

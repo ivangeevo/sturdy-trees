@@ -1,9 +1,23 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "sturdy_trees:block/stump_acacia"
-      }
-    ]
+    "break_level=0,condition=normal": [{"model": "sturdy_trees:block/stump_acacia"}],
+    "break_level=1,condition=normal": [{"model": "sturdy_trees:block/stump_acacia_var1"}],
+    "break_level=2,condition=normal": [{"model": "sturdy_trees:block/stump_acacia_var1"}],
+    "break_level=3,condition=normal": [{"model": "sturdy_trees:block/stump_acacia_var1"}],
+
+    "break_level=0,condition=stripped": [{"model": "sturdy_trees:block/log_acacia_stripped_var0"}],
+    "break_level=1,condition=stripped": [{"model": "sturdy_trees:block/log_acacia_stripped_var1"}],
+    "break_level=2,condition=stripped": [{"model": "sturdy_trees:block/log_acacia_stripped_var2"}],
+    "break_level=3,condition=stripped": [{"model": "sturdy_trees:block/log_acacia_stripped_var3"}],
+
+    "break_level=0,condition=spike": [{"model": "sturdy_trees:block/log_acacia_stripped_var0"}],
+    "break_level=1,condition=spike": [{"model": "sturdy_trees:block/log_acacia_spike_var1"}],
+    "break_level=2,condition=spike": [{"model": "sturdy_trees:block/log_acacia_spike_var2"}],
+    "break_level=3,condition=spike": [{"model": "sturdy_trees:block/log_acacia_spike_var3"}],
+
+    "break_level=0,condition=chewed": [{"model": "sturdy_trees:block/log_acacia_stripped_var0"}],
+    "break_level=1,condition=chewed": [{"model": "sturdy_trees:block/log_acacia_mid_var1"}],
+    "break_level=2,condition=chewed": [{"model": "sturdy_trees:block/log_acacia_mid_var2"}],
+    "break_level=3,condition=chewed": [{"model": "sturdy_trees:block/log_acacia_mid_var3"}]
   }
 }

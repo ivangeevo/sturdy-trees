@@ -35,15 +35,6 @@ public class SturdyTreesLangProvider extends FabricLanguageProvider {
         tb.add(SturdyTreesBlocks.STUMP_MANGROVE, "Mangrove Stump");
         tb.add(SturdyTreesBlocks.STUMP_CHERRY, "Cherry Stump");
 
-        tb.add(SturdyTreesBlocks.STUMP_OAK_VAR1, "Partially Converted Oak Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_SPRUCE_VAR1, "Partially Converted Spruce Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_BIRCH_VAR1, "Partially Converted Birch Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_JUNGLE_VAR1, "Partially Converted Jungle Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_ACACIA_VAR1, "Partially Converted Acacia Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_DARK_OAK_VAR1, "Partially Converted Dark Oak Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_MANGROVE_VAR1, "Partially Converted Mangrove Crafting Stump");
-        tb.add(SturdyTreesBlocks.STUMP_CHERRY_VAR1, "Partially Converted Cherry Crafting Stump");
-
         tb.add(SturdyTreesBlocks.STUMP_OAK_CRAFTING, "Oak Crafting Stump");
         tb.add(SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING, "Spruce Crafting Stump");
         tb.add(SturdyTreesBlocks.STUMP_BIRCH_CRAFTING, "Birch Crafting Stump");
