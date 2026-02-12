@@ -5,13 +5,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 
@@ -21,23 +17,6 @@ public class LogStrippedBlock extends ConvertingLogBlock {
 
     public LogStrippedBlock(AbstractBlock.Settings settings) {
         super(settings);
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int var = state.get(VARIATION);
-        Direction.Axis axis = state.get(Properties.AXIS);
-
-        double offset = (this.getOutlineOffset() + var) / 16.0;
-        double to = 1.0 - offset;
-
-        VoxelShape shape = VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
-
-        return switch (axis) {
-            case X -> rotateYtoX(shape);
-            case Z -> rotateYtoZ(shape);
-            default -> shape;
-        };
     }
 
     @Override
@@ -128,14 +107,12 @@ public class LogStrippedBlock extends ConvertingLogBlock {
 
 
     @Override
-    protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        // Logic to determine the block to replace with
-        BlockState newState = getReplacementState(world, pos, state);
-        world.setBlockState(pos, newState);
+    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        return world.setBlockState(pos, this.getReplacementState(world, pos, state));
     }
 
     @Override
-    protected void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         switch (state.get(VARIATION)) {
             case 0, 2:
                 this.playSpecialBreakSound(world, pos, player);
@@ -143,10 +120,14 @@ public class LogStrippedBlock extends ConvertingLogBlock {
     }
 
     @Override
-    protected int getOutlineOffset() {
+    public int getOutlineOffset() {
         return 1;
     }
 
+    @Override
+    public IntProperty getVariation() {
+        return VARIATION;
+    }
 
     private BlockState getReplacementState(World world, BlockPos pos, BlockState currentState) {
         Block strippedVar = null;
@@ -212,48 +193,6 @@ public class LogStrippedBlock extends ConvertingLogBlock {
                     ? strippedVar.getStateWithProperties(currentState.with(VARIATION, (level + 1) % 4))
                     : currentState;
         }
-    }
-
-    // Only apply FACING if the block actually has that property
-    private BlockState getSpikeState(Block spikeVar, BlockState currentState, Direction facing) {
-        if (!(spikeVar instanceof LogSpikeBlock)) {
-            return currentState;
-        }
-
-        int logVar = currentState.get(VARIATION);
-
-        // Map 0–3 from logs to 0–2 for spikes
-        int spikeVarValue = Math.min(logVar, 2);
-
-        BlockState spikeState = spikeVar.getDefaultState()
-                .with(LogSpikeBlock.SPIKE_VARIATION, spikeVarValue);
-
-        // Copy axis-based orientation into facing
-        if (spikeState.contains(LogSpikeBlock.FACING)) {
-            spikeState = spikeState.with(LogSpikeBlock.FACING, facing);
-        }
-
-        return spikeState;
-    }
-
-    private BlockState getChewedState(Block chewedVar, BlockState currentState) {
-        if (!(chewedVar instanceof LogChewedBlock)) {
-            return currentState;
-        }
-
-        int logVar = currentState.get(VARIATION);
-
-        int chewedVarValue = Math.min(logVar, 2);
-
-        return chewedVar.getDefaultState()
-                .with(LogChewedBlock.CHEWED_VARIATION, chewedVarValue)
-                .with(AXIS, currentState.get(AXIS));
-    }
-
-
-    // checks if the block against the currently replaced block is solid full block
-    private boolean isSolidBlockAtBase(World world, BlockPos pos, BlockState base) {
-      return base.isOpaqueFullCube(world, pos) && !base.isReplaceable();
     }
 
 }

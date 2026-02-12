@@ -2,7 +2,6 @@ package org.btwr.sturdy_trees.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.PillarBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
@@ -48,22 +47,31 @@ public class LogChewedBlock extends ConvertingLogBlock {
     }
 
     @Override
-    protected void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (state.get(CHEWED_VARIATION) == 1) {
             this.playSpecialBreakSound(world, pos, player);
         }
     }
 
     @Override
-    protected int getOutlineOffset() {
+    public int getOutlineOffset() {
         return 2;
     }
 
     @Override
-    protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public IntProperty getVariation() {
+        return CHEWED_VARIATION;
+    }
+
+    @Override
+    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         int breakLevel = state.get(CHEWED_VARIATION);
-        if (breakLevel >= 2) { return; }
+        if (breakLevel >= 2) {
+            return false;
+        }
+
         world.setBlockState(pos, getStateWithProperties(state.with(CHEWED_VARIATION, breakLevel + 1)));
+        return true;
     }
 
 }

@@ -2,8 +2,6 @@ package org.btwr.sturdy_trees.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -13,7 +11,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -41,41 +38,45 @@ public class LogSpikeBlock extends ConvertingLogBlock {
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int var = state.get(SPIKE_VARIATION);
-        Direction.Axis axis = state.get(Properties.AXIS);
-
-        double offset = (this.getOutlineOffset() + var) / 16.0;
-        double to = 1.0 - offset;
-
-        VoxelShape shape = VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
-
-        return switch (axis) {
-            case X -> rotateYtoX(shape);
-            case Z -> rotateYtoZ(shape);
-            default -> shape;
-        };
-    }
-
-    @Override
-    protected void tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        int breakLevel = state.get(SPIKE_VARIATION);
-        if (breakLevel >= 2) {
-            return;
-        }
-        world.setBlockState(pos, getStateWithProperties(state.with(SPIKE_VARIATION, breakLevel + 1)));
-        //this.playSoundsOnBreak(world, pos, state, player);
-    }
-
-    @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
+                                                   WorldAccess world, BlockPos pos, BlockPos neighborPos)
+    {
         Direction facing = state.get(FACING);
-        // Connect a spike block to neighbours if the axis or the facing of the spike match the neighbour's respective orientation method
-        if (direction == facing || direction.getAxis() == facing.getAxis()) {
-            boolean connected = isTouchingSide(world, neighborPos, facing.getOpposite());
+
+        if (direction == facing) {
+            boolean connected = isTouchingSide(world, neighborPos, facing);
             return state.with(CONNECTED, connected);
         }
+
         return state;
+    }
+
+    @Override
+    public int getOutlineOffset() {
+        return 2;
+    }
+
+    @Override
+    public IntProperty getVariation() {
+        return SPIKE_VARIATION;
+    }
+
+    @Override
+    public void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (state.get(SPIKE_VARIATION) == 1) {
+            this.playSpecialBreakSound(world, pos, player);
+        }
+    }
+
+    @Override
+    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        int breakLevel = state.get(SPIKE_VARIATION);
+        if (breakLevel >= 2) {
+            return false;
+        }
+
+        world.setBlockState(pos, getStateWithProperties(state.with(SPIKE_VARIATION, breakLevel + 1)));
+        return true;
     }
 
     private boolean isTouchingSide(BlockView world, BlockPos neighborPos, Direction fromDirection) {
@@ -93,19 +94,6 @@ public class LogSpikeBlock extends ConvertingLogBlock {
         };
 
         return minTouch >= 1.0;
-    }
-
-
-    @Override
-    protected int getOutlineOffset() {
-        return 2;
-    }
-
-    @Override
-    protected void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (state.get(SPIKE_VARIATION) == 1) {
-            this.playSpecialBreakSound(world, pos, player);
-        }
     }
 
 }
