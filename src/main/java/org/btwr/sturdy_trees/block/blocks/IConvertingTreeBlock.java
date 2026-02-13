@@ -23,14 +23,14 @@ import net.minecraft.world.World;
  */
 public interface IConvertingTreeBlock {
 
-    /** The current variation (break level) of the block **/
-    IntProperty getVariation();
+    /** The current break level of the block **/
+    IntProperty getBreakLevel();
 
     /** Sets the amount to offset the outline by (outline shape) **/
     int getOutlineOffset();
 
     /** Returns true if the block successfully converted into another variant/block **/
-    boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player);
+    boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player);
 
     void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player);
 

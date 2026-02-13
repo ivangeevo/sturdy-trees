@@ -57,7 +57,7 @@ public class LogSpikeBlock extends ConvertingLogBlock {
     }
 
     @Override
-    public IntProperty getVariation() {
+    public IntProperty getBreakLevel() {
         return SPIKE_VARIATION;
     }
 
@@ -69,7 +69,7 @@ public class LogSpikeBlock extends ConvertingLogBlock {
     }
 
     @Override
-    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         int breakLevel = state.get(SPIKE_VARIATION);
         if (breakLevel >= 2) {
             return false;

@@ -35,10 +35,10 @@ public abstract class ConvertingLogBlock extends PillarBlock implements IConvert
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int var = state.get(this.getVariation());
+        int breakLevel = state.get(this.getBreakLevel());
         Direction.Axis axis = state.get(Properties.AXIS);
 
-        double offset = (this.getOutlineOffset() + var) / 16.0;
+        double offset = (this.getOutlineOffset() + breakLevel) / 16.0;
         double to = 1.0 - offset;
 
         VoxelShape shape = VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
@@ -52,7 +52,7 @@ public abstract class ConvertingLogBlock extends PillarBlock implements IConvert
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        if (this.tryConvert(world, pos, state, player)) {
+        if (this.convertBlock(world, pos, state, player)) {
             this.playSoundsOnBreak(world, pos, state, player);
         }
 

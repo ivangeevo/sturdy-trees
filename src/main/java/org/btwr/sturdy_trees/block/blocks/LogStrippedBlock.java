@@ -107,7 +107,7 @@ public class LogStrippedBlock extends ConvertingLogBlock {
 
 
     @Override
-    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         return world.setBlockState(pos, this.getReplacementState(world, pos, state));
     }
 
@@ -125,7 +125,7 @@ public class LogStrippedBlock extends ConvertingLogBlock {
     }
 
     @Override
-    public IntProperty getVariation() {
+    public IntProperty getBreakLevel() {
         return VARIATION;
     }
 

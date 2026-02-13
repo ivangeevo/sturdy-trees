@@ -32,10 +32,10 @@ public class TreeBreakHandler {
     }
 
     public static void register() {
-        PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onBlockDestroyed);
+        PlayerBlockBreakEvents.AFTER.register(TreeBreakHandler::onLogBlockDestroyed);
     }
 
-    private static void onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
+    private static void onLogBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, /* Nullable */ BlockEntity blockEntity) {
         Block strippedLog = logToStrippedLogMap.get(state.getBlock());
         if (strippedLog != null) {
             handleLogBreak(world, pos, state, player, strippedLog);
@@ -50,7 +50,8 @@ public class TreeBreakHandler {
         } else {
             world.setBlockState(pos, strippedLog.getStateWithProperties(
                     strippedLog.getDefaultState()
-                            .with(Properties.AXIS, state.get(Properties.AXIS)))
+                            .with(Properties.AXIS, state.get(Properties.AXIS))
+                    )
             );
         }
     }

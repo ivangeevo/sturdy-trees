@@ -37,6 +37,9 @@ public final class SturdyTreesTags {
 
         public static final TagKey<Item> BARK_ITEMS = registerTag("bark_items");
 
+        // All tools that can convert stumps into their crafting variant must be put under this tag.
+        // While normally tools provide their efficient blocks in their ToolMaterial definition; this is necessary
+        // because the vanilla suitableFor() check decides whether the block will drop loot as well, and we don't need that
         public static final TagKey<Item> STUMP_EFFICIENT = registerTag("stump_efficient");
 
         private static TagKey<Item> registerTag(String id) {

@@ -59,12 +59,12 @@ public class LogChewedBlock extends ConvertingLogBlock {
     }
 
     @Override
-    public IntProperty getVariation() {
+    public IntProperty getBreakLevel() {
         return CHEWED_VARIATION;
     }
 
     @Override
-    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         int breakLevel = state.get(CHEWED_VARIATION);
         if (breakLevel >= 2) {
             return false;

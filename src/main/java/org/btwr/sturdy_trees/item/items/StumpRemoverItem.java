@@ -23,7 +23,7 @@ public class StumpRemoverItem extends Item {
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockPos pos = context.getBlockPos();
         BlockState stump = context.getWorld().getBlockState(pos);
-        ItemStack itemStack = context.getStack(); // Get the ItemStack associated with the context.
+        ItemStack stack = context.getStack();
         World world = context.getWorld();
 
         if (!world.isClient) {
@@ -33,9 +33,9 @@ public class StumpRemoverItem extends Item {
                         (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F);
 
                 world.removeBlock(pos, false);
-                itemStack.decrement(1); // Consume one item from the ItemStack.
+                stack.decrement(1);
 
-                return ActionResult.SUCCESS; // Indicate a successful action.
+                return ActionResult.SUCCESS;
             }
         }
 
@@ -43,9 +43,9 @@ public class StumpRemoverItem extends Item {
     }
 
     private void spawnParticles(ServerWorld world, BlockPos pos) {
-
-        // Spawn the particles slightly above the block
-        world.spawnParticles(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, 10, 0.2, 0.2, 0.2, 0.1);
+        world.spawnParticles(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5,
+                10, 0.2, 0.2, 0.2, 0.1
+        );
 
         for (int i = 0; i < 20; i++) {
             double smokeX = pos.getX() + world.random.nextDouble() - 0.5D;
