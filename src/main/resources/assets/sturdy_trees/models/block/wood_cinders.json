@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "sturdy_trees:block/wood_cinders"
+  }
+}

@@ -1,45 +1,22 @@
 package org.btwr.sturdy_trees;
 
-import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.RenderLayer;
+import org.btwr.sturdy_trees.block.render.SturdyTreesBlockRenderLayers;
+import org.btwr.sturdy_trees.particle.CindersParticle;
+import org.btwr.sturdy_trees.particle.SlowWhiteSmoke;
+import org.btwr.sturdy_trees.particle.SturdyTreesParticles;
 
 public class SturdyTreesClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_CHEWED, RenderLayer.getCutout());
+        SturdyTreesBlockRenderLayers.register();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SPRUCE_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SPRUCE_CHEWED, RenderLayer.getCutout());
+        ParticleFactoryRegistry.getInstance().register(SturdyTreesParticles.SLOW_WHITE_SMOKE, SlowWhiteSmoke.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(SturdyTreesParticles.CINDERS, CindersParticle.Factory::new);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_BIRCH_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_BIRCH_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_BIRCH_CHEWED, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_JUNGLE_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_JUNGLE_CHEWED, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_ACACIA_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_ACACIA_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_ACACIA_CHEWED, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_DARK_OAK_CHEWED, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_MANGROVE_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_MANGROVE_CHEWED, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_CHEWED, RenderLayer.getCutout());
     }
+
 
 }

@@ -1,0 +1,5 @@
+{
+  "multipart": [
+    { "apply": { "model": "sturdy_trees:block/wood_smouldering" } }
+  ]
+}

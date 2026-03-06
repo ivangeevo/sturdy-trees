@@ -1,4 +1,4 @@
-package org.btwr.sturdy_trees.block.blocks;
+package org.btwr.sturdy_trees.block.interfaces;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,6 +11,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
+import org.btwr.sturdy_trees.block.blocks.LogChewedBlock;
+import org.btwr.sturdy_trees.block.blocks.LogSpikeBlock;
+import org.btwr.sturdy_trees.block.enums.LogCondition;
 
 /**
  * Common interface for all tree-related blocks (logs, stumps, etc.)
@@ -32,7 +35,7 @@ public interface IConvertingTreeBlock {
     /** Returns true if the block successfully converted into another variant/block **/
     boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player);
 
-    void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player);
+    default void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {}
 
     default void playSpecialBreakSound(World world, BlockPos pos, PlayerEntity player) {
         world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
@@ -100,6 +103,19 @@ public interface IConvertingTreeBlock {
      */
     default boolean isSolidBlockAtBase(World world, BlockPos pos, BlockState base) {
         return base.isOpaqueFullCube(world, pos) && !base.isReplaceable();
+    }
+
+    default LogCondition resolveConditionFromNeighbors(World world, BlockPos pos) {
+        BlockState stateUp = world.getBlockState(pos.up());
+        BlockState stateDown = world.getBlockState(pos.down());
+
+        boolean hasUp = !stateUp.isAir() && isSolidBlockAtBase(world, pos.up(), stateUp);
+        boolean hasDown = !stateDown.isAir() && isSolidBlockAtBase(world, pos.down(), stateDown);
+
+        if (hasUp && hasDown) return LogCondition.CHEWED;
+        if (hasUp || hasDown) return LogCondition.SPIKE;
+
+        return LogCondition.STRIPPED;
     }
 
 }

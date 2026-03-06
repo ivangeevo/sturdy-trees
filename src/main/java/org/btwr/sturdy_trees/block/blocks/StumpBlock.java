@@ -14,24 +14,26 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.btwr.sturdy_trees.block.enums.StumpCondition;
-import org.btwr.sturdy_trees.block.enums.StumpConditionProperty;
+import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
+import org.btwr.sturdy_trees.block.interfaces.IConvertingTreeBlock;
+import org.btwr.sturdy_trees.block.enums.LogCondition;
+import org.btwr.sturdy_trees.block.enums.LogConditionProperty;
 import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import org.jetbrains.annotations.Nullable;
 
 public class StumpBlock extends Block implements IConvertingTreeBlock {
 
     public static final IntProperty BREAK_LEVEL = IntProperty.of("break_level", 0, 3);
-    public static final StumpConditionProperty CONDITION = StumpConditionProperty.of("condition");
+    public static final LogConditionProperty CONDITION = LogConditionProperty.of("condition");
 
     /** The crafting table variant of the stump block **/
-    Block craftingVariant;
+    @Nullable Block craftingVariant;
 
-    public StumpBlock(Settings settings, Block craftingVariant) {
-        super(settings);
+    public StumpBlock(Settings settings, @Nullable Block craftingVariant) {
+        super(settings.strength(6f,30f));
         this.setDefaultState(getStateManager().getDefaultState()
                 .with(BREAK_LEVEL, 0)
-                .with(CONDITION, StumpCondition.NORMAL)
+                .with(CONDITION, LogCondition.NORMAL)
         );
         this.craftingVariant = craftingVariant;
     }
@@ -43,7 +45,7 @@ public class StumpBlock extends Block implements IConvertingTreeBlock {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        if (this.tryConvert(world, pos, state, player)) {
+        if (this.convertBlock(world, pos, state, player)) {
             this.playSoundsOnBreak(world, pos, state, player);
         }
 
@@ -52,16 +54,25 @@ public class StumpBlock extends Block implements IConvertingTreeBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int var = state.get(BREAK_LEVEL);
+        int breakLevel = state.get(BREAK_LEVEL);
+        LogCondition condition = state.get(CONDITION);
 
-        // Don't apply the offset amount for the initial stripped condition
-        boolean initialStrippedLog = var == 0 && state.get(CONDITION) != StumpCondition.STRIPPED;
-        int baseOffset = initialStrippedLog ? this.getOutlineOffset() - 1 : this.getOutlineOffset();
+        int level;
 
-        double offset =  (baseOffset + var) / 16.0;
+        if (condition == LogCondition.NORMAL) {
+            // Always reduced, no break scaling
+            level = -1;
+        } else if (condition == LogCondition.STRIPPED && breakLevel == 0) {
+            // Full shape
+            level = 0;
+        } else {
+            // All other non-normal cases scale normally
+            level = breakLevel;
+        }
+
+        double offset = (this.getOutlineOffset() + level) / 16.0;
         double to = 1.0 - offset;
 
-        // Create a VoxelShape based on the dimensions
         return VoxelShapes.cuboid(offset, 0.0, offset, to, 1.0, to);
     }
 
@@ -71,12 +82,13 @@ public class StumpBlock extends Block implements IConvertingTreeBlock {
     }
 
     @Override
-    public boolean tryConvert(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         boolean isValidTool = player.getMainHandStack().isIn(SturdyTreesTags.Items.STUMP_EFFICIENT);
 
         BlockState newState;
+
         if (isValidTool) {
-            newState = this.getStateForEfficientBreak(state);
+            newState = this.getStateForEfficientBreak(world, pos, state);
         }
         else {
             newState = this.getStateForInefficientBreak(world, pos, state);
@@ -91,56 +103,73 @@ public class StumpBlock extends Block implements IConvertingTreeBlock {
         this.playSpecialBreakSound(world, pos, player);
     }
 
-    private BlockState getStateForEfficientBreak(BlockState state) {
-        if (state.get(BREAK_LEVEL) <= 0) {
-            return state.with(BREAK_LEVEL, 1);
-        }
-
-        return craftingVariant.getDefaultState();
+    @Override
+    public boolean btwr$hasCustomFireDestructionBehavior() {
+        return true;
     }
 
-    private BlockState getStateForInefficientBreak(World world, BlockPos pos, BlockState state) {
-        BlockState stateUp = world.getBlockState(pos.up());
-        BlockState stateDown = world.getBlockState(pos.down());
+    @Override
+    public void btwr$onDestroyedByFire(World world, BlockPos pos, int fireAge, boolean forcedFireSpread) {
+        world.setBlockState(pos, SturdyTreesBlocks.STUMP_SMOULDERING.getDefaultState());
+    }
 
-        boolean hasUp = !stateUp.isAir() && isSolidBlockAtBase(world, pos.up(), stateUp);
-        boolean hasDown = !stateDown.isAir() && isSolidBlockAtBase(world, pos.down(), stateDown);
+    private BlockState getStateForEfficientBreak(World world, BlockPos pos, BlockState state) {
+        int level = state.get(BREAK_LEVEL);
+        LogCondition condition = state.get(CONDITION);
 
-        int currentLevel = state.get(BREAK_LEVEL);
-        StumpCondition currentCondition = state.get(CONDITION);
+        if (condition == LogCondition.NORMAL) {
+            if (level <= 0) {
+                return state.with(BREAK_LEVEL, 1);
+            }
+            assert craftingVariant != null;
+            return craftingVariant.getDefaultState();
+        }
 
-        if (currentLevel >= 3) {
+        if (level >= 3) {
             return Blocks.AIR.getDefaultState();
         }
 
-        int nextLevel = currentLevel + 1;
+        LogCondition newCondition = resolveConditionFromNeighbors(world, pos);
 
-        // First check if we already started converting the stump to a crafting one and set back to stripped
-        if (currentCondition == StumpCondition.NORMAL && currentLevel == 1) {
-            return state.with(CONDITION, StumpCondition.STRIPPED).with(BREAK_LEVEL, 0);
+        return state.with(CONDITION, newCondition).with(BREAK_LEVEL, level + 1);
+    }
+
+    private BlockState getStateForInefficientBreak(World world, BlockPos pos, BlockState state) {
+        int level = state.get(BREAK_LEVEL);
+        LogCondition condition = state.get(CONDITION);
+
+        if (level >= 3) {
+            return Blocks.AIR.getDefaultState();
         }
 
-        // If already SPIKE or CHEWED; just degrade further
-        if (currentCondition == StumpCondition.SPIKE || currentCondition == StumpCondition.CHEWED) {
-            return state.with(BREAK_LEVEL, nextLevel);
+        // Special rollback case
+        if (condition == LogCondition.NORMAL && level == 1) {
+            return state.with(CONDITION, LogCondition.STRIPPED).with(BREAK_LEVEL, 0);
         }
 
-        // If not yet stripped; convert to stripped first
-        if (currentCondition != StumpCondition.STRIPPED) {
-            return state.with(CONDITION, StumpCondition.STRIPPED).with(BREAK_LEVEL, currentLevel);
+        // Already spike or chewed; just increment
+        if (condition == LogCondition.SPIKE || condition == LogCondition.CHEWED) {
+            return incrementOrDestroy(state);
         }
 
-        // Already STRIPPED – decide next form
-        if (hasUp && hasDown) {
-            return state.with(CONDITION, StumpCondition.CHEWED).with(BREAK_LEVEL, nextLevel);
+        // Not yet stripped; convert first
+        if (condition != LogCondition.STRIPPED) {
+            return state.with(CONDITION, LogCondition.STRIPPED);
         }
 
-        if (hasUp || hasDown) {
-            return state.with(CONDITION, StumpCondition.SPIKE).with(BREAK_LEVEL, nextLevel);
+        // Already stripped; apply neighbor logic
+        LogCondition newCondition = resolveConditionFromNeighbors(world, pos);
+        return state.with(CONDITION, newCondition).with(BREAK_LEVEL, level + 1);
+    }
+
+    private BlockState incrementOrDestroy(BlockState state) {
+        int level = state.get(BREAK_LEVEL);
+
+        if (level >= 3) {
+            return Blocks.AIR.getDefaultState();
         }
 
-        // Remain stripped and increment
-        return state.with(CONDITION, StumpCondition.STRIPPED).with(BREAK_LEVEL, nextLevel);
+        return state.with(BREAK_LEVEL, level + 1);
     }
 
     @Override
@@ -149,7 +178,7 @@ public class StumpBlock extends Block implements IConvertingTreeBlock {
     }
 
     @Override
-    public IntProperty getVariation() {
+    public IntProperty getBreakLevel() {
         return BREAK_LEVEL;
     }
 

@@ -8,53 +8,53 @@ import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class StumpConditionProperty extends EnumProperty<StumpCondition> {
+public class LogConditionProperty extends EnumProperty<LogCondition> {
 
-    protected StumpConditionProperty(String name, Collection<StumpCondition> values) {
-        super(name, StumpCondition.class, values);
+    protected LogConditionProperty(String name, Collection<LogCondition> values) {
+        super(name, LogCondition.class, values);
     }
 
     /**
-     * Creates a LogBreakType property containing all break type values.
+     * Creates a LogCondition property containing all break type values.
      *
      * @param name the name of the property
      */
-    public static StumpConditionProperty of(String name) {
+    public static LogConditionProperty of(String name) {
         return of(name, type -> true);
     }
 
     /**
-     * Creates a LogBreakType property with values filtered by a predicate.
+     * Creates a LogCondition property with values filtered by a predicate.
      *
      * @param name the name of the property
      * @param filter predicate determining which values are allowed
      */
-    public static StumpConditionProperty of(String name, Predicate<StumpCondition> filter) {
+    public static LogConditionProperty of(String name, Predicate<LogCondition> filter) {
         return of(
                 name,
-                Arrays.stream(StumpCondition.values())
+                Arrays.stream(LogCondition.values())
                         .filter(filter)
                         .collect(Collectors.toList())
         );
     }
 
     /**
-     * Creates a LogBreakType property containing the given explicit values.
+     * Creates a LogCondition property containing the given explicit values.
      *
      * @param name the name of the property
      * @param values allowed values for the property
      */
-    public static StumpConditionProperty of(String name, StumpCondition... values) {
+    public static LogConditionProperty of(String name, LogCondition... values) {
         return of(name, Lists.newArrayList(values));
     }
 
     /**
-     * Creates a LogBreakType property containing the given collection of values.
+     * Creates a LogCondition property containing the given collection of values.
      *
      * @param name the name of the property
      * @param values allowed values for the property
      */
-    public static StumpConditionProperty of(String name, Collection<StumpCondition> values) {
-        return new StumpConditionProperty(name, values);
+    public static LogConditionProperty of(String name, Collection<LogCondition> values) {
+        return new LogConditionProperty(name, values);
     }
 }

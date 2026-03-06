@@ -1,5 +1,6 @@
 package org.btwr.sturdy_trees.block;
 
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
@@ -11,10 +12,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
-import org.btwr.sturdy_trees.block.blocks.LogChewedBlock;
-import org.btwr.sturdy_trees.block.blocks.LogSpikeBlock;
-import org.btwr.sturdy_trees.block.blocks.LogStrippedBlock;
-import org.btwr.sturdy_trees.block.blocks.StumpBlock;
+import org.btwr.sturdy_trees.block.blocks.*;
+import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 
 public class SturdyTreesBlocks {
 
@@ -128,32 +127,88 @@ public class SturdyTreesBlocks {
 
     // Stripped
     public static final Block LOG_OAK_STRIPPED = registerBlockWithoutItem(
-            "log_oak_stripped", createStripped(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN));
+            "log_oak_stripped", createStripped(MapColor.OAK_TAN, MapColor.SPRUCE_BROWN)
+    );
     public static final Block LOG_BIRCH_STRIPPED = registerBlockWithoutItem(
-            "log_birch_stripped", createStripped(MapColor.SPRUCE_BROWN, MapColor.BROWN));
+            "log_birch_stripped", createStripped(MapColor.SPRUCE_BROWN, MapColor.BROWN)
+    );
     public static final Block LOG_SPRUCE_STRIPPED = registerBlockWithoutItem(
-            "log_spruce_stripped", createStripped(MapColor.PALE_YELLOW, MapColor.OFF_WHITE));
+            "log_spruce_stripped", createStripped(MapColor.PALE_YELLOW, MapColor.OFF_WHITE)
+    );
     public static final Block LOG_JUNGLE_STRIPPED = registerBlockWithoutItem(
-            "log_jungle_stripped", createStripped(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN));
+            "log_jungle_stripped", createStripped(MapColor.DIRT_BROWN, MapColor.SPRUCE_BROWN)
+    );
     public static final Block LOG_ACACIA_STRIPPED = registerBlockWithoutItem(
-            "log_acacia_stripped", createStripped(MapColor.ORANGE, MapColor.STONE_GRAY));
+            "log_acacia_stripped", createStripped(MapColor.ORANGE, MapColor.STONE_GRAY)
+    );
     public static final Block LOG_DARK_OAK_STRIPPED = registerBlockWithoutItem(
-            "log_dark_oak_stripped", createStripped(MapColor.BROWN, MapColor.BROWN));
+            "log_dark_oak_stripped", createStripped(MapColor.BROWN, MapColor.BROWN)
+    );
     public static final Block LOG_MANGROVE_STRIPPED = registerBlockWithoutItem(
-            "log_mangrove_stripped", createStripped(MapColor.RED, MapColor.SPRUCE_BROWN));
+            "log_mangrove_stripped", createStripped(MapColor.RED, MapColor.SPRUCE_BROWN)
+    );
     public static final Block LOG_CHERRY_STRIPPED = registerBlockWithoutItem(
             "log_cherry_stripped", createCustomSoundStripped(
                     MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockSoundGroup.CHERRY_WOOD)
     );
 
+    public static final Block LOG_SMOULDERING = registerBlockWithoutItem(
+            "log_smouldering", new SmoulderingLogBlock(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .mapColor(MapColor.BLACK)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .ticksRandomly()
+            )
+    );
+    public static final Block STUMP_SMOULDERING = registerBlockWithoutItem(
+            "stump_smouldering", new SmoulderingStumpBlock(AbstractBlock.Settings.create()
+                    .strength(3f,15f)
+                    .mapColor(MapColor.BLACK)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .ticksRandomly()
+            )
+    );
+
+    public static final Block WOOD_CINDERS = registerBlockWithoutItem(
+            "wood_cinders", new WoodCindersBlock(AbstractBlock.Settings.create()
+                    .strength(0.25F)
+                    .mapColor(MapColor.GRAY)
+                    .instrument(NoteBlockInstrument.BIT)
+                    .sounds(BlockSoundGroup.GRAVEL)
+                    .nonOpaque()
+                    .ticksRandomly()
+            )
+    );
+
+    public static final Block WOOD_CINDERS_STUMP = registerBlockWithoutItem(
+            "wood_cinders_stump", new WoodCindersStumpBlock(AbstractBlock.Settings.create()
+                    .strength(0.25F)
+                    .mapColor(MapColor.GRAY)
+                    .instrument(NoteBlockInstrument.BIT)
+                    .sounds(BlockSoundGroup.GRAVEL)
+                    .nonOpaque()
+                    .ticksRandomly()
+            )
+    );
+
+    public static final Block ASH_GROUND_COVER = registerBlockWithoutItem(
+            "ash_ground_cover", new AshGroundCoverBlock(AbstractBlock.Settings.create()
+                    .strength(0.1f)
+                    .sounds(BlockSoundGroup.SAND)
+                    .ticksRandomly()
+            )
+    );
+
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup, Block craftingVariant) {
-        return new StumpBlock(AbstractBlock.Settings.create().strength(6f,30f).sounds(soundGroup)
-                .mapColor(mapColor).instrument(NoteBlockInstrument.BASS), craftingVariant);
+        return new StumpBlock(AbstractBlock.Settings.create().sounds(soundGroup)
+                .mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable(), craftingVariant);
     }
 
     public static CraftingTableBlock createStumpCrafting(MapColor mapColor) {
-        return new CraftingTableBlock(AbstractBlock.Settings.create().strength(6f,30f)
-                .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS));
+        return new CraftingTableBlock(AbstractBlock.Settings.create()
+                .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable());
     }
 
     public static LogStrippedBlock createStripped(MapColor topMapColor, MapColor sideMapColor) {
@@ -185,6 +240,11 @@ public class SturdyTreesBlocks {
                 .instrument(NoteBlockInstrument.BASS).strength(2.0F).nonOpaque().burnable();
     }
 
+    private static AbstractBlock.Settings charredLogSettings() {
+        return AbstractBlock.Settings.create().mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.BASS)
+                .strength(2.0F).nonOpaque().burnable().sounds(BlockSoundGroup.WOOD);
+    }
+
     private static AbstractBlock.Settings customSoundsLogSettings(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup soundGroup) {
         return AbstractBlock.Settings.create().mapColor((state) ->
                         state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
@@ -207,6 +267,17 @@ public class SturdyTreesBlocks {
 
     public static void register() {
         SturdyTreesMod.LOGGER.debug("Registering ModBlocks for " + SturdyTreesMod.MOD_ID);
+
+        registerFlammableBlocks();
+    }
+
+    private static void registerFlammableBlocks() {
+        FlammableBlockRegistry instance = FlammableBlockRegistry.getDefaultInstance();
+
+        instance.add(SturdyTreesTags.Blocks.LOG_VARIATION_BLOCKS, 5 ,5);
+        instance.add(SturdyTreesTags.Blocks.STUMPS, 5 ,5);
+        instance.add(SturdyTreesTags.Blocks.CRAFTING_STUMPS, 5 ,5);
+
     }
 
 }

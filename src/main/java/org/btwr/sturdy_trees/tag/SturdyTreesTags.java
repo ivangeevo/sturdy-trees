@@ -11,6 +11,7 @@ public final class SturdyTreesTags {
 
     public static class Blocks {
 
+        public static final TagKey<Block> STUMPS = registerTag("stumps");
         public static final TagKey<Block> CRAFTING_STUMPS = registerTag("crafting_stumps");
 
         // All log blocks from the mod that have variation.(aka all ConvertingLogBlock's)
@@ -26,6 +27,7 @@ public final class SturdyTreesTags {
         public static final TagKey<Block> BENDING_TRUNK_TREES = registerTag("bending_trunk_trees");
         public static final TagKey<Block> UPWARDS_BRANCHING_TRUNK_TREES = registerTag("upwards_branching_trunk_trees");
         public static final TagKey<Block> CHERRY_TRUNK_TREES = registerTag("cherry_trunk_trees");
+
 
         private static TagKey<Block> registerTag(String id) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, id));

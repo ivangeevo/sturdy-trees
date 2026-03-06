@@ -2,7 +2,7 @@ package org.btwr.sturdy_trees.block.enums;
 
 import net.minecraft.util.StringIdentifiable;
 
-public enum StumpCondition implements StringIdentifiable {
+public enum LogCondition implements StringIdentifiable {
     NORMAL("normal"),
     STRIPPED("stripped"),
     SPIKE("spike"),
@@ -10,7 +10,7 @@ public enum StumpCondition implements StringIdentifiable {
 
     private final String type;
 
-    StumpCondition(final String type) {
+    LogCondition(final String type) {
         this.type = type;
     }
 

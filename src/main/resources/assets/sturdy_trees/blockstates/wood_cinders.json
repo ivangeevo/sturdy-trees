@@ -1,0 +1,59 @@
+{
+  "multipart": [
+    {
+      "when": { "break_level": "0", "condition": "normal" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders" }
+    },
+
+    {
+      "when": { "break_level": "0", "condition": "stripped" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_stripped_var0" }
+    },
+    {
+      "when": { "break_level": "01", "condition": "stripped" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_stripped_var1" }
+    },
+    {
+      "when": { "break_level": "2", "condition": "stripped" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_stripped_var2" }
+    },
+    {
+      "when": { "break_level": "3", "condition": "stripped" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_stripped_var3" }
+    },
+
+    {
+      "when": { "break_level": "0", "condition": "spike" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_stripped_var0" }
+    },
+    {
+      "when": { "break_level": "01", "condition": "spike" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_spike_var1" }
+    },
+    {
+      "when": { "break_level": "2", "condition": "spike" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_spike_var2" }
+    },
+    {
+      "when": { "break_level": "3", "condition": "spike" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_spike_var3" }
+    },
+
+    {
+      "when": { "break_level": "0", "condition": "chewed" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_stripped_var0" }
+    },
+    {
+      "when": { "break_level": "01", "condition": "chewed" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_mid_var1" }
+    },
+    {
+      "when": { "break_level": "2", "condition": "chewed" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_mid_var2" }
+    },
+    {
+      "when": { "break_level": "3", "condition": "chewed" },
+      "apply": { "model": "sturdy_trees:block/wood_cinders_mid_var3" }
+    }
+  ]
+}

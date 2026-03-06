@@ -1,10 +1,15 @@
 # <center>Sturdy Trees</center>
 
 ## v2.0(dev)
++ Added logs/wood/stump blocks to turn into smouldering variants when exposed to fire for a while. Smouldering blocks will turn to cinder variants after a while or when extinguished by water/rain
++ Added the ability for stump blocks to be able to incrementally break like other log blocks when mined with an improper tool that doesn't convert them to crafting stumps. All items that are considered valid tools for conversion to crafting stumps should be registered under the "stump_efficient" tag in addition to them being added as efficient blocks in their material definition's inverse tag
++ Added Ash to generate from burning leaves and wood cinder blocks when they land after falling
 + Changed how stump blocks are handled internally. This means that existing stumps in your world would likely be affected/missing
-+ Changed the collision shapes for all log block variations to be a full cube. This matches retail BTW behavior and fixes issues with mobs trying to pathfind on top of those blocks
++ Changed the collision shapes for all log/stump block variations to be a full cube. This matches retail BTW behavior and fixes issues with mobs trying to pathfind on top of those blocks
++ Changed(added) all log/stump blocks from the mod to be proper flammable blocks
++ Fixed stump removers decrementing their stack count when in creative mode
 + Fixed missing blockstate combinations for spike log blocks which caused many warnings in the console
-+ Removed the neighboring replacement logic which makes log models flow better as it was causing issues and didn't work exactly as intended. Ideally the all the log classes need to be reworked to match BTW more closely, but that turned out to be a bigger endeavour than I can handle at the moment, so I'm leaving it for later on when I have the technical knowledge to do so
++ Removed the neighboring replacement logic which makes log models flow better as it was causing issues and didn't work exactly as intended. Ideally all the log classes need to be reworked to match BTW more closely. However, that turned out to be a bigger endeavor than I can handle at the moment, so I'm leaving it for later on when I have the technical knowledge to do so
 + Rewrote most of the project internally
 
 ## v1.6.6

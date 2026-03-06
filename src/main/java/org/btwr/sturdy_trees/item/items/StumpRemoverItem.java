@@ -33,7 +33,7 @@ public class StumpRemoverItem extends Item {
                         (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 0.6F);
 
                 world.removeBlock(pos, false);
-                stack.decrement(1);
+                stack.decrementUnlessCreative(1, context.getPlayer());
 
                 return ActionResult.SUCCESS;
             }

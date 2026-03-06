@@ -87,6 +87,16 @@ public class SturdyTreesBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(SturdyTreesBlocks.LOG_CHERRY_CHEWED)
                 .add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED);
 
+        getOrCreateTagBuilder(SturdyTreesTags.Blocks.STUMPS)
+                .add(SturdyTreesBlocks.STUMP_OAK)
+                .add(SturdyTreesBlocks.STUMP_SPRUCE)
+                .add(SturdyTreesBlocks.STUMP_BIRCH)
+                .add(SturdyTreesBlocks.STUMP_JUNGLE)
+                .add(SturdyTreesBlocks.STUMP_ACACIA)
+                .add(SturdyTreesBlocks.STUMP_DARK_OAK)
+                .add(SturdyTreesBlocks.STUMP_MANGROVE)
+                .add(SturdyTreesBlocks.STUMP_CHERRY);
+
         getOrCreateTagBuilder(SturdyTreesTags.Blocks.CRAFTING_STUMPS)
                 .add(SturdyTreesBlocks.STUMP_OAK_CRAFTING)
                 .add(SturdyTreesBlocks.STUMP_SPRUCE_CRAFTING)
