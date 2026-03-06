@@ -27,11 +27,6 @@ public class SturdyTreesRecipeProvider extends FabricRecipeProvider implements R
         super(output, registriesFuture);
     }
 
-    // tough wood types require an axe to break fully
-    private static final String[] overworldToughWoodTypes = new String[] {
-            "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
-    };
-
     @Override
     public void generate(RecipeExporter exporter) {
         this.addToVanillaRecipes(exporter);

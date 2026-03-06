@@ -5,7 +5,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -13,24 +12,18 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.btwr.sturdy_trees.block.interfaces.IConvertingTreeBlock;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class ConvertingLogBlock extends PillarBlock implements IConvertingTreeBlock {
 
-    // Charring functionality not added fully yet, so we exclude mentions in code for now
-    public static final BooleanProperty CHARRED = BooleanProperty.of("charred");
-
     public ConvertingLogBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState()
-                //.with(CHARRED, false)
-        );
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(/**, CHARRED**/);
     }
 
     @Override

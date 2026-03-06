@@ -14,20 +14,22 @@ import net.minecraft.util.Identifier;
 
 public class SturdyTreesItems {
 
-    public static final Item STUMP_REMOVER = registerItem( "stump_remover", new StumpRemoverItem(new Item.Settings().maxCount(16)));
+    public static final Item STUMP_REMOVER = registerItem(
+            "stump_remover", new StumpRemoverItem(new Item.Settings().maxCount(16))
+    );
 
-    public static final Item DUST_SAW = registerItem( "dust_saw", new Item (new Item.Settings()));
+    public static final Item DUST_SAW = registerItem("dust_saw", new Item (new Item.Settings()));
 
-    public static final Item BARK_OAK = registerItem( "bark_oak", new Item (new Item.Settings()));
-    public static final Item BARK_BIRCH = registerItem( "bark_birch", new Item (new Item.Settings()));
-    public static final Item BARK_SPRUCE = registerItem( "bark_spruce", new Item (new Item.Settings()));
-    public static final Item BARK_JUNGLE = registerItem( "bark_jungle", new Item (new Item.Settings()));
-    public static final Item BARK_ACACIA = registerItem( "bark_acacia", new Item (new Item.Settings()));
-    public static final Item BARK_DARK_OAK = registerItem( "bark_dark_oak", new Item (new Item.Settings()));
-    public static final Item BARK_MANGROVE = registerItem( "bark_mangrove", new Item (new Item.Settings()));
-    public static final Item BARK_CHERRY = registerItem( "bark_cherry", new Item (new Item.Settings()));
+    public static final Item BARK_OAK = registerItem("bark_oak", new Item (new Item.Settings()));
+    public static final Item BARK_BIRCH = registerItem("bark_birch", new Item (new Item.Settings()));
+    public static final Item BARK_SPRUCE = registerItem("bark_spruce", new Item (new Item.Settings()));
+    public static final Item BARK_JUNGLE = registerItem("bark_jungle", new Item (new Item.Settings()));
+    public static final Item BARK_ACACIA = registerItem("bark_acacia", new Item (new Item.Settings()));
+    public static final Item BARK_DARK_OAK = registerItem("bark_dark_oak", new Item (new Item.Settings()));
+    public static final Item BARK_MANGROVE = registerItem("bark_mangrove", new Item (new Item.Settings()));
+    public static final Item BARK_CHERRY = registerItem("bark_cherry", new Item (new Item.Settings()));
 
-    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
+    private static void addToIngredientItemGroup(FabricItemGroupEntries entries) {
         entries.add(DUST_SAW);
         entries.add(BARK_OAK);
         entries.add(BARK_SPRUCE);
@@ -39,7 +41,7 @@ public class SturdyTreesItems {
         entries.add(BARK_CHERRY);
     }
 
-    private static void addItemsToToolsItemGroup(FabricItemGroupEntries entries) {
+    private static void addToToolsItemGroup(FabricItemGroupEntries entries) {
         entries.add(STUMP_REMOVER);
     }
 
@@ -50,13 +52,13 @@ public class SturdyTreesItems {
     public static void register() {
         SturdyTreesMod.LOGGER.info("Registering Mod Items for " + SturdyTreesMod.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addItemsToIngredientItemGroup);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addItemsToToolsItemGroup);
+        // Register to item groups
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addToIngredientItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addToToolsItemGroup);
 
         // Register fuel items
         FuelRegistry.INSTANCE.add(SturdyTreesItems.DUST_SAW, 25);
         FuelRegistry.INSTANCE.add(SturdyTreesTags.Items.BARK_ITEMS, 25);
-
     }
 
 }
