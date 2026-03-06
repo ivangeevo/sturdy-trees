@@ -80,19 +80,6 @@ public class WoodCindersBlock extends FallingBlock implements IConvertingTreeBlo
     }
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        if (!world.isClient) {
-            this.convertBlock(world, pos, state, player);
-        }
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
-    }
-
-    @Override
-    public boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        return world.setBlockState(pos, this.getStateForBreak(world, pos, state));
-    }
-
-    @Override
     public void playSoundsOnBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS, 0.1F,
                 1.25F + (player.getWorld().random.nextFloat() * 0.25F)
@@ -107,6 +94,11 @@ public class WoodCindersBlock extends FallingBlock implements IConvertingTreeBlo
     @Override
     public int getOutlineOffset() {
         return 1;
+    }
+
+    @Override
+    public boolean convertBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        return false;
     }
 
     @Override
@@ -127,10 +119,9 @@ public class WoodCindersBlock extends FallingBlock implements IConvertingTreeBlo
     }
 
     @Override
-    public void onLanding(World world, BlockPos pos,
-                          BlockState fallingState,
-                          BlockState currentState,
-                          FallingBlockEntity entity) {
+    public void onLanding(
+            World world, BlockPos pos, BlockState fallingState, BlockState currentState, FallingBlockEntity entity)
+    {
 
         if (!world.isClient) {
 
@@ -155,39 +146,6 @@ public class WoodCindersBlock extends FallingBlock implements IConvertingTreeBlo
 
             entity.discard();
         }
-    }
-
-    private BlockState getStateForBreak(World world, BlockPos pos, BlockState state) {
-        int level = state.get(BREAK_LEVEL);
-        LogCondition condition = state.get(CONDITION);
-
-        if (level >= 3) {
-            return Blocks.AIR.getDefaultState();
-        }
-
-        // Already spike or chewed; just increment
-        if (condition == LogCondition.SPIKE || condition == LogCondition.CHEWED) {
-            return incrementOrDestroy(state);
-        }
-
-        // Not yet stripped; convert first
-        if (condition != LogCondition.STRIPPED) {
-            return state.with(CONDITION, LogCondition.STRIPPED);
-        }
-
-        // Already stripped; apply neighbor logic
-        LogCondition newCondition = resolveConditionFromNeighbors(world, pos);
-        return state.with(CONDITION, newCondition).with(BREAK_LEVEL, level + 1);
-    }
-
-    private BlockState incrementOrDestroy(BlockState state) {
-        int level = state.get(BREAK_LEVEL);
-
-        if (level >= 3) {
-            return Blocks.AIR.getDefaultState();
-        }
-
-        return state.with(BREAK_LEVEL, level + 1);
     }
 
     // Protected methods for subclass customization
