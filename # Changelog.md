@@ -11,6 +11,7 @@
 + Fixed missing blockstate combinations for spike log blocks which caused many warnings in the console
 + Removed the neighboring replacement logic which makes log models flow better as it was causing issues and didn't work exactly as intended. Ideally all the log classes need to be reworked to match BTW more closely. However, that turned out to be a bigger endeavor than I can handle at the moment, so I'm leaving it for later on when I have the technical knowledge to do so
 + Rewrote most of the project internally
++ Updated the mod to BTWR: Shared Library 0.8
 
 ## v1.6.6
 + Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7
