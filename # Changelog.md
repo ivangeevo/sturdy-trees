@@ -1,6 +1,7 @@
 # <center>Sturdy Trees</center>
 
 ## v2.0(dev)
+### WARNING! Game breaking update, proceed with caution.
 + Added logs/wood/stump blocks to turn into smouldering variants when exposed to fire for a while. Smouldering blocks will turn to cinder variants after a while or when extinguished by water/rain
 + Added the ability for stump blocks to be able to incrementally break like other log blocks when mined with an improper tool that doesn't convert them to crafting stumps. All items that are considered valid tools for conversion to crafting stumps should be registered under the "stump_efficient" tag in addition to them being added as efficient blocks in their material definition's inverse tag
 + Added Ash to generate from burning leaves and wood cinder blocks when they land after falling
@@ -11,7 +12,7 @@
 + Fixed missing blockstate combinations for spike log blocks which caused many warnings in the console
 + Removed the neighboring replacement logic which makes log models flow better as it was causing issues and didn't work exactly as intended. Ideally all the log classes need to be reworked to match BTW more closely. However, that turned out to be a bigger endeavor than I can handle at the moment, so I'm leaving it for later on when I have the technical knowledge to do so
 + Rewrote most of the project internally
-+ Updated the mod to BTWR: Shared Library 0.8
++ Updated the mod to Fabric API 0.116.9, Fabric Loader 0.18.4 & BTWR: Shared Library 0.8.2
 
 ## v1.6.6
 + Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7
