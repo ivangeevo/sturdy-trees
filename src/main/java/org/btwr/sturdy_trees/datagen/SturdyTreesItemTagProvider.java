@@ -39,6 +39,10 @@ public class SturdyTreesItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(SturdyTreesItems.BARK_DARK_OAK)
                 .add(SturdyTreesItems.BARK_MANGROVE)
                 .add(SturdyTreesItems.BARK_CHERRY);
+
+        getOrCreateTagBuilder(SturdyTreesTags.Items.STUMP_EFFICIENT)
+                .addOptionalTag(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .addOptionalTag(BTWRConventionalTags.Items.ADVANCED_CHISELS);
     }
 
     private void addToConventionalTags() {

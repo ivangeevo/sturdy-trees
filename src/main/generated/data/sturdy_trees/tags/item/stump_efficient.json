@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:modern_chisels",
+      "required": false
+    },
+    {
+      "id": "#c:advanced_chisels",
+      "required": false
+    }
+  ]
+}
