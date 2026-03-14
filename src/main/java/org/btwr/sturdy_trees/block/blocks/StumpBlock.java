@@ -30,7 +30,7 @@ public class StumpBlock extends Block implements IConvertingTreeBlock {
     @Nullable Block craftingVariant;
 
     public StumpBlock(Settings settings, @Nullable Block craftingVariant) {
-        super(settings.strength(6f,30f));
+        super(settings);
         this.setDefaultState(getStateManager().getDefaultState()
                 .with(BREAK_LEVEL, 0)
                 .with(CONDITION, LogCondition.NORMAL)

@@ -202,12 +202,12 @@ public class SturdyTreesBlocks {
     );
 
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup, Block craftingVariant) {
-        return new StumpBlock(AbstractBlock.Settings.create().sounds(soundGroup)
+        return new StumpBlock(AbstractBlock.Settings.create().strength(6f,30f).sounds(soundGroup)
                 .mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable(), craftingVariant);
     }
 
     public static CraftingTableBlock createStumpCrafting(MapColor mapColor) {
-        return new CraftingTableBlock(AbstractBlock.Settings.create()
+        return new CraftingTableBlock(AbstractBlock.Settings.create().hardness(1.25f)
                 .sounds(BlockSoundGroup.WOOD).mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable());
     }
 
