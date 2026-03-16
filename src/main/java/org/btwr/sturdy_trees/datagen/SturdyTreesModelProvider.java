@@ -8,6 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.sturdy_trees.block.blocks.SmallSaplingBlock;
+import org.btwr.sturdy_trees.item.SturdyTreesItems;
 
 public class SturdyTreesModelProvider extends FabricModelProvider {
 
@@ -64,6 +65,15 @@ public class SturdyTreesModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-
+        itemModelGenerator.register(SturdyTreesItems.STUMP_REMOVER, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.DUST_SAW, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_OAK, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_BIRCH, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_SPRUCE, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_JUNGLE, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_ACACIA, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_DARK_OAK, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_MANGROVE, Models.GENERATED);
+        itemModelGenerator.register(SturdyTreesItems.BARK_CHERRY, Models.GENERATED);
     }
 }
