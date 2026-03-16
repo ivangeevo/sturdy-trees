@@ -23,6 +23,7 @@ public class ModLootEvents {
     };
 
     public static void register() {
+        /**
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
 
             // Replace vanilla log blocks loot tables with ones from the mod
@@ -35,6 +36,7 @@ public class ModLootEvents {
 
             return original;
         });
+         **/
     }
 
     private static LootTable createLogLootTables(String type) {

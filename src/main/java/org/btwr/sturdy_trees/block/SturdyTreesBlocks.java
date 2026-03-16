@@ -1,12 +1,12 @@
 package org.btwr.sturdy_trees.block;
 
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.minecraft.block.piston.PistonBehavior;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -201,6 +201,43 @@ public class SturdyTreesBlocks {
             )
     );
 
+    public static final Block OAK_SAPLING_SMALL = registerBlock(
+            "oak_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+                    .setMatureVariant(Blocks.OAK_SAPLING)
+    );
+
+    public static final Block SPRUCE_SAPLING_SMALL = registerBlock(
+            "spruce_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+                    .setMatureVariant(Blocks.SPRUCE_SAPLING)
+    );
+
+    public static final Block BIRCH_SAPLING_SMALL = registerBlock(
+            "birch_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+                    .setMatureVariant(Blocks.BIRCH_SAPLING)
+    );
+
+    public static final Block JUNGLE_SAPLING_SMALL = registerBlock(
+            "jungle_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+                    .setMatureVariant(Blocks.JUNGLE_SAPLING)
+    );
+
+    public static final Block ACACIA_SAPLING_SMALL = registerBlock(
+            "acacia_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+                    .setMatureVariant(Blocks.ACACIA_SAPLING)
+    );
+
+    public static final Block DARK_OAK_SAPLING_SMALL = registerBlock(
+            "dark_oak_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+                    .setMatureVariant(Blocks.DARK_OAK_SAPLING)
+    );
+
+    public static final Block CHERRY_SAPLING_SMALL = registerBlock(
+            "cherry_sapling_small", new SmallSaplingBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.PINK).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+            ).setMatureVariant(Blocks.CHERRY_SAPLING)
+    );
+
     public static StumpBlock createStump(MapColor mapColor, BlockSoundGroup soundGroup, Block craftingVariant) {
         return new StumpBlock(AbstractBlock.Settings.create().strength(6f,30f).sounds(soundGroup)
                 .mapColor(mapColor).instrument(NoteBlockInstrument.BASS).burnable(), craftingVariant);
@@ -251,16 +288,26 @@ public class SturdyTreesBlocks {
                 .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable();
     }
 
+    private static AbstractBlock.Settings saplingSettings(MapColor mapColor) {
+       return AbstractBlock.Settings.create()
+               .mapColor(mapColor)
+               .noCollision()
+               .ticksRandomly()
+               .breakInstantly()
+               .sounds(BlockSoundGroup.GRASS)
+               .pistonBehavior(PistonBehavior.DESTROY);
+    }
+
     private static Block registerBlockWithoutItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, name), block);
     }
 
-    private static Block registerBlock(String name, Block block, ItemGroup tab) {
-        registerBlockItem(name, block, tab);
+    private static Block registerBlock(String name, Block block) {
+        registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(SturdyTreesMod.MOD_ID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block, ItemGroup tab) {
+    private static Item registerBlockItem(String name, Block block) {
         return Registry.register(Registries.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, name),
                 new BlockItem(block, new Item.Settings()));
     }

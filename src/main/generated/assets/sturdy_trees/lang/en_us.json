@@ -1,4 +1,9 @@
 {
+  "block.sturdy_trees.acacia_sapling_small": "Acacia Sapling",
+  "block.sturdy_trees.birch_sapling_small": "Birch Sapling",
+  "block.sturdy_trees.cherry_sapling_small": "Cherry Sapling",
+  "block.sturdy_trees.dark_oak_sapling_small": "Dark Oak Sapling",
+  "block.sturdy_trees.jungle_sapling_small": "Jungle Sapling",
   "block.sturdy_trees.log_acacia_chewed": "Acacia Chewed Log",
   "block.sturdy_trees.log_acacia_spike": "Acacia Spike Log",
   "block.sturdy_trees.log_acacia_stripped": "Acacia Stripped Log",
@@ -23,6 +28,8 @@
   "block.sturdy_trees.log_spruce_chewed": "Spruce Chewed Log",
   "block.sturdy_trees.log_spruce_spike": "Spruce Spike Log",
   "block.sturdy_trees.log_spruce_stripped": "Spruce Stripped Log",
+  "block.sturdy_trees.oak_sapling_small": "Oak Sapling",
+  "block.sturdy_trees.spruce_sapling_small": "Spruce Sapling",
   "block.sturdy_trees.stump_acacia": "Acacia Stump",
   "block.sturdy_trees.stump_acacia_crafting": "Acacia Crafting Stump",
   "block.sturdy_trees.stump_birch": "Birch Stump",

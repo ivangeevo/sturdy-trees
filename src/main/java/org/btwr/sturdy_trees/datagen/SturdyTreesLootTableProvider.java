@@ -38,11 +38,17 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
             "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
     };
 
+    private static final String[] smallSaplings = new String[] {
+            "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "cherry"
+    };
+
 
     @Override
     public void generate() {
-        // Loot tables for stripped log type blocks (when wood block is broken partially)
+        // Stripped log type blocks (when wood block is broken partially)
         this.generateCustomLogsTables();
+        // Small saplings
+        this.generateSmallSaplingTables();
     }
 
     private void generateCustomLogsTables() {
@@ -63,6 +69,17 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
         for (Identifier logBlock : getSpikeLogsIDs()) {
             Block block = Registries.BLOCK.get(logBlock);
             addDrop(block, dropsForSpikeLog(block));
+        }
+    }
+
+    private void generateSmallSaplingTables() {
+        for (Identifier id : getSmallSaplingIDs()) {
+            Block block = Registries.BLOCK.get(id);
+            addDrop(block, LootTable.builder().pool(
+                    LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1.0f))
+                            .with(this.applyExplosionDecay(block, ItemEntry.builder(block.asItem())))
+            ));
         }
     }
 
@@ -207,6 +224,16 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
 
         for (String woodType : overworldToughWoodTypes) {
             list.add(Identifier.of(SturdyTreesMod.MOD_ID, "log_" + woodType + "_chewed"));
+        }
+
+        return list;
+    }
+
+    private static List<Identifier> getSmallSaplingIDs() {
+        List<Identifier> list = new ArrayList<>();
+
+        for (String type : smallSaplings) {
+            list.add(Identifier.of(SturdyTreesMod.MOD_ID, type + "_sapling_small"));
         }
 
         return list;

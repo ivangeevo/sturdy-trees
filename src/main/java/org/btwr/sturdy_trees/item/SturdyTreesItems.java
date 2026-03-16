@@ -1,6 +1,8 @@
 package org.btwr.sturdy_trees.item;
 
+import net.minecraft.item.Items;
 import org.btwr.sturdy_trees.SturdyTreesMod;
+import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 import org.btwr.sturdy_trees.item.items.StumpRemoverItem;
 import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -45,6 +47,16 @@ public class SturdyTreesItems {
         entries.add(STUMP_REMOVER);
     }
 
+    private static void addToNaturalItemGroup(FabricItemGroupEntries entries) {
+        entries.addBefore(Items.OAK_SAPLING, SturdyTreesBlocks.OAK_SAPLING_SMALL.asItem());
+        entries.addBefore(Items.BIRCH_SAPLING, SturdyTreesBlocks.BIRCH_SAPLING_SMALL.asItem());
+        entries.addBefore(Items.SPRUCE_SAPLING, SturdyTreesBlocks.SPRUCE_SAPLING_SMALL.asItem());
+        entries.addBefore(Items.JUNGLE_SAPLING, SturdyTreesBlocks.JUNGLE_SAPLING_SMALL.asItem());
+        entries.addBefore(Items.ACACIA_SAPLING, SturdyTreesBlocks.ACACIA_SAPLING_SMALL.asItem());
+        entries.addBefore(Items.DARK_OAK_SAPLING, SturdyTreesBlocks.DARK_OAK_SAPLING_SMALL.asItem());
+        entries.addBefore(Items.CHERRY_SAPLING, SturdyTreesBlocks.CHERRY_SAPLING_SMALL.asItem());
+    }
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, name), item);
     }
@@ -55,6 +67,7 @@ public class SturdyTreesItems {
         // Register to item groups
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(SturdyTreesItems::addToIngredientItemGroup);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(SturdyTreesItems::addToToolsItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(SturdyTreesItems::addToNaturalItemGroup);
 
         // Register fuel items
         FuelRegistry.INSTANCE.add(SturdyTreesItems.DUST_SAW, 25);

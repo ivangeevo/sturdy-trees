@@ -47,5 +47,15 @@ public class SturdyTreesBlockRenderLayers {
 
         BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.ASH_GROUND_COVER, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+                SturdyTreesBlocks.OAK_SAPLING_SMALL,
+                SturdyTreesBlocks.SPRUCE_SAPLING_SMALL,
+                SturdyTreesBlocks.BIRCH_SAPLING_SMALL,
+                SturdyTreesBlocks.JUNGLE_SAPLING_SMALL,
+                SturdyTreesBlocks.ACACIA_SAPLING_SMALL,
+                SturdyTreesBlocks.DARK_OAK_SAPLING_SMALL,
+                SturdyTreesBlocks.CHERRY_SAPLING_SMALL
+        );
+
     }
 }

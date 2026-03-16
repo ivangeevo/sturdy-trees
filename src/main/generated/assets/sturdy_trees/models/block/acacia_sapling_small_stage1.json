@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sturdy_trees:block/acacia_sapling_small_stage1"
+  }
+}

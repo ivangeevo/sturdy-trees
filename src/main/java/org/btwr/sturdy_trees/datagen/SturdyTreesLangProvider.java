@@ -70,6 +70,14 @@ public class SturdyTreesLangProvider extends FabricLanguageProvider {
         tb.add(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED, "Dark Oak Stripped Log");
         tb.add(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED, "Mangrove Stripped Log");
         tb.add(SturdyTreesBlocks.LOG_CHERRY_STRIPPED, "Cherry Stripped Log");
+
+        tb.add(SturdyTreesBlocks.OAK_SAPLING_SMALL, "Oak Sapling");
+        tb.add(SturdyTreesBlocks.SPRUCE_SAPLING_SMALL, "Spruce Sapling");
+        tb.add(SturdyTreesBlocks.BIRCH_SAPLING_SMALL, "Birch Sapling");
+        tb.add(SturdyTreesBlocks.JUNGLE_SAPLING_SMALL, "Jungle Sapling");
+        tb.add(SturdyTreesBlocks.ACACIA_SAPLING_SMALL, "Acacia Sapling");
+        tb.add(SturdyTreesBlocks.DARK_OAK_SAPLING_SMALL, "Dark Oak Sapling");
+        tb.add(SturdyTreesBlocks.CHERRY_SAPLING_SMALL, "Cherry Sapling");
     }
 
     private void addItemTranslations(TranslationBuilder tb) {

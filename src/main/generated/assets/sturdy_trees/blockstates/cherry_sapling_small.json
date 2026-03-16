@@ -1,0 +1,28 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "sturdy_trees:block/cherry_sapling_small_stage0"
+      },
+      "when": {
+        "grow_stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "sturdy_trees:block/cherry_sapling_small_stage1"
+      },
+      "when": {
+        "grow_stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "sturdy_trees:block/cherry_sapling_small_stage2"
+      },
+      "when": {
+        "grow_stage": "2"
+      }
+    }
+  ]
+}

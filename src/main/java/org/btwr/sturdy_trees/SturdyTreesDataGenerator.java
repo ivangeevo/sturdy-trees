@@ -15,6 +15,7 @@ public class SturdyTreesDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(SturdyTreesRecipeProvider::new);
         pack.addProvider(SturdyTreesLootTableProvider::new);
         pack.addProvider(SturdyTreesLangProvider::new);
+        pack.addProvider(SturdyTreesModelProvider::new);
     }
 
 }

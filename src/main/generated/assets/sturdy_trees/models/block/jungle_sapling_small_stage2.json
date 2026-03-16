@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sturdy_trees:block/jungle_sapling_small_stage2"
+  }
+}

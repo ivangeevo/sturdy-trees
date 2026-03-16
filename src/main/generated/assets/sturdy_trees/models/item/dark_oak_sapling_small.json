@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sturdy_trees:block/dark_oak_sapling_small_stage0"
+  }
+}
