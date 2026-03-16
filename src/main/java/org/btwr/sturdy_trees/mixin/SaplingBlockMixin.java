@@ -1,9 +1,6 @@
 package org.btwr.sturdy_trees.mixin;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.block.SaplingBlock;
+import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -23,7 +20,8 @@ public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizab
 
     @Shadow
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return (double)world.random.nextFloat() < 0.45;
+        double chance = state.isOf(Blocks.MANGROVE_PROPAGULE) ? 0.10 : 0.45;
+        return (double)world.random.nextFloat() < chance;
     }
 
     @Shadow
