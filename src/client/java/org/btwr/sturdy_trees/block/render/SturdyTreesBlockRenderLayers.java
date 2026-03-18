@@ -7,47 +7,48 @@ import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 public class SturdyTreesBlockRenderLayers {
 
     public static void register() {
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_OAK_CHEWED, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlocks(
+                RenderLayer.getCutout(),
+                SturdyTreesBlocks.LOG_OAK_STRIPPED,
+                SturdyTreesBlocks.LOG_OAK_SPIKE,
+                SturdyTreesBlocks.LOG_OAK_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SPRUCE_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SPRUCE_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SPRUCE_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_SPRUCE_STRIPPED,
+                SturdyTreesBlocks.LOG_SPRUCE_SPIKE,
+                SturdyTreesBlocks.LOG_SPRUCE_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_BIRCH_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_BIRCH_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_BIRCH_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_BIRCH_STRIPPED,
+                SturdyTreesBlocks.LOG_BIRCH_SPIKE,
+                SturdyTreesBlocks.LOG_BIRCH_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_JUNGLE_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_JUNGLE_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_JUNGLE_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_JUNGLE_STRIPPED,
+                SturdyTreesBlocks.LOG_JUNGLE_SPIKE,
+                SturdyTreesBlocks.LOG_JUNGLE_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_ACACIA_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_ACACIA_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_ACACIA_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_ACACIA_STRIPPED,
+                SturdyTreesBlocks.LOG_ACACIA_SPIKE,
+                SturdyTreesBlocks.LOG_ACACIA_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_DARK_OAK_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_DARK_OAK_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_DARK_OAK_STRIPPED,
+                SturdyTreesBlocks.LOG_DARK_OAK_SPIKE,
+                SturdyTreesBlocks.LOG_DARK_OAK_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_MANGROVE_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_MANGROVE_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_MANGROVE_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_MANGROVE_STRIPPED,
+                SturdyTreesBlocks.LOG_MANGROVE_SPIKE,
+                SturdyTreesBlocks.LOG_MANGROVE_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_STRIPPED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_CHERRY_CHEWED, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_CHERRY_STRIPPED,
+                SturdyTreesBlocks.LOG_CHERRY_SPIKE,
+                SturdyTreesBlocks.LOG_CHERRY_CHEWED,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.LOG_SMOULDERING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.STUMP_SMOULDERING, RenderLayer.getCutout());
+                SturdyTreesBlocks.LOG_SMOULDERING,
+                SturdyTreesBlocks.STUMP_SMOULDERING,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.WOOD_CINDERS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.WOOD_CINDERS_STUMP, RenderLayer.getCutout());
+                SturdyTreesBlocks.WOOD_CINDERS,
+                SturdyTreesBlocks.WOOD_CINDERS_STUMP,
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SturdyTreesBlocks.ASH_GROUND_COVER, RenderLayer.getCutout());
+                SturdyTreesBlocks.ASH_GROUND_COVER,
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 SturdyTreesBlocks.OAK_SAPLING_SMALL,
                 SturdyTreesBlocks.SPRUCE_SAPLING_SMALL,
                 SturdyTreesBlocks.BIRCH_SAPLING_SMALL,
@@ -55,6 +56,7 @@ public class SturdyTreesBlockRenderLayers {
                 SturdyTreesBlocks.ACACIA_SAPLING_SMALL,
                 SturdyTreesBlocks.DARK_OAK_SAPLING_SMALL,
                 SturdyTreesBlocks.CHERRY_SAPLING_SMALL
+
         );
 
     }

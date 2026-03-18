@@ -114,4 +114,5 @@ public class CindersParticle extends SpriteBillboardParticle {
             return particle;
         }
     }
+
 }

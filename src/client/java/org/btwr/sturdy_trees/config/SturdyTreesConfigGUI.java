@@ -13,8 +13,6 @@ public class SturdyTreesConfigGUI {
                 .setParentScreen(parent)
                 .setTitle(Text.translatable("title.sturdy_trees.config"));
 
-        //builder.setSavingRunnable(() -> SturdyTreesMod.getInstance().saveSettings());
-
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
         ConfigCategory general = builder.getOrCreateCategory(Text.translatable("config.sturdy_trees.category.general"));

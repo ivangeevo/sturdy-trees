@@ -202,32 +202,32 @@ public class SturdyTreesBlocks {
     );
 
     public static final Block OAK_SAPLING_SMALL = registerBlock(
-            "oak_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+            "oak_sapling_small", new SmallSaplingBlock(generalSaplingSettings())
                     .setMatureVariant(Blocks.OAK_SAPLING)
     );
 
     public static final Block SPRUCE_SAPLING_SMALL = registerBlock(
-            "spruce_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+            "spruce_sapling_small", new SmallSaplingBlock(generalSaplingSettings())
                     .setMatureVariant(Blocks.SPRUCE_SAPLING)
     );
 
     public static final Block BIRCH_SAPLING_SMALL = registerBlock(
-            "birch_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+            "birch_sapling_small", new SmallSaplingBlock(generalSaplingSettings())
                     .setMatureVariant(Blocks.BIRCH_SAPLING)
     );
 
     public static final Block JUNGLE_SAPLING_SMALL = registerBlock(
-            "jungle_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+            "jungle_sapling_small", new SmallSaplingBlock(generalSaplingSettings())
                     .setMatureVariant(Blocks.JUNGLE_SAPLING)
     );
 
     public static final Block ACACIA_SAPLING_SMALL = registerBlock(
-            "acacia_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+            "acacia_sapling_small", new SmallSaplingBlock(generalSaplingSettings())
                     .setMatureVariant(Blocks.ACACIA_SAPLING)
     );
 
     public static final Block DARK_OAK_SAPLING_SMALL = registerBlock(
-            "dark_oak_sapling_small", new SmallSaplingBlock(saplingSettings(MapColor.DARK_GREEN))
+            "dark_oak_sapling_small", new SmallSaplingBlock(generalSaplingSettings())
                     .setMatureVariant(Blocks.DARK_OAK_SAPLING)
     );
 
@@ -288,9 +288,9 @@ public class SturdyTreesBlocks {
                 .instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(soundGroup).nonOpaque().burnable();
     }
 
-    private static AbstractBlock.Settings saplingSettings(MapColor mapColor) {
+    private static AbstractBlock.Settings generalSaplingSettings() {
        return AbstractBlock.Settings.create()
-               .mapColor(mapColor)
+               .mapColor(MapColor.DARK_GREEN)
                .noCollision()
                .ticksRandomly()
                .breakInstantly()
