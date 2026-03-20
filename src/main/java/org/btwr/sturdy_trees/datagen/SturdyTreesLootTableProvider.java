@@ -1,5 +1,14 @@
 package org.btwr.sturdy_trees.datagen;
 
+import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.loot.condition.TableBonusLootCondition;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.registry.RegistryKeys;
+import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -29,10 +38,6 @@ import static org.btwr.sturdy_trees.block.blocks.LogStrippedBlock.VARIATION;
 
 public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
 
-    public SturdyTreesLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(dataOutput, registryLookup);
-    }
-
     // tough wood types require an axe to break fully
     private static final String[] overworldToughWoodTypes = new String[] {
             "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
@@ -42,14 +47,87 @@ public class SturdyTreesLootTableProvider extends FabricBlockLootTableProvider {
             "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "cherry"
     };
 
+    private static final float[] LEAVES_STICK_DROP_CHANCE = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
+
+    private static final float[] JUNGLE_SAPLING_DROP_CHANCE = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
+
+    public final LootCondition.Builder WITH_SILK_TOUCH_OR_SHEARS = WITH_SHEARS.or(this.createSilkTouchCondition());
+
+    public SturdyTreesLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
+    }
+
+
 
     @Override
     public void generate() {
+        this.generateVanillaTables();
+
         // Stripped log type blocks (when wood block is broken partially)
         this.generateCustomLogsTables();
         // Small saplings
         this.generateSmallSaplingTables();
     }
+
+    private void generateVanillaTables() {
+        this.addDrop(Blocks.OAK_LEAVES, block -> this.oakLeavesDrops(block, SturdyTreesBlocks.OAK_SAPLING_SMALL, SAPLING_DROP_CHANCE));
+        this.addDrop(Blocks.SPRUCE_LEAVES, block -> this.leavesDrops(block, SturdyTreesBlocks.SPRUCE_SAPLING_SMALL, SAPLING_DROP_CHANCE));
+        this.addDrop(Blocks.BIRCH_LEAVES, block -> this.leavesDrops(block, SturdyTreesBlocks.BIRCH_SAPLING_SMALL, SAPLING_DROP_CHANCE));
+        this.addDrop(Blocks.JUNGLE_LEAVES, block -> this.leavesDrops(block, SturdyTreesBlocks.JUNGLE_SAPLING_SMALL, JUNGLE_SAPLING_DROP_CHANCE));
+        this.addDrop(Blocks.ACACIA_LEAVES, block -> this.leavesDrops(block, SturdyTreesBlocks.ACACIA_SAPLING_SMALL, SAPLING_DROP_CHANCE));
+        this.addDrop(Blocks.DARK_OAK_LEAVES, block -> this.oakLeavesDrops(block, SturdyTreesBlocks.DARK_OAK_SAPLING_SMALL, SAPLING_DROP_CHANCE));
+        this.addDrop(Blocks.CHERRY_LEAVES, block -> this.leavesDrops(block, SturdyTreesBlocks.CHERRY_SAPLING_SMALL, SAPLING_DROP_CHANCE));
+    }
+
+
+    public LootTable.Builder leavesDrops(Block leaves, Block drop, float... chance) {
+        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        return dropsWithSilkTouchOrShears(
+                leaves, this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(drop)).conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), chance)
+                ))
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .conditionally(WITH_SILK_TOUCH_OR_SHEARS.invert())
+                                .with(
+                                        this.applyExplosionDecay(leaves, ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
+                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), LEAVES_STICK_DROP_CHANCE)
+                                                )));
+    }
+
+    public LootTable.Builder oakLeavesDrops(Block leaves, Block drop, float... chance) {
+        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        return this.leavesDrops(leaves, drop, chance)
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .conditionally(WITH_SILK_TOUCH_OR_SHEARS.invert())
+                                .with(
+                                        this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(Items.APPLE))
+                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                )
+                );
+    }
+
+    public LootTable.Builder mangroveLeavesDrops(Block leaves) {
+        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        return dropsWithSilkTouchOrShears(
+                leaves,
+                this.applyExplosionDecay(
+                                Blocks.MANGROVE_LEAVES, ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
+                        )
+                        .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), LEAVES_STICK_DROP_CHANCE))
+        );
+    }
+
+    public LootTable.Builder dropsWithSilkTouchOrShears(Block drop, LootPoolEntry.Builder<?> child) {
+        return drops(drop, WITH_SILK_TOUCH_OR_SHEARS, child);
+    }
+
+    public static LootTable.Builder dropsWithShears(ItemConvertible drop) {
+        return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f)).conditionally(WITH_SHEARS).with(ItemEntry.builder(drop)));
+    }
+
 
     private void generateCustomLogsTables() {
         // Stripped logs
