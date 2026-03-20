@@ -20,7 +20,8 @@ public abstract class SaplingBlockMixin extends PlantBlock implements Fertilizab
 
     @Shadow
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        double chance = state.isOf(Blocks.MANGROVE_PROPAGULE) ? 0.10 : 0.45;
+        boolean isSlowGrowing = state.isOf(Blocks.MANGROVE_PROPAGULE) || state.isOf(Blocks.AZALEA) || state.isOf(Blocks.FLOWERING_AZALEA);
+        double chance = isSlowGrowing ? 0.10 : 0.45;
         return (double)world.random.nextFloat() < chance;
     }
 
