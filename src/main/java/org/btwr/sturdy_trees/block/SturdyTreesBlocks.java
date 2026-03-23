@@ -197,6 +197,7 @@ public class SturdyTreesBlocks {
             "ash_ground_cover", new AshGroundCoverBlock(AbstractBlock.Settings.create()
                     .strength(0.1f)
                     .sounds(BlockSoundGroup.SAND)
+                    .replaceable()
                     .ticksRandomly()
             )
     );
