@@ -1,4 +1,4 @@
-package org.btwr.sturdy_trees.mixin;
+package org.btwr.sturdy_trees.mixin.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.PillarBlock;

@@ -1,4 +1,4 @@
-package org.btwr.sturdy_trees.mixin;
+package org.btwr.sturdy_trees.mixin.world;
 
 import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
 import org.btwr.sturdy_trees.tag.SturdyTreesTags;

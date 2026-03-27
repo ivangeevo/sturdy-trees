@@ -1,4 +1,4 @@
-package org.btwr.sturdy_trees.mixin;
+package org.btwr.sturdy_trees.mixin.world;
 
 import com.google.common.collect.ImmutableList;
 import org.btwr.sturdy_trees.block.SturdyTreesBlocks;
