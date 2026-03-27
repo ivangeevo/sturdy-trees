@@ -1,5 +1,6 @@
 package org.btwr.sturdy_trees.tag;
 
+import net.minecraft.entity.EntityType;
 import org.btwr.sturdy_trees.SturdyTreesMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -48,6 +49,16 @@ public final class SturdyTreesTags {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(SturdyTreesMod.MOD_ID, id));
         }
 
+    }
+
+    public static class EntityTypes {
+
+        // Entities that can collide with leaves normally
+        public static final TagKey<EntityType<?>> COLLIDES_WITH_LEAVES = registerTag("collides_with_leaves");
+
+        private static TagKey<EntityType<?>> registerTag(String id) {
+            return TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(SturdyTreesMod.MOD_ID, id));
+        }
     }
 
 }
