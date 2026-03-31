@@ -6,7 +6,7 @@
 + Added logs/wood/stump blocks to turn into smouldering variants when exposed to fire for a while. Smouldering blocks will turn to cinder variants after a while or when extinguished by water/rain
 + Added the ability for stump blocks to be able to incrementally break like other log blocks when mined with an improper tool that doesn't convert them to crafting stumps. All items that are considered valid tools for conversion to crafting stumps should be registered under the "stump_efficient" tag in addition to them being added as efficient blocks in their material definition's inverse tag
 + Added Ash to generate from burning leaves and wood cinder blocks when they land after falling
-+ Changed leaves to be passable through. This can be configured per entity type via the "sturdy_trees:collides_with_leaves" tag
++ Changed leaves to be passable-through. This can be configured per entity type via the "sturdy_trees:collides_with_leaves" tag
 + Changed how stump blocks are handled internally. This means that existing stumps in your world would likely be affected/missing
 + Changed the collision shapes for all log/stump block variations to be a full cube. This matches retail BTW behavior and fixes issues with mobs trying to pathfind on top of those blocks
 + Changed(added) all log/stump blocks from the mod to be proper flammable blocks

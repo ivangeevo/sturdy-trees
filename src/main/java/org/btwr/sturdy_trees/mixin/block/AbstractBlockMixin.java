@@ -6,6 +6,7 @@ import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -49,48 +50,40 @@ public abstract class AbstractBlockMixin  {
         // Apply only for leaves
         if (!(self instanceof LeavesBlock)) return;
 
-        if (entity instanceof ProjectileEntity) {
-            return;
-        }
+        // Do not apply to projectiles
+        if (entity instanceof ProjectileEntity) return;
 
-        if (entity instanceof LivingEntity) {
-            double entityBottom = entity.getBoundingBox().minY;
-            Block blockBelow = world.getBlockState(pos.down()).getBlock();
-
-            boolean shouldSlow = entityBottom + entity.getHeight() >= pos.getY() + 0.05
-                    || blockBelow instanceof LeavesBlock;
-
-            if (shouldSlow) {
-                // Unused (part of blocks having different movement modifiers);
-                /**
-                float modifier = self.movementModifier;
-
-                // BTW hack: reduce slowdown when airborne so jumping in leaves feels OK
-                if (!entity.isOnGround()) {
-                    modifier = 1f - modifier / 8f;
-                }
-
-                entity.setVelocity(
-                        entity.getVelocity().x * modifier,
-                        entity.getVelocity().y < 0
-                                ? entity.getVelocity().y * this.movementModifier
-                                : entity.getVelocity().y,          // only slow downward motion
-                        entity.getVelocity().z * modifier
-                );
-                 **/
-
-                // Resets fall distance entirely when inside leaves
-                entity.fallDistance = 0.0f;
-
-                // Falling blocks destroy the leaves block on contact
-                if (entity instanceof FallingBlockEntity) {
-                    if (entity.getY() <= pos.getY() + 0.5f) {
-                        world.removeBlock(pos, false);
-                    }
-                }
+        // Falling blocks destroy the leaves block on contact
+        if (entity instanceof FallingBlockEntity) {
+            if (entity.getY() <= pos.getY() + 0.5f) {
+                world.removeBlock(pos, false);
             }
         }
-    }
 
+        Block blockBelow = world.getBlockState(pos.down()).getBlock();
+
+        boolean shouldSlow = entity.getBoundingBox().maxY >= pos.getY() + 0.05
+                        || blockBelow instanceof LeavesBlock;
+
+        if (shouldSlow) {
+            float modifier = 0.5f;
+
+            // BTW hack: reduce slowdown when airborne so jumping in leaves feels OK
+            if (entity instanceof LivingEntity && !entity.isOnGround()) {
+                modifier = 1.0f - modifier / 8.0f;
+            }
+
+            Vec3d vel = entity.getVelocity();
+
+            double newX = vel.x * modifier;
+            double newZ = vel.z * modifier;
+            double newY = vel.y < 0 ? vel.y * 0.5 : vel.y;
+
+            entity.setVelocity(newX, newY, newZ);
+
+            // Resets fall distance entirely when inside leaves
+            entity.fallDistance = 0.0f;
+        }
+    }
 
 }
