@@ -3,7 +3,7 @@
 ## v2.0
 ### WARNING! Game breaking update, proceed with caution.
 + The mod is now officially in "Release" versioning!
-+ Added saplings growing in stages! They now grow in 4 stages (from small saplings/seedlings) to mature (normal vanilla saplings). Mangrove propagules, Azalea and Flowering Azalea do not have stages, but they grow much slower than normal mature saplings
++ Added saplings growing in stages! They now grow in 4 stages (from small saplings/seedlings) to mature (normal vanilla saplings). Mangrove propagules, Azalea and Flowering Azalea do not have stages, but they grow much slower than normal mature saplings. Saplings for Acacia, Dark Oak & Cherry provided by Dawnraider from her Better Than World Gen BTW addon!
 + Added logs/wood/stump blocks to turn into smouldering variants when exposed to fire for a while. Smouldering blocks will turn to cinder variants after a while or when extinguished by water/rain
 + Added the ability for stump blocks to be able to incrementally break like other log blocks when mined with an improper tool that doesn't convert them to crafting stumps. All items that are considered valid tools for conversion to crafting stumps should be registered under the "stump_efficient" tag in addition to them being added as efficient blocks in their material definition's inverse tag
 + Added Ash to generate from burning leaves and wood cinder blocks when they land after falling
