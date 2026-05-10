@@ -1,5 +1,9 @@
 # <center>Sturdy Trees</center>
 
+## v???(dev)
++ Updated the mod to Fabric API 0.116.11, Fabric Loader 0.19.2 & BTWR: Shared Library 0.8.4
+
+
 ## v2.0
 ### WARNING! Game breaking update, proceed with caution.
 + The mod is now officially in "Release" versioning!
