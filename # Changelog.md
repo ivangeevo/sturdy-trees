@@ -1,6 +1,6 @@
 # <center>Sturdy Trees</center>
 
-## v???(dev)
+## v2.0.1
 + Fixed missing textures for the mangrove and dark oak bark items
 + Updated the mod to Fabric API 0.116.11, Fabric Loader 0.19.2 & BTWR: Shared Library 0.8.4
 
